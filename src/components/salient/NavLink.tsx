@@ -1,16 +1,18 @@
-import clsx from 'clsx'
+import Link from 'next/link'
 
-export function NavLink({ href, children, ...props }: { href: string; children: React.ReactNode; [key: string]: any }) {
+export function NavLink({
+  href,
+  children,
+}: {
+  href: string
+  children: React.ReactNode
+}) {
   return (
-    <a
+    <Link
       href={href}
-      className={clsx(
-        'inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:text-slate-900 hover:bg-slate-100',
-        props.className
-      )}
-      {...props}
+      className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
     >
       {children}
-    </a>
+    </Link>
   )
 }
