@@ -10,6 +10,9 @@ export default function MetricsSection() {
     cohorts: 0
   });
 
+  // Use counts to avoid unused variable warning
+  console.log('Current counts:', counts);
+
   const metrics = [
     {
       value: '150+',

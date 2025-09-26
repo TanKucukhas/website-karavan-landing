@@ -51,7 +51,7 @@ export default function SolutionsPartnersSection() {
             Solutions & Partners
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We've built a comprehensive ecosystem of solutions and partnerships 
+            We&apos;ve built a comprehensive ecosystem of solutions and partnerships 
             to make Turkey-Central Asia trade seamless and secure.
           </p>
         </div>

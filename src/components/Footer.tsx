@@ -70,7 +70,7 @@ export default function Footer() {
                 <option value="en">English</option>
                 <option value="tr">Türkçe</option>
                 <option value="ru">Русский</option>
-                <option value="uz">O'zbek</option>
+                <option value="uz">O&apos;zbek</option>
                 <option value="kk">Қазақша</option>
                 <option value="ky">Кыргызча</option>
               </select>
