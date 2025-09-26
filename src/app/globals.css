@@ -15,8 +15,6 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow: hidden;
-    height: 100%;
   }
   
   body {
@@ -24,9 +22,6 @@
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow: hidden;
-    height: 100%;
-    touch-action: none;
   }
   
   * {

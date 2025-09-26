@@ -9,13 +9,23 @@ type Props = {
   name?: string;
   status?: 'launching'|'expanding'|'exploring';
   zoom?: number;
+  onClick?: () => void;
 };
 
-export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding', zoom=1 }: Props) {
-  const fill = status === 'launching' ? '#4cc9f0' : '#7ab6ff';
+export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding', zoom=1, onClick }: Props) {
+  // Flag colors for country nodes
+  const FLAG_COLORS: Record<string, string> = {
+    TR: '#E30A17',  // Turkey red
+    UZ: '#1EB53A',  // Uzbekistan green
+    KZ: '#00A3DD',  // Kazakhstan blue
+    AZ: '#3F9C35',  // Azerbaijan green
+    HU: '#477050',  // Hungary green
+  };
+  
+  const fill = FLAG_COLORS[label || ''] || (status === 'launching' ? '#4cc9f0' : '#7ab6ff');
   const strokeColor = status === 'launching' ? '#d44a2a' : '#4ea1ff';
   const scaledR = r / zoom;
-  const haloR = (8 / zoom);
+  const haloR = (12 / zoom);
   
   return (
     <>
@@ -46,54 +56,24 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
       <motion.circle 
         cx={cx} 
         cy={cy} 
-        r={scaledR}
+        r={6}
         fill={fill}
         filter="url(#glow)"
-        initial={{ opacity: 0.55, scale: 0.9 }}
-        animate={{ opacity: [0.55, 0.8, 0.55], scale: [0.9, 1.05, 0.9] }}
-        transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ 
+          opacity: [0.6, 1, 0.6], 
+          scale: [0.9, 1.1, 0.9] 
+        }}
+        transition={{ 
+          duration: 2.5, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
       />
       
       {/* Inner White Dot */}
       <circle cx={cx} cy={cy} r={scaledR/2} fill="#fff" opacity={0.8}/>
       
-      {/* Country Label */}
-      {label && (
-        <text
-          x={cx + 12/zoom}
-          y={cy - 8/zoom}
-          fontSize={12/zoom}
-          fill="white"
-          className="pointer-events-none"
-          style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}
-        >
-          {label}
-        </text>
-      )}
-
-      {/* Tooltip on Hover */}
-      {name && (
-        <g className="opacity-0 hover:opacity-100 transition-opacity">
-          <rect
-            x={cx - 40/zoom}
-            y={cy - 25/zoom}
-            width={80/zoom}
-            height={20/zoom}
-            fill="rgba(0,0,0,0.8)"
-            rx={4/zoom}
-          />
-          <text
-            x={cx}
-            y={cy - 12/zoom}
-            fontSize={10/zoom}
-            fill="white"
-            textAnchor="middle"
-            className="pointer-events-none"
-          >
-            {name}
-          </text>
-        </g>
-      )}
+      {/* Labels removed - only show on click */}
 
       {/* Hit Area for Clicking */}
       <circle 
@@ -102,6 +82,7 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
         r={10/zoom} 
         fill="transparent" 
         className="cursor-pointer"
+        onClick={onClick}
       />
     </>
   );

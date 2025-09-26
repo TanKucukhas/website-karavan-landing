@@ -11,6 +11,8 @@ import { prefersReducedMotion } from '@/lib/a11y';
 export default function HeroWithInteractiveMap() {
   const handleNodeClick = (node: { id: string; name: string; href?: string }) => {
     analytics.mapNodeClick(node.name);
+    // Show country name
+    alert(`Selected: ${node.name}`);
     // Navigate to region page
     if (node.href) {
       window.location.href = node.href;
@@ -23,10 +25,10 @@ export default function HeroWithInteractiveMap() {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-brand-bg text-brand-ink" style={{ touchAction: 'none' }}>
-      {/* Mobile: Stacked Layout */}
-      <div className="lg:hidden">
-        {/* Map - Full Screen Top Half */}
+    <section className="relative min-h-screen bg-brand-bg text-brand-ink">
+      {/* Mobile: Stacked Layout (<768px) */}
+      <div className="md:hidden">
+        {/* Map - Top Half */}
         <div className="h-[50vh] relative">
           <TradeMap
             nodes={NODES}
@@ -40,8 +42,8 @@ export default function HeroWithInteractiveMap() {
           <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/40 via-brand-bg/40 to-brand-bg/70 pointer-events-none" />
         </div>
 
-        {/* Form - Auto Height Based on Content */}
-        <div className="min-h-[50vh] bg-white/95 backdrop-blur-md pt-8 pb-6 px-8 flex flex-col justify-start -mt-28 ring-1 ring-gray-200 rounded-3xl">
+        {/* Form - Bottom Half */}
+        <div className="h-[50vh] bg-white/95 backdrop-blur-md pt-8 pb-6 px-8 flex flex-col justify-start">
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
               Secure B2B trade across the{' '}
@@ -57,7 +59,45 @@ export default function HeroWithInteractiveMap() {
         </div>
       </div>
 
-      {/* Desktop: Original Layout */}
+      {/* Tablet: Centered Layout (768px-1024px) */}
+      <div className="hidden md:block lg:hidden">
+        {/* Map background */}
+        <div className="absolute inset-0">
+          <TradeMap
+            nodes={NODES}
+            arcs={ARCS}
+            animated={!prefersReducedMotion()}
+            showGraticule
+            className="h-full w-full"
+            onNodeClick={handleNodeClick}
+            debug={false}
+          />
+        </div>
+
+        {/* Dark scrim */}
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/40 via-brand-bg/40 to-brand-bg/70 pointer-events-none" />
+
+        {/* Centered form */}
+        <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
+          <div className="max-w-md w-full">
+            <div className="rounded-2xl bg-white/95 backdrop-blur-md shadow-xl ring-1 ring-black/5 p-6 text-gray-900">
+              <div className="mb-6">
+                <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-4">
+                  Secure B2B trade across the{' '}
+                  <span className="text-brand-600">Turkic States</span>
+                </h1>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Launching first in Türkiye & Uzbekistan. Escrow payments, integrated logistics and customs, finance options.
+                </p>
+              </div>
+
+              <EmailCaptureInline defaultRole="seller" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop: Floating Card Layout (>1024px) */}
       <div className="hidden lg:block">
         {/* Map background */}
         <div className="absolute inset-0">
@@ -75,12 +115,12 @@ export default function HeroWithInteractiveMap() {
         {/* Dark scrim for readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/40 via-brand-bg/40 to-brand-bg/70 pointer-events-none" />
 
-        {/* Foreground content */}
+        {/* Floating form card */}
         <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8 pt-32 pb-20">
-          <div className="max-w-sm w-[46vw] sm:max-w-lg lg:max-w-xl">
-            <div className="rounded-3xl bg-white/95 backdrop-blur-md shadow-xl ring-1 ring-black/5 p-6 sm:p-8 text-gray-900">
+          <div className="max-w-lg">
+            <div className="rounded-2xl bg-white/95 backdrop-blur-md shadow-xl ring-1 ring-black/5 p-8 text-gray-900">
               <div className="mb-6">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                <h1 className="text-5xl font-bold text-gray-900 leading-tight mb-4">
                   Secure B2B trade across the{' '}
                   <span className="text-brand-600">Turkic States</span>
                 </h1>
@@ -89,9 +129,7 @@ export default function HeroWithInteractiveMap() {
                 </p>
               </div>
 
-              <div className="space-y-4">
-                <EmailCaptureInline defaultRole="seller" />
-              </div>
+              <EmailCaptureInline defaultRole="seller" />
             </div>
           </div>
         </div>

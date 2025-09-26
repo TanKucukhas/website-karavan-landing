@@ -9,9 +9,19 @@ import { twMerge } from 'tailwind-merge';
 import { normalizeLonLat } from '@/utils/geo';
 import ArcPath from './ArcPath';
 import NodeDot from './NodeDot';
+import Legend from './Legend';
 import type { TradeMapProps, Arc, Node } from './TradeMap.types';
 
 const WORLD_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
+
+// Flag colors for country nodes
+const FLAG_COLORS: Record<string, string> = {
+  TR: '#E30A17',  // Turkey red
+  UZ: '#1EB53A',  // Uzbekistan green
+  KZ: '#00A3DD',  // Kazakhstan blue
+  AZ: '#3F9C35',  // Azerbaijan green
+  HU: '#477050',  // Hungary green
+};
 
 export default function TradeMap({
   nodes, arcs, className,
@@ -60,6 +70,8 @@ export default function TradeMap({
       className={twMerge(clsx('relative w-full h-full', className))} 
       aria-hidden
       style={{ touchAction: 'none' }}
+      onWheel={(e) => e.preventDefault()}
+      onTouchMove={(e) => e.preventDefault()}
     >
       <MotionConfig reducedMotion={reducedMotionFallback ? 'always' : 'never'}>
         <ComposableMap
@@ -157,24 +169,17 @@ export default function TradeMap({
                     zoom={zoom}
                     label={n.region}
                     name={n.name}
+                    onClick={() => onNodeClick?.(n)}
                   />
                 </g>
               );
             })}
           </g>
 
-          {/* Legend - Sol alt köşe */}
-          <g transform="translate(20, 480)">
-            <rect x="0" y="0" width="180" height="80" fill="rgba(0,0,0,0.7)" rx="8" />
-            <text x="10" y="20" fill="white" fontSize="12" fontWeight="bold">Trade Status</text>
-            <circle cx="15" cy="35" r="4" fill="#d44a2a" />
-            <text x="25" y="40" fill="white" fontSize="10">Launching</text>
-            <circle cx="15" cy="50" r="4" fill="#4ea1ff" />
-            <text x="25" y="55" fill="white" fontSize="10">Expanding</text>
-            <circle cx="15" cy="65" r="4" fill="#7ab6ff" />
-            <text x="25" y="70" fill="white" fontSize="10">Exploring</text>
-          </g>
         </ComposableMap>
+        
+        {/* Legend */}
+        <Legend />
       </MotionConfig>
     </div>
   );
