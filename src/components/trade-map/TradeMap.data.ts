@@ -55,3 +55,12 @@ export const ARCS: Arc[] = [
   { id:'UZ-KZ-1', from:'UZ-TAS', to:'KZ-ALM', strength:1, delayMs:1200 },
   { id:'KZ-AZ-1', from:'KZ-ALM', to:'AZ-BAK', strength:1, delayMs:1500 },
 ];
+
+// Active countries with their colors - more vibrant
+export const ACTIVE_COUNTRIES: Record<string, string> = {
+  TR: "#ff6b6b",  // Turkey → bright red
+  UZ: "#4ecdc4",  // Uzbekistan → bright teal
+  KZ: "#45b7d1",  // Kazakhstan → bright blue
+  AZ: "#96ceb4",  // Azerbaijan → bright green
+  HU: "#feca57",  // Hungary → bright yellow
+};

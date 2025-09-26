@@ -11,6 +11,7 @@ import ArcPath from './ArcPath';
 import NodeDot from './NodeDot';
 import Legend from './Legend';
 import type { TradeMapProps, Arc, Node } from './TradeMap.types';
+import { ID_TO_COLOR } from '@/utils/idColors';
 
 const WORLD_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
 
@@ -107,16 +108,67 @@ export default function TradeMap({
           <Geographies geography={WORLD_URL}>
             {({ geographies }) =>
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              geographies.map((geo: any) => (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  fill="#0f1b33"
-                  stroke="#1c2e4d"
-                  strokeWidth={0.5}
-                  style={{ default:{ outline:'none' }, hover:{ outline:'none' }, pressed:{ outline:'none' } }}
-                />
-              ))
+              geographies.map((geo: any) => {
+                const id = Number(geo.id);
+                const active = id in ID_TO_COLOR;
+                const color = active ? ID_TO_COLOR[id] : '#0f1b33';
+
+                return (
+                  <g key={geo.rsmKey} style={{ pointerEvents: 'none' }}>
+                    {/* Base country fill */}
+                    <Geography
+                      geography={geo}
+                      style={{
+                        default: { 
+                          fill: '#0f1b33', 
+                          stroke: '#1c2e4d', 
+                          strokeWidth: 0.4, 
+                          outline: 'none' 
+                        },
+                        hover: { 
+                          fill: '#0f1b33', 
+                          stroke: '#1c2e4d', 
+                          strokeWidth: 0.4, 
+                          outline: 'none' 
+                        },
+                        pressed: { 
+                          fill: '#0f1b33', 
+                          stroke: '#1c2e4d', 
+                          strokeWidth: 0.4, 
+                          outline: 'none' 
+                        },
+                      }}
+                    />
+                    {/* Active country overlay */}
+                    {active && (
+                      <>
+                        <Geography
+                          geography={geo}
+                          style={{ 
+                            default: { 
+                              fill: color, 
+                              fillOpacity: 0.3, 
+                              outline: 'none' 
+                            } 
+                          }}
+                        />
+                        <Geography
+                          geography={geo}
+                          style={{ 
+                            default: { 
+                              fill: 'none', 
+                              stroke: color, 
+                              strokeOpacity: 0.6, 
+                              strokeWidth: 1.2, 
+                              outline: 'none' 
+                            } 
+                          }}
+                        />
+                      </>
+                    )}
+                  </g>
+                );
+              })
             }
           </Geographies>
 
