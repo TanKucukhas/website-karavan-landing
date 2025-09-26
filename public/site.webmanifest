@@ -1,0 +1,23 @@
+{
+  "name": "Karavan - B2B Export Platform",
+  "short_name": "Karavan",
+  "description": "Karavan is a B2B export platform connecting Turkish exporters with international buyers across Central Asia and Eastern Europe.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "portrait-primary"
+}
