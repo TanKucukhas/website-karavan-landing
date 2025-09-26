@@ -6,7 +6,7 @@ import { geoMercator } from 'd3-geo';
 import { MotionConfig } from 'framer-motion';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { normalizeLonLat } from '@/utils/geo';
+import { normalizeLonLat, buildArcD } from '@/utils/geo';
 import ArcPath from './ArcPath';
 import NodeDot from './NodeDot';
 import Legend from './Legend';
@@ -43,25 +43,18 @@ export default function TradeMap({
       .translate([512, 260]), 
   []);
 
-  // Arc path hesaplama - mesafeye göre kavis
-  const buildArcPath = useMemo(() => {
-    return (a: Arc) => {
-      const from = nodes.find(n => n.id === a.from)!;
-      const to = nodes.find(n => n.id === a.to)!;
-      
-      const [x1, y1] = projection(normalizeLonLat([from.lon, from.lat]))!;
-      const [x2, y2] = projection(normalizeLonLat([to.lon, to.lat]))!;
-      
-      const dx = x2 - x1;
-      const dy = y2 - y1;
-      const dr = Math.sqrt(dx * dx + dy * dy) * 0.3; // mesafeye bağlı yükseklik
-      
-      const mx = (x1 + x2) / 2;
-      const my = (y1 + y2) / 2 - dr;
-      
-      return `M ${x1},${y1} Q ${mx},${my} ${x2},${y2}`;
-    };
-  }, [nodes, projection]);
+  // Memoized arc paths with distance-based curvature
+  const arcDs = useMemo(() => {
+    const nodesById = Object.fromEntries(nodes.map(n => [n.id, n]));
+    return arcs.map(a => {
+      const f = nodesById[a.from], t = nodesById[a.to];
+      return { 
+        id: a.id, 
+        d: buildArcD(projection, [f.lon, f.lat], [t.lon, t.lat]),
+        ...a
+      };
+    });
+  }, [arcs, nodes, projection]);
 
   // Aktif ülkeleri filtrele
   const activeNodes = nodes.filter(n => n.status === 'launching' || n.status === 'expanding');
@@ -141,27 +134,26 @@ export default function TradeMap({
             </>
           )}
 
-          {/* Trade Arcs */}
-          <g>
-            {arcs.slice(0, 5).map((a, index) => {
-              const d = buildArcPath(a);
-              const fromNode = nodes.find(n => n.id === a.from);
-              const status = fromNode?.status || 'expanding';
-              const delay = index * 300; // Stagger by 0.3s intervals
-              
-              return (
-                <ArcPath
-                  key={a.id}
-                  d={d}
-                  delay={delay}
-                  strength={a.strength ?? 1}
-                  animated={animated}
-                  status={status}
-                  zoom={zoom}
-                />
-              );
-            })}
-          </g>
+              {/* Trade Arcs */}
+              <g>
+                {arcDs.slice(0, 5).map((arc, index) => {
+                  const fromNode = nodes.find(n => n.id === arc.from);
+                  const status = fromNode?.status || 'expanding';
+                  
+                  return (
+                    <ArcPath
+                      key={arc.id}
+                      d={arc.d}
+                      color={status === 'launching' ? '#d44a2a' : '#4ea1ff'}
+                      width={arc.strength === 3 ? 1.8 : arc.strength === 2 ? 1.3 : 1.0}
+                      delayMs={index * 280}  // 🔑 start offset only, no repeatDelay
+                      dashed={status === 'exploring'}
+                      zoom={zoom}
+                      glow={true}
+                    />
+                  );
+                })}
+              </g>
 
           {/* Country Nodes */}
           <g style={{ zIndex: 20 }}>

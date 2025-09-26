@@ -1,62 +1,61 @@
 'use client';
 import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {
-  d: string;           // SVG path d attribute
-  delay?: number;      // ms
-  strength?: 1|2|3;    // stroke width scale
-  animated?: boolean;
-  status?: 'launching'|'expanding'|'exploring';
-  zoom?: number;       // zoom level for scaling
+  d: string;
+  color: string;
+  width?: number;
+  delayMs?: number;
+  zoom?: number;
+  dashed?: boolean; // for "exploring" arcs
+  glow?: boolean;
 };
 
-export default function ArcPath({ d, delay=0, strength=1, animated=true, status='expanding', zoom=1 }: Props) {
-  // Status-based styling
-  const getStrokeColor = () => {
-    switch (status) {
-      case 'launching': return '#d44a2a'; // Primary red
-      case 'expanding': return '#4ea1ff'; // Blue
-      case 'exploring': return '#7ab6ff'; // Light blue
-      default: return '#4ea1ff';
-    }
-  };
+export default function ArcPath({
+  d, color, width = 1.2, delayMs = 0, zoom = 1, dashed = false, glow = true
+}: Props) {
+  const ref = useRef<SVGPathElement | null>(null);
+  const [len, setLen] = useState(0);
 
-  const getStrokeWidth = () => {
-    switch (status) {
-      case 'launching': return 1.2;
-      case 'expanding': return 1.0;
-      case 'exploring': return 0.9;
-      default: return 1.0;
-    }
-  };
+  useEffect(() => {
+    if (!ref.current) return;
+    const L = ref.current.getTotalLength();
+    setLen(L);
+    console.log('Path length:', L); // Debug için
+  }, [d, delayMs]);
 
-  const strokeColor = getStrokeColor();
-  const strokeWidth = (getStrokeWidth() * strength) / zoom; // Zoom'a göre ölçekle
-  const isDashed = status === 'exploring';
+  // non-scaling stroke keeps width stable on zoom
+  const strokeWidth = width / (zoom || 1);
 
-  const common = {
-    d,
-    stroke: strokeColor,
-    strokeWidth,
-    fill: 'none',
-    strokeLinecap: 'round' as const,
-    opacity: 0.9,
-    filter: 'drop-shadow(0 0 4px rgba(126,176,255,.2))',
-    style: { vectorEffect: 'non-scaling-stroke' as const },
-    ...(isDashed && { strokeDasharray: '6 6' }),
-  };
+  // Dash-pattern: solid for launching/expanding; dashed for exploring
+  const dashArray = dashed ? `${8 / (zoom || 1)} ${8 / (zoom || 1)}` : '1000';
 
-  if (!animated) {
-    return <path {...common} />;
-  }
-
-  // Animate "draw" effect with dashoffset
   return (
-    <motion.path
-      {...common}
-      initial={{ pathLength: 0 }}
-      animate={{ pathLength: 1 }}
-      transition={{ duration: 2.2, delay: delay/1000, ease: 'easeInOut', repeat: Infinity, repeatDelay: 1.2 }}
-    />
+    <g>
+      {/* animated stroke - sadece hareket eden parçacıklar */}
+      <motion.path
+        ref={ref}
+        d={d}
+        stroke={color}
+        strokeWidth={strokeWidth}
+        fill="none"
+        strokeLinecap="round"
+        style={{
+          vectorEffect: 'non-scaling-stroke',
+          strokeDasharray: len > 0 ? `${len * 0.6} ${len * 0.4}` : '600 400', // Çizgi %60, boşluk %40
+        }}
+        initial={{ strokeDashoffset: len > 0 ? len * 0.6 : 600 }}
+        animate={{ 
+          strokeDashoffset: len > 0 ? -len * 0.6 : -600
+        }}
+        transition={{
+          duration: len > 0 ? Math.max(8.0, len / 100) : 10.0, // Daha yavaş - 8-10 saniye
+          ease: 'linear',
+          repeat: Infinity,
+          delay: delayMs / 1000,
+        }}
+      />
+    </g>
   );
 }
