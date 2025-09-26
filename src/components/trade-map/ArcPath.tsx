@@ -41,7 +41,7 @@ export default function ArcPath({ d, delay=0, strength=1, animated=true, status=
     fill: 'none',
     strokeLinecap: 'round' as const,
     opacity: 0.9,
-    filter: 'drop-shadow(0 0 6px rgba(126,176,255,.35))',
+    filter: 'drop-shadow(0 0 4px rgba(126,176,255,.2))',
     style: { vectorEffect: 'non-scaling-stroke' as const },
     ...(isDashed && { strokeDasharray: '6 6' }),
   };

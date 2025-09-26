@@ -38,12 +38,12 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
           r={haloR}
           fill="transparent"
           stroke={strokeColor}
-          strokeOpacity={0.35}
+          strokeOpacity={0.2}
           strokeWidth={1 / zoom}
-          initial={{ scale: 0.9, opacity: 0.6 }}
+          initial={{ scale: 0.9, opacity: 0.3 }}
           animate={{ 
-            scale: [0.9, 1.35, 0.9], 
-            opacity: [0.6, 0, 0.6] 
+            scale: [0.9, 1.2, 0.9], 
+            opacity: [0.3, 0, 0.3] 
           }}
           transition={{ 
             duration: 2.2, 
@@ -61,11 +61,11 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
         fill={fill}
         filter="url(#glow)"
         animate={{ 
-          opacity: [0.6, 1, 0.6], 
-          scale: [0.9, 1.1, 0.9] 
+          opacity: [0.7, 0.9, 0.7], 
+          scale: [0.95, 1.05, 0.95] 
         }}
         transition={{ 
-          duration: 2.5, 
+          duration: 3.0, 
           repeat: Infinity, 
           ease: "easeInOut" 
         }}
@@ -78,14 +78,15 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
       {showLabel && name && (
         <text
           x={cx}
-          y={cy - 15}
-          fontSize={12}
+          y={cy - 12}
+          fontSize={10}
           fill="white"
           textAnchor="middle"
           className="pointer-events-none"
           style={{ 
-            textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
-            fontWeight: 'bold'
+            textShadow: '1px 1px 2px rgba(0,0,0,0.6)',
+            fontWeight: '500',
+            opacity: 0.9
           }}
         >
           {name}
