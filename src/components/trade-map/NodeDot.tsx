@@ -38,15 +38,15 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
           r={haloR}
           fill="transparent"
           stroke={strokeColor}
-          strokeOpacity={0.15}
-          strokeWidth={1 / zoom}
-          initial={{ scale: 0.8, opacity: 0.2 }}
+          strokeOpacity={0.3}
+          strokeWidth={1.5 / zoom}
+          initial={{ scale: 0.5, opacity: 0.4 }}
           animate={{ 
-            scale: [0.8, 1.3, 0.8], 
-            opacity: [0.2, 0, 0.2] 
+            scale: [0.5, 1.5, 0.5], 
+            opacity: [0.4, 0, 0.4] 
           }}
           transition={{ 
-            duration: 3.0, 
+            duration: 2.5, 
             repeat: Infinity, 
             ease: 'easeInOut' 
           }}
@@ -61,11 +61,11 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
         fill={fill}
         filter="url(#glow)"
         animate={{ 
-          opacity: [0.7, 0.9, 0.7], 
-          scale: [0.95, 1.05, 0.95] 
+          opacity: [0.6, 1, 0.6], 
+          scale: [0.8, 1.2, 0.8] 
         }}
         transition={{ 
-          duration: 3.0, 
+          duration: 2.5, 
           repeat: Infinity, 
           ease: "easeInOut" 
         }}

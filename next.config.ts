@@ -11,9 +11,11 @@ const nextConfig: NextConfig = {
   },
   typescript: {
     ignoreBuildErrors: false,
+    tsconfigPath: './tsconfig.json',
   },
   eslint: {
     ignoreDuringBuilds: false,
+    dirs: ['src'],
   },
 };
 
