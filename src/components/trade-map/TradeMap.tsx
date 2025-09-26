@@ -11,7 +11,7 @@ import ArcPath from './ArcPath';
 import NodeDot from './NodeDot';
 import Legend from './Legend';
 import type { TradeMapProps, Arc, Node } from './TradeMap.types';
-import { ID_TO_COLOR } from '@/utils/idColors';
+import { ID_TO_COLOR, FILL_COLORS, BORDER_COLORS } from '@/utils/idColors';
 
 const WORLD_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
 
@@ -111,7 +111,14 @@ export default function TradeMap({
               geographies.map((geo: any) => {
                 const id = Number(geo.id);
                 const active = id in ID_TO_COLOR;
-                const color = active ? ID_TO_COLOR[id] : '#0f1b33';
+                
+                // Get country code for color mapping
+                let countryCode = '';
+                if (id === 792) countryCode = 'TR';
+                else if (id === 860) countryCode = 'UZ';
+                else if (id === 398) countryCode = 'KZ';
+                else if (id === 31) countryCode = 'AZ';
+                else if (id === 348) countryCode = 'HU';
 
                 return (
                   <g key={geo.rsmKey} style={{ pointerEvents: 'none' }}>
@@ -140,14 +147,13 @@ export default function TradeMap({
                       }}
                     />
                     {/* Active country overlay */}
-                    {active && (
+                    {active && countryCode && (
                       <>
                         <Geography
                           geography={geo}
                           style={{ 
                             default: { 
-                              fill: color, 
-                              fillOpacity: 0.3, 
+                              fill: FILL_COLORS[countryCode as keyof typeof FILL_COLORS], 
                               outline: 'none' 
                             } 
                           }}
@@ -157,9 +163,8 @@ export default function TradeMap({
                           style={{ 
                             default: { 
                               fill: 'none', 
-                              stroke: color, 
-                              strokeOpacity: 0.6, 
-                              strokeWidth: 1.2, 
+                              stroke: BORDER_COLORS[countryCode as keyof typeof BORDER_COLORS], 
+                              strokeWidth: 1.0, 
                               outline: 'none' 
                             } 
                           }}
@@ -196,7 +201,7 @@ export default function TradeMap({
                     <ArcPath
                       key={arc.id}
                       d={arc.d}
-                      color={status === 'launching' ? '#e67e7e' : '#7bb3f0'} // Pastel renkler
+                      color={status === 'launching' ? '#e67e7e80' : '#7bb3f080'} // Pastel renkler with opacity
                       width={arc.strength === 3 ? 1.8 : arc.strength === 2 ? 1.3 : 1.0}
                       delayMs={index * 280}  // 🔑 start offset only, no repeatDelay
                       dashed={status === 'exploring'}

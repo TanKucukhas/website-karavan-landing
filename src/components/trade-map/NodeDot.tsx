@@ -23,8 +23,8 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
     HU: '#8a9b8a',  // Pastel Hungary green
   };
   
-  const fill = FLAG_COLORS[label || ''] || (status === 'launching' ? '#7bb3f0' : '#9bb3f0');
-  const strokeColor = status === 'launching' ? '#e67e7e' : '#7bb3f0';
+      const fill = FLAG_COLORS[label || ''] || (status === 'launching' ? '#7bb3f0' : '#9bb3f0');
+      const strokeColor = status === 'launching' ? '#e67e7e80' : '#7bb3f080'; // 50% opacity
   const scaledR = r / zoom;
   const haloR = (12 / zoom);
   
@@ -32,44 +32,43 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
     <>
       {/* Halo Effect for Active Nodes */}
       {(status === 'launching' || status === 'expanding') && (
-        <motion.circle 
-          cx={cx} 
-          cy={cy} 
-          r={haloR}
-          fill="transparent"
-          stroke={strokeColor}
-          strokeOpacity={0.3}
-          strokeWidth={1.5 / zoom}
-          initial={{ scale: 0.5, opacity: 0.4 }}
-          animate={{ 
-            scale: [0.5, 1.5, 0.5], 
-            opacity: [0.4, 0, 0.4] 
-          }}
-          transition={{ 
-            duration: 2.5, 
-            repeat: Infinity, 
-            ease: 'easeInOut' 
-          }}
-        />
+            <motion.circle 
+              cx={cx} 
+              cy={cy} 
+              r={haloR}
+              fill="transparent"
+              stroke={strokeColor}
+              strokeWidth={1.5 / zoom}
+              initial={{ scale: 0.5, opacity: 0.2 }}
+              animate={{ 
+                scale: [0.5, 1.5, 0.5], 
+                opacity: [0.2, 0, 0.2] 
+              }}
+              transition={{ 
+                duration: 2.5, 
+                repeat: Infinity, 
+                ease: 'easeInOut' 
+              }}
+            />
       )}
       
       {/* Main Node */}
-      <motion.circle 
-        cx={cx} 
-        cy={cy} 
-        r={6}
-        fill={fill}
-        filter="url(#glow)"
-        animate={{ 
-          opacity: [0.6, 1, 0.6], 
-          scale: [0.8, 1.2, 0.8] 
-        }}
-        transition={{ 
-          duration: 2.5, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-      />
+          <motion.circle 
+            cx={cx} 
+            cy={cy} 
+            r={6}
+            fill={fill}
+            filter="url(#glow)"
+            animate={{ 
+              opacity: [0.4, 0.8, 0.4], 
+              scale: [0.8, 1.1, 0.8] 
+            }}
+            transition={{ 
+              duration: 2.5, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+          />
       
       {/* Inner White Dot */}
       <circle cx={cx} cy={cy} r={scaledR/2} fill="#fff" opacity={0.8}/>
