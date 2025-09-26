@@ -1,4 +1,4 @@
-import HeroSection from '@/components/HeroSection'
+import HeroWithInteractiveMap from '@/components/HeroWithInteractiveMap'
 import ChallengesSection from '@/components/ChallengesSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import MetricsSection from '@/components/MetricsSection'
@@ -13,7 +13,7 @@ import CTABanner from '@/components/CTABanner'
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
-      <HeroSection />
+      <HeroWithInteractiveMap />
       <ChallengesSection />
       <FeaturesSection />
       <MetricsSection />

@@ -74,7 +74,14 @@ module.exports = {
           800: '#86198f',
           900: '#701a75',
           950: '#4a044e',
-        }
+        },
+        // Trade Map Colors
+        'brand-bg': '#0b1220',
+        'brand-ink': '#e8e9eb',
+        'accent-300': '#7ab6ff',
+        'accent-500': '#4ea1ff',
+        'accent-600': '#2563eb',
+        'glow': '#4cc9f0'
       },
       fontFamily: {
         // Primary font: Avenir (fallbacks to Helvetica / system)
