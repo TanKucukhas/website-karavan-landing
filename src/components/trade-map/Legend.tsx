@@ -1,11 +1,11 @@
 'use client';
 
 const FLAG_COLORS: Record<string, string> = {
-  TR: '#E30A17',  // Turkey red
-  UZ: '#1EB53A',  // Uzbekistan green
-  KZ: '#00A3DD',  // Kazakhstan blue
-  AZ: '#3F9C35',  // Azerbaijan green
-  HU: '#477050',  // Hungary green
+  TR: '#e67e7e',  // Pastel Turkey red
+  UZ: '#7bb3a8',  // Pastel Uzbekistan green
+  KZ: '#7bb3f0',  // Pastel Kazakhstan blue
+  AZ: '#7bb3a8',  // Pastel Azerbaijan green
+  HU: '#8a9b8a',  // Pastel Hungary green
 };
 
 const COUNTRY_NAMES: Record<string, string> = {

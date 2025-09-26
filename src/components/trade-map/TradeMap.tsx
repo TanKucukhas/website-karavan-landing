@@ -144,7 +144,7 @@ export default function TradeMap({
                     <ArcPath
                       key={arc.id}
                       d={arc.d}
-                      color={status === 'launching' ? '#d44a2a' : '#4ea1ff'}
+                      color={status === 'launching' ? '#e67e7e' : '#7bb3f0'} // Pastel renkler
                       width={arc.strength === 3 ? 1.8 : arc.strength === 2 ? 1.3 : 1.0}
                       delayMs={index * 280}  // 🔑 start offset only, no repeatDelay
                       dashed={status === 'exploring'}

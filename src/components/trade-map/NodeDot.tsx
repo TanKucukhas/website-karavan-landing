@@ -14,17 +14,17 @@ type Props = {
 };
 
 export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding', zoom=1, onClick, showLabel=false }: Props) {
-  // Flag colors for country nodes
+  // Pastel flag colors for country nodes
   const FLAG_COLORS: Record<string, string> = {
-    TR: '#E30A17',  // Turkey red
-    UZ: '#1EB53A',  // Uzbekistan green
-    KZ: '#00A3DD',  // Kazakhstan blue
-    AZ: '#3F9C35',  // Azerbaijan green
-    HU: '#477050',  // Hungary green
+    TR: '#e67e7e',  // Pastel Turkey red
+    UZ: '#7bb3a8',  // Pastel Uzbekistan green
+    KZ: '#7bb3f0',  // Pastel Kazakhstan blue
+    AZ: '#7bb3a8',  // Pastel Azerbaijan green
+    HU: '#8a9b8a',  // Pastel Hungary green
   };
   
-  const fill = FLAG_COLORS[label || ''] || (status === 'launching' ? '#4cc9f0' : '#7ab6ff');
-  const strokeColor = status === 'launching' ? '#d44a2a' : '#4ea1ff';
+  const fill = FLAG_COLORS[label || ''] || (status === 'launching' ? '#7bb3f0' : '#9bb3f0');
+  const strokeColor = status === 'launching' ? '#e67e7e' : '#7bb3f0';
   const scaledR = r / zoom;
   const haloR = (12 / zoom);
   
@@ -38,17 +38,17 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
           r={haloR}
           fill="transparent"
           stroke={strokeColor}
-          strokeOpacity={0.2}
+          strokeOpacity={0.15}
           strokeWidth={1 / zoom}
-          initial={{ scale: 0.9, opacity: 0.3 }}
+          initial={{ scale: 0.8, opacity: 0.2 }}
           animate={{ 
-            scale: [0.9, 1.2, 0.9], 
-            opacity: [0.3, 0, 0.3] 
+            scale: [0.8, 1.3, 0.8], 
+            opacity: [0.2, 0, 0.2] 
           }}
           transition={{ 
-            duration: 2.2, 
+            duration: 3.0, 
             repeat: Infinity, 
-            ease: 'easeOut' 
+            ease: 'easeInOut' 
           }}
         />
       )}
