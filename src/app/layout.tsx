@@ -20,6 +20,8 @@ export const viewport = {
   themeColor: '#ffffff'
 }
 
+import './globals.css'
+
 export default function RootLayout({
   children,
 }: {
