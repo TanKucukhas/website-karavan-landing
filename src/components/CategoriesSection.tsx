@@ -46,13 +46,13 @@ export default function CategoriesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
           {categories.map((category, index) => {
             const IconComponent = category.icon;
             return (
               <div key={index} className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 group cursor-pointer">
                 <div className="mb-4 group-hover:scale-110 transition-transform duration-300 flex justify-center">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-lg bg-gray-100 text-blue-600 flex items-center justify-center p-4">
                     <IconComponent />
                   </div>
                 </div>
@@ -69,7 +69,7 @@ export default function CategoriesSection() {
 
         {/* Request Category */}
         <div className="text-center">
-          <div className="bg-white rounded-xl p-6 max-w-md mx-auto border border-neutralLight hover:border-primary transition-colors duration-300">
+          <div className="bg-white rounded-xl p-6 max-w-xl mx-auto border border-neutralLight hover:border-primary transition-colors duration-300">
             <div className="text-neutralGray mb-4">
               <PlusIcon className="w-12 h-12 mx-auto" size={48} />
             </div>
@@ -79,23 +79,10 @@ export default function CategoriesSection() {
             <p className="text-neutralGray text-sm mb-4">
               Don&apos;t see your industry? We&apos;re constantly expanding our coverage.
             </p>
-            <form className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="text"
-                placeholder="Category name"
-                className="flex-1 px-3 py-2 border border-neutralGray rounded-md text-sm focus:ring-2 focus:ring-primary focus:border-transparent"
-              />
-              <input
-                type="email"
-                placeholder="Your email"
-                className="flex-1 px-3 py-2 border border-neutralGray rounded-md text-sm focus:ring-2 focus:ring-primary focus:border-transparent"
-              />
-              <button
-                type="submit"
-                className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-300"
-              >
-                Send
-              </button>
+            <form className="flex items-center justify-center gap-2">
+              <input type="text" placeholder="Category name" className="px-3 py-2 border border-neutralGray rounded-md text-sm focus:ring-2 focus:ring-primary focus:border-transparent w-48" />
+              <input type="email" placeholder="Your email" className="px-3 py-2 border border-neutralGray rounded-md text-sm focus:ring-2 focus:ring-primary focus:border-transparent w-56" />
+              <button type="submit" className="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-md text-sm font-semibold transition-all duration-300">Send</button>
             </form>
           </div>
         </div>

@@ -31,7 +31,7 @@ export default function MarketRegionSection() {
   ];
 
   return (
-    <section id="regions" className="py-20 bg-white">
+    <section id="regions" className="py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-heading font-extrabold text-neutralDark mb-6 leading-tight">
@@ -66,11 +66,11 @@ export default function MarketRegionSection() {
           <h3 className="text-2xl font-heading font-bold text-neutralDark mb-8 text-center">
             Our Core Markets
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 justify-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-center">
             {turkicStates.map((state, index) => (
-              <div key={index} className={`bg-white border ${state.status === 'core' ? 'border-primary' : 'border-neutralLight'} rounded-lg p-5 text-center hover:shadow-md transition-all duration-300 ${state.status === 'core' ? '' : 'opacity-70'}`}>
-                <div className="text-3xl w-10 h-10 mx-auto mb-2 flex items-center justify-center">{state.flag}</div>
-                <h4 className="font-medium text-neutralDark text-sm mb-1">{state.name}</h4>
+              <div key={index} className={`bg-white border ${state.status === 'core' ? 'border-primary' : 'border-neutralLight'} rounded-lg p-6 text-center hover:shadow-md transition-all duration-300 ${state.status === 'core' ? '' : 'opacity-80'}`}>
+                <div className="text-4xl w-12 h-12 mx-auto mb-2 flex items-center justify-center">{state.flag}</div>
+                <h4 className="font-semibold text-neutralDark text-sm mb-1">{state.name}</h4>
                 <p className="text-neutralGray text-xs flex items-center justify-center gap-2">
                   {state.population} Population
                   {state.status === 'expanding' && (

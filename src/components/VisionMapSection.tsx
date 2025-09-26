@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import type { Feature, FeatureCollection, Point, GeoJsonProperties } from 'geojson';
+import type { Feature, FeatureCollection, Point } from 'geojson';
 import CTAButton from './ui/CTAButton';
 
 interface Region {

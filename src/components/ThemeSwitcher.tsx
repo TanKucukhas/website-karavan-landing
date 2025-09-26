@@ -38,11 +38,11 @@ export default function ThemeSwitcher() {
       type="button"
       onClick={toggle}
       aria-pressed={isDark}
-      className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-muted hover:bg-muted/80 text-brand-ink transition-colors"
+      aria-label="Toggle theme"
+      className="inline-flex items-center justify-center w-8 h-8 rounded-md bg-muted hover:bg-muted/80 text-brand-ink transition-colors border border-neutralLight"
       title="Toggle theme"
     >
-      {mounted && (isDark ? <Moon size={18} /> : <Sun size={18} />)}
-      <span className="text-sm font-medium">{mounted ? (isDark ? 'Dark' : 'Light') : 'Theme'}</span>
+      {mounted && (isDark ? <Moon size={16} /> : <Sun size={16} />)}
     </button>
   );
 }

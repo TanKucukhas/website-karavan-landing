@@ -21,21 +21,21 @@ export default function Header() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled || isMenuOpen
-          ? 'bg-brand-bg/90 backdrop-blur border-b border-neutralLight'
+          ? 'bg-brand-bg/90 backdrop-blur border-b border-neutralLight shadow-sm'
           : 'bg-transparent'
       }`}
       aria-label="Primary"
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="w-32 h-10 relative">
+            <div className="w-40 h-12 relative">
               <Image
                 src="/images/logo/karavan-logo.svg"
                 alt="Karavan Logo"
-                width={128}
-                height={40}
+                width={160}
+                height={48}
                 className="w-full h-full object-contain"
               />
             </div>
@@ -55,25 +55,28 @@ export default function Header() {
             <Link href="#about" className="text-muted-ink hover:text-brand-ink transition-colors">
               About
             </Link>
-            <ThemeSwitcher />
             <button 
               onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
               className="btn btn-primary text-white"
             >
               Get Early Access
             </button>
+            <span className="inline-flex"><ThemeSwitcher /></span>
           </nav>
 
-          {/* Mobile Menu Button - Only on mobile */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-md text-muted-ink hover:text-brand-ink transition-colors"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <List size={24} />}
-          </button>
+          {/* Mobile actions: theme + menu */}
+          <div className="lg:hidden flex items-center gap-2">
+            <ThemeSwitcher />
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-md text-muted-ink hover:text-brand-ink transition-colors"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <List size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -108,9 +111,6 @@ export default function Header() {
               >
                 About
               </Link>
-              <div className="px-4 py-2">
-                <ThemeSwitcher />
-              </div>
               <button 
                 onClick={() => {
                   document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
@@ -120,6 +120,9 @@ export default function Header() {
               >
                 Get Early Access
               </button>
+              <div className="px-4 py-2">
+                <ThemeSwitcher />
+              </div>
             </nav>
           </div>
         )}

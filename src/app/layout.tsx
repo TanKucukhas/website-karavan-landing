@@ -53,6 +53,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <SchemaMarkup />
+        {/* Dynamic theme-color for light/dark */}
+        <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
       </head>
       <body
         className={`${inter.variable} ${manrope.variable} font-sans antialiased`}

@@ -12,16 +12,16 @@ interface ProblemCardsSectionProps {
 
 export default function ProblemCardsSection({ problems }: ProblemCardsSectionProps) {
   return (
-    <section className="py-16 bg-neutralLight">
+    <section className="py-24 bg-neutralLight">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {problems.map((p, i) => (
-            <div key={i} className="transform transition-transform duration-300 hover:scale-[1.02]">
+            <div key={i} className="transform transition-transform duration-300 hover:-translate-y-1">
               <Card
                 icon={p.icon}
                 title={p.title}
                 text={p.description}
-                className="h-full"
+                className="h-full shadow-sm rounded-xl p-6 gap-3"
               />
             </div>
           ))}
