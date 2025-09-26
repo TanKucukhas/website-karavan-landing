@@ -13,7 +13,9 @@ export default function CategoriesSection() {
       subcategories: ['Cotton fabrics', 'Ready-made garments', 'Home textiles'],
       certificates: ['OEKO-TEX', 'GOTS'],
       moq: '$5,000',
-      corridors: ['TR→UZ', 'TR→KZ']
+      leadTime: '7-14 days',
+      corridors: ['TR→UZ', 'TR→KZ'],
+      demand: 'High'
     },
     {
       icon: <Emoji symbol="⚙️" label="Machinery" size={24} />, 
@@ -21,7 +23,9 @@ export default function CategoriesSection() {
       subcategories: ['Agricultural machinery', 'Industrial equipment', 'Construction machinery'],
       certificates: ['CE', 'ISO 9001'],
       moq: '$25,000',
-      corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
+      leadTime: '21-30 days',
+      corridors: ['TR→UZ', 'TR→KZ', 'TR→KG'],
+      demand: 'Medium'
     },
     {
       icon: <Emoji symbol="🧪" label="Chemicals" size={24} />, 
@@ -29,7 +33,9 @@ export default function CategoriesSection() {
       subcategories: ['Industrial chemicals', 'Pharmaceuticals', 'Cosmetics'],
       certificates: ['GMP', 'ISO 14001'],
       moq: '$10,000',
-      corridors: ['TR→UZ', 'TR→KZ']
+      leadTime: '14-21 days',
+      corridors: ['TR→UZ', 'TR→KZ'],
+      demand: 'High'
     },
     {
       icon: <Emoji symbol="🌾" label="Agriculture" size={24} />, 
@@ -37,7 +43,9 @@ export default function CategoriesSection() {
       subcategories: ['Dried fruits', 'Nuts', 'Spices', 'Processed foods'],
       certificates: ['HACCP', 'Organic'],
       moq: '$3,000',
-      corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
+      leadTime: '7-10 days',
+      corridors: ['TR→UZ', 'TR→KZ', 'TR→KG'],
+      demand: 'Very High'
     },
     {
       icon: <Emoji symbol="🏗️" label="Construction" size={24} />, 
@@ -45,7 +53,9 @@ export default function CategoriesSection() {
       subcategories: ['Cement', 'Steel products', 'Ceramic tiles'],
       certificates: ['CE', 'ISO 9001'],
       moq: '$15,000',
-      corridors: ['TR→UZ', 'TR→KZ', 'TR→TM']
+      leadTime: '14-21 days',
+      corridors: ['TR→UZ', 'TR→KZ', 'TR→TM'],
+      demand: 'High'
     },
     {
       icon: <Emoji symbol="🚗" label="Automotive" size={24} />, 
@@ -151,16 +161,36 @@ export default function CategoriesSection() {
                   </div>
                 </div>
                 
-                <div className="flex justify-between items-center text-sm">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-700">Demand:</span>
+                  <span className={`text-sm font-semibold px-2 py-1 rounded-full ${
+                    category.demand === 'Very High' ? 'bg-red-100 text-red-800' :
+                    category.demand === 'High' ? 'bg-orange-100 text-orange-800' :
+                    'bg-blue-100 text-blue-800'
+                  }`}>
+                    {category.demand}
+                  </span>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-3 text-sm">
                   <div>
-                    <span className="text-gray-700">MOQ: </span>
-                    <span className="font-semibold text-green-600">{category.moq}</span>
+                    <div className="font-medium text-gray-700">MOQ</div>
+                    <div className="text-gray-600">{category.moq}</div>
                   </div>
                   <div>
-                    <span className="text-gray-700">Routes: </span>
-                    <span className="font-semibold text-blue-600">
-                      {category.corridors.join(', ')}
-                    </span>
+                    <div className="font-medium text-gray-700">Lead Time</div>
+                    <div className="text-gray-600">{category.leadTime}</div>
+                  </div>
+                </div>
+                
+                <div>
+                  <div className="text-sm font-medium text-gray-700 mb-1">Corridors:</div>
+                  <div className="flex flex-wrap gap-1">
+                    {category.corridors.map((corridor, idx) => (
+                      <span key={idx} className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">
+                        {corridor}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -251,3 +281,4 @@ export default function CategoriesSection() {
     </section>
   );
 }
+

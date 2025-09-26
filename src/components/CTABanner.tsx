@@ -27,10 +27,10 @@ export default function CTABanner() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center text-white">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Join the Early Access Program
+            Secure Your Early Access Spot
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Verified suppliers, secure escrow, logistics included. 
+            <span className="font-semibold text-yellow-300">Limited spots available.</span> Verified suppliers, secure escrow, logistics included. 
             Be among the first to experience the future of B2B trade.
           </p>
 

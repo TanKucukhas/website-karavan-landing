@@ -27,7 +27,14 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
+    <>
+      <style jsx>{`
+        @keyframes tradeRoute {
+          0%, 100% { opacity: 0.3; transform: rotate(var(--rotation)) scaleX(0.8); }
+          50% { opacity: 1; transform: rotate(var(--rotation)) scaleX(1); }
+        }
+      `}</style>
+      <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDZGOUEiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-20"></div>
@@ -39,11 +46,15 @@ export default function HeroSection() {
           {/* Left Content */}
           <div className="text-center lg:text-left">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Be the first to access{' '}
+              Early access to{' '}
               <span className="text-blue-600">verified suppliers</span> in the Turkic States
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl">
-              Cross-border trade made simple. Join the private beta — no fees, no spam.
+            <p className="text-xl text-gray-600 mb-4 max-w-2xl">
+              Secure B2B trade with escrow, logistics, and financing included. 
+              <span className="font-semibold text-red-600"> Limited early access spots available.</span>
+            </p>
+            <p className="text-sm text-gray-500 mb-8 max-w-2xl">
+              Join the private beta — no fees, no spam, early access only.
             </p>
             
             {/* Email Capture Form */}
@@ -178,18 +189,21 @@ export default function HeroSection() {
                   {tradeRoutes.map((route, index) => (
                     <div
                       key={index}
-                      className="absolute animate-pulse"
+                      className="absolute"
                       style={{
                         top: '50%',
                         left: '20%',
                         width: '60%',
-                        height: '2px',
+                        height: '3px',
                         background: 'linear-gradient(90deg, #006F9E, #10B981)',
                         transform: `rotate(${index * 15 - 30}deg)`,
                         transformOrigin: 'left center',
+                        animation: `tradeRoute 3s ease-in-out infinite`,
                         animationDelay: `${index * 0.5}s`,
                       }}
-                    />
+                    >
+                      <div className="w-2 h-2 bg-blue-500 rounded-full absolute right-0 top-1/2 transform -translate-y-1/2 animate-ping"></div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -217,5 +231,6 @@ export default function HeroSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }

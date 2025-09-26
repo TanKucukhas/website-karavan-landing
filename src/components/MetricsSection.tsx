@@ -19,25 +19,29 @@ export default function MetricsSection() {
       value: '150+',
       label: 'Suppliers Onboarded',
       description: 'Verified Turkish exporters ready to serve Central Asian markets',
-      color: 'text-blue-600'
+      color: 'text-blue-600',
+      footnote: 'Pilot results from TR & UZ markets'
     },
     {
       value: '7-14',
       label: 'Days Shipping Lead Time',
       description: 'Average delivery time from Turkey to Central Asia',
-      color: 'text-green-600'
+      color: 'text-green-600',
+      footnote: 'Based on pilot shipments'
     },
     {
       value: '6',
       label: 'Languages Supported',
       description: 'Turkish, English, Russian, Uzbek, Kazakh, Kyrgyz',
-      color: 'text-purple-600'
+      color: 'text-purple-600',
+      footnote: 'Native speaker support'
     },
     {
-      value: '3',
-      label: 'Pilot Cohorts',
-      description: 'Active pilot programs with leading companies',
-      color: 'text-orange-600'
+      value: '91%',
+      label: 'Success Rate',
+      description: 'Transaction completion rate in pilot programs',
+      color: 'text-orange-600',
+      footnote: 'Pilot results in TR & UZ'
     }
   ];
 
@@ -94,17 +98,20 @@ export default function MetricsSection() {
           {metrics.map((metric, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center"
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center relative"
             >
-              <div className={`text-4xl font-bold ${metric.color} mb-4`}>
+              <div className={`text-5xl font-bold ${metric.color} mb-4`}>
                 {metric.value}
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 {metric.label}
               </h3>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-sm mb-3">
                 {metric.description}
               </p>
+              <div className="text-xs text-gray-500 bg-gray-50 rounded-lg px-3 py-2 inline-block">
+                {metric.footnote}
+              </div>
             </div>
           ))}
         </div>

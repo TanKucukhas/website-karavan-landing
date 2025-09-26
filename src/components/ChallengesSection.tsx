@@ -22,14 +22,14 @@ export default function ChallengesSection() {
           {challenges.map((item, index) => {
             const Icon = item.icon
             return (
-              <div key={index} className={`group rounded-2xl p-6 ring-1 ${item.color} bg-white/70 backdrop-blur hover:shadow-medium hover:-translate-y-1 transition-all`}>
-                <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 rounded-xl bg-white/80 ring-1 ring-inset ring-gray-200 grid place-items-center">
-                    <Icon className="h-6 w-6" />
+              <div key={index} className={`group rounded-2xl p-8 ring-1 ${item.color} bg-white/70 backdrop-blur hover:shadow-lg hover:-translate-y-2 transition-all duration-300`}>
+                <div className="flex items-start gap-6">
+                  <div className={`h-16 w-16 rounded-2xl ${item.color.replace('50', '100')} ring-2 ${item.color.replace('50', '200')} grid place-items-center flex-shrink-0`}>
+                    <Icon className="h-8 w-8" />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900">{item.title}</h3>
-                    <p className="mt-2 text-gray-700">{item.description}</p>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                    <p className="text-lg text-gray-700 leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -41,10 +41,10 @@ export default function ChallengesSection() {
         <div className="mt-16 bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
           <div className="text-center max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Cross-border trade made simple
+              Be first to access verified suppliers
             </h3>
             <p className="text-gray-600 mb-6">
-              Sign up now to get notified when we launch. Join thousands of businesses ready to expand their reach.
+              <span className="font-semibold text-red-600">Limited early access spots available.</span> Join the private beta and secure your position in the Turkic States market.
             </p>
             
             <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
