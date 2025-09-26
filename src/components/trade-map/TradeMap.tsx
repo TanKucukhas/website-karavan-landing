@@ -1,18 +1,17 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { ComposableMap, Geographies, Geography, Graticule } from 'react-simple-maps';
 import { geoMercator } from 'd3-geo';
 import { MotionConfig } from 'framer-motion';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { normalizeLonLat } from '@/utils/geo';
 import ArcPath from './ArcPath';
 import NodeDot from './NodeDot';
-import type { TradeMapProps, Arc } from './TradeMap.types';
+import type { TradeMapProps, Arc, Node } from './TradeMap.types';
 
 const WORLD_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
-
-// Removed unused function
 
 export default function TradeMap({
   nodes, arcs, className,
@@ -20,35 +19,57 @@ export default function TradeMap({
   animated = true,
   reducedMotionFallback = false,
   onNodeClick,
-  onArcClick
-}: TradeMapProps) {
+  onArcClick,
+  debug = false
+}: TradeMapProps & { debug?: boolean }) {
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const projection = useMemo(() => (geoMercator() as any).scale(140).translate([550, 260]), []);
+  const zoom = 1; // Sabit zoom seviyesi
 
-  // Build arc path strings
-  const buildArcPath = (a: Arc) => {
-    const from = nodes.find(n => n.id === a.from)!;
-    const to   = nodes.find(n => n.id === a.to)!;
-    const p1 = projection([from.lon, from.lat])!;
-    const p2 = projection([to.lon, to.lat])!;
-    // Quadratic curve control point slightly above mid
-    const mx = (p1[0] + p2[0]) / 2;
-    const my = (p1[1] + p2[1]) / 2 - 40; // elevate a bit
-    return `M ${p1[0]},${p1[1]} Q ${mx},${my} ${p2[0]},${p2[1]}`;
-  };
+  // Tek projeksiyon objesi - tüm çizimlerde aynı kullanılacak
+  const projection = useMemo(() => 
+    geoMercator()
+      .scale(140)
+      .translate([512, 260]), 
+  []);
+
+  // Arc path hesaplama - mesafeye göre kavis
+  const buildArcPath = useMemo(() => {
+    return (a: Arc) => {
+      const from = nodes.find(n => n.id === a.from)!;
+      const to = nodes.find(n => n.id === a.to)!;
+      
+      const [x1, y1] = projection(normalizeLonLat([from.lon, from.lat]))!;
+      const [x2, y2] = projection(normalizeLonLat([to.lon, to.lat]))!;
+      
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const dr = Math.sqrt(dx * dx + dy * dy) * 0.3; // mesafeye bağlı yükseklik
+      
+      const mx = (x1 + x2) / 2;
+      const my = (y1 + y2) / 2 - dr;
+      
+      return `M ${x1},${y1} Q ${mx},${my} ${x2},${y2}`;
+    };
+  }, [nodes, projection]);
+
+  // Aktif ülkeleri filtrele
+  const activeNodes = nodes.filter(n => n.status === 'launching' || n.status === 'expanding');
 
   return (
-    <div className={twMerge(clsx('relative w-full h-full', className))} aria-hidden>
+    <div 
+      className={twMerge(clsx('relative w-full h-full', className))} 
+      aria-hidden
+      style={{ touchAction: 'none' }}
+    >
       <MotionConfig reducedMotion={reducedMotionFallback ? 'always' : 'never'}>
         <ComposableMap
           projection="geoMercator"
-          projectionConfig={{ scale: 140 }}
+          projectionConfig={{ scale: 140, center: [0, 0] }}
           style={{ width:'100%', height:'100%' }}
           width={1024}
           height={520}
         >
-          {/* Background gradient */}
+          {/* SVG Definitions */}
           <defs>
             <linearGradient id="arcGradient" x1="0" x2="1" y1="0" y2="0">
               <stop offset="0%" stopColor="#7ab6ff" />
@@ -61,8 +82,16 @@ export default function TradeMap({
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
+            <filter id="redGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
           </defs>
 
+          {/* World Map */}
           <Geographies geography={WORLD_URL}>
             {({ geographies }) =>
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -79,9 +108,21 @@ export default function TradeMap({
             }
           </Geographies>
 
+          {/* Grid Lines */}
           {showGraticule && <Graticule stroke="#1f3356" strokeWidth={0.4} opacity={0.35} />}
 
-          {/* Arcs */}
+          {/* Debug Mode - Yeşil çizgiler ve magenta noktalar */}
+          {debug && (
+            <>
+              <Graticule stroke="#00ff5a" strokeWidth={0.5} />
+              {nodes.map(n => {
+                const [x, y] = projection(normalizeLonLat([n.lon, n.lat]))!;
+                return <circle key={n.id} cx={x} cy={y} r={3} fill="magenta" />
+              })}
+            </>
+          )}
+
+          {/* Trade Arcs */}
           <g>
             {arcs.slice(0, 5).map((a, index) => {
               const d = buildArcPath(a);
@@ -97,21 +138,41 @@ export default function TradeMap({
                   strength={a.strength ?? 1}
                   animated={animated}
                   status={status}
+                  zoom={zoom}
                 />
               );
             })}
           </g>
 
-          {/* Nodes */}
+          {/* Country Nodes */}
           <g>
             {nodes.map(n => {
-              const [x, y] = projection([n.lon, n.lat])!;
+              const [x, y] = projection(normalizeLonLat([n.lon, n.lat]))!;
               return (
                 <g key={n.id} onClick={() => onNodeClick?.(n)} className="cursor-pointer">
-                  <NodeDot cx={x} cy={y} status={n.status}/>
+                  <NodeDot 
+                    cx={x} 
+                    cy={y} 
+                    status={n.status} 
+                    zoom={zoom}
+                    label={n.region}
+                    name={n.name}
+                  />
                 </g>
               );
             })}
+          </g>
+
+          {/* Legend - Sol alt köşe */}
+          <g transform="translate(20, 480)">
+            <rect x="0" y="0" width="180" height="80" fill="rgba(0,0,0,0.7)" rx="8" />
+            <text x="10" y="20" fill="white" fontSize="12" fontWeight="bold">Trade Status</text>
+            <circle cx="15" cy="35" r="4" fill="#d44a2a" />
+            <text x="25" y="40" fill="white" fontSize="10">Launching</text>
+            <circle cx="15" cy="50" r="4" fill="#4ea1ff" />
+            <text x="25" y="55" fill="white" fontSize="10">Expanding</text>
+            <circle cx="15" cy="65" r="4" fill="#7ab6ff" />
+            <text x="25" y="70" fill="white" fontSize="10">Exploring</text>
           </g>
         </ComposableMap>
       </MotionConfig>

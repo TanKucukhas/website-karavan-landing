@@ -7,9 +7,10 @@ type Props = {
   strength?: 1|2|3;    // stroke width scale
   animated?: boolean;
   status?: 'launching'|'expanding'|'exploring';
+  zoom?: number;       // zoom level for scaling
 };
 
-export default function ArcPath({ d, delay=0, strength=1, animated=true, status='expanding' }: Props) {
+export default function ArcPath({ d, delay=0, strength=1, animated=true, status='expanding', zoom=1 }: Props) {
   // Status-based styling
   const getStrokeColor = () => {
     switch (status) {
@@ -30,7 +31,7 @@ export default function ArcPath({ d, delay=0, strength=1, animated=true, status=
   };
 
   const strokeColor = getStrokeColor();
-  const strokeWidth = getStrokeWidth() * strength;
+  const strokeWidth = (getStrokeWidth() * strength) / zoom; // Zoom'a göre ölçekle
   const isDashed = status === 'exploring';
 
   const common = {
@@ -41,6 +42,7 @@ export default function ArcPath({ d, delay=0, strength=1, animated=true, status=
     strokeLinecap: 'round' as const,
     opacity: 0.9,
     filter: 'drop-shadow(0 0 6px rgba(126,176,255,.35))',
+    style: { vectorEffect: 'non-scaling-stroke' as const },
     ...(isDashed && { strokeDasharray: '6 6' }),
   };
 

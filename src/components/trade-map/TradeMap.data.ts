@@ -52,4 +52,6 @@ export const ARCS: Arc[] = [
   { id:'TR-KZ-1', from:'TR-IST', to:'KZ-ALM', strength:1, delayMs:300 },
   { id:'TR-AZ-1', from:'TR-IST', to:'AZ-BAK', strength:1, delayMs:600 },
   { id:'TR-HU-1', from:'TR-IST', to:'HU-BUD', strength:1, delayMs:900 },
+  { id:'UZ-KZ-1', from:'UZ-TAS', to:'KZ-ALM', strength:1, delayMs:1200 },
+  { id:'KZ-AZ-1', from:'KZ-ALM', to:'AZ-BAK', strength:1, delayMs:1500 },
 ];

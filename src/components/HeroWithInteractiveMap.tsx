@@ -23,7 +23,7 @@ export default function HeroWithInteractiveMap() {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-brand-bg text-brand-ink">
+    <section className="relative min-h-screen overflow-hidden bg-brand-bg text-brand-ink" style={{ touchAction: 'none' }}>
       {/* Mobile: Stacked Layout */}
       <div className="lg:hidden">
         {/* Map - Full Screen Top Half */}
@@ -35,19 +35,21 @@ export default function HeroWithInteractiveMap() {
             showGraticule
             className="h-full w-full"
             onNodeClick={handleNodeClick}
+            debug={false}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/40 via-brand-bg/40 to-brand-bg/70 pointer-events-none" />
         </div>
 
         {/* Form - Auto Height Based on Content */}
-        <div className="min-h-[50vh] bg-white/95 backdrop-blur-md p-6 flex flex-col justify-start -mt-28">
+        <div className="min-h-[50vh] bg-white/95 backdrop-blur-md pt-8 pb-6 px-8 flex flex-col justify-start -mt-28 ring-1 ring-gray-200 rounded-3xl">
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
               Secure B2B trade across the{' '}
               <span className="text-brand-600">Turkic States</span>
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Launching first in Türkiye & Uzbekistan. Escrow payments, integrated logistics and customs, finance options.
+              Launching first in Türkiye & Uzbekistan.<br />
+              Escrow payments, logistics, customs, and finance options.
             </p>
           </div>
 
@@ -66,6 +68,7 @@ export default function HeroWithInteractiveMap() {
             showGraticule
             className="h-full w-full"
             onNodeClick={handleNodeClick}
+            debug={false}
           />
         </div>
 

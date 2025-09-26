@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { analytics } from '@/lib/analytics';
+import ToggleSwitch from './ToggleSwitch';
 
 type Props = { defaultRole?: 'seller'|'buyer' };
 
@@ -66,42 +67,20 @@ export default function EmailCaptureInline({ defaultRole='seller' }: Props) {
         </div>
 
         {/* Role Toggle and CTA Button Row */}
-        <div className="flex flex-col sm:flex-row gap-3">
-          {/* Role Toggle */}
-          <div className="inline-flex rounded-xl bg-gray-100 p-1" role="tablist">
-            <button
-              type="button"
-              role="tab"
-              aria-selected={role === 'seller'}
-              data-active={role === 'seller'}
-              className="px-3 py-2 rounded-lg text-sm font-medium bg-white shadow-sm text-gray-900 data-[active=false]:bg-gray-100 data-[active=false]:text-gray-500 transition-all"
-              onClick={() => {
-                setRole('seller');
-                analytics.roleChange('seller');
-              }}
-            >
-              Seller
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={role === 'buyer'}
-              data-active={role === 'buyer'}
-              className="px-3 py-2 rounded-lg text-sm font-medium bg-white shadow-sm text-gray-900 data-[active=false]:bg-gray-100 data-[active=false]:text-gray-500 transition-all"
-              onClick={() => {
-                setRole('buyer');
-                analytics.roleChange('buyer');
-              }}
-            >
-              Buyer
-            </button>
-          </div>
+        <div className="flex flex-col sm:flex-row gap-4">
+          {/* Role Toggle Switch */}
+          <ToggleSwitch
+            leftLabel="Seller"
+            rightLabel="Buyer"
+            defaultValue={defaultRole === 'seller' ? 'left' : 'right'}
+            onToggle={(value) => setRole(value === 'left' ? 'seller' : 'buyer')}
+          />
 
           {/* CTA Button */}
           <button
             type="submit"
             disabled={loading}
-            className="rounded-xl bg-red-600 px-6 py-3 font-semibold text-white hover:bg-red-700 disabled:opacity-60 focus:ring-2 focus:ring-red-500 focus:outline-none transition-colors shadow-sm"
+            className="h-11 rounded-xl bg-red-600 px-6 py-3 font-semibold text-white hover:bg-red-700 disabled:opacity-60 focus:ring-2 focus:ring-red-500 focus:outline-none transition-colors shadow-sm"
           >
             {loading ? 'Submitting...' : 'Get Early Access'}
           </button>
@@ -109,7 +88,7 @@ export default function EmailCaptureInline({ defaultRole='seller' }: Props) {
       </form>
 
       {/* Trust Line with Color Indicators */}
-      <div className="text-sm text-gray-500">
+      <div className="text-sm text-gray-500 mt-4">
         <div className="flex items-center gap-2 mb-2">
           <div className="w-2 h-2 bg-green-500 rounded-full"></div>
           <span>No membership fees</span>
