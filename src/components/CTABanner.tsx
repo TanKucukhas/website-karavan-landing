@@ -5,11 +5,14 @@ import Emoji from '@/components/Emoji'
 
 export default function CTABanner() {
   const [email, setEmail] = useState('');
+  const [role, setRole] = useState<'buyer' | 'seller'>('buyer');
+  const [country, setCountry] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
+    // TODO: Integrate with HubSpot
+    console.log('Form submitted:', { email, role, country });
     setIsSubmitted(true);
     setTimeout(() => setIsSubmitted(false), 3000);
   };
@@ -27,34 +30,98 @@ export default function CTABanner() {
             Join the Early Access Program
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Be among the first to experience the future of B2B trade. 
-            Private beta with no fees and no spam.
+            Verified suppliers, secure escrow, logistics included. 
+            Be among the first to experience the future of B2B trade.
           </p>
 
-          {/* CTA Form */}
-          <div className="max-w-md mx-auto">
+          {/* Enhanced CTA Form */}
+          <div className="max-w-lg mx-auto">
             {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  className="flex-1 px-6 py-4 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-4 focus:ring-white/30 focus:outline-none"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg"
-                >
-                  Get Early Access
-                </button>
+              <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your@company.com"
+                      className="w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-white/50 focus:outline-none"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-white mb-2">
+                      I want to:
+                    </label>
+                    <div className="grid grid-cols-2 gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setRole('buyer')}
+                        className={`px-4 py-3 rounded-lg border-2 transition-colors ${
+                          role === 'buyer' 
+                            ? 'border-white bg-white/20 text-white' 
+                            : 'border-white/50 bg-transparent text-white hover:bg-white/10'
+                        }`}
+                      >
+                        Find Suppliers
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setRole('seller')}
+                        className={`px-4 py-3 rounded-lg border-2 transition-colors ${
+                          role === 'seller' 
+                            ? 'border-white bg-white/20 text-white' 
+                            : 'border-white/50 bg-transparent text-white hover:bg-white/10'
+                        }`}
+                      >
+                        Start Selling
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="country" className="block text-sm font-medium text-white mb-2">
+                      Country
+                    </label>
+                    <select
+                      id="country"
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      className="w-full px-4 py-3 rounded-lg text-gray-900 focus:ring-2 focus:ring-white/50 focus:outline-none"
+                      required
+                    >
+                      <option value="">Select your country</option>
+                      <option value="TR">Turkey</option>
+                      <option value="UZ">Uzbekistan</option>
+                      <option value="KZ">Kazakhstan</option>
+                      <option value="KG">Kyrgyzstan</option>
+                      <option value="TM">Turkmenistan</option>
+                      <option value="AZ">Azerbaijan</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    className="w-full bg-white text-blue-600 px-6 py-3 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg"
+                  >
+                    Get Early Access
+                  </button>
+                </div>
               </form>
             ) : (
-              <div className="bg-green-500 text-white px-8 py-4 rounded-lg font-semibold">
-                ✅ Thank you! We&apos;ll be in touch soon.
+              <div className="bg-green-500 text-white px-8 py-6 rounded-2xl font-semibold text-center">
+                <div className="text-4xl mb-2">✓</div>
+                <h3 className="text-xl font-bold mb-2">Thank you!</h3>
+                <p>We&apos;ll notify you when we launch.</p>
               </div>
             )}
+            <p className="text-blue-100 text-sm mt-4">No fees, no spam.</p>
           </div>
 
           {/* Benefits */}

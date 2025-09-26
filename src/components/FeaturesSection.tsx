@@ -1,27 +1,27 @@
-import Emoji from '@/components/Emoji'
+import { ShieldCheckIcon, TruckIcon, CheckCircleIcon, BanknotesIcon } from '@heroicons/react/24/outline'
 
 export default function FeaturesSection() {
   const features = [
     {
-      icon: <Emoji symbol="🛡️" label="Shield" size={28} />, 
+      icon: <ShieldCheckIcon className="h-7 w-7 text-brand-blue" />, 
       title: 'Escrow & Dispute Handling',
       description: 'Secure payments held in escrow until delivery confirmation. Automated dispute resolution system.',
       benefits: ['Secure transactions', 'Automated disputes', 'Risk mitigation']
     },
     {
-      icon: <Emoji symbol="🚚" label="Truck" size={28} />, 
+      icon: <TruckIcon className="h-7 w-7 text-brand-blue" />, 
       title: 'Logistics & Customs',
       description: 'End-to-end logistics coordination with customs clearance and documentation support.',
       benefits: ['Door-to-door delivery', 'Customs clearance', 'Real-time tracking']
     },
     {
-      icon: <Emoji symbol="✅" label="Check" size={28} />, 
+      icon: <CheckCircleIcon className="h-7 w-7 text-brand-blue" />, 
       title: 'Verified Suppliers',
       description: 'Comprehensive verification system with business credentials, certifications, and trade history.',
       benefits: ['Business verification', 'Certification tracking', 'Trade history']
     },
     {
-      icon: <Emoji symbol="💰" label="Money" size={28} />, 
+      icon: <BanknotesIcon className="h-7 w-7 text-brand-blue" />, 
       title: 'Financing & Insurance',
       description: 'Integrated trade finance solutions and comprehensive insurance coverage for all transactions.',
       benefits: ['Trade finance', 'Insurance coverage', 'Credit facilities']

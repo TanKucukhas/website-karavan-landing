@@ -1,11 +1,23 @@
 import CategoriesSection from '@/components/CategoriesSection'
 
 type RegionPageProps = {
-  params: { region: string }
+  params: Promise<{ region: string }>
 }
 
-export default function RegionPage({ params }: RegionPageProps) {
-  const regionName = decodeURIComponent(params.region)
+export async function generateStaticParams() {
+  return [
+    { region: 'turkey' },
+    { region: 'uzbekistan' },
+    { region: 'kazakhstan' },
+    { region: 'azerbaijan' },
+    { region: 'kyrgyzstan' },
+    { region: 'turkmenistan' },
+  ]
+}
+
+export default async function RegionPage({ params }: RegionPageProps) {
+  const { region } = await params
+  const regionName = decodeURIComponent(region)
   return (
     <main className="min-h-screen bg-white">
       <section className="bg-gradient-hero">

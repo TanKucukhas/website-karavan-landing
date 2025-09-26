@@ -1,7 +1,8 @@
 import Image from 'next/image'
+import partnersData from '../../public/images/solution-partners/partners.json'
 
 export default function TrustedPartnersSection() {
-  const partners = require('../../public/images/solution-partners/partners.json')
+  const partners = partnersData
   return (
     <section className="py-20 bg-white" id="partners">
       <div className="container mx-auto px-4">
@@ -11,7 +12,7 @@ export default function TrustedPartnersSection() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-          {partners.map((p: any, idx: number) => (
+          {partners.map((p: { name: string; logo: string; description: string }, idx: number) => (
             <div key={idx} className="bg-white rounded-xl p-4 shadow-sm text-center">
               <div className="flex items-center justify-center">
                 <Image src={p.logo} alt={p.name} width={140} height={40} className="h-10 w-auto object-contain" />

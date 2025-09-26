@@ -1,5 +1,6 @@
 import Emoji from '@/components/Emoji'
 import Image from 'next/image'
+import teamData from '../../public/images/team/team.json'
 
 export default function TeamSection() {
   const expertise = [
@@ -93,7 +94,7 @@ export default function TeamSection() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {require('../../public/images/team/team.json').map((member: any, idx: number) => (
+            {teamData.map((member: { name: string; title: string; linkedin: string; image: string }, idx: number) => (
               <div key={idx} className="bg-white rounded-xl p-6 shadow-sm text-center">
                 <div className="w-28 h-28 rounded-full overflow-hidden mx-auto mb-4 bg-gray-100 ring-1 ring-gray-200 relative z-0">
                   <Image src={`/images/team/${member.image}`} alt={member.name} width={112} height={112} className="w-28 h-28 object-cover object-top" />

@@ -1,4 +1,35 @@
+'use client'
+
+import { useState, useEffect, useRef } from 'react'
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
+
 export default function Footer() {
+  const [selectedLanguage, setSelectedLanguage] = useState('English')
+  const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  const languages = [
+    { code: 'en', name: 'English', flag: '🇺🇸' },
+    { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+    { code: 'uz', name: "O'zbek", flag: '🇺🇿' },
+    { code: 'kk', name: 'Қазақша', flag: '🇰🇿' },
+    { code: 'ky', name: 'Кыргызча', flag: '🇰🇬' },
+  ]
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setLanguageDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
   const footerLinks = {
     product: [
       { name: 'Features', href: '#features' },
@@ -64,16 +95,37 @@ export default function Footer() {
             </div>
 
             {/* Language Selector */}
-            <div className="flex items-center space-x-2">
-              <span className="text-gray-400 text-sm">Language:</span>
-              <select className="bg-gray-800 text-white px-3 py-1 rounded border border-gray-700 text-sm">
-                <option value="en">English</option>
-                <option value="tr">Türkçe</option>
-                <option value="ru">Русский</option>
-                <option value="uz">O&apos;zbek</option>
-                <option value="kk">Қазақша</option>
-                <option value="ky">Кыргызча</option>
-              </select>
+            <div className="relative" ref={dropdownRef}>
+              <div className="flex items-center space-x-2">
+                <span className="text-gray-400 text-sm">Language:</span>
+                <button
+                  onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
+                  className="flex items-center gap-1 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm"
+                >
+                  {selectedLanguage}
+                  <ChevronDownIcon className="h-4 w-4" />
+                </button>
+              </div>
+              
+              {languageDropdownOpen && (
+                <div className="absolute bottom-full left-0 mb-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700 py-1 z-50">
+                  {languages.map((language) => (
+                    <button
+                      key={language.code}
+                      onClick={() => {
+                        setSelectedLanguage(language.name)
+                        setLanguageDropdownOpen(false)
+                      }}
+                      className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left hover:bg-gray-700 ${
+                        selectedLanguage === language.name ? 'bg-gray-700 text-white' : 'text-gray-300'
+                      }`}
+                    >
+                      <span className="text-base">{language.flag}</span>
+                      <span>{language.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
