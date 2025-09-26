@@ -11,12 +11,8 @@ import { prefersReducedMotion } from '@/lib/a11y';
 export default function HeroWithInteractiveMap() {
   const handleNodeClick = (node: { id: string; name: string; href?: string }) => {
     analytics.mapNodeClick(node.name);
-    // Show country name
-    alert(`Selected: ${node.name}`);
-    // Navigate to region page
-    if (node.href) {
-      window.location.href = node.href;
-    }
+    // Country name will be shown on the map
+    // No navigation - just show the name
   };
 
   // Track map arc view on mount
@@ -112,15 +108,15 @@ export default function HeroWithInteractiveMap() {
           />
         </div>
 
-        {/* Dark scrim for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/40 via-brand-bg/40 to-brand-bg/70 pointer-events-none" />
+        {/* Dark scrim removed - was blocking map interactions */}
 
         {/* Floating form card */}
-        <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8 pt-32 pb-20">
-          <div className="max-w-lg">
-            <div className="rounded-2xl bg-white/95 backdrop-blur-md shadow-xl ring-1 ring-black/5 p-8 text-gray-900">
+        <div className="absolute top-32 z-30">
+          <div className="max-w-7xl mx-auto px-4 lg:px-8">
+            <div className="max-w-md lg:max-w-lg w-96 lg:w-[28rem]">
+            <div className="rounded-2xl bg-white/95 backdrop-blur-md shadow-xl ring-1 ring-black/5 p-6 lg:p-8 text-gray-900 pointer-events-auto">
               <div className="mb-6">
-                <h1 className="text-5xl font-bold text-gray-900 leading-tight mb-4">
+                <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
                   Secure B2B trade across the{' '}
                   <span className="text-brand-600">Turkic States</span>
                 </h1>
@@ -130,6 +126,7 @@ export default function HeroWithInteractiveMap() {
               </div>
 
               <EmailCaptureInline defaultRole="seller" />
+            </div>
             </div>
           </div>
         </div>

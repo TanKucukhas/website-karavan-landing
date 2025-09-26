@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { ComposableMap, Geographies, Geography, Graticule } from 'react-simple-maps';
 import { geoMercator } from 'd3-geo';
 import { MotionConfig } from 'framer-motion';
@@ -34,6 +34,7 @@ export default function TradeMap({
 }: TradeMapProps & { debug?: boolean }) {
 
   const zoom = 1; // Sabit zoom seviyesi
+  const [selectedNodeIds, setSelectedNodeIds] = useState<Set<string>>(new Set());
 
   // Tek projeksiyon objesi - tüm çizimlerde aynı kullanılacak
   const projection = useMemo(() => 
@@ -67,11 +68,17 @@ export default function TradeMap({
 
   return (
     <div 
-      className={twMerge(clsx('relative w-full h-full', className))} 
+      className={twMerge(clsx('relative w-full h-full z-10', className))} 
       aria-hidden
       style={{ touchAction: 'none' }}
       onWheel={(e) => e.preventDefault()}
       onTouchMove={(e) => e.preventDefault()}
+      onClick={(e) => {
+        // If clicking on the map background (not on nodes), clear all selections
+        if (e.target === e.currentTarget) {
+          setSelectedNodeIds(new Set());
+        }
+      }}
     >
       <MotionConfig reducedMotion={reducedMotionFallback ? 'always' : 'never'}>
         <ComposableMap
@@ -157,11 +164,11 @@ export default function TradeMap({
           </g>
 
           {/* Country Nodes */}
-          <g>
+          <g style={{ zIndex: 20 }}>
             {nodes.map(n => {
               const [x, y] = projection(normalizeLonLat([n.lon, n.lat]))!;
               return (
-                <g key={n.id} onClick={() => onNodeClick?.(n)} className="cursor-pointer">
+                <g key={n.id} className="cursor-pointer" style={{ zIndex: 20 }}>
                   <NodeDot 
                     cx={x} 
                     cy={y} 
@@ -169,7 +176,30 @@ export default function TradeMap({
                     zoom={zoom}
                     label={n.region}
                     name={n.name}
-                    onClick={() => onNodeClick?.(n)}
+                    showLabel={selectedNodeIds.has(n.id)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent map background click
+                      const newSelectedIds = new Set(selectedNodeIds);
+                      
+                      if (newSelectedIds.has(n.id)) {
+                        // Remove from selection
+                        newSelectedIds.delete(n.id);
+                      } else {
+                        // Add to selection
+                        newSelectedIds.add(n.id);
+                        // Set timer to remove this specific node after 5 seconds
+                        setTimeout(() => {
+                          setSelectedNodeIds(prev => {
+                            const updated = new Set(prev);
+                            updated.delete(n.id);
+                            return updated;
+                          });
+                        }, 5000);
+                      }
+                      
+                      setSelectedNodeIds(newSelectedIds);
+                      onNodeClick?.(n);
+                    }}
                   />
                 </g>
               );

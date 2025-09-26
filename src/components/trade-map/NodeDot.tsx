@@ -10,9 +10,10 @@ type Props = {
   status?: 'launching'|'expanding'|'exploring';
   zoom?: number;
   onClick?: () => void;
+  showLabel?: boolean;
 };
 
-export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding', zoom=1, onClick }: Props) {
+export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding', zoom=1, onClick, showLabel=false }: Props) {
   // Flag colors for country nodes
   const FLAG_COLORS: Record<string, string> = {
     TR: '#E30A17',  // Turkey red
@@ -73,7 +74,23 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
       {/* Inner White Dot */}
       <circle cx={cx} cy={cy} r={scaledR/2} fill="#fff" opacity={0.8}/>
       
-      {/* Labels removed - only show on click */}
+      {/* Country Label - Show on click */}
+      {showLabel && name && (
+        <text
+          x={cx}
+          y={cy - 15}
+          fontSize={12}
+          fill="white"
+          textAnchor="middle"
+          className="pointer-events-none"
+          style={{ 
+            textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+            fontWeight: 'bold'
+          }}
+        >
+          {name}
+        </text>
+      )}
 
       {/* Hit Area for Clicking */}
       <circle 
