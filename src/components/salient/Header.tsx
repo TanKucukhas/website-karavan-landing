@@ -9,10 +9,10 @@ import {
 } from '@headlessui/react'
 import clsx from 'clsx'
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { Logo } from '@/components/Logo'
-import { NavLink } from '@/components/NavLink'
+import { Button } from '@/components/catalyst/button'
+import { Container } from '@/components/salient/Container'
+import { Logo } from '@/components/salient/Logo'
+import { NavLink } from '@/components/salient/NavLink'
 
 function MobileNavLink({
   href,

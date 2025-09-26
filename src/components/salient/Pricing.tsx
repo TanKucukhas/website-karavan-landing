@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
+import { Button } from '@/components/catalyst/button'
+import { Container } from '@/components/salient/Container'
 
 function SwirlyDoodle(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
