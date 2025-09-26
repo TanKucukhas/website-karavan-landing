@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Flag from '@/components/Flag'
 
 export default function MetricsSection() {
   const [counts, setCounts] = useState({
@@ -41,13 +42,17 @@ export default function MetricsSection() {
   ];
 
   const coreMarkets = [
-    { country: 'Turkey', flag: '🇹🇷', status: 'launching', color: 'bg-blue-100 text-blue-800' },
-    { country: 'Uzbekistan', flag: '🇺🇿', status: 'expanding', color: 'bg-green-100 text-green-800' },
-    { country: 'Kazakhstan', flag: '🇰🇿', status: 'expanding', color: 'bg-green-100 text-green-800' },
-    { country: 'Kyrgyzstan', flag: '🇰🇬', status: 'launching', color: 'bg-blue-100 text-blue-800' },
-    { country: 'Turkmenistan', flag: '🇹🇲', status: 'launching', color: 'bg-blue-100 text-blue-800' },
-    { country: 'Azerbaijan', flag: '🇦🇿', status: 'expanding', color: 'bg-green-100 text-green-800' }
-  ];
+    { country: 'Turkey', flag: '🇹🇷', status: 'live', populationM: 86, color: 'bg-blue-100 text-blue-800' },
+    { country: 'Uzbekistan', flag: '🇺🇿', status: 'expanding', populationM: 36, color: 'bg-green-100 text-green-800' },
+    { country: 'Kazakhstan', flag: '🇰🇿', status: 'expanding', populationM: 20, color: 'bg-green-100 text-green-800' },
+    { country: 'Kyrgyzstan', flag: '🇰🇬', status: 'live', populationM: 7, color: 'bg-blue-100 text-blue-800' },
+    { country: 'Turkmenistan', flag: '🇹🇲', status: 'live', populationM: 6, color: 'bg-blue-100 text-blue-800' },
+    { country: 'Azerbaijan', flag: '🇦🇿', status: 'expanding', populationM: 10, color: 'bg-green-100 text-green-800' }
+  ].sort((a, b) => {
+    // Live markets first, then expanding
+    if (a.status === b.status) return 0
+    return a.status === 'live' ? -1 : 1
+  });
 
   useEffect(() => {
     // Animate counters
@@ -115,10 +120,17 @@ export default function MetricsSection() {
                 key={index}
                 className="text-center p-4 rounded-lg hover:shadow-md transition-all duration-300"
               >
-                <div className="text-3xl mb-2">{market.flag}</div>
+                <div className="text-3xl mb-2"><Flag code={
+                  market.country === 'Turkey' ? 'tr' :
+                  market.country === 'Uzbekistan' ? 'uz' :
+                  market.country === 'Kazakhstan' ? 'kz' :
+                  market.country === 'Kyrgyzstan' ? 'kg' :
+                  market.country === 'Turkmenistan' ? 'tm' :
+                  market.country === 'Azerbaijan' ? 'az' : 'tr'} size="lg" title={market.country} /></div>
                 <div className="font-semibold text-gray-900 mb-2">{market.country}</div>
+                <div className="text-xs text-gray-500 mb-2">{market.populationM}M people</div>
                 <span className={`px-3 py-1 rounded-full text-xs font-medium ${market.color}`}>
-                  {market.status}
+                  {market.status === 'live' ? 'Live' : 'Expanding'}
                 </span>
               </div>
             ))}

@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import Emoji from '@/components/Emoji'
 
 export default function CategoriesSection() {
   const [showRequestForm, setShowRequestForm] = useState(false);
 
   const categories = [
     {
-      icon: '👕',
+      icon: <Emoji symbol="👕" label="Textiles" size={24} />, 
       name: 'Textiles & Apparel',
       subcategories: ['Cotton fabrics', 'Ready-made garments', 'Home textiles'],
       certificates: ['OEKO-TEX', 'GOTS'],
@@ -15,7 +16,7 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ']
     },
     {
-      icon: '⚙️',
+      icon: <Emoji symbol="⚙️" label="Machinery" size={24} />, 
       name: 'Machinery & Equipment',
       subcategories: ['Agricultural machinery', 'Industrial equipment', 'Construction machinery'],
       certificates: ['CE', 'ISO 9001'],
@@ -23,7 +24,7 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
     },
     {
-      icon: '🧪',
+      icon: <Emoji symbol="🧪" label="Chemicals" size={24} />, 
       name: 'Chemicals & Pharmaceuticals',
       subcategories: ['Industrial chemicals', 'Pharmaceuticals', 'Cosmetics'],
       certificates: ['GMP', 'ISO 14001'],
@@ -31,7 +32,7 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ']
     },
     {
-      icon: '🌾',
+      icon: <Emoji symbol="🌾" label="Agriculture" size={24} />, 
       name: 'Agriculture & Food',
       subcategories: ['Dried fruits', 'Nuts', 'Spices', 'Processed foods'],
       certificates: ['HACCP', 'Organic'],
@@ -39,7 +40,7 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
     },
     {
-      icon: '🏗️',
+      icon: <Emoji symbol="🏗️" label="Construction" size={24} />, 
       name: 'Construction Materials',
       subcategories: ['Cement', 'Steel products', 'Ceramic tiles'],
       certificates: ['CE', 'ISO 9001'],
@@ -47,7 +48,7 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ', 'TR→TM']
     },
     {
-      icon: '🚗',
+      icon: <Emoji symbol="🚗" label="Automotive" size={24} />, 
       name: 'Automotive Parts',
       subcategories: ['Engine parts', 'Brake systems', 'Electrical components'],
       certificates: ['IATF 16949', 'CE'],
@@ -55,7 +56,7 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ']
     },
     {
-      icon: '💻',
+      icon: <Emoji symbol="💻" label="Electronics" size={24} />, 
       name: 'Electronics & IT',
       subcategories: ['Consumer electronics', 'IT equipment', 'Telecommunications'],
       certificates: ['CE', 'FCC'],
@@ -63,7 +64,7 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
     },
     {
-      icon: '🏥',
+      icon: <Emoji symbol="🏥" label="Medical" size={24} />, 
       name: 'Medical Equipment',
       subcategories: ['Diagnostic equipment', 'Surgical instruments', 'Disposables'],
       certificates: ['CE Medical', 'FDA'],
@@ -71,7 +72,7 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ']
     },
     {
-      icon: '🎨',
+      icon: <Emoji symbol="🎨" label="Furniture" size={24} />, 
       name: 'Furniture & Home',
       subcategories: ['Office furniture', 'Home furniture', 'Decorative items'],
       certificates: ['FSC', 'CE'],
@@ -79,7 +80,7 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
     },
     {
-      icon: '⚡',
+      icon: <Emoji symbol="⚡" label="Energy" size={24} />, 
       name: 'Energy & Power',
       subcategories: ['Solar panels', 'Generators', 'Electrical equipment'],
       certificates: ['IEC', 'CE'],
@@ -87,7 +88,7 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ', 'TR→TM']
     },
     {
-      icon: '📦',
+      icon: <Emoji symbol="📦" label="Packaging" size={24} />, 
       name: 'Packaging Materials',
       subcategories: ['Plastic packaging', 'Cardboard boxes', 'Labels'],
       certificates: ['ISO 9001', 'FSC'],
@@ -95,7 +96,7 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
     },
     {
-      icon: '🔧',
+      icon: <Emoji symbol="🔧" label="Tools" size={24} />, 
       name: 'Tools & Hardware',
       subcategories: ['Hand tools', 'Power tools', 'Hardware supplies'],
       certificates: ['CE', 'ISO 9001'],

@@ -1,0 +1,13 @@
+[
+  { "name": "Stripe", "logo": "/images/solution-partners/stripe.svg", "description": "Payment Processing" },
+  { "name": "Navlungo", "logo": "/images/solution-partners/navlungo.png", "description": "Logistics Partner" },
+  { "name": "PayPorter", "logo": "/images/solution-partners/payporter-logo.jpg", "description": "Cross-border Payments" },
+  { "name": "Avalara", "logo": "/images/solution-partners/avalara-logo.png", "description": "Tax Compliance" },
+  { "name": "Flexport", "logo": "/images/solution-partners/felxport.png", "description": "Global Logistics" },
+  { "name": "TOBB", "logo": "/images/solution-partners/tobb.png", "description": "Business Federation" },
+  { "name": "TCCI", "logo": "/images/solution-partners/trade-chamber.png", "description": "Trade Chamber" },
+  { "name": "Turkic Council", "logo": "/images/solution-partners/Organization_of_Turkic_States_logo_(EN-vertical).svg.png", "description": "Regional Cooperation" },
+  { "name": "Logo EN", "logo": "/images/solution-partners/logo-en.png", "description": "Placeholder" }
+]
+
+

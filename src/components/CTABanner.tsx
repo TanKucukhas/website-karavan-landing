@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Emoji from '@/components/Emoji'
 
 export default function CTABanner() {
   const [email, setEmail] = useState('');
@@ -59,21 +60,21 @@ export default function CTABanner() {
           {/* Benefits */}
           <div className="mt-12 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
-              <div className="text-3xl mb-4">🚀</div>
+              <div className="text-3xl mb-4"><Emoji symbol="🚀" label="Rocket" size={28} /></div>
               <h3 className="text-lg font-semibold mb-2">Early Access</h3>
               <p className="text-blue-100 text-sm">
                 Be the first to use our platform before public launch
               </p>
             </div>
             <div className="text-center">
-              <div className="text-3xl mb-4">💰</div>
+              <div className="text-3xl mb-4"><Emoji symbol="💰" label="Money" size={28} /></div>
               <h3 className="text-lg font-semibold mb-2">No Fees</h3>
               <p className="text-blue-100 text-sm">
                 Free access during beta period with special pricing
               </p>
             </div>
             <div className="text-center">
-              <div className="text-3xl mb-4">🔒</div>
+              <div className="text-3xl mb-4"><Emoji symbol="🔒" label="Lock" size={28} /></div>
               <h3 className="text-lg font-semibold mb-2">No Spam</h3>
               <p className="text-blue-100 text-sm">
                 We respect your privacy and only send important updates
@@ -87,10 +88,10 @@ export default function CTABanner() {
               Trusted by leading companies
             </p>
             <div className="flex justify-center items-center space-x-8 opacity-60">
-              <div className="text-2xl">🏢</div>
-              <div className="text-2xl">🏭</div>
-              <div className="text-2xl">🏪</div>
-              <div className="text-2xl">🏬</div>
+              <div className="text-2xl"><Emoji symbol="🏢" label="Office" size={24} /></div>
+              <div className="text-2xl"><Emoji symbol="🏭" label="Factory" size={24} /></div>
+              <div className="text-2xl"><Emoji symbol="🏪" label="Store" size={24} /></div>
+              <div className="text-2xl"><Emoji symbol="🏬" label="Mall" size={24} /></div>
             </div>
           </div>
         </div>

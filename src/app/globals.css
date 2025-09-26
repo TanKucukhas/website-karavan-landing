@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* stylelint-disable */
+/* Prefer Avenir; fallback chain per brand guide */
+@font-face {
+  font-family: 'Avenir';
+  src: local('Avenir'), local('Avenir Next');
+  font-weight: 100 900;
+  font-display: swap;
+}
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -11,7 +18,8 @@
   }
   
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Avenir', 'Avenir Next', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+    color: var(--ink);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -21,7 +29,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold text-gray-900;
+    @apply font-semibold text-[color:var(--ink)];
   }
   
   h1 {
@@ -49,6 +57,14 @@
   }
 }
 
+/* Design Tokens */
+:root {
+  --brand-600: #3069B4; /* Logo Blue */
+  --coral-500: #F7744E; /* CTA Coral */
+  --ink: #1C1C1C; /* Body text */
+  --ui-light: #F9F9F9; /* Light UI / Card BG */
+}
+
 @layer components {
   /* Button Components */
   .btn {
@@ -56,11 +72,15 @@
   }
   
   .btn-primary {
-    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-soft hover:shadow-medium;
+    @apply btn bg-[color:var(--coral-500)] text-white hover:bg-[#E25F38] focus:ring-[#E25F38] shadow-soft hover:shadow-medium;
   }
   
   .btn-secondary {
-    @apply btn bg-white text-primary-600 border-2 border-primary-600 hover:bg-primary-50 focus:ring-primary-500;
+    @apply btn bg-white text-primary-600 border border-primary-600 hover:bg-[#E6F3FF] focus:ring-primary-500;
+  }
+  
+  .btn-cta {
+    @apply btn bg-coral-500 text-white hover:bg-coral-600 focus:ring-coral-500 shadow-soft hover:shadow-medium;
   }
   
   .btn-ghost {
@@ -133,7 +153,7 @@
   }
   
   .bg-gradient-hero {
-    @apply bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50;
+    @apply bg-[image:linear-gradient(180deg,#E6F3FF_0%,#FAFBFF_100%)];
   }
   
   .bg-gradient-card {
@@ -142,7 +162,7 @@
   
   /* Text Gradients */
   .text-gradient {
-    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-600 to-coral-500 bg-clip-text text-transparent;
   }
   
   .text-gradient-brand {
@@ -233,3 +253,4 @@
     display: none !important;
   }
 }
+/* stylelint-enable at-rule-no-unknown */

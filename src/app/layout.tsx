@@ -21,6 +21,8 @@ export const viewport = {
 }
 
 import './globals.css'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 export default function RootLayout({
   children,
@@ -34,7 +36,11 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body>{children}</body>
+      <body>
+        <Header />
+        <div className="pt-16">{children}</div>
+        <Footer />
+      </body>
     </html>
   )
 }

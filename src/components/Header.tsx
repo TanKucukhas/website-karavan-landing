@@ -19,8 +19,8 @@ export default function Header() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-        : 'bg-transparent'
+        ? 'bg-white/70 backdrop-blur-md shadow-md' 
+        : 'bg-white/30 backdrop-blur-sm'
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -59,7 +59,7 @@ export default function Header() {
             <button className="text-gray-700 hover:text-blue-600 transition-colors">
               🌙
             </button>
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+            <button className="btn btn-primary px-6 py-2">
               Get Early Access
             </button>
           </div>
@@ -96,7 +96,7 @@ export default function Header() {
                   <button className="text-gray-700">EN</button>
                   <button className="text-gray-700">🌙</button>
                 </div>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">
+                <button className="btn btn-primary px-4 py-2">
                   Get Early Access
                 </button>
               </div>

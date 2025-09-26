@@ -1,19 +1,22 @@
+import Emoji from '@/components/Emoji'
+import Image from 'next/image'
+
 export default function TeamSection() {
   const expertise = [
     {
-      icon: '💼',
+      icon: <Emoji symbol="💼" label="Briefcase" size={28} />, 
       title: 'Trade & Finance',
       description: 'Deep expertise in international trade, finance, and cross-border payments with 20+ years combined experience.',
       color: 'bg-blue-100 text-blue-800'
     },
     {
-      icon: '🚚',
+      icon: <Emoji symbol="🚚" label="Logistics" size={28} />, 
       title: 'Logistics & Supply Chain',
       description: 'Comprehensive knowledge of logistics, customs, and supply chain management across Central Asia.',
       color: 'bg-green-100 text-green-800'
     },
     {
-      icon: '💻',
+      icon: <Emoji symbol="💻" label="Tech" size={28} />, 
       title: 'Technology & Innovation',
       description: 'Cutting-edge technology solutions with AI, blockchain, and modern web technologies.',
       color: 'bg-purple-100 text-purple-800'
@@ -82,78 +85,47 @@ export default function TeamSection() {
           </div>
         </div>
 
-        {/* Leadership Team Preview */}
+        {/* Leadership Team (from JSON) */}
         <div className="bg-gray-50 rounded-2xl p-8">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Leadership Team
-            </h3>
-            <p className="text-gray-600">
-              Experienced leaders with proven track records in international trade and technology
-            </p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Leadership Team</h3>
+            <p className="text-gray-600">Experienced leaders with proven track records in international trade and technology</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Team Member Cards */}
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">👨‍💼</span>
+            {require('../../public/images/team/team.json').map((member: any, idx: number) => (
+              <div key={idx} className="bg-white rounded-xl p-6 shadow-sm text-center">
+                <div className="w-28 h-28 rounded-full overflow-hidden mx-auto mb-4 bg-gray-100 ring-1 ring-gray-200 relative z-0">
+                  <Image src={`/images/team/${member.image}`} alt={member.name} width={112} height={112} className="w-28 h-28 object-cover object-top" />
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-1">İslam Şahbender</h4>
-                <p className="text-sm text-gray-600 mb-2">Co-Founder & Board Member</p>
-                <p className="text-xs text-gray-500">Trade & Finance Expert</p>
+                <h4 className="font-semibold text-gray-900 mb-1">{member.name}</h4>
+                <p className="text-sm text-gray-600 mb-2">{member.title}</p>
+                {member.linkedin && (
+                  <a href={member.linkedin} className="text-primary-600 text-sm" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                )}
               </div>
-            </div>
-
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">👨‍💼</span>
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Memiş Yetim</h4>
-                <p className="text-sm text-gray-600 mb-2">Co-Founder & Board Member</p>
-                <p className="text-xs text-gray-500">Business Development</p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">👨‍💻</span>
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Ali Aygün</h4>
-                <p className="text-sm text-gray-600 mb-2">CEO</p>
-                <p className="text-xs text-gray-500">Technology & Strategy</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center mt-8">
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-              Meet the Full Team
-            </button>
+            ))}
           </div>
         </div>
 
         {/* Company Values */}
         <div className="mt-16 grid md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="text-4xl mb-4">🌍</div>
+            <div className="text-center">
+              <div className="text-4xl mb-4"><Emoji symbol="🌍" label="Globe" size={28} /></div>
             <h4 className="text-lg font-semibold text-gray-900 mb-2">Global Perspective</h4>
             <p className="text-gray-600 text-sm">
               Understanding of international markets and cultural nuances
             </p>
           </div>
           <div className="text-center">
-            <div className="text-4xl mb-4">🚀</div>
+            <div className="text-4xl mb-4"><Emoji symbol="🚀" label="Rocket" size={28} /></div>
             <h4 className="text-lg font-semibold text-gray-900 mb-2">Innovation First</h4>
             <p className="text-gray-600 text-sm">
               Cutting-edge technology solutions for modern trade challenges
             </p>
           </div>
           <div className="text-center">
-            <div className="text-4xl mb-4">🤝</div>
+            <div className="text-4xl mb-4"><Emoji symbol="🤝" label="Handshake" size={28} /></div>
             <h4 className="text-lg font-semibold text-gray-900 mb-2">Partnership Focus</h4>
             <p className="text-gray-600 text-sm">
               Building strong relationships with all stakeholders

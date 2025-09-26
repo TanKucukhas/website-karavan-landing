@@ -1,3 +1,5 @@
+import Emoji from '@/components/Emoji'
+
 export default function InnovationSection() {
   const aiFeatures = [
     'Unified payment processing across multiple currencies',
@@ -9,25 +11,25 @@ export default function InnovationSection() {
 
   const paymentMethods = [
     {
-      icon: '🏦',
+      icon: <Emoji symbol="🏦" label="Bank" size={24} />, 
       name: 'Bank Transfers',
       description: 'Direct bank-to-bank transfers with SWIFT support',
       color: 'bg-blue-100 text-blue-800'
     },
     {
-      icon: '💳',
+      icon: <Emoji symbol="💳" label="Card" size={24} />, 
       name: 'Credit Cards',
       description: 'Visa, Mastercard, and local card networks',
       color: 'bg-green-100 text-green-800'
     },
     {
-      icon: '📱',
+      icon: <Emoji symbol="📱" label="Wallet" size={24} />, 
       name: 'Digital Wallets',
       description: 'Apple Pay, Google Pay, and regional wallets',
       color: 'bg-purple-100 text-purple-800'
     },
     {
-      icon: '🌍',
+      icon: <Emoji symbol="🌍" label="International" size={24} />, 
       name: 'International Transfers',
       description: 'Cross-border payment solutions and remittances',
       color: 'bg-orange-100 text-orange-800'
@@ -109,7 +111,7 @@ export default function InnovationSection() {
             <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm">🔒</span>
+                  <Emoji symbol="🔒" label="Lock" size={18} />
                 </div>
                 <h4 className="text-lg font-semibold text-gray-900">
                   Bank-Grade Security

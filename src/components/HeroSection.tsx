@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import Emoji from '@/components/Emoji'
+import Flag from '@/components/Flag'
 
 export default function HeroSection() {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
@@ -14,7 +16,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
+    <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDZGOUEiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-20"></div>
@@ -59,7 +61,7 @@ export default function HeroSection() {
                       onMouseEnter={() => setHoveredCountry('TR')}
                       onMouseLeave={() => setHoveredCountry(null)}
                     >
-                      <div className="text-2xl mb-2">🇹🇷</div>
+                      <div className="text-2xl mb-2"><Flag code="tr" title="Turkey" /></div>
                       <div className="font-semibold">Turkey</div>
                     </div>
                     
@@ -70,7 +72,7 @@ export default function HeroSection() {
                         onMouseEnter={() => setHoveredCountry('UZ')}
                         onMouseLeave={() => setHoveredCountry(null)}
                       >
-                        <div className="text-lg">🇺🇿</div>
+                        <div className="text-lg"><Flag code="uz" title="Uzbekistan" size="md" /></div>
                         <div className="text-sm font-semibold">Uzbekistan</div>
                       </div>
                       <div 
@@ -78,7 +80,7 @@ export default function HeroSection() {
                         onMouseEnter={() => setHoveredCountry('KZ')}
                         onMouseLeave={() => setHoveredCountry(null)}
                       >
-                        <div className="text-lg">🇰🇿</div>
+                        <div className="text-lg"><Flag code="kz" title="Kazakhstan" size="md" /></div>
                         <div className="text-sm font-semibold">Kazakhstan</div>
                       </div>
                     </div>
@@ -89,7 +91,7 @@ export default function HeroSection() {
                         onMouseEnter={() => setHoveredCountry('KG')}
                         onMouseLeave={() => setHoveredCountry(null)}
                       >
-                        <div className="text-lg">🇰🇬</div>
+                        <div className="text-lg"><Flag code="kg" title="Kyrgyzstan" size="md" /></div>
                         <div className="text-sm font-semibold">Kyrgyzstan</div>
                       </div>
                       <div 
@@ -97,7 +99,7 @@ export default function HeroSection() {
                         onMouseEnter={() => setHoveredCountry('TM')}
                         onMouseLeave={() => setHoveredCountry(null)}
                       >
-                        <div className="text-lg">🇹🇲</div>
+                        <div className="text-lg"><Flag code="tm" title="Turkmenistan" size="md" /></div>
                         <div className="text-sm font-semibold">Turkmenistan</div>
                       </div>
                     </div>

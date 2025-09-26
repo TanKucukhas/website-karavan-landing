@@ -1,37 +1,39 @@
+import Emoji from '@/components/Emoji'
+
 export default function ChallengesSection() {
   const challenges = [
     {
-      icon: '🛡️',
+      icon: <Emoji symbol="🛡️" label="Shield" size={24} />, 
       title: 'Trust Issues',
       description: 'No verification system for suppliers and buyers across borders',
       color: 'bg-red-50 border-red-200 text-red-800'
     },
     {
-      icon: '💳',
+      icon: <Emoji symbol="💳" label="Card" size={24} />, 
       title: 'Payment Complexity',
       description: 'Cross-border payments are slow, expensive, and unreliable',
       color: 'bg-orange-50 border-orange-200 text-orange-800'
     },
     {
-      icon: '🚚',
+      icon: <Emoji symbol="🚚" label="Truck" size={24} />, 
       title: 'Logistics Nightmare',
       description: 'Complex shipping, customs, and delivery coordination',
       color: 'bg-yellow-50 border-yellow-200 text-yellow-800'
     },
     {
-      icon: '📋',
+      icon: <Emoji symbol="📋" label="Document" size={24} />, 
       title: 'Customs Barriers',
       description: 'Complicated documentation and regulatory compliance',
       color: 'bg-blue-50 border-blue-200 text-blue-800'
     },
     {
-      icon: '💰',
+      icon: <Emoji symbol="💰" label="Finance" size={24} />, 
       title: 'Financing Gaps',
       description: 'Limited access to trade finance and credit facilities',
       color: 'bg-purple-50 border-purple-200 text-purple-800'
     },
     {
-      icon: '🔒',
+      icon: <Emoji symbol="🔒" label="Lock" size={24} />, 
       title: 'Insurance Complexity',
       description: 'Difficult to secure comprehensive trade insurance',
       color: 'bg-indigo-50 border-indigo-200 text-indigo-800'

@@ -1,8 +1,10 @@
+import Emoji from '@/components/Emoji'
+
 export default function SalesModelsSection() {
   const salesModels = [
     {
       name: 'Direct Purchase',
-      icon: '🛒',
+      icon: <Emoji symbol="🛒" label="Cart" size={28} />, 
       description: 'Buyers can directly purchase products from verified suppliers at fixed prices.',
       features: ['Fixed pricing', 'Instant purchase', 'Immediate confirmation'],
       color: 'bg-blue-100 text-blue-800',
@@ -10,7 +12,7 @@ export default function SalesModelsSection() {
     },
     {
       name: 'Request for Quote (RFQ)',
-      icon: '📋',
+      icon: <Emoji symbol="📋" label="RFQ" size={28} />, 
       description: 'Buyers submit detailed requirements and receive competitive quotes from multiple suppliers.',
       features: ['Custom requirements', 'Multiple quotes', 'Price comparison'],
       color: 'bg-green-100 text-green-800',
@@ -18,7 +20,7 @@ export default function SalesModelsSection() {
     },
     {
       name: 'Request for Proposal (RFP)',
-      icon: '📄',
+      icon: <Emoji symbol="📄" label="RFP" size={28} />, 
       description: 'Complex procurement process for large-scale projects with detailed proposals.',
       features: ['Detailed proposals', 'Technical evaluation', 'Long-term contracts'],
       color: 'bg-purple-100 text-purple-800',
@@ -26,7 +28,7 @@ export default function SalesModelsSection() {
     },
     {
       name: 'Buyer Auction',
-      icon: '🔨',
+      icon: <Emoji symbol="🔨" label="Auction" size={28} />, 
       description: 'Buyers set maximum prices and suppliers compete to offer the best deals.',
       features: ['Price competition', 'Buyer control', 'Best value'],
       color: 'bg-orange-100 text-orange-800',
@@ -34,7 +36,7 @@ export default function SalesModelsSection() {
     },
     {
       name: 'Seller Auction',
-      icon: '🏆',
+      icon: <Emoji symbol="🏆" label="Trophy" size={28} />, 
       description: 'Suppliers auction their products to the highest bidding buyers.',
       features: ['Market pricing', 'Seller control', 'Premium products'],
       color: 'bg-red-100 text-red-800',

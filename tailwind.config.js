@@ -8,24 +8,46 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Brand Colors
-        'brand-blue': '#006F9E',
-        'brand-ink': '#1a1a1a',
-        'muted-ink': '#666666',
+        // Brand Colors (Karavan)
+        brand: {
+          50: '#E6F3FF',
+          100: '#D9ECFF',
+          200: '#BBD9F8',
+          300: '#9CC6F2',
+          400: '#7EB3EB',
+          500: '#5FA0E4',
+          600: '#3069B4', // Logo Blue per UI guide
+          700: '#285797',
+          800: '#20467A',
+          900: '#18355D',
+        },
+        coral: {
+          50: '#FFF1EB',
+          100: '#FFE2D6',
+          200: '#FFC2AD',
+          300: '#FFA184',
+          400: '#FF8A67',
+          500: '#F7744E', // Accent per UI guide
+          600: '#E25F38', // Hover
+          700: '#C24F2F',
+          800: '#9E4126',
+          900: '#79321E',
+        },
+        ink: '#1C1C1C',
+        'ui-light': '#F9F9F9',
         
         // Extended Color Palette
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554',
+          50: '#E6F3FF',
+          100: '#D9ECFF',
+          200: '#BBD9F8',
+          300: '#9CC6F2',
+          400: '#7EB3EB',
+          500: '#5FA0E4',
+          600: '#3069B4',
+          700: '#285797',
+          800: '#20467A',
+          900: '#18355D',
         },
         secondary: {
           50: '#f0f9ff',
@@ -55,7 +77,16 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        // Primary font: Avenir (fallbacks to Helvetica / system)
+        sans: [
+          'Avenir',
+          'Avenir Next',
+          'Helvetica Neue',
+          'Helvetica',
+          'Arial',
+          'system-ui',
+          'sans-serif',
+        ],
         serif: ['Georgia', 'serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
@@ -136,7 +167,8 @@ module.exports = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'hero-pattern': "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDZGOUEiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')",
+        'hero-pattern': "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMzMDY5QjQiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')",
+        'brand-sky': 'linear-gradient(180deg, #E6F3FF 0%, #FAFBFF 100%)',
       },
     },
   },
