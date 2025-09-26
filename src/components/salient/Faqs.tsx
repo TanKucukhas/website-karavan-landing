@@ -1,103 +1,64 @@
 import { Container } from '@/components/salient/Container'
 
 const faqs = [
-  [
-    {
-      question: 'Does TaxPal handle VAT?',
-      answer:
-        'Well no, but if you move your company offshore you can probably ignore it.',
-    },
-    {
-      question: 'Can I pay for my subscription via purchase order?',
-      answer: 'Absolutely, we are happy to take your money in all forms.',
-    },
-    {
-      question: 'How do I apply for a job at TaxPal?',
-      answer:
-        'We only hire our customers, so subscribe for a minimum of 6 months and then let’s talk.',
-    },
-  ],
-  [
-    {
-      question: 'What was that testimonial about tax fraud all about?',
-      answer:
-        'TaxPal is just a software application, ultimately your books are your responsibility.',
-    },
-    {
-      question:
-        'TaxPal sounds horrible but why do I still feel compelled to purchase?',
-      answer:
-        'This is the power of excellent visual design. You just can’t resist it, no matter how poorly it actually functions.',
-    },
-    {
-      question:
-        'I found other companies called TaxPal, are you sure you can use this name?',
-      answer:
-        'Honestly not sure at all. We haven’t actually incorporated or anything, we just thought it sounded cool and made this website.',
-    },
-  ],
-  [
-    {
-      question: 'How do you generate reports?',
-      answer:
-        'You just tell us what data you need a report for, and we get our kids to create beautiful charts for you using only the finest crayons.',
-    },
-    {
-      question: 'Can we expect more inventory features?',
-      answer: 'In life it’s really better to never expect anything at all.',
-    },
-    {
-      question: 'I lost my password, how do I get into my account?',
-      answer:
-        'Send us an email and we will send you a copy of our latest password spreadsheet so you can find your information.',
-    },
-  ],
+  {
+    question: 'What is the minimum order quantity (MOQ) on Karavan?',
+    answer: 'MOQ varies by category and supplier. Most suppliers set MOQs between $3,000-$25,000 depending on the product type. You can filter suppliers by MOQ requirements on our platform.',
+  },
+  {
+    question: 'How does the escrow payment system work?',
+    answer: 'When you place an order, payment is held in escrow until delivery confirmation. Once you confirm receipt of goods, payment is released to the supplier. This protects both buyers and sellers.',
+  },
+  {
+    question: 'What are the typical shipping times from Turkey to Central Asia?',
+    answer: 'Shipping times vary by destination: Uzbekistan (7-10 days), Kazakhstan (10-14 days), Kyrgyzstan (8-12 days), Turkmenistan (12-16 days), and Azerbaijan (5-8 days).',
+  },
+  {
+    question: 'How do you verify suppliers on the platform?',
+    answer: 'We verify suppliers through business registration documents, trade licenses, bank references, and previous trade history. All suppliers undergo a comprehensive verification process.',
+  },
+  {
+    question: 'What languages does Karavan support?',
+    answer: 'Karavan supports Turkish, English, Russian, Uzbek, Kazakh, and Kyrgyz languages. Our platform automatically translates content to help facilitate communication.',
+  },
+  {
+    question: 'Is there a fee to use Karavan?',
+    answer: 'We offer a free starter plan for small businesses. Professional plans start at $99/month with advanced features. Enterprise plans are custom-priced based on your specific needs.',
+  },
 ]
 
 export function Faqs() {
   return (
-    <section
-      id="faq"
-      aria-labelledby="faq-title"
-      className="relative overflow-hidden bg-slate-50 py-20 sm:py-32"
-    >
-      <Image
-        className="absolute top-0 left-1/2 max-w-none translate-x-[-30%] -translate-y-1/4"
-        src={backgroundImage}
-        alt=""
-        width={1558}
-        height={946}
-        unoptimized
-      />
-      <Container className="relative">
-        <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2
-            id="faq-title"
-            className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl"
-          >
+    <section id="faqs" aria-label="Frequently asked questions" className="py-20 sm:py-32">
+      <Container>
+        <div className="mx-auto max-w-2xl md:text-center">
+          <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
             Frequently asked questions
           </h2>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            If you can’t find what you’re looking for, email our support team
-            and if you’re lucky someone will get back to you.
+            Everything you need to know about using Karavan for cross-border trade.
           </p>
         </div>
         <ul
           role="list"
-          className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3"
+          className="mx-auto mt-16 max-w-2xl space-y-8 divide-y divide-slate-200"
         >
-          {faqs.map((column, columnIndex) => (
-            <li key={columnIndex}>
-              <ul role="list" className="flex flex-col gap-y-8">
-                {column.map((faq, faqIndex) => (
-                  <li key={faqIndex}>
-                    <h3 className="font-display text-lg/7 text-slate-900">
-                      {faq.question}
-                    </h3>
-                    <p className="mt-4 text-sm text-slate-700">{faq.answer}</p>
-                  </li>
-                ))}
-              </ul>
+          {faqs.map((faq) => (
+            <li key={faq.question} className="pt-8">
+              <dl className="group relative">
+                <dt>
+                  <div className="text-left">
+                    <div className="flex items-start justify-between">
+                      <span className="text-base font-semibold leading-7 text-slate-900">
+                        {faq.question}
+                      </span>
+                    </div>
+                  </div>
+                </dt>
+                <dd className="mt-2 pr-12">
+                  <p className="text-base leading-7 text-slate-600">{faq.answer}</p>
+                </dd>
+              </dl>
             </li>
           ))}
         </ul>
