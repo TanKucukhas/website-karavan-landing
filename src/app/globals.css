@@ -1,3 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  /* Design tokens */
+  /* Colors */
+  --color-brand-bg: #FFFFFF;            /* brand.bg */
+  --color-brand-ink: #2C2C2C;           /* brand.ink */
+  --color-accent-600: #EA5641;          /* accent.600 */
+  --color-accent-500: #F06A58;          /* accent.500 */
+  --color-accent-300: #F59B8E;          /* accent.300 */
+  --color-muted: #EBF0F7;               /* muted */
+  --color-muted-ink: #6B6B6B;           /* muted.ink */
+  --color-danger: #DC2626;              /* danger */
+
+  /* Typography scale */
+  --text-h1: 40px;                      /* 40/48 */
+  --leading-h1: 48px;
+  --text-h2: 28px;                      /* 28/36 */
+  --leading-h2: 36px;
+  --text-h3: 22px;                      /* 22/30 */
+  --leading-h3: 30px;
+  --text-body: 16px;                    /* 16/26 */
+  --leading-body: 26px;
+  --text-small: 14px;                    /* 14/22 */
+  --leading-small: 22px;
+
+  /* Section spacing (8pt grid) */
+  --spacing-section-md-y: 4rem;          /* py-16 */
+  --spacing-section-lg-y: 6rem;          /* py-24 */
+}
+
+/* Class-based dark mode token overrides */
+.dark {
+  @theme {
+    --color-brand-bg: #121212;
+    --color-brand-ink: #E0E0E0;
+    --color-accent-600: #C24536;
+    --color-accent-500: #CF5A4B;
+    --color-accent-300: #DA8A7F;
+    --color-muted: #1E1E1E;
+    --color-muted-ink: #A0A0A0;
+    --color-danger: #EF4444;
+  }
+}
+
 /* Custom CSS without Tailwind for now */
 
 :root {

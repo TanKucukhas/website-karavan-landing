@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { List, X } from '@phosphor-icons/react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,36 +8,51 @@ import ThemeSwitcher from './ThemeSwitcher';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <header className="bg-white shadow-sm border-b border-neutralLight sticky top-0 z-50">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled || isMenuOpen
+          ? 'bg-brand-bg/90 backdrop-blur border-b border-neutralLight'
+          : 'bg-transparent'
+      }`}
+      aria-label="Primary"
+    >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-72">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="w-72 h-72 relative">
+            <div className="w-32 h-10 relative">
               <Image
                 src="/images/logo/karavan-logo.svg"
                 alt="Karavan Logo"
-                width={288}
-                height={288}
+                width={128}
+                height={40}
                 className="w-full h-full object-contain"
               />
             </div>
           </Link>
 
           {/* Desktop Navigation - Always visible */}
-          <div className="hidden lg:flex items-center space-x-6">
-            <Link href="#features" className="text-neutralGray hover:text-primary transition-colors">
+          <nav className="hidden lg:flex items-center space-x-6" aria-label="Main">
+            <Link href="#features" className="text-muted-ink hover:text-brand-ink transition-colors">
               Features
             </Link>
-            <Link href="#regions" className="text-neutralGray hover:text-primary transition-colors">
+            <Link href="#regions" className="text-muted-ink hover:text-brand-ink transition-colors" aria-haspopup="true" aria-expanded={false}>
               Regions
             </Link>
-            <Link href="#categories" className="text-neutralGray hover:text-primary transition-colors">
+            <Link href="#categories" className="text-muted-ink hover:text-brand-ink transition-colors">
               Categories
             </Link>
-            <Link href="#about" className="text-neutralGray hover:text-primary transition-colors">
+            <Link href="#about" className="text-muted-ink hover:text-brand-ink transition-colors">
               About
             </Link>
             <ThemeSwitcher />
@@ -47,12 +62,15 @@ export default function Header() {
             >
               Get Early Access
             </button>
-          </div>
+          </nav>
 
           {/* Mobile Menu Button - Only on mobile */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-md text-neutralGray hover:text-primary transition-colors"
+            className="lg:hidden p-2 rounded-md text-muted-ink hover:text-brand-ink transition-colors"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <List size={24} />}
           </button>
@@ -60,32 +78,32 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-neutralLight py-4">
-            <nav className="flex flex-col space-y-4">
+          <div id="mobile-menu" className="lg:hidden border-t border-neutralLight py-4">
+            <nav className="flex flex-col space-y-4" aria-label="Mobile">
               <Link 
                 href="#features" 
-                className="text-neutralGray hover:text-primary transition-colors px-4 py-2"
+                className="text-muted-ink hover:text-brand-ink transition-colors px-4 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Features
               </Link>
               <Link 
                 href="#regions" 
-                className="text-neutralGray hover:text-primary transition-colors px-4 py-2"
+                className="text-muted-ink hover:text-brand-ink transition-colors px-4 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Regions
               </Link>
               <Link 
                 href="#categories" 
-                className="text-neutralGray hover:text-primary transition-colors px-4 py-2"
+                className="text-muted-ink hover:text-brand-ink transition-colors px-4 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Categories
               </Link>
               <Link 
                 href="#about" 
-                className="text-neutralGray hover:text-primary transition-colors px-4 py-2"
+                className="text-muted-ink hover:text-brand-ink transition-colors px-4 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About

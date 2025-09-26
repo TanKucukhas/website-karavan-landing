@@ -57,6 +57,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${manrope.variable} font-sans antialiased`}
       >
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-brand-bg text-brand-ink px-3 py-2 rounded">Skip to content</a>
         {children}
       </body>
     </html>
