@@ -1,59 +1,124 @@
 'use client';
 import { useState } from 'react';
+import { analytics } from '@/lib/analytics';
 
-type Props = { defaultRole?: 'seller'|'buyer'|'both' };
+type Props = { defaultRole?: 'seller'|'buyer' };
 
 export default function EmailCaptureInline({ defaultRole='seller' }: Props) {
   const [email, setEmail] = useState('');
-  const [role, setRole]   = useState<'seller'|'buyer'|'both'>(defaultRole);
+  const [role, setRole] = useState<'seller'|'buyer'>(defaultRole);
   const [loading, setLoading] = useState(false);
   const [ok, setOk] = useState(false);
+  const [error, setError] = useState('');
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
+    setError('');
+    
     try {
       // TODO: POST to /api/lead
       // await fetch('/api/lead', { method:'POST', body: JSON.stringify({ email, role }) })
+      
+      // Analytics tracking
+      analytics.heroFormSubmit(role);
+      
       setOk(true);
+    } catch (err) {
+      setError('Please try again');
     } finally {
       setLoading(false);
     }
   }
 
   if (ok) {
-    return <div className="rounded-xl bg-green-50 text-green-800 px-4 py-3">Check your inbox to confirm your early access.</div>;
+    return (
+      <div className="rounded-xl bg-green-50 text-green-800 px-4 py-3 text-center">
+        <div className="font-semibold">Check your inbox</div>
+        <div className="text-sm">We've sent you early access details</div>
+      </div>
+    );
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex w-full max-w-md items-center gap-2">
-      <label htmlFor="email" className="sr-only">Email</label>
-      <input
-        id="email"
-        type="email"
-        required
-        placeholder="your@company.com"
-        className="flex-1 rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 shadow-sm focus:border-accent-600 focus:ring-accent-600"
-        value={email}
-        onChange={(e)=>setEmail(e.target.value)}
-      />
-      <select
-        aria-label="Role"
-        className="rounded-xl border border-gray-300 bg-white px-3 py-3 text-gray-900 focus:border-accent-600 focus:ring-accent-600"
-        value={role}
-        onChange={(e)=>setRole(e.target.value as 'seller'|'buyer'|'both')}
-      >
-        <option value="seller">Seller</option>
-        <option value="buyer">Buyer</option>
-        <option value="both">Both</option>
-      </select>
-      <button
-        type="submit"
-        disabled={loading}
-        className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-700 disabled:opacity-60"
-      >
-        {loading ? 'Submitting...' : 'Get Early Access'}
-      </button>
-    </form>
+    <div className="space-y-4 max-w-sm ml-0">
+      {/* Email Input - Full Line */}
+      <form onSubmit={onSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="email" className="sr-only">Email Address</label>
+          <input
+            id="email"
+            type="email"
+            required
+            placeholder="your@company.com"
+            className="w-full rounded-xl bg-white border border-gray-300 shadow-sm px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-accent-700 focus:border-accent-700 focus:outline-none"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onBlur={() => {
+              if (email && !email.includes('@')) {
+                setError('Please enter a valid email');
+              } else {
+                setError('');
+              }
+            }}
+          />
+          {error && <p className="text-red-600 text-sm mt-1">{error}</p>}
+        </div>
+
+        {/* Role Toggle and CTA Button Row */}
+        <div className="flex flex-col sm:flex-row gap-3">
+          {/* Role Toggle */}
+          <div className="inline-flex rounded-xl bg-gray-100 p-1" role="tablist">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={role === 'seller'}
+              data-active={role === 'seller'}
+              className="px-3 py-2 rounded-lg text-sm font-medium bg-white shadow-sm text-gray-900 data-[active=false]:bg-gray-100 data-[active=false]:text-gray-500 transition-all"
+              onClick={() => {
+                setRole('seller');
+                analytics.roleChange('seller');
+              }}
+            >
+              Seller
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={role === 'buyer'}
+              data-active={role === 'buyer'}
+              className="px-3 py-2 rounded-lg text-sm font-medium bg-white shadow-sm text-gray-900 data-[active=false]:bg-gray-100 data-[active=false]:text-gray-500 transition-all"
+              onClick={() => {
+                setRole('buyer');
+                analytics.roleChange('buyer');
+              }}
+            >
+              Buyer
+            </button>
+          </div>
+
+          {/* CTA Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="rounded-xl bg-red-600 px-6 py-3 font-semibold text-white hover:bg-red-700 disabled:opacity-60 focus:ring-2 focus:ring-red-500 focus:outline-none transition-colors shadow-sm"
+          >
+            {loading ? 'Submitting...' : 'Get Early Access'}
+          </button>
+        </div>
+      </form>
+
+      {/* Trust Line with Color Indicators */}
+      <div className="text-sm text-gray-500">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+          <span>No membership fees</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+          <span>Pay only for services you use</span>
+        </div>
+      </div>
+    </div>
   );
 }

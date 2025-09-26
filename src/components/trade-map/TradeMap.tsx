@@ -24,7 +24,7 @@ export default function TradeMap({
 }: TradeMapProps) {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const projection = useMemo(() => (geoMercator() as any).scale(140).translate([512, 260]), []);
+  const projection = useMemo(() => (geoMercator() as any).scale(140).translate([550, 260]), []);
 
   // Build arc path strings
   const buildArcPath = (a: Arc) => {
@@ -79,19 +79,24 @@ export default function TradeMap({
             }
           </Geographies>
 
-          {showGraticule && <Graticule stroke="#1f3356" strokeWidth={0.4} />}
+          {showGraticule && <Graticule stroke="#1f3356" strokeWidth={0.4} opacity={0.35} />}
 
           {/* Arcs */}
           <g>
-            {arcs.map(a => {
+            {arcs.slice(0, 5).map((a, index) => {
               const d = buildArcPath(a);
+              const fromNode = nodes.find(n => n.id === a.from);
+              const status = fromNode?.status || 'expanding';
+              const delay = index * 300; // Stagger by 0.3s intervals
+              
               return (
                 <ArcPath
                   key={a.id}
                   d={d}
-                  delay={a.delayMs ?? 0}
+                  delay={delay}
                   strength={a.strength ?? 1}
                   animated={animated}
+                  status={status}
                 />
               );
             })}

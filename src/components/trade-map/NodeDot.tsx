@@ -20,8 +20,8 @@ export default function NodeDot({ cx, cy, r=3.5, status='expanding' }: Props) {
         r={r}
         fill={fill}
         filter="url(#glow)"
-        initial={{ opacity: 0.85, scale: 0.9 }}
-        animate={{ opacity: [0.85, 1, 0.85], scale: [0.9, 1.05, 0.9] }}
+        initial={{ opacity: 0.55, scale: 0.9 }}
+        animate={{ opacity: [0.55, 0.8, 0.55], scale: [0.9, 1.05, 0.9] }}
         transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
       />
       <circle cx={cx} cy={cy} r={r/2} fill="#fff" opacity={0.8}/>
