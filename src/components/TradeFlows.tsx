@@ -5,11 +5,14 @@ import { buildArcD } from '@/utils/geo';
 import { ARCS, NODES } from '@/components/trade-map/TradeMap.data';
 import { geoMercator } from 'd3-geo';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const geoMercatorAny = geoMercator as any;
+
 type Arc = { id:string; from:string; to:string; strength?:number };
 
 export default function TradeFlows({ enabled }:{ enabled:boolean }) {
-  const arcs: Arc[] = ARCS as any;
-  const projection = useMemo(() => geoMercator().scale(140).translate([512, 260]), []);
+  const arcs: Arc[] = ARCS;
+  const projection = useMemo(() => geoMercatorAny().scale(140).translate([512, 260]), []);
   const nodes = useMemo(() => new Map(NODES.map(n => [n.id, n])), []);
 
   const dById = useMemo(() => {
@@ -35,7 +38,7 @@ export default function TradeFlows({ enabled }:{ enabled:boolean }) {
   const zoom = 1; // if using ZoomableGroup, pass actual zoom
 
   return (
-    <svg viewBox="0 0 1024 520" className="h-full w-full">
+    <svg viewBox="0 0 1024 520" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
       <g>
         {arcs.map(a => {
           const width = a.strength === 3 ? 1.8 : a.strength === 2 ? 1.3 : 1.0;
