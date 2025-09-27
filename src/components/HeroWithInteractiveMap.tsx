@@ -27,12 +27,11 @@ export default function HeroWithInteractiveMap() {
 
   // Mount map after initial content paints (background load)
   useEffect(() => {
-    let to: any;
+    let to: number | undefined;
+    type WindowWithRIC = Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }
     const idle = (cb: () => void) => {
-      // @ts-ignore
-      if (typeof window !== 'undefined' && window.requestIdleCallback) {
-        // @ts-ignore
-        window.requestIdleCallback(cb, { timeout: 800 });
+      if (typeof window !== 'undefined' && (window as WindowWithRIC).requestIdleCallback) {
+        (window as WindowWithRIC).requestIdleCallback!(cb, { timeout: 800 });
       } else {
         to = window.setTimeout(cb, 250);
       }
@@ -102,7 +101,7 @@ export default function HeroWithInteractiveMap() {
   );
 
   const MapLayer = (
-    <motion.div className="absolute inset-0 pointer-events-none w-full" initial={{ opacity: 0 }} animate={{ opacity: stage !== 'loading' ? 1 : 0 }} transition={{ duration: 0.35 }}>
+    <motion.div className="absolute inset-0 pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: stage !== 'loading' ? 1 : 0 }} transition={{ duration: 0.35 }}>
       <TradeMap
         nodes={visibleNodes}
         arcs={[]}
@@ -110,14 +109,13 @@ export default function HeroWithInteractiveMap() {
         showActiveOverlay
         revealedRegions={revealedRegions}
         pulsingRegion={pulsingRegion}
-        reducedMotionFallback={reduced}
+         reducedMotionFallback={!!reduced}
         className="h-full w-full"
         disableNodeAnimation={isMobile || !!reduced}
         onReady={() => setGeoReady(true)}
         onStablePaint={() => setStablePaint(true)}
       />
-      {/* Light scrim disabled to keep hero bright */}
-      <div className="absolute inset-0 z-10 pointer-events-none" />
+      {/* Removed animated grid overlay for a cleaner background */}
       {/* Flows overlays */}
       <div className="absolute inset-0 z-30 pointer-events-none">
         {flowsEnabled && <TradeFlows enabled={true} />}
@@ -127,7 +125,7 @@ export default function HeroWithInteractiveMap() {
 
   return (
     <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
-      <section className="relative bg-white text-[color:var(--ink)] w-full" style={{ minHeight: 'calc(100svh - var(--header-h, 64px))' }}>
+      <section className="relative bg-white text-[color:var(--ink)] w-full overflow-hidden" style={{ minHeight: 'calc(100svh - var(--header-h, 64px))', width: '100vw', marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
         <SpinnerOverlay />
 
         {/* Mobile: Stacked Layout (<768px) */}

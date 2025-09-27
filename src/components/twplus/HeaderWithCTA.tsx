@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { Button } from '@/components/catalyst/button'
@@ -46,10 +48,10 @@ export default function HeaderWithCTA() {
       <nav aria-label="Global" className="w-full">
         <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between gap-x-6 py-4">
           <div className="flex lg:flex-1">
-            <a href="/" className="p-1.5">
+            <Link href="/" className="p-1.5">
               <span className="sr-only">Karavan</span>
-              <img alt="Karavan" src="/images/logo/karavan-logo.svg" className="h-8 w-auto" />
-            </a>
+              <Image alt="Karavan" src="/images/logo/karavan-logo.svg" width={112} height={32} />
+            </Link>
           </div>
           <div className="hidden lg:flex lg:gap-x-8">
           {navigation.map((item) => (
@@ -104,10 +106,10 @@ export default function HeaderWithCTA() {
         <div className="fixed inset-0 z-50" />
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center gap-x-6">
-            <a href="/" className="p-1.5">
+            <Link href="/" className="p-1.5">
               <span className="sr-only">Karavan</span>
-              <img alt="Karavan" src="/images/logo/karavan-logo.svg" className="h-8 w-auto" />
-            </a>
+              <Image alt="Karavan" src="/images/logo/karavan-logo.svg" width={112} height={32} />
+            </Link>
             <Button color="blue" className="ml-auto px-6 py-3 text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-200">Get Early Access</Button>
             <button type="button" onClick={() => setMobileMenuOpen(false)} className="-m-2.5 rounded-md p-2.5 text-gray-700">
               <span className="sr-only">Close menu</span>

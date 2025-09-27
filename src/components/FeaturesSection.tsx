@@ -1,5 +1,6 @@
 import { ShieldCheckIcon, TruckIcon, CheckCircleIcon, BanknotesIcon } from '@heroicons/react/24/outline'
 
+
 export default function FeaturesSection() {
   const features = [
     {

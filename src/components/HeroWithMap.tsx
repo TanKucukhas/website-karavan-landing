@@ -45,7 +45,7 @@ export default function HeroWithMap() {
           animate={{ opacity: stage === 'fills' || stage === 'nodes' || stage === 'flows' ? 1 : 0 }}
           transition={{ duration: 0.25 }}>
           {/* Using same world url from TradeMap internally */}
-          <ActiveCountryFills geographyUrl={(TradeMap as any).WORLD_URL || ''} pulse={stage === 'fills'} />
+          <ActiveCountryFills geographyUrl={'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json'} pulse={stage === 'fills'} />
         </motion.div>
 
         {/* Nodes (existing map renders them; this layer is for staged opacity) */}

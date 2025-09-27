@@ -36,7 +36,7 @@ export default function EmailCaptureInline({ defaultRole='seller' }: Props) {
     return (
       <div className="rounded-xl bg-green-50 text-green-800 px-4 py-3 text-center">
         <div className="font-semibold">Check your inbox</div>
-        <div className="text-sm">We've sent you early access details</div>
+        <div className="text-sm">We&apos;ve sent you early access details</div>
       </div>
     );
   }

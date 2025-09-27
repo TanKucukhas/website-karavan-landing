@@ -15,7 +15,7 @@ export function useMapLoadingGate(
   const t0 = useRef(performance.now());
 
   useEffect(() => {
-    let minTimer: any, maxTimer: any, rafId = 0;
+    let minTimer: NodeJS.Timeout | null = null, maxTimer: NodeJS.Timeout | null = null, rafId = 0;
 
     const tryHide = () => {
       if (!deps.geoReady || !deps.stablePaint) return;
@@ -34,8 +34,8 @@ export function useMapLoadingGate(
     tryHide();
 
     return () => {
-      clearTimeout(minTimer);
-      clearTimeout(maxTimer);
+      if (minTimer) clearTimeout(minTimer);
+      if (maxTimer) clearTimeout(maxTimer);
       cancelAnimationFrame(rafId);
     };
   }, [deps.geoReady, deps.stablePaint, minMs, maxMs, fadeMs]);

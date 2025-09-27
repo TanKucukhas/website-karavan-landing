@@ -2,6 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import { 
+  GlobeAltIcon, 
+  BriefcaseIcon, 
+  CameraIcon, 
+  TvIcon, 
+  BookOpenIcon 
+} from '@heroicons/react/24/outline'
 
 export default function Footer() {
   const [selectedLanguage, setSelectedLanguage] = useState('English')
@@ -58,11 +65,11 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { name: 'Website', icon: '🌐', href: 'https://karavan.net/' },
-    { name: 'LinkedIn', icon: '💼', href: 'https://www.linkedin.com/company/KaravanOfficial' },
-    { name: 'Instagram', icon: '📷', href: 'https://instagram.com/KaravanConnect' },
-    { name: 'YouTube', icon: '📺', href: 'www.youtube.com/@KaravanGlobal' },
-    { name: 'Facebook', icon: '📘', href: 'https://www.facebook.com/KaravanConnect' }
+    { name: 'Website', icon: GlobeAltIcon, href: 'https://karavan.net/' },
+    { name: 'LinkedIn', icon: BriefcaseIcon, href: 'https://www.linkedin.com/company/KaravanOfficial' },
+    { name: 'Instagram', icon: CameraIcon, href: 'https://instagram.com/KaravanConnect' },
+    { name: 'YouTube', icon: TvIcon, href: 'www.youtube.com/@KaravanGlobal' },
+    { name: 'Facebook', icon: BookOpenIcon, href: 'https://www.facebook.com/KaravanConnect' }
   ];
 
   return (
@@ -90,16 +97,19 @@ export default function Footer() {
 
             {/* Social Links */}
             <div className="flex space-x-4 mb-6">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors"
-                  aria-label={social.name}
-                >
-                  <span className="text-lg">{social.icon}</span>
-                </a>
-              ))}
+              {socialLinks.map((social, index) => {
+                const IconComponent = social.icon;
+                return (
+                  <a
+                    key={index}
+                    href={social.href}
+                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors"
+                    aria-label={social.name}
+                  >
+                    <IconComponent className="w-5 h-5" />
+                  </a>
+                );
+              })}
             </div>
 
             {/* Language Selector */}
@@ -139,7 +149,7 @@ export default function Footer() {
 
           {/* Product Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Product</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">Product</h3>
             <ul className="space-y-3">
               {footerLinks.product.map((link, index) => (
                 <li key={index}>
@@ -156,7 +166,7 @@ export default function Footer() {
 
           {/* Solutions Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Solutions</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">Solutions</h3>
             <ul className="space-y-3">
               {footerLinks.solutions.map((link, index) => (
                 <li key={index}>
@@ -173,7 +183,7 @@ export default function Footer() {
 
           {/* Company & Legal Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">Company</h3>
             <ul className="space-y-3 mb-6">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
@@ -187,7 +197,7 @@ export default function Footer() {
               ))}
             </ul>
 
-            <h3 className="text-lg font-semibold mb-4">Legal</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">Legal</h3>
             <ul className="space-y-3">
               {footerLinks.legal.map((link, index) => (
                 <li key={index}>

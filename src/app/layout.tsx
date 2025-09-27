@@ -24,6 +24,7 @@ export const viewport = {
 
 import './globals.css'
 import HeaderWithCTA from '@/components/twplus/HeaderWithCTA'
+import GlobalBackground from '@/components/GlobalBackground'
 import Footer from '@/components/Footer'
 
 export default function RootLayout({
@@ -41,6 +42,7 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body>
+        <GlobalBackground />
         <HeaderWithCTA />
         <div className="pt-16">{children}</div>
         <Footer />

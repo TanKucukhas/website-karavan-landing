@@ -3,6 +3,7 @@
 import { useState } from 'react';
 // Light version without emojis
 
+
 export default function CTABanner() {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState<'buyer' | 'seller'>('buyer');
@@ -18,7 +19,7 @@ export default function CTABanner() {
   };
 
   return (
-    <section className="lt-section lt-muted relative">
+    <section className="lt-section lt-muted">
       <div className="lt-container">
         <div className="text-center">
           <h2 className="lt-heading mb-6">Secure Your Early Access Spot</h2>

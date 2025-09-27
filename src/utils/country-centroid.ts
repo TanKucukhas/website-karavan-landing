@@ -1,10 +1,11 @@
 // Country centroid utilities using topojson-client
 
 import { feature } from 'topojson-client';
-import { geoCentroid } from 'd3-geo';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-require-imports
+const geoCentroidAny = require('d3-geo').geoCentroid as any;
 
 type ISO3 = string;
-let cache: Record<ISO3, [number, number]> = {};
+const cache: Record<ISO3, [number, number]> = {};
 
 // ISO3 to country ID mapping for world-atlas
 const ISO3_TO_ID: Record<string, string> = {
@@ -24,6 +25,7 @@ export async function getCountryCentroid(iso3: ISO3): Promise<[number, number]> 
     const topo = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
       .then(r => r.json());
     
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const countries = feature(topo, topo.objects.countries) as any;
     const countryId = ISO3_TO_ID[iso3];
     
@@ -31,12 +33,12 @@ export async function getCountryCentroid(iso3: ISO3): Promise<[number, number]> 
       throw new Error(`Country ID not found for ISO3: ${iso3}`);
     }
     
-    const found = countries.features.find((f: any) => f.id === countryId);
+    const found = countries.features.find((f: { id: string }) => f.id === countryId);
     if (!found) {
       throw new Error(`Country not found: ${iso3} (ID: ${countryId})`);
     }
     
-    const [lon, lat] = geoCentroid(found) as [number, number];
+    const [lon, lat] = geoCentroidAny(found) as [number, number];
     cache[iso3] = [lon, lat];
     return cache[iso3];
   } catch (error) {

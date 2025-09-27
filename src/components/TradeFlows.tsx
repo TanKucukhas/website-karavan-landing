@@ -12,7 +12,7 @@ type Arc = { id:string; from:string; to:string; strength?:number };
 
 export default function TradeFlows({ enabled }:{ enabled:boolean }) {
   const arcs: Arc[] = ARCS;
-  const projection = useMemo(() => geoMercatorAny().scale(140).translate([512, 260]), []);
+  const projection = useMemo(() => geoMercatorAny().scale(170).translate([512, 260]), []);
   const nodes = useMemo(() => new Map(NODES.map(n => [n.id, n])), []);
 
   const dById = useMemo(() => {

@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 
+
 export default function CategoriesSection() {
   const [showRequestForm, setShowRequestForm] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const categories = [
     {
@@ -111,7 +113,7 @@ export default function CategoriesSection() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-          {categories.map((category, index) => (
+          {(showAll ? categories : categories.slice(0, 6)).map((category, index) => (
             <div key={index} className="lt-card p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.name}</h3>
               
@@ -164,6 +166,11 @@ export default function CategoriesSection() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="text-center mb-12">
+          {!showAll && (
+            <button className="btn-outline-brand" onClick={() => setShowAll(true)}>View all categories</button>
+          )}
         </div>
 
         {/* Request Category Form */}

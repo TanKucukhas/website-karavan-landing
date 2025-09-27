@@ -3,6 +3,9 @@
 import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import { ComposableMap, Geographies, Geography, Graticule } from 'react-simple-maps';
 import { geoMercator } from 'd3-geo';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const geoMercatorAny = geoMercator as any;
 import { MotionConfig } from 'framer-motion';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -44,10 +47,10 @@ export default function TradeMap({
   const zoom = 1; // Sabit zoom seviyesi
   const [selectedNodeIds, setSelectedNodeIds] = useState<Set<string>>(new Set());
 
-  // Tek projeksiyon objesi - tüm çizimlerde aynı kullanılacak
+  // Tek projeksiyon objesi - sabit; SVG ölçeklenerek tam genişlik verilir
   const projection = useMemo(() => 
-    geoMercator()
-      .scale(140)
+    geoMercatorAny()
+      .scale(170)
       .translate([512, 260]), 
   []);
 
@@ -109,9 +112,8 @@ export default function TradeMap({
     return arcs.map(a => {
       const f = nodesById[a.from], t = nodesById[a.to];
       return { 
-        id: a.id, 
-        d: buildArcD(projection, [f.lon, f.lat], [t.lon, t.lat]),
-        ...a
+        ...a,
+        d: buildArcD(projection, [f.lon, f.lat], [t.lon, t.lat])
       };
     });
   }, [arcs, nodes, projection]);
@@ -135,11 +137,14 @@ export default function TradeMap({
       <MotionConfig reducedMotion={reducedMotionFallback ? 'always' : 'never'}>
         <ComposableMap
           projection="geoMercator"
-          projectionConfig={{ scale: 140, center: [0, 0] }}
+          projectionConfig={{ scale: 170, center: [0, 0] }}
+          preserveAspectRatio="xMidYMid slice"
           style={{ width:'100%', height:'100%' }}
           width={1024}
           height={520}
         >
+          {/* Ocean background to ensure full-bleed color edge-to-edge */}
+          <rect x={0} y={0} width={1024} height={520} fill="#0b1220" />
           {/* SVG Definitions */}
           <defs>
             <linearGradient id="arcGradient" x1="0" x2="1" y1="0" y2="0">
@@ -176,9 +181,10 @@ export default function TradeMap({
                 }
               }
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              return (
-                <g data-world-geos>
-                {geographies.map((geo: any) => {
+               return (
+                 <g data-world-geos>
+                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                 {geographies.map((geo: any) => {
                 const id = Number(geo.id);
                 const active = showActiveOverlay && (revealedRegions
                   ? (() => {
@@ -238,19 +244,17 @@ export default function TradeMap({
                     {/* Active country overlay */}
                     {active && countryCode && (
                       <>
-                        <Geography
-                          geography={geo}
-                          className={isPulsing ? 'animate-geoPulse' : undefined}
-                          style={{ 
-                            default: { 
-                              fill: FILL_COLORS[countryCode as keyof typeof FILL_COLORS], 
-                              outline: 'none' 
-                            } 
-                          }}
+                         <Geography
+                           geography={geo}
+                           style={{ 
+                             default: { 
+                               fill: FILL_COLORS[countryCode as keyof typeof FILL_COLORS], 
+                               outline: 'none' 
+                             } 
+                           }}
                         />
                         <Geography
                           geography={geo}
-                          className={isPulsing ? 'animate-geoPulse' : undefined}
                           style={{ 
                             default: { 
                               fill: 'none', 
@@ -270,8 +274,8 @@ export default function TradeMap({
             }}
           </Geographies>
 
-          {/* Grid Lines */}
-          {showGraticule && <Graticule stroke="#1f3356" strokeWidth={0.4} opacity={0.35} />}
+           {/* Grid Lines */}
+           {showGraticule && <Graticule stroke="#1f3356" strokeWidth={0.4} />}
 
           {/* Debug Mode - Yeşil çizgiler ve magenta noktalar */}
           {debug && (
@@ -320,8 +324,7 @@ export default function TradeMap({
                     name={n.name}
                     showLabel={selectedNodeIds.has(n.id)}
                     animated={!disableNodeAnimation}
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent map background click
+                     onClick={() => {
                       const newSelectedIds = new Set(selectedNodeIds);
                       
                       if (newSelectedIds.has(n.id)) {

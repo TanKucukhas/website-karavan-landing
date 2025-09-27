@@ -1,5 +1,6 @@
 // Light version without emoji icons
 
+
 export default function InnovationSection() {
   const aiFeatures = [
     'Unified payment processing across multiple currencies',

@@ -10,6 +10,7 @@ const ACTIVE_COUNTRIES: Record<string, string> = {
   KG: '#4ea1ff',
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function canonicalISO2(geo: any): string | null {
   const id = geo?.properties?.iso_a2 || geo?.properties?.ISO_A2;
   if (!id || id === '-99') return null;
@@ -22,11 +23,12 @@ export function ActiveCountryFills({ geographyUrl, pulse=false }:{
   return (
     <Geographies geography={geographyUrl}>
       {({ geographies }) =>
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         geographies.map((geo: any) => {
           const iso2 = canonicalISO2(geo);
           const color = iso2 && ACTIVE_COUNTRIES[iso2];
           if (!color) return null;
-          const Comp: any = pulse ? motion.g : 'g';
+          const Comp = pulse ? motion.g : 'g';
           return (
             <Comp key={geo.rsmKey}
               {...(pulse ? {
