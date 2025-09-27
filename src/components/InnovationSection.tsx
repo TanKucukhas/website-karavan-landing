@@ -1,5 +1,7 @@
-// Light version without emoji icons
+"use client";
 
+// Light version without emoji icons
+import CountUp from '@/components/CountUp'
 
 export default function InnovationSection() {
   const aiFeatures = [
@@ -18,7 +20,7 @@ export default function InnovationSection() {
   ];
 
   return (
-    <section className="lt-section bg-gradient-to-r from-blue-50 to-indigo-50/40">
+    <section className="lt-section animate-on-scroll bg-gradient-to-r from-blue-50 to-indigo-50/40">
       <div className="lt-container">
         <div className="text-center mb-14">
           <h2 className="lt-heading mb-4">AI-Driven Innovation</h2>
@@ -41,11 +43,11 @@ export default function InnovationSection() {
             {/* Innovation Stats */}
             <div className="mt-8 grid grid-cols-2 gap-6">
               <div className="text-center p-4 lt-card">
-                <div className="text-2xl font-bold text-brand-600 mb-1">95%</div>
+                <div className="text-2xl font-bold text-brand-600 mb-1"><CountUp end={95} suffix="%" /></div>
                 <div className="text-sm text-gray-700">Automation Rate</div>
               </div>
               <div className="text-center p-4 lt-card">
-                <div className="text-2xl font-bold text-brand-600 mb-1">3x</div>
+                <div className="text-2xl font-bold text-brand-600 mb-1"><CountUp end={3} suffix="x" /></div>
                 <div className="text-sm text-gray-700">Faster Processing</div>
               </div>
             </div>
@@ -85,15 +87,15 @@ export default function InnovationSection() {
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="text-3xl font-bold text-brand-600 mb-1">24/7</div>
+                <div className="text-3xl font-bold text-brand-600 mb-1"><CountUp end={24} />/7</div>
                 <div className="text-gray-700">AI Monitoring</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-brand-600 mb-1">99.9%</div>
+                <div className="text-3xl font-bold text-brand-600 mb-1"><CountUp end={99.9} decimals={1} suffix="%" /></div>
                 <div className="text-gray-700">Uptime Guarantee</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-brand-600 mb-1">0.1s</div>
+                <div className="text-3xl font-bold text-brand-600 mb-1"><CountUp end={0.1} decimals={1} suffix="s" /></div>
                 <div className="text-gray-700">Response Time</div>
               </div>
             </div>

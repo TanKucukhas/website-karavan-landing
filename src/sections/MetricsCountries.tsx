@@ -1,6 +1,9 @@
 "use client";
 
 import CountryFills from "@/components/animations/CountryFills";
+import dynamic from 'next/dynamic'
+
+const CountUp = dynamic(() => import('@/components/CountUp'), { ssr: false })
 
 export default function MetricsCountries() {
   return (
@@ -8,14 +11,20 @@ export default function MetricsCountries() {
       <CountryFills active={["TR", "UZ", "KZ", "AZ", "HU"]} />
       <div className="relative z-10 pointer-events-auto container mx-auto px-4 lg:px-8">
         <div className="grid md:grid-cols-4 gap-6">
-          {["150+ Suppliers", "7-14d Shipping", "6 Languages", "91% Success"].map((v, i) => (
-            <div key={i} className="lt-card p-6 text-center">
-              <div className="text-xl font-semibold text-gray-900">{v}</div>
-            </div>
-          ))}
+          <div className="lt-card p-6 text-center">
+            <div className="text-xl font-semibold text-gray-900"><CountUp end={150} suffix="+" /> Suppliers</div>
+          </div>
+          <div className="lt-card p-6 text-center">
+            <div className="text-xl font-semibold text-gray-900">7–14d Shipping</div>
+          </div>
+          <div className="lt-card p-6 text-center">
+            <div className="text-xl font-semibold text-gray-900"><CountUp end={6} /> Languages</div>
+          </div>
+          <div className="lt-card p-6 text-center">
+            <div className="text-xl font-semibold text-gray-900"><CountUp end={91} suffix="%" /> Success</div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-

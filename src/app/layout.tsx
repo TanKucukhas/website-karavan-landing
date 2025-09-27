@@ -26,6 +26,7 @@ import './globals.css'
 import HeaderWithCTA from '@/components/twplus/HeaderWithCTA'
 import GlobalBackground from '@/components/GlobalBackground'
 import Footer from '@/components/Footer'
+import ScrollAnimator from '@/components/ScrollAnimator'
 
 export default function RootLayout({
   children,
@@ -44,6 +45,7 @@ export default function RootLayout({
       <body>
         <GlobalBackground />
         <HeaderWithCTA />
+        <ScrollAnimator />
         <div className="pt-16">{children}</div>
         <Footer />
       </body>

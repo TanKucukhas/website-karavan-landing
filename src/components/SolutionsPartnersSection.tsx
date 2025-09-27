@@ -34,7 +34,7 @@ export default function SolutionsPartnersSection() {
   ];
 
   return (
-    <section className="lt-section">
+    <section className="lt-section animate-on-scroll">
       <div className="lt-container">
         <div className="text-center mb-12">
           <h2 className="lt-heading mb-4">Solutions</h2>
@@ -45,8 +45,13 @@ export default function SolutionsPartnersSection() {
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {solutions.map((solution, index) => (
               <div key={index} className="flex items-start gap-4 p-6 lt-card">
-                <div className="text-3xl">
-                  <span className="inline-grid h-10 w-10 place-items-center rounded-lg bg-gray-50 border border-gray-200 text-base">{/* reduced icon usage */}</span>
+                <div className="text-3xl shrink-0">
+                  <span
+                    className="inline-grid h-10 w-10 place-items-center rounded-lg bg-gray-50 border border-gray-200 text-lg"
+                    aria-hidden
+                  >
+                    {solution.icon}
+                  </span>
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-1.5">{solution.title}</h4>

@@ -1,3 +1,7 @@
+"use client";
+
+import CountUp from '@/components/CountUp'
+
 export default function MarketSizeSection() {
   const bars = [
     { label: 'TAM', value: 37, color: 'bg-blue-600' },
@@ -6,7 +10,7 @@ export default function MarketSizeSection() {
   ]
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white animate-on-scroll">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Market Size</h2>
@@ -19,7 +23,7 @@ export default function MarketSizeSection() {
               <div key={idx}>
                 <div className="flex justify-between text-sm mb-1">
                   <span className="font-medium text-gray-900">{b.label}</span>
-                  <span className="text-gray-600">{b.value}{b.label === 'SOM' ? 'M' : 'B'}</span>
+                  <span className="text-gray-600"><CountUp end={b.value} suffix={b.label === 'SOM' ? 'M' : 'B'} /></span>
                 </div>
                 <div className="h-4 bg-gray-100 rounded">
                   <div className={`h-4 ${b.color} rounded`} style={{ width: `${(b.value/37)*100}%` }} />
@@ -36,5 +40,3 @@ export default function MarketSizeSection() {
     </section>
   )
 }
-
-

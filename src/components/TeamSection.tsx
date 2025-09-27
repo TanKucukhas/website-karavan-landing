@@ -1,6 +1,9 @@
+"use client";
+
 // Light version without emojis
 import Image from 'next/image'
 import teamData from '../../public/images/team/team.json'
+import CountUp from '@/components/CountUp'
 
 export default function TeamSection() {
   const expertise = [
@@ -52,24 +55,34 @@ export default function TeamSection() {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {teamStats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl font-bold text-brand-600 mb-1">{stat.number}</div>
-                <div className="text-gray-700 text-sm">{stat.label}</div>
-              </div>
-            ))}
+            {teamStats.map((stat, index) => {
+              const m = stat.number.match(/^([0-9]+(?:\.[0-9]+)?)(.*)$/)
+              const num = m ? parseFloat(m[1]) : 0
+              const suffix = m ? m[2] : ''
+              const decimals = m && m[1].includes('.') ? 1 : undefined
+              return (
+                <div key={index} className="text-center">
+                  <div className="text-3xl font-bold text-brand-600 mb-1"><CountUp end={num} decimals={decimals as any} suffix={suffix} /></div>
+                  <div className="text-gray-700 text-sm">{stat.label}</div>
+                </div>
+              )
+            })}
           </div>
         </div>
 
         {/* Leadership Team (from JSON) */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 animate-on-scroll">
           <h3 className="text-2xl font-bold text-gray-900 mb-3">Core Leadership</h3>
           <p className="text-gray-700">Experienced leaders with proven track records in international trade and technology</p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {teamData.slice(0,4).map((member: { name: string; title: string; linkedin: string; image: string }, idx: number) => (
-            <div key={idx} className="text-center">
+            <div
+              key={idx}
+              className="text-center animate-on-scroll"
+              style={{ transitionDelay: `${idx * 80}ms` }}
+            >
               <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4 bg-gray-100 ring-1 ring-gray-200 relative z-0">
                 <Image src={`/images/team/${member.image}`} alt={member.name} width={128} height={128} className="w-32 h-32 object-cover object-top" />
               </div>

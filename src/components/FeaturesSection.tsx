@@ -1,4 +1,7 @@
+"use client";
+
 import { ShieldCheckIcon, TruckIcon, CheckCircleIcon, BanknotesIcon } from '@heroicons/react/24/outline'
+import CountUp from '@/components/CountUp'
 
 
 export default function FeaturesSection() {
@@ -30,7 +33,7 @@ export default function FeaturesSection() {
   ];
 
   return (
-    <section id="features" className="lt-section">
+    <section id="features" className="lt-section animate-on-scroll">
       <div className="lt-container">
         <div className="text-center mb-6">
           <h2 className="lt-heading mb-4">Why Trade on Karavan?</h2>
@@ -87,15 +90,15 @@ export default function FeaturesSection() {
         <div className="lt-card p-8">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-brand-600 mb-2">100%</div>
+              <div className="text-3xl font-bold text-brand-600 mb-2"><CountUp end={100} suffix="%" /></div>
               <div className="text-gray-700">Secure Transactions</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-brand-600 mb-2">24/7</div>
+              <div className="text-3xl font-bold text-brand-600 mb-2"><CountUp end={24} />/7</div>
               <div className="text-gray-700">Support Available</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-brand-600 mb-2">5+</div>
+              <div className="text-3xl font-bold text-brand-600 mb-2"><CountUp end={5} suffix="+" /></div>
               <div className="text-gray-700">Countries Connected</div>
             </div>
           </div>

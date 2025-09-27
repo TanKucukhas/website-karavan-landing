@@ -2,6 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Flag from '@/components/Flag'
+import dynamic from 'next/dynamic'
+
+const ChartMini = dynamic(() => import('@/components/ChartMini'), { ssr: false })
+const CountUp = dynamic(() => import('@/components/CountUp'), { ssr: false })
 import { ChartBarIcon, GlobeAltIcon, UsersIcon, BoltIcon } from '@heroicons/react/24/outline'
 
 export default function MetricsSection() {
@@ -90,7 +94,7 @@ export default function MetricsSection() {
   }, []);
 
   return (
-    <section className="lt-section">
+    <section className="lt-section animate-on-scroll">
       <div className="lt-container">
         <div className="text-center mb-14">
           <h2 className="lt-heading mb-4">Secure B2B Trade Metrics</h2>
@@ -107,7 +111,12 @@ export default function MetricsSection() {
                 {index === 2 && <GlobeAltIcon className="h-6 w-6 text-purple-600" />}
                 {index === 3 && <ChartBarIcon className="h-6 w-6 text-orange-600" />}
               </div>
-              <div className={`text-5xl font-bold ${metric.color} mb-2`}>{metric.value}</div>
+              <div className={`text-5xl font-bold ${metric.color} mb-2`}>
+                {index === 0 && <CountUp end={150} suffix="+" />}
+                {index === 1 && <span>7–14</span>}
+                {index === 2 && <CountUp end={6} />}
+                {index === 3 && <CountUp end={91} suffix="%" />}
+              </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-1">{metric.label}</h3>
               <p className="text-gray-600 text-sm mb-3">{metric.description}</p>
               <div className="text-xs text-gray-600 bg-gray-50 rounded-lg px-3 py-2 inline-block border border-gray-200">{metric.footnote}</div>
@@ -129,7 +138,7 @@ export default function MetricsSection() {
                   market.country === 'Turkmenistan' ? 'tm' :
                   market.country === 'Azerbaijan' ? 'az' : 'tr'} size="lg" title={market.country} /></div>
                 <div className="font-semibold text-gray-900 mb-1.5">{market.country}</div>
-                <div className="text-xs text-gray-600 mb-2">{market.populationM}M people</div>
+                <div className="text-xs text-gray-600 mb-2"><CountUp end={market.populationM} suffix="M people" /></div>
                 <span className="lt-badge">
                   {market.status === 'live' ? 'Live' : 'Expanding'}
                 </span>
@@ -138,18 +147,56 @@ export default function MetricsSection() {
           </div>
         </div>
 
+        {/* Mini Chart: Monthly Growth */}
+        <div className="mt-16 grid lg:grid-cols-2 gap-8 items-center">
+          <div className="lt-card p-6">
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">Monthly RFQs</h4>
+            <p className="text-sm text-gray-600 mb-4">Demand growth driven by verified buyers</p>
+            <ChartMini
+              data={[
+                { label: 'Apr', value: 18, color: '#3B82F6' },
+                { label: 'May', value: 24, color: '#3B82F6' },
+                { label: 'Jun', value: 30, color: '#3B82F6' },
+                { label: 'Jul', value: 36, color: '#3B82F6' },
+                { label: 'Aug', value: 44, color: '#3B82F6' },
+                { label: 'Sep', value: 52, color: '#3B82F6' },
+              ]}
+              max={60}
+            />
+          </div>
+          <div className="lt-card p-6">
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">Fulfillment Speed</h4>
+            <p className="text-sm text-gray-600 mb-4">Average days from order to delivery</p>
+            <ChartMini
+              data={[
+                { label: 'TR→UZ', value: 12, color: '#10B981' },
+                { label: 'TR→KZ', value: 14, color: '#10B981' },
+                { label: 'TR→KG', value: 11, color: '#10B981' },
+                { label: 'TR→TM', value: 15, color: '#10B981' },
+              ]}
+              max={20}
+            />
+          </div>
+        </div>
+
         {/* Additional Stats */}
         <div className="mt-16 grid md:grid-cols-3 gap-8 text-center">
           <div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">$2.4M</div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">
+              <CountUp end={2400000} prefix="$" />
+            </div>
             <div className="text-gray-600">Total Trade Volume</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">98%</div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">
+              <CountUp end={98} suffix="%" />
+            </div>
             <div className="text-gray-600">Transaction Success Rate</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">24h</div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">
+              <CountUp end={24} suffix="h" />
+            </div>
             <div className="text-gray-600">Average Resolution Time</div>
           </div>
         </div>

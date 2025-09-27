@@ -19,11 +19,11 @@ export default function CTABanner() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-r from-[#0b1220] via-[#0e1a33] to-[#0b1220] text-white relative">
+    <section id="cta" className="py-20 bg-gradient-to-r from-[#0b1220] via-[#0e1a33] to-[#0b1220] text-white relative animate-on-scroll">
       <div className="container mx-auto px-4">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
-            <span className="inline-block px-2 sm:px-3 py-1 rounded-md bg-black/20">Secure Your Early Access Spot</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.6)]">
+            Secure Your Early Access Spot
           </h2>
           <p className="text-white/85 mb-6 max-w-2xl mx-auto">Limited spots available. Verified suppliers, secure escrow, logistics included. Be among the first to experience the future of B2B trade.</p>
 

@@ -1,10 +1,13 @@
+"use client";
+
 import Image from 'next/image'
 import partnersData from '../../public/images/solution-partners/partners.json'
+import CountUp from '@/components/CountUp'
 
 export default function TrustedPartnersSection() {
   const partners = partnersData
   return (
-    <section className="lt-section" id="partners">
+    <section className="lt-section animate-on-scroll" id="partners">
       <div className="lt-container">
         <div className="text-center mb-12">
           <h2 className="lt-heading mb-4">Trusted Partners</h2>
@@ -33,11 +36,11 @@ export default function TrustedPartnersSection() {
 
         <div className="mt-12 grid sm:grid-cols-2 gap-6">
           <div className="lt-card p-6 text-center">
-            <div className="text-3xl font-bold text-brand-600">2.5M</div>
+            <div className="text-3xl font-bold text-brand-600"><CountUp end={2.5} decimals={1} suffix="M" /></div>
             <div className="text-gray-700">Companies Connected</div>
           </div>
           <div className="lt-card p-6 text-center">
-            <div className="text-3xl font-bold text-brand-600">6</div>
+            <div className="text-3xl font-bold text-brand-600"><CountUp end={6} /></div>
             <div className="text-gray-700">Chambers Engaged</div>
           </div>
         </div>

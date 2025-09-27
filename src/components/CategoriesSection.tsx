@@ -1,6 +1,19 @@
 'use client';
 
 import { useState } from 'react';
+import {
+  SwatchIcon,
+  Cog6ToothIcon,
+  BeakerIcon,
+  ShoppingBagIcon,
+  BuildingOffice2Icon,
+  WrenchScrewdriverIcon,
+  CpuChipIcon,
+  HeartIcon,
+  HomeModernIcon,
+  BoltIcon,
+  CubeIcon,
+} from '@heroicons/react/24/outline'
 
 
 export default function CategoriesSection() {
@@ -105,72 +118,59 @@ export default function CategoriesSection() {
   ];
 
   return (
-    <section id="categories" className="lt-section">
+    <section id="categories" className="lt-section animate-on-scroll">
       <div className="lt-container">
         <div className="text-center mb-14">
           <h2 className="lt-heading mb-4">Top B2B Categories</h2>
           <p className="lt-subtext">Discover the most popular product categories in Turkey-Central Asia trade, with verified suppliers and streamlined processes.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-          {(showAll ? categories : categories.slice(0, 6)).map((category, index) => (
-            <div key={index} className="lt-card p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-medium">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.name}</h3>
-              
-              <div className="space-y-3">
-                <div>
-                  <div className="text-sm font-medium text-gray-700 mb-1">Subcategories</div>
-                  <div className="text-sm text-gray-600">{category.subcategories.join(', ')}</div>
-                </div>
-                
-                <div>
-                  <div className="text-sm font-medium text-gray-700 mb-1">Certificates</div>
-                  <div className="flex flex-wrap gap-1">
-                    {category.certificates.map((cert, certIndex) => (
-                      <span key={certIndex} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded border border-gray-200">
-                        {cert}
-                      </span>
-                    ))}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-12">
+          {(showAll ? categories : categories.slice(0, 8)).map((category, index) => {
+            const IconComponents = [
+              SwatchIcon, // Textiles & Apparel
+              Cog6ToothIcon, // Machinery & Equipment
+              BeakerIcon, // Chemicals & Pharmaceuticals
+              ShoppingBagIcon, // Agriculture & Food
+              BuildingOffice2Icon, // Construction Materials
+              WrenchScrewdriverIcon, // Automotive Parts
+              CpuChipIcon, // Electronics & IT
+              HeartIcon, // Medical Equipment
+              HomeModernIcon, // Furniture & Home
+              BoltIcon, // Energy & Power
+              CubeIcon, // Packaging Materials
+              WrenchScrewdriverIcon, // Tools & Hardware
+            ]
+            const Icon = IconComponents[index % IconComponents.length]
+            const tags = category.subcategories.slice(0, 2)
+            return (
+              <div key={index} className="lt-card p-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-medium">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <Icon className="h-5 w-5 text-brand-600" aria-hidden="true" />
+                    <h3 className="text-base font-semibold text-gray-900">{category.name}</h3>
                   </div>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-700">Demand</span>
                   <span className="lt-badge">{category.demand ?? 'High'}</span>
                 </div>
-                
-                <div className="grid grid-cols-2 gap-3 text-sm">
-                  <div>
-                    <div className="font-medium text-gray-700">MOQ</div>
-                    <div className="text-gray-600">{category.moq}</div>
-                  </div>
-                  <div>
-                    <div className="font-medium text-gray-700">Lead Time</div>
-                    <div className="text-gray-600">{category.leadTime}</div>
-                  </div>
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {tags.map((t, i) => (
+                    <span key={i} className="px-2 py-0.5 text-xs rounded bg-gray-50 border text-gray-700">{t}</span>
+                  ))}
                 </div>
-                
-                <div>
-                  <div className="text-sm font-medium text-gray-700 mb-1">Corridors</div>
-                  <div className="flex flex-wrap gap-1">
-                    {category.corridors.map((corridor, idx) => (
-                      <span key={idx} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded border border-gray-200">{corridor}</span>
-                    ))}
-                  </div>
-                </div>
+                {/* per-card CTAs removed to reduce noise */}
               </div>
-              
-              <div className="mt-4 flex gap-2">
-                <button className="flex-1 btn-brand">Open RFQ</button>
-                <button className="flex-1 btn-outline-brand">Join as Seller</button>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
         <div className="text-center mb-12">
           {!showAll && (
             <button className="btn-outline-brand" onClick={() => setShowAll(true)}>View all categories</button>
           )}
+        </div>
+
+        {/* Single section CTA */}
+        <div className="text-center">
+          <a href="#cta" className="btn-primary btn-lg">Open RFQ</a>
         </div>
 
         {/* Request Category Form */}

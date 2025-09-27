@@ -1,3 +1,7 @@
+"use client";
+
+import CountUp from '@/components/CountUp'
+
 export default function TargetMetricsSection() {
   const current = [
     { label: 'Suppliers', value: 150 },
@@ -25,7 +29,7 @@ export default function TargetMetricsSection() {
             <div className="grid grid-cols-2 gap-4">
               {current.map((c, idx) => (
                 <div key={idx} className="bg-white rounded-xl p-4 text-center shadow-sm">
-                  <div className="text-2xl font-bold text-primary-600">{c.value}</div>
+                  <div className="text-2xl font-bold text-primary-600"><CountUp end={c.value} /></div>
                   <div className="text-gray-600">{c.label}</div>
                 </div>
               ))}
@@ -36,7 +40,7 @@ export default function TargetMetricsSection() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {target.map((t, idx) => (
                 <div key={idx} className="bg-white rounded-xl p-4 text-center shadow-sm">
-                  <div className="text-2xl font-bold text-green-600">{t.value}</div>
+                  <div className="text-2xl font-bold text-green-600"><CountUp end={t.value} /></div>
                   <div className="text-gray-600">{t.label}</div>
                 </div>
               ))}
@@ -47,5 +51,3 @@ export default function TargetMetricsSection() {
     </section>
   )
 }
-
-
