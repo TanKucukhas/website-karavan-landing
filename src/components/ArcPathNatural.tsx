@@ -14,7 +14,7 @@ export function ArcPathNatural({
   const [len, setLen] = useState(0);
   const ctrl = useAnimationControls();
 
-  useEffect(() => { if (ref.current) setLen(ref.current.getTotalLength()); }, [d]);
+  useEffect(() => { if (ref.current) setLen(Math.round(ref.current.getTotalLength())); }, [d]);
 
   useEffect(() => {
     if (reduced) return;

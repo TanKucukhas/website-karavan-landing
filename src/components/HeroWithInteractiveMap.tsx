@@ -2,12 +2,12 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { MotionConfig, useReducedMotion, motion } from 'framer-motion';
-import clsx from 'clsx';
 import TradeMap from './trade-map/TradeMap';
 import { NODES } from './trade-map/TradeMap.data';
 import EmailCaptureInline from './EmailCaptureInline';
 import { analytics } from '@/lib/analytics';
 import TradeFlows from '@/components/TradeFlows';
+import { useMapLoadingGate } from '@/hooks/useMapLoadingGate';
 
 const IMPORTANT_REGIONS = ['TR', 'UZ', 'KZ', 'AZ', 'HU'];
 
@@ -20,10 +20,7 @@ export default function HeroWithInteractiveMap() {
   const [flowsEnabled, setFlowsEnabled] = useState(false);
   const [mountMap, setMountMap] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const hintShouldShow = !mountMap || !worldReady;
-  const [hintVisible, setHintVisible] = useState(false);
-  const hintStartRef = useRef<number>(0);
-  const hintTimerRef = useRef<number|undefined>(undefined);
+  const { spinnerVisible, markPainted } = useMapLoadingGate(worldReady, { minMs: 900, maxMs: 8000 });
 
   useEffect(() => { analytics.mapArcView(); }, []);
 
@@ -43,36 +40,7 @@ export default function HeroWithInteractiveMap() {
     return () => { if (to) window.clearTimeout(to); };
   }, []);
 
-  // Stabilize loading hint visibility with a minimum display duration
-  useEffect(() => {
-    const MIN_MS = 800;
-    if (hintShouldShow) {
-      if (!hintVisible) {
-        hintStartRef.current = Date.now();
-        setHintVisible(true);
-      }
-      if (hintTimerRef.current) {
-        window.clearTimeout(hintTimerRef.current);
-        hintTimerRef.current = undefined;
-      }
-    } else {
-      if (hintVisible) {
-        const elapsed = Date.now() - hintStartRef.current;
-        const remain = Math.max(0, MIN_MS - elapsed);
-        if (remain === 0) {
-          setHintVisible(false);
-        } else {
-          hintTimerRef.current = window.setTimeout(() => setHintVisible(false), remain);
-        }
-      }
-    }
-    return () => {
-      if (hintTimerRef.current) {
-        window.clearTimeout(hintTimerRef.current);
-        hintTimerRef.current = undefined;
-      }
-    };
-  }, [hintShouldShow, hintVisible]);
+  // Spinner overlay (centered, non-blocking for content)
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -122,28 +90,19 @@ export default function HeroWithInteractiveMap() {
 
   const visibleNodes = useMemo(() => NODES.filter(n => revealedRegions.includes(n.region)), [revealedRegions]);
 
-  const LoadingHint = ({ className }: { className?: string }) => {
-    if (!hintVisible) return null;
-    return (
-      <div
-        className={clsx(
-          'absolute z-40 pointer-events-none',
-          // Mobile: top center of upper half, near top
-          'left-1/2 top-[22%] -translate-x-1/2',
-          // Desktop/Tablet: center of right half
-          'md:left-[75%] md:top-1/2 md:-translate-y-1/2',
-          className,
-        )}
-      >
-        <div className="bg-slate-900/75 rounded-full px-2.5 py-1.5 backdrop-blur-md ring-1 ring-white/10 flex items-center justify-center">
-          <span className="inline-block h-4 w-4 rounded-full border-2 border-sky-400/60 border-t-transparent animate-spin" />
+  const SpinnerOverlay = () => (
+    spinnerVisible ? (
+      <div className="absolute inset-0 z-40 grid place-items-center pointer-events-none">
+        <div className="bg-slate-900/75 rounded-full px-3 py-2 backdrop-blur-md ring-1 ring-white/10 flex items-center justify-center">
+          <span className="inline-block h-5 w-5 rounded-full border-2 border-sky-400/60 border-t-transparent animate-spin" />
         </div>
       </div>
-    );
-  };
+    ) : null
+  );
 
   const MapLayer = (
     <motion.div className="absolute inset-0 pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: stage !== 'loading' ? 1 : 0 }} transition={{ duration: 0.35 }}>
+      <SpinnerOverlay />
       <TradeMap
         nodes={visibleNodes}
         arcs={[]}
@@ -155,6 +114,7 @@ export default function HeroWithInteractiveMap() {
         className="h-full w-full"
         disableNodeAnimation={isMobile || !!reduced}
         onReady={() => setWorldReady(true)}
+        onFirstPaint={markPainted}
       />
       {/* Scrim between base map and flows to enhance contrast */}
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-brand-bg/30 via-brand-bg/30 to-brand-bg/50 pointer-events-none" />
@@ -162,7 +122,6 @@ export default function HeroWithInteractiveMap() {
       <div className="absolute inset-0 z-30 pointer-events-none">
         {flowsEnabled && <TradeFlows enabled={true} />}
       </div>
-      <LoadingHint />
     </motion.div>
   );
 
@@ -175,7 +134,7 @@ export default function HeroWithInteractiveMap() {
           {/* Map - Top Half */}
           <div className="h-[50vh] relative">
             {mountMap ? MapLayer : null}
-            {!mountMap && <LoadingHint />}
+            {!mountMap && <SpinnerOverlay />}
           </div>
 
           {/* Form - Bottom Half */}
@@ -196,7 +155,7 @@ export default function HeroWithInteractiveMap() {
         {/* Tablet: Centered Layout (768px-1024px) */}
         <div className="hidden md:block lg:hidden">
           <div className="absolute inset-0" aria-hidden>{mountMap ? MapLayer : null}</div>
-          {!mountMap && <LoadingHint />}
+          {!mountMap && <SpinnerOverlay />}
           <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
             <div className="max-w-md w-full">
               <div className="rounded-2xl bg-white/95 backdrop-blur-md shadow-xl ring-1 ring-black/5 p-6 text-gray-900">
@@ -217,7 +176,7 @@ export default function HeroWithInteractiveMap() {
         {/* Desktop: Floating Card Layout (>1024px) */}
         <div className="hidden lg:block">
           <div className="absolute inset-0" aria-hidden>{mountMap ? MapLayer : null}</div>
-          {!mountMap && <LoadingHint />}
+          {!mountMap && <SpinnerOverlay />}
           <div className="absolute top-32 z-30">
             <div className="max-w-7xl mx-auto px-4 lg:px-8">
               <div className="max-w-md lg:max-w-lg w-96 lg:w-[28rem]">

@@ -37,6 +37,7 @@ export default function TradeMap({
   pulsingRegion,
   onReady,
   disableNodeAnimation = false,
+  onFirstPaint,
 }: TradeMapProps & { debug?: boolean }) {
 
   const zoom = 1; // Sabit zoom seviyesi
@@ -50,6 +51,15 @@ export default function TradeMap({
   []);
 
   const readyRef = useRef(false);
+
+  // Signal first paint to the parent (hero) so spinner can hide after paint
+  useEffect(() => {
+    let canceled = false;
+    requestAnimationFrame(() => {
+      if (!canceled) onFirstPaint?.();
+    });
+    return () => { canceled = true; };
+  }, [onFirstPaint]);
 
   // Memoized arc paths with distance-based curvature
   const arcDs = useMemo(() => {

@@ -35,4 +35,5 @@ export type TradeMapProps = {
   pulsingRegion?: string;           // ISO2 code currently pulsing
   onReady?: () => void;             // called when world geographies are loaded
   disableNodeAnimation?: boolean;   // when true, node pulse/pop animations are disabled
+  onFirstPaint?: () => void;        // called once after first SVG paint
 };

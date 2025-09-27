@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Flag from '@/components/Flag'
 
 export default function MetricsSection() {
@@ -11,8 +11,16 @@ export default function MetricsSection() {
     cohorts: 0
   });
 
-  // Use counts to avoid unused variable warning
-  console.log('Current counts:', counts);
+  // Log only when values change to avoid spam
+  const prev = useRef<string>('');
+  useEffect(() => {
+    const now = JSON.stringify(counts);
+    if (now !== prev.current) {
+      // eslint-disable-next-line no-console
+      console.log('Current counts:', counts);
+      prev.current = now;
+    }
+  }, [counts]);
 
   const metrics = [
     {
