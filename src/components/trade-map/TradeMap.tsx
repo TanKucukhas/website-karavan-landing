@@ -50,7 +50,8 @@ export default function TradeMap({
   // Tek projeksiyon objesi - sabit; SVG ölçeklenerek tam genişlik verilir
   const projection = useMemo(() => 
     geoMercatorAny()
-      .scale(170)
+      .center([35, 39])
+      .scale(180)
       .translate([512, 260]), 
   []);
 
@@ -148,7 +149,7 @@ export default function TradeMap({
       <MotionConfig reducedMotion={reducedMotionFallback ? 'always' : 'never'}>
         <ComposableMap
           projection="geoMercator"
-          projectionConfig={{ scale: 170, center: [0, 0] }}
+          projectionConfig={{ scale: 180, center: [35, 39] }}
           style={{ width:'100%', height:'100%' }}
           width={1024}
           height={520}
