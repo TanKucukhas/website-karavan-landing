@@ -39,7 +39,7 @@ export default function Header() {
         ? 'bg-white/70 backdrop-blur-md shadow-md' 
         : 'bg-white/30 backdrop-blur-sm'
     }`}>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">

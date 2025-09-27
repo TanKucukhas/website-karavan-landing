@@ -102,7 +102,7 @@ export default function HeroWithInteractiveMap() {
   );
 
   const MapLayer = (
-    <motion.div className="absolute inset-0 pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: stage !== 'loading' ? 1 : 0 }} transition={{ duration: 0.35 }}>
+    <motion.div className="absolute inset-0 pointer-events-none w-full" initial={{ opacity: 0 }} animate={{ opacity: stage !== 'loading' ? 1 : 0 }} transition={{ duration: 0.35 }}>
       <TradeMap
         nodes={visibleNodes}
         arcs={[]}
@@ -116,8 +116,8 @@ export default function HeroWithInteractiveMap() {
         onReady={() => setGeoReady(true)}
         onStablePaint={() => setStablePaint(true)}
       />
-      {/* Scrim between base map and flows to enhance contrast */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-brand-bg/30 via-brand-bg/30 to-brand-bg/50 pointer-events-none" />
+      {/* Light scrim disabled to keep hero bright */}
+      <div className="absolute inset-0 z-10 pointer-events-none" />
       {/* Flows overlays */}
       <div className="absolute inset-0 z-30 pointer-events-none">
         {flowsEnabled && <TradeFlows enabled={true} />}
@@ -127,7 +127,7 @@ export default function HeroWithInteractiveMap() {
 
   return (
     <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
-      <section className="relative bg-brand-bg text-brand-ink" style={{ minHeight: 'calc(100svh - var(--header-h, 64px))' }}>
+      <section className="relative bg-white text-[color:var(--ink)] w-full" style={{ minHeight: 'calc(100svh - var(--header-h, 64px))' }}>
         <SpinnerOverlay />
 
         {/* Mobile: Stacked Layout (<768px) */}
@@ -138,35 +138,39 @@ export default function HeroWithInteractiveMap() {
           </div>
 
           {/* Form - Bottom Half */}
-          <div className="h-[50vh] bg-white/95 backdrop-blur-md pt-8 pb-6 px-8 flex flex-col justify-start relative z-10">
-            <div className="mb-6">
-              <h1 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
-                Secure B2B trade across the <span className="text-brand-600">Turkic States</span>
-              </h1>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Launching first in Türkiye & Uzbekistan.<br />
-                Escrow payments, logistics, customs, and finance options.
-              </p>
+          <div className="h-[50vh] pt-8 pb-6 flex flex-col justify-start relative z-10 bg-white">
+            <div className="container mx-auto px-4 lg:px-8">
+              <div className="mb-6">
+                <h1 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
+                  Secure B2B trade across the <span className="text-brand-600">Turkic States</span>
+                </h1>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Launching first in Türkiye & Uzbekistan.<br />
+                  Escrow payments, logistics, customs, and finance options.
+                </p>
+              </div>
+              <EmailCaptureInline defaultRole="seller" />
             </div>
-            <EmailCaptureInline defaultRole="seller" />
           </div>
         </div>
 
         {/* Tablet: Centered Layout (768px-1024px) */}
         <div className="hidden md:block lg:hidden">
-          <div className="absolute inset-0" aria-hidden>{mountMap ? MapLayer : null}</div>
-          <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
-            <div className="max-w-md w-full">
-              <div className="rounded-2xl bg-white/95 backdrop-blur-md shadow-xl ring-1 ring-black/5 p-6 text-gray-900">
-                <div className="mb-6">
-                  <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-4">
-                    Secure B2B trade across the <span className="text-brand-600">Turkic States</span>
-                  </h1>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    Launching first in Türkiye & Uzbekistan. Escrow payments, integrated logistics and customs, finance options.
-                  </p>
+          <div className="absolute inset-0 w-full" aria-hidden>{mountMap ? MapLayer : null}</div>
+          <div className="relative z-10 min-h-screen">
+            <div className="container mx-auto px-4 lg:px-8 py-16">
+              <div className="max-w-md w-full">
+                <div className="rounded-2xl bg-white shadow-xl ring-1 ring-black/5 p-6 text-gray-900">
+                  <div className="mb-6">
+                    <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-4">
+                      Secure B2B trade across the <span className="text-brand-600">Turkic States</span>
+                    </h1>
+                    <p className="text-lg text-gray-600 leading-relaxed">
+                      Launching first in Türkiye & Uzbekistan. Escrow payments, integrated logistics and customs, finance options.
+                    </p>
+                  </div>
+                  <EmailCaptureInline defaultRole="seller" />
                 </div>
-                <EmailCaptureInline defaultRole="seller" />
               </div>
             </div>
           </div>
@@ -174,11 +178,11 @@ export default function HeroWithInteractiveMap() {
 
         {/* Desktop: Floating Card Layout (>1024px) */}
         <div className="hidden lg:block">
-          <div className="absolute inset-0" aria-hidden>{mountMap ? MapLayer : null}</div>
-          <div className="absolute top-32 z-30">
-            <div className="max-w-7xl mx-auto px-4 lg:px-8">
+          <div className="absolute inset-0 w-full" aria-hidden>{mountMap ? MapLayer : null}</div>
+          <div className="absolute top-32 z-30 w-full">
+            <div className="container mx-auto px-4 lg:px-8">
               <div className="max-w-md lg:max-w-lg w-96 lg:w-[28rem]">
-                <div className="rounded-2xl bg-white/95 backdrop-blur-md shadow-xl ring-1 ring-black/5 p-6 lg:p-8 text-gray-900 pointer-events-auto">
+                <div className="rounded-2xl bg-white shadow-xl ring-1 ring-black/5 p-6 lg:p-8 text-gray-900 pointer-events-auto">
                   <div className="mb-6">
                     <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
                       Secure B2B trade across the <span className="text-brand-600">Turkic States</span>

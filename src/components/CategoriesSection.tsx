@@ -1,14 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import Emoji from '@/components/Emoji'
 
 export default function CategoriesSection() {
   const [showRequestForm, setShowRequestForm] = useState(false);
 
   const categories = [
     {
-      icon: <Emoji symbol="👕" label="Textiles" size={24} />, 
       name: 'Textiles & Apparel',
       subcategories: ['Cotton fabrics', 'Ready-made garments', 'Home textiles'],
       certificates: ['OEKO-TEX', 'GOTS'],
@@ -18,7 +16,6 @@ export default function CategoriesSection() {
       demand: 'High'
     },
     {
-      icon: <Emoji symbol="⚙️" label="Machinery" size={24} />, 
       name: 'Machinery & Equipment',
       subcategories: ['Agricultural machinery', 'Industrial equipment', 'Construction machinery'],
       certificates: ['CE', 'ISO 9001'],
@@ -28,7 +25,6 @@ export default function CategoriesSection() {
       demand: 'Medium'
     },
     {
-      icon: <Emoji symbol="🧪" label="Chemicals" size={24} />, 
       name: 'Chemicals & Pharmaceuticals',
       subcategories: ['Industrial chemicals', 'Pharmaceuticals', 'Cosmetics'],
       certificates: ['GMP', 'ISO 14001'],
@@ -38,7 +34,6 @@ export default function CategoriesSection() {
       demand: 'High'
     },
     {
-      icon: <Emoji symbol="🌾" label="Agriculture" size={24} />, 
       name: 'Agriculture & Food',
       subcategories: ['Dried fruits', 'Nuts', 'Spices', 'Processed foods'],
       certificates: ['HACCP', 'Organic'],
@@ -48,7 +43,6 @@ export default function CategoriesSection() {
       demand: 'Very High'
     },
     {
-      icon: <Emoji symbol="🏗️" label="Construction" size={24} />, 
       name: 'Construction Materials',
       subcategories: ['Cement', 'Steel products', 'Ceramic tiles'],
       certificates: ['CE', 'ISO 9001'],
@@ -58,7 +52,6 @@ export default function CategoriesSection() {
       demand: 'High'
     },
     {
-      icon: <Emoji symbol="🚗" label="Automotive" size={24} />, 
       name: 'Automotive Parts',
       subcategories: ['Engine parts', 'Brake systems', 'Electrical components'],
       certificates: ['IATF 16949', 'CE'],
@@ -66,7 +59,6 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ']
     },
     {
-      icon: <Emoji symbol="💻" label="Electronics" size={24} />, 
       name: 'Electronics & IT',
       subcategories: ['Consumer electronics', 'IT equipment', 'Telecommunications'],
       certificates: ['CE', 'FCC'],
@@ -74,7 +66,6 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
     },
     {
-      icon: <Emoji symbol="🏥" label="Medical" size={24} />, 
       name: 'Medical Equipment',
       subcategories: ['Diagnostic equipment', 'Surgical instruments', 'Disposables'],
       certificates: ['CE Medical', 'FDA'],
@@ -82,7 +73,6 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ']
     },
     {
-      icon: <Emoji symbol="🎨" label="Furniture" size={24} />, 
       name: 'Furniture & Home',
       subcategories: ['Office furniture', 'Home furniture', 'Decorative items'],
       certificates: ['FSC', 'CE'],
@@ -90,7 +80,6 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
     },
     {
-      icon: <Emoji symbol="⚡" label="Energy" size={24} />, 
       name: 'Energy & Power',
       subcategories: ['Solar panels', 'Generators', 'Electrical equipment'],
       certificates: ['IEC', 'CE'],
@@ -98,7 +87,6 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ', 'TR→TM']
     },
     {
-      icon: <Emoji symbol="📦" label="Packaging" size={24} />, 
       name: 'Packaging Materials',
       subcategories: ['Plastic packaging', 'Cardboard boxes', 'Labels'],
       certificates: ['ISO 9001', 'FSC'],
@@ -106,7 +94,6 @@ export default function CategoriesSection() {
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
     },
     {
-      icon: <Emoji symbol="🔧" label="Tools" size={24} />, 
       name: 'Tools & Hardware',
       subcategories: ['Hand tools', 'Power tools', 'Hardware supplies'],
       certificates: ['CE', 'ISO 9001'],
@@ -116,45 +103,29 @@ export default function CategoriesSection() {
   ];
 
   return (
-    <section id="categories" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Top B2B Categories
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover the most popular product categories in Turkey-Central Asia trade, 
-            with verified suppliers and streamlined processes.
-          </p>
+    <section id="categories" className="lt-section">
+      <div className="lt-container">
+        <div className="text-center mb-14">
+          <h2 className="lt-heading mb-4">Top B2B Categories</h2>
+          <p className="lt-subtext">Discover the most popular product categories in Turkey-Central Asia trade, with verified suppliers and streamlined processes.</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
           {categories.map((category, index) => (
-            <div
-              key={index}
-              className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-200"
-            >
-              <div className="text-3xl mb-4">{category.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                {category.name}
-              </h3>
+            <div key={index} className="lt-card p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.name}</h3>
               
               <div className="space-y-3">
                 <div>
-                  <div className="text-sm font-medium text-gray-700 mb-1">Subcategories:</div>
-                  <div className="text-sm text-gray-600">
-                    {category.subcategories.join(', ')}
-                  </div>
+                  <div className="text-sm font-medium text-gray-700 mb-1">Subcategories</div>
+                  <div className="text-sm text-gray-600">{category.subcategories.join(', ')}</div>
                 </div>
                 
                 <div>
-                  <div className="text-sm font-medium text-gray-700 mb-1">Certificates:</div>
+                  <div className="text-sm font-medium text-gray-700 mb-1">Certificates</div>
                   <div className="flex flex-wrap gap-1">
                     {category.certificates.map((cert, certIndex) => (
-                      <span
-                        key={certIndex}
-                        className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
-                      >
+                      <span key={certIndex} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded border border-gray-200">
                         {cert}
                       </span>
                     ))}
@@ -162,14 +133,8 @@ export default function CategoriesSection() {
                 </div>
                 
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-700">Demand:</span>
-                  <span className={`text-sm font-semibold px-2 py-1 rounded-full ${
-                    category.demand === 'Very High' ? 'bg-red-100 text-red-800' :
-                    category.demand === 'High' ? 'bg-orange-100 text-orange-800' :
-                    'bg-blue-100 text-blue-800'
-                  }`}>
-                    {category.demand}
-                  </span>
+                  <span className="text-sm font-medium text-gray-700">Demand</span>
+                  <span className="lt-badge">{category.demand ?? 'High'}</span>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-3 text-sm">
@@ -184,93 +149,65 @@ export default function CategoriesSection() {
                 </div>
                 
                 <div>
-                  <div className="text-sm font-medium text-gray-700 mb-1">Corridors:</div>
+                  <div className="text-sm font-medium text-gray-700 mb-1">Corridors</div>
                   <div className="flex flex-wrap gap-1">
                     {category.corridors.map((corridor, idx) => (
-                      <span key={idx} className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">
-                        {corridor}
-                      </span>
+                      <span key={idx} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded border border-gray-200">{corridor}</span>
                     ))}
                   </div>
                 </div>
               </div>
               
               <div className="mt-4 flex gap-2">
-                <button className="flex-1 bg-blue-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-                  Open RFQ
-                </button>
-                <button className="flex-1 border border-blue-600 text-blue-600 py-2 px-3 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors">
-                  Join as Seller
-                </button>
+                <button className="flex-1 btn-brand">Open RFQ</button>
+                <button className="flex-1 btn-outline-brand">Join as Seller</button>
               </div>
             </div>
           ))}
         </div>
 
         {/* Request Category Form */}
-        <div className="bg-gray-50 rounded-2xl p-8">
+        <div className="lt-card p-8">
           <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">
-              Don&apos;t See Your Category?
-            </h3>
-            <p className="text-gray-600">
-              Request a new category to be added to our platform
-            </p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Don&apos;t See Your Category?</h3>
+            <p className="text-gray-600">Request a new category to be added to our platform</p>
           </div>
           
           {!showRequestForm ? (
             <div className="text-center">
-              <button
-                onClick={() => setShowRequestForm(true)}
-                className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-              >
+              <button onClick={() => setShowRequestForm(true)} className="btn-brand">
                 Request a Category
               </button>
             </div>
           ) : (
             <form className="max-w-md mx-auto space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Category Name
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Category Name</label>
                 <input
                   type="text"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                   placeholder="e.g., Renewable Energy Equipment"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Your Email
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
                 <input
                   type="email"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                   placeholder="your@email.com"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Description
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                 <textarea
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                   rows={3}
                   placeholder="Tell us about this category and why it's important for Turkey-Central Asia trade"
                 />
               </div>
               <div className="flex gap-3">
-                <button
-                  type="submit"
-                  className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                >
-                  Submit Request
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowRequestForm(false)}
-                  className="flex-1 border border-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium hover:bg-gray-50 transition-colors"
-                >
+                <button type="submit" className="flex-1 btn-brand">Submit Request</button>
+                <button type="button" onClick={() => setShowRequestForm(false)} className="flex-1 btn-outline-brand">
                   Cancel
                 </button>
               </div>
@@ -281,4 +218,3 @@ export default function CategoriesSection() {
     </section>
   );
 }
-

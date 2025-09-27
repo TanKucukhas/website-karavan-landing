@@ -1,10 +1,9 @@
-import Emoji from '@/components/Emoji'
+// Light version without emojis
 
 export default function SalesModelsSection() {
   const salesModels = [
     {
       name: 'Direct Purchase',
-      icon: <Emoji symbol="🛒" label="Cart" size={28} />, 
       description: 'Buyers can directly purchase products from verified suppliers at fixed prices.',
       features: ['Fixed pricing', 'Instant purchase', 'Immediate confirmation'],
       color: 'bg-blue-100 text-blue-800',
@@ -12,7 +11,6 @@ export default function SalesModelsSection() {
     },
     {
       name: 'Request for Quote (RFQ)',
-      icon: <Emoji symbol="📋" label="RFQ" size={28} />, 
       description: 'Buyers submit detailed requirements and receive competitive quotes from multiple suppliers.',
       features: ['Custom requirements', 'Multiple quotes', 'Price comparison'],
       color: 'bg-green-100 text-green-800',
@@ -20,7 +18,6 @@ export default function SalesModelsSection() {
     },
     {
       name: 'Request for Proposal (RFP)',
-      icon: <Emoji symbol="📄" label="RFP" size={28} />, 
       description: 'Complex procurement process for large-scale projects with detailed proposals.',
       features: ['Detailed proposals', 'Technical evaluation', 'Long-term contracts'],
       color: 'bg-purple-100 text-purple-800',
@@ -28,7 +25,6 @@ export default function SalesModelsSection() {
     },
     {
       name: 'Buyer Auction',
-      icon: <Emoji symbol="🔨" label="Auction" size={28} />, 
       description: 'Buyers set maximum prices and suppliers compete to offer the best deals.',
       features: ['Price competition', 'Buyer control', 'Best value'],
       color: 'bg-orange-100 text-orange-800',
@@ -36,7 +32,6 @@ export default function SalesModelsSection() {
     },
     {
       name: 'Seller Auction',
-      icon: <Emoji symbol="🏆" label="Trophy" size={28} />, 
       description: 'Suppliers auction their products to the highest bidding buyers.',
       features: ['Market pricing', 'Seller control', 'Premium products'],
       color: 'bg-red-100 text-red-800',
@@ -45,49 +40,32 @@ export default function SalesModelsSection() {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Flexible Sales Models
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Choose the sales model that works best for your business needs. 
-            From direct purchases to competitive auctions, we support all B2B transaction types.
-          </p>
+    <section className="lt-section">
+      <div className="lt-container">
+        <div className="text-center mb-14">
+          <h2 className="lt-heading mb-4">Flexible Sales Models</h2>
+          <p className="lt-subtext">Choose the sales model that works best for your business needs. From direct purchases to competitive auctions, we support all B2B transaction types.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {salesModels.map((model, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-            >
+            <div key={index} className="lt-card p-8">
               {/* Screenshot Placeholder */}
-              <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl p-8 mb-6 text-center">
-                <div className="text-6xl mb-4">{model.screenshot}</div>
-                <div className="text-sm text-gray-500">Platform Screenshot</div>
+              <div className="bg-gray-50 rounded-xl p-8 mb-6 text-center border border-gray-200">
+                <div className="text-sm text-gray-500">Platform view</div>
               </div>
 
               {/* Model Info */}
               <div className="text-center mb-6">
-                <div className="text-4xl mb-4">{model.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {model.name}
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  {model.description}
-                </p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{model.name}</h3>
+                <p className="text-gray-700 leading-relaxed">{model.description}</p>
               </div>
 
               {/* Features */}
               <div className="space-y-2 mb-6">
                 {model.features.map((feature, featureIndex) => (
-                  <div
-                    key={featureIndex}
-                    className="flex items-center text-sm text-gray-700"
-                  >
-                    <span className="w-2 h-2 bg-blue-600 rounded-full mr-3"></span>
+                  <div key={featureIndex} className="flex items-center text-sm text-gray-700">
+                    <span className="w-2 h-2 bg-brand-600 rounded-full mr-3"></span>
                     {feature}
                   </div>
                 ))}
@@ -95,19 +73,15 @@ export default function SalesModelsSection() {
 
               {/* Status Badge */}
               <div className="text-center">
-                <span className={`px-4 py-2 rounded-full text-sm font-medium ${model.color}`}>
-                  Available Now
-                </span>
+                <span className="lt-badge">Available Now</span>
               </div>
             </div>
           ))}
         </div>
 
         {/* Sales Model Comparison */}
-        <div className="mt-16 bg-white rounded-2xl p-8 shadow-lg">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            Sales Model Comparison
-          </h3>
+        <div className="mt-16 lt-card p-8">
+          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Sales Model Comparison</h3>
           
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -163,9 +137,7 @@ export default function SalesModelsSection() {
 
         {/* CTA */}
         <div className="text-center mt-12">
-          <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg">
-            Explore Sales Models
-          </button>
+          <button className="btn-brand text-lg">Explore Sales Models</button>
         </div>
       </div>
     </section>

@@ -12,7 +12,7 @@ import CTABanner from '@/components/CTABanner'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white text-[color:var(--ink)]">
       <HeroWithInteractiveMap />
       <ChallengesSection />
       <FeaturesSection />
@@ -27,4 +27,3 @@ export default function Home() {
     </main>
   )
 }
-

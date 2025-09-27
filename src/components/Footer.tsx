@@ -58,10 +58,11 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: '💼', href: '#' },
-    { name: 'Twitter', icon: '🐦', href: '#' },
-    { name: 'Facebook', icon: '📘', href: '#' },
-    { name: 'YouTube', icon: '📺', href: '#' }
+    { name: 'Website', icon: '🌐', href: 'https://karavan.net/' },
+    { name: 'LinkedIn', icon: '💼', href: 'https://www.linkedin.com/company/KaravanOfficial' },
+    { name: 'Instagram', icon: '📷', href: 'https://instagram.com/KaravanConnect' },
+    { name: 'YouTube', icon: '📺', href: 'www.youtube.com/@KaravanGlobal' },
+    { name: 'Facebook', icon: '📘', href: 'https://www.facebook.com/KaravanConnect' }
   ];
 
   return (
@@ -71,8 +72,15 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="mb-6">
-              <div className="text-2xl font-bold text-white mb-4">
-                Karavan
+              <div className="mb-4">
+                <img 
+                  src="/images/logo/karavan-logo.svg" 
+                  alt="Karavan" 
+                  className="h-8 w-auto mb-3 filter brightness-0 invert"
+                />
+                <div className="text-lg font-semibold text-white">
+                  Trade Without Barriers
+                </div>
               </div>
               <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
                 The B2B platform connecting Turkish exporters with Central Asian markets. 
@@ -199,10 +207,10 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2024 Karavan. All rights reserved.
+              © {new Date().getFullYear()} Karavan. All rights reserved.
             </div>
             <div className="text-gray-400 text-sm">
-              Made with ❤️ for Turkey-Central Asia trade
+              Trade Without Barriers
             </div>
           </div>
         </div>

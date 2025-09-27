@@ -43,21 +43,22 @@ export default function HeaderWithCTA() {
 
   return (
     <header className="bg-white/90 backdrop-blur-md fixed top-0 inset-x-0 z-50 border-b border-gray-200/50">
-      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-4 lg:px-8">
-        <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Karavan</span>
-            <img alt="Karavan" src="/images/logo/karavan-logo.svg" className="h-8 w-auto" />
-          </a>
-        </div>
-        <div className="hidden lg:flex lg:gap-x-8">
+      <nav aria-label="Global" className="w-full">
+        <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between gap-x-6 py-4">
+          <div className="flex lg:flex-1">
+            <a href="/" className="p-1.5">
+              <span className="sr-only">Karavan</span>
+              <img alt="Karavan" src="/images/logo/karavan-logo.svg" className="h-8 w-auto" />
+            </a>
+          </div>
+          <div className="hidden lg:flex lg:gap-x-8">
           {navigation.map((item) => (
             <a key={item.name} href={item.href} className="text-sm font-semibold text-gray-700 hover:text-primary-600">
               {item.name}
             </a>
           ))}
-        </div>
-        <div className="flex flex-1 items-center justify-end gap-x-4">
+          </div>
+          <div className="flex flex-1 items-center justify-end gap-x-4">
           {/* Language Selector */}
           <div className="hidden lg:block relative" ref={dropdownRef}>
             <button
@@ -88,7 +89,7 @@ export default function HeaderWithCTA() {
               </div>
             )}
           </div>
-          
+
           <Button color="blue" className="px-6 py-3 text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
             Get Early Access
           </Button>
@@ -96,13 +97,14 @@ export default function HeaderWithCTA() {
             <span className="sr-only">Open main menu</span>
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
+          </div>
         </div>
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div className="fixed inset-0 z-50" />
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center gap-x-6">
-            <a href="/" className="-m-1.5 p-1.5">
+            <a href="/" className="p-1.5">
               <span className="sr-only">Karavan</span>
               <img alt="Karavan" src="/images/logo/karavan-logo.svg" className="h-8 w-auto" />
             </a>

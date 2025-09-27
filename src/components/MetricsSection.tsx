@@ -89,52 +89,31 @@ export default function MetricsSection() {
   }, []);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Secure B2B Trade Metrics
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our platform is already facilitating secure trade between Turkey and Central Asia 
-            with measurable results.
-          </p>
+    <section className="lt-section">
+      <div className="lt-container">
+        <div className="text-center mb-14">
+          <h2 className="lt-heading mb-4">Secure B2B Trade Metrics</h2>
+          <p className="lt-subtext">Our platform is already facilitating secure trade between Turkey and Central Asia with measurable results.</p>
         </div>
 
         {/* KPI Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
           {metrics.map((metric, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center relative"
-            >
-              <div className={`text-5xl font-bold ${metric.color} mb-4`}>
-                {metric.value}
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {metric.label}
-              </h3>
-              <p className="text-gray-600 text-sm mb-3">
-                {metric.description}
-              </p>
-              <div className="text-xs text-gray-500 bg-gray-50 rounded-lg px-3 py-2 inline-block">
-                {metric.footnote}
-              </div>
+            <div key={index} className="lt-card p-8 text-center">
+              <div className={`text-5xl font-bold ${metric.color} mb-4`}>{metric.value}</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{metric.label}</h3>
+              <p className="text-gray-600 text-sm mb-3">{metric.description}</p>
+              <div className="text-xs text-gray-600 bg-gray-50 rounded-lg px-3 py-2 inline-block border border-gray-200">{metric.footnote}</div>
             </div>
           ))}
         </div>
 
         {/* Core Markets Strip */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            Core Markets
-          </h3>
+        <div className="lt-card p-8">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Core Markets</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {coreMarkets.map((market, index) => (
-              <div
-                key={index}
-                className="text-center p-4 rounded-lg hover:shadow-md transition-all duration-300"
-              >
+              <div key={index} className="text-center p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300">
                 <div className="text-3xl mb-2"><Flag code={
                   market.country === 'Turkey' ? 'tr' :
                   market.country === 'Uzbekistan' ? 'uz' :
@@ -142,9 +121,9 @@ export default function MetricsSection() {
                   market.country === 'Kyrgyzstan' ? 'kg' :
                   market.country === 'Turkmenistan' ? 'tm' :
                   market.country === 'Azerbaijan' ? 'az' : 'tr'} size="lg" title={market.country} /></div>
-                <div className="font-semibold text-gray-900 mb-2">{market.country}</div>
-                <div className="text-xs text-gray-500 mb-2">{market.populationM}M people</div>
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${market.color}`}>
+                <div className="font-semibold text-gray-900 mb-1.5">{market.country}</div>
+                <div className="text-xs text-gray-600 mb-2">{market.populationM}M people</div>
+                <span className="lt-badge">
                   {market.status === 'live' ? 'Live' : 'Expanding'}
                 </span>
               </div>
@@ -153,17 +132,17 @@ export default function MetricsSection() {
         </div>
 
         {/* Additional Stats */}
-        <div className="mt-16 grid md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-gray-900 mb-2">$2.4M</div>
+        <div className="mt-16 grid md:grid-cols-3 gap-8 text-center">
+          <div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">$2.4M</div>
             <div className="text-gray-600">Total Trade Volume</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-gray-900 mb-2">98%</div>
+          <div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">98%</div>
             <div className="text-gray-600">Transaction Success Rate</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-gray-900 mb-2">24h</div>
+          <div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">24h</div>
             <div className="text-gray-600">Average Resolution Time</div>
           </div>
         </div>

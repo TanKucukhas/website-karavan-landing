@@ -33,26 +33,23 @@ export default function SolutionsPartnersSection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Solutions</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We&apos;ve built a comprehensive ecosystem of solutions to make Turkey-Central Asia trade seamless and secure.
-          </p>
+    <section className="lt-section">
+      <div className="lt-container">
+        <div className="text-center mb-12">
+          <h2 className="lt-heading mb-4">Solutions</h2>
+          <p className="lt-subtext">We’ve built a comprehensive ecosystem of solutions to make Turkey-Central Asia trade seamless and secure.</p>
         </div>
         <div>
           <h3 className="text-2xl font-bold text-gray-900 mb-8">Integrated Solutions</h3>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {solutions.map((solution, index) => (
-              <div
-                key={index}
-                className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300"
-              >
-                <div className="text-3xl">{solution.icon}</div>
+              <div key={index} className="flex items-start gap-4 p-6 lt-card">
+                <div className="text-3xl">
+                  <span className="inline-grid h-10 w-10 place-items-center rounded-lg bg-gray-50 border border-gray-200 text-base">{/* reduced icon usage */}</span>
+                </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{solution.title}</h4>
-                  <p className="text-gray-600 leading-relaxed">{solution.description}</p>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-1.5">{solution.title}</h4>
+                  <p className="text-gray-700 leading-relaxed">{solution.description}</p>
                 </div>
               </div>
             ))}
