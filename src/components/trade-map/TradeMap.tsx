@@ -58,6 +58,7 @@ export default function TradeMap({
   const wrapperRef = useRef<HTMLDivElement|null>(null);
   const geoCountRef = useRef(0);
   const stableSentRef = useRef(false);
+  const svgRef = useRef<SVGSVGElement | null>(null);
 
   // Stable paint detector: waits for two consecutive frames where
   // path count and bounding box are unchanged; also emits first paint
@@ -106,6 +107,16 @@ export default function TradeMap({
     return () => { canceled = true; cancelAnimationFrame(raf1); cancelAnimationFrame(raf2); };
   }, [onFirstPaint, onStablePaint]);
 
+  // Ensure underlying SVG uses preserveAspectRatio="xMidYMid slice" so the map fills edge-to-edge
+  useEffect(() => {
+    const root = wrapperRef.current;
+    if (!root) return;
+    const svg = root.querySelector('svg');
+    if (svg) {
+      try { svg.setAttribute('preserveAspectRatio', 'xMidYMid slice'); } catch { /* ignore */ }
+    }
+  }, []);
+
   // Memoized arc paths with distance-based curvature
   const arcDs = useMemo(() => {
     const nodesById = Object.fromEntries(nodes.map(n => [n.id, n]));
@@ -138,7 +149,6 @@ export default function TradeMap({
         <ComposableMap
           projection="geoMercator"
           projectionConfig={{ scale: 170, center: [0, 0] }}
-          preserveAspectRatio="xMidYMid slice"
           style={{ width:'100%', height:'100%' }}
           width={1024}
           height={520}
@@ -180,12 +190,10 @@ export default function TradeMap({
                   setTimeout(onReady, 0);
                 }
               }
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-               return (
-                 <g data-world-geos>
-                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                 {geographies.map((geo: any) => {
-                const id = Number(geo.id);
+              return (
+                <g data-world-geos>
+                {geographies.map((geo) => {
+                const id = Number((geo as unknown as { id: number|string }).id);
                 const active = showActiveOverlay && (revealedRegions
                   ? (() => {
                       // Map numeric id to ISO2 used in our palette
@@ -216,7 +224,7 @@ export default function TradeMap({
                 );
 
                 return (
-                  <g key={geo.rsmKey} style={{ pointerEvents: 'none' }}>
+                  <g key={(geo as unknown as { rsmKey: string }).rsmKey} style={{ pointerEvents: 'none' }}>
                     {/* Base country fill */}
                     <Geography
                       geography={geo}
