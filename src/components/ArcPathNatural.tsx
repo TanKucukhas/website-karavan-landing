@@ -55,7 +55,7 @@ export function ArcPathNatural({
       fill="none"
       stroke={color}
       strokeLinecap="round"
-      style={{ vectorEffect: 'non-scaling-stroke', strokeDasharray: len || undefined }}
+      style={{ vectorEffect: 'non-scaling-stroke', strokeDasharray: len || undefined, strokeDashoffset: len || undefined }}
       strokeWidth={strokeWidth}
       initial={{ opacity: 0 }}
       animate={ctrl}

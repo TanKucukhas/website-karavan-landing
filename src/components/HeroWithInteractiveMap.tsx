@@ -1,14 +1,12 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { MotionConfig, useReducedMotion, motion } from 'framer-motion';
 import clsx from 'clsx';
-import { geoMercator } from 'd3-geo';
 import TradeMap from './trade-map/TradeMap';
-import { NODES, ARCS } from './trade-map/TradeMap.data';
+import { NODES } from './trade-map/TradeMap.data';
 import EmailCaptureInline from './EmailCaptureInline';
 import { analytics } from '@/lib/analytics';
-import { ArcPathNatural } from '@/components/ArcPathNatural';
 import TradeFlows from '@/components/TradeFlows';
 
 const IMPORTANT_REGIONS = ['TR', 'UZ', 'KZ', 'AZ', 'HU'];
@@ -19,11 +17,13 @@ export default function HeroWithInteractiveMap() {
   const [stage, setStage] = useState<'loading'|'map'|'reveal'|'flows'>('loading');
   const [revealedRegions, setRevealedRegions] = useState<string[]>([]);
   const [pulsingRegion, setPulsingRegion] = useState<string | undefined>(undefined);
-  const [firstArcActive, setFirstArcActive] = useState(false);
   const [flowsEnabled, setFlowsEnabled] = useState(false);
   const [mountMap, setMountMap] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const showMapHint = !worldReady || !mountMap;
+  const hintShouldShow = !mountMap || !worldReady;
+  const [hintVisible, setHintVisible] = useState(false);
+  const hintStartRef = useRef<number>(0);
+  const hintTimerRef = useRef<number|undefined>(undefined);
 
   useEffect(() => { analytics.mapArcView(); }, []);
 
@@ -42,6 +42,37 @@ export default function HeroWithInteractiveMap() {
     idle(() => setMountMap(true));
     return () => { if (to) window.clearTimeout(to); };
   }, []);
+
+  // Stabilize loading hint visibility with a minimum display duration
+  useEffect(() => {
+    const MIN_MS = 800;
+    if (hintShouldShow) {
+      if (!hintVisible) {
+        hintStartRef.current = Date.now();
+        setHintVisible(true);
+      }
+      if (hintTimerRef.current) {
+        window.clearTimeout(hintTimerRef.current);
+        hintTimerRef.current = undefined;
+      }
+    } else {
+      if (hintVisible) {
+        const elapsed = Date.now() - hintStartRef.current;
+        const remain = Math.max(0, MIN_MS - elapsed);
+        if (remain === 0) {
+          setHintVisible(false);
+        } else {
+          hintTimerRef.current = window.setTimeout(() => setHintVisible(false), remain);
+        }
+      }
+    }
+    return () => {
+      if (hintTimerRef.current) {
+        window.clearTimeout(hintTimerRef.current);
+        hintTimerRef.current = undefined;
+      }
+    };
+  }, [hintShouldShow, hintVisible]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -84,49 +115,28 @@ export default function HeroWithInteractiveMap() {
     return () => window.clearTimeout(spinner);
   }, [worldReady, reduced]);
 
-  // Begin flows: first arc solo, then scheduler
+  // Begin flows when stage reaches 'flows'
   useEffect(() => {
-    if (stage === 'flows' && !reduced) {
-      setFirstArcActive(true);
-    }
-  }, [stage, reduced]);
-
-  const projection = useMemo(() => geoMercator().scale(140).translate([512, 260]), []);
-  const trNode = NODES.find(n => n.region === 'TR');
-  const firstArc = useMemo(() => {
-    if (!trNode) return undefined;
-    return ARCS.find(a => a.from === trNode.id);
-  }, [trNode]);
-
-  const firstD = useMemo(() => {
-    if (!firstArc) return '';
-    const from = NODES.find(n => n.id === firstArc.from);
-    const to = NODES.find(n => n.id === firstArc.to);
-    if (!from || !to) return '';
-    const [x1, y1] = projection([from.lon, from.lat]) as [number, number];
-    const [x2, y2] = projection([to.lon, to.lat]) as [number, number];
-    const dx = x2 - x1, dy = y2 - y1;
-    const dist = Math.hypot(dx, dy);
-    const lift = Math.min(120, Math.max(30, dist * 0.32));
-    const mx = (x1 + x2) / 2;
-    const my = (y1 + y2) / 2 - lift;
-    return `M ${x1},${y1} Q ${mx},${my} ${x2},${y2}`;
-  }, [firstArc, projection]);
+    if (stage === 'flows') setFlowsEnabled(true);
+  }, [stage]);
 
   const visibleNodes = useMemo(() => NODES.filter(n => revealedRegions.includes(n.region)), [revealedRegions]);
 
-  const onFirstCycleEnd = () => {
-    setFirstArcActive(false);
-    window.setTimeout(() => setFlowsEnabled(true), 300);
-  };
-
   const LoadingHint = ({ className }: { className?: string }) => {
-    if (!showMapHint) return null;
+    if (!hintVisible) return null;
     return (
-      <div className={clsx('pointer-events-none', className)}>
-        <div className="bg-slate-900/70 text-slate-100 text-xs rounded-full px-2.5 py-1.5 backdrop-blur-md ring-1 ring-white/10 flex items-center gap-2">
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
-          <span>Harita yükleniyor…</span>
+      <div
+        className={clsx(
+          'absolute z-40 pointer-events-none',
+          // Mobile: top center of upper half, near top
+          'left-1/2 top-[22%] -translate-x-1/2',
+          // Desktop/Tablet: center of right half
+          'md:left-[75%] md:top-1/2 md:-translate-y-1/2',
+          className,
+        )}
+      >
+        <div className="bg-slate-900/75 rounded-full px-2.5 py-1.5 backdrop-blur-md ring-1 ring-white/10 flex items-center justify-center">
+          <span className="inline-block h-4 w-4 rounded-full border-2 border-sky-400/60 border-t-transparent animate-spin" />
         </div>
       </div>
     );
@@ -150,29 +160,22 @@ export default function HeroWithInteractiveMap() {
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-brand-bg/30 via-brand-bg/30 to-brand-bg/50 pointer-events-none" />
       {/* Flows overlays */}
       <div className="absolute inset-0 z-30 pointer-events-none">
-        {/* First arc solo */}
-        {firstArc && firstD && firstArcActive && (
-          <svg viewBox="0 0 1024 520" className="h-full w-full">
-            <ArcPathNatural id={firstArc.id} d={firstD} color="#4ea1ff" width={1.4} zoom={1} active={true} onCycleEnd={onFirstCycleEnd} />
-          </svg>
-        )}
-        {/* Scheduler-driven flows */}
         {flowsEnabled && <TradeFlows enabled={true} />}
       </div>
-      <LoadingHint className="absolute bottom-3 left-3 md:bottom-4 md:left-4 z-10" />
+      <LoadingHint />
     </motion.div>
   );
 
   return (
     <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
-      <section className="relative min-h-screen bg-brand-bg text-brand-ink">
+      <section className="relative bg-brand-bg text-brand-ink" style={{ minHeight: 'calc(100svh - var(--header-h, 64px))' }}>
 
         {/* Mobile: Stacked Layout (<768px) */}
         <div className="md:hidden">
           {/* Map - Top Half */}
           <div className="h-[50vh] relative">
             {mountMap ? MapLayer : null}
-            {!mountMap && <LoadingHint className="absolute bottom-3 left-3 z-10" />}
+            {!mountMap && <LoadingHint />}
           </div>
 
           {/* Form - Bottom Half */}
@@ -193,7 +196,7 @@ export default function HeroWithInteractiveMap() {
         {/* Tablet: Centered Layout (768px-1024px) */}
         <div className="hidden md:block lg:hidden">
           <div className="absolute inset-0" aria-hidden>{mountMap ? MapLayer : null}</div>
-          {!mountMap && <LoadingHint className="absolute bottom-4 left-4 z-10 md:block lg:hidden" />}
+          {!mountMap && <LoadingHint />}
           <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
             <div className="max-w-md w-full">
               <div className="rounded-2xl bg-white/95 backdrop-blur-md shadow-xl ring-1 ring-black/5 p-6 text-gray-900">
@@ -214,7 +217,7 @@ export default function HeroWithInteractiveMap() {
         {/* Desktop: Floating Card Layout (>1024px) */}
         <div className="hidden lg:block">
           <div className="absolute inset-0" aria-hidden>{mountMap ? MapLayer : null}</div>
-          {!mountMap && <LoadingHint className="absolute bottom-4 left-4 z-10 hidden lg:block" />}
+          {!mountMap && <LoadingHint />}
           <div className="absolute top-32 z-30">
             <div className="max-w-7xl mx-auto px-4 lg:px-8">
               <div className="max-w-md lg:max-w-lg w-96 lg:w-[28rem]">

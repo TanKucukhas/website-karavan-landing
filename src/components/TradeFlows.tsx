@@ -29,7 +29,8 @@ export default function TradeFlows({ enabled }:{ enabled:boolean }) {
     const rest = arcs.filter(a => a.from !== trNodeId).map(a => a.id);
     return [...trFirst, ...rest];
   }, [arcs, trNodeId]);
-  const { active, onFlowCycleEnd } = useFlowScheduler(ids, enabled, true);
+  // Start with just one concurrent arc briefly, then ramp to config
+  const { active, onFlowCycleEnd } = useFlowScheduler(ids, enabled, true, 1, 1500);
 
   const zoom = 1; // if using ZoomableGroup, pass actual zoom
 

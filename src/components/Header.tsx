@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 export default function Header() {
+  const ref = useRef<HTMLElement|null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -16,8 +17,24 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Expose header height as CSS var for layout calc
+  useEffect(() => {
+    const updateVar = () => {
+      const h = ref.current?.offsetHeight ?? 64;
+      document.documentElement.style.setProperty('--header-h', `${h}px`);
+    };
+    updateVar();
+    window.addEventListener('resize', updateVar);
+    return () => window.removeEventListener('resize', updateVar);
+  }, []);
+
+  useEffect(() => {
+    const h = ref.current?.offsetHeight ?? 64;
+    document.documentElement.style.setProperty('--header-h', `${h}px`);
+  }, [isMobileMenuOpen, isScrolled]);
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header ref={ref} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
         ? 'bg-white/70 backdrop-blur-md shadow-md' 
         : 'bg-white/30 backdrop-blur-sm'

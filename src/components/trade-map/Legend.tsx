@@ -22,7 +22,7 @@ type Props = {
 
 export default function Legend({ className = '' }: Props) {
   return (
-        <div className={`absolute top-4 right-4 bg-gray-900/80 backdrop-blur-sm rounded-lg px-2 py-1.5 text-xs shadow-lg ${className}`}>
+        <div className={`absolute right-4 bg-gray-900/80 backdrop-blur-sm rounded-lg px-2 py-1.5 text-xs shadow-lg ${className}`} style={{ top: 'calc(1rem + 30px)' }}>
       <div className="space-y-0.5">
         {Object.entries(FLAG_COLORS).map(([code, color]) => (
           <div key={code} className="flex items-center gap-1.5">
