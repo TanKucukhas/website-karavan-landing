@@ -36,6 +36,7 @@ export default function TradeMap({
   revealedRegions,
   pulsingRegion,
   onReady,
+  disableNodeAnimation = false,
 }: TradeMapProps & { debug?: boolean }) {
 
   const zoom = 1; // Sabit zoom seviyesi
@@ -258,6 +259,7 @@ export default function TradeMap({
                     label={n.region}
                     name={n.name}
                     showLabel={selectedNodeIds.has(n.id)}
+                    animated={!disableNodeAnimation}
                     onClick={(e) => {
                       e.stopPropagation(); // Prevent map background click
                       const newSelectedIds = new Set(selectedNodeIds);

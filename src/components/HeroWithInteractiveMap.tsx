@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { MotionConfig, useReducedMotion, motion } from 'framer-motion';
+import clsx from 'clsx';
 import { geoMercator } from 'd3-geo';
 import TradeMap from './trade-map/TradeMap';
 import { NODES, ARCS } from './trade-map/TradeMap.data';
@@ -21,6 +22,7 @@ export default function HeroWithInteractiveMap() {
   const [firstArcActive, setFirstArcActive] = useState(false);
   const [flowsEnabled, setFlowsEnabled] = useState(false);
   const [mountMap, setMountMap] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const showMapHint = !worldReady || !mountMap;
 
   useEffect(() => { analytics.mapArcView(); }, []);
@@ -39,6 +41,15 @@ export default function HeroWithInteractiveMap() {
     };
     idle(() => setMountMap(true));
     return () => { if (to) window.clearTimeout(to); };
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia('(max-width: 767px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
   }, []);
 
   // Stage machine
@@ -109,6 +120,18 @@ export default function HeroWithInteractiveMap() {
     window.setTimeout(() => setFlowsEnabled(true), 300);
   };
 
+  const LoadingHint = ({ className }: { className?: string }) => {
+    if (!showMapHint) return null;
+    return (
+      <div className={clsx('pointer-events-none', className)}>
+        <div className="bg-slate-900/70 text-slate-100 text-xs rounded-full px-2.5 py-1.5 backdrop-blur-md ring-1 ring-white/10 flex items-center gap-2">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
+          <span>Harita yükleniyor…</span>
+        </div>
+      </div>
+    );
+  };
+
   const MapLayer = (
     <motion.div className="absolute inset-0 pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: stage !== 'loading' ? 1 : 0 }} transition={{ duration: 0.35 }}>
       <TradeMap
@@ -120,10 +143,13 @@ export default function HeroWithInteractiveMap() {
         pulsingRegion={pulsingRegion}
         reducedMotionFallback={reduced}
         className="h-full w-full"
+        disableNodeAnimation={isMobile || !!reduced}
         onReady={() => setWorldReady(true)}
       />
+      {/* Scrim between base map and flows to enhance contrast */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-brand-bg/30 via-brand-bg/30 to-brand-bg/50 pointer-events-none" />
       {/* Flows overlays */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 z-30 pointer-events-none">
         {/* First arc solo */}
         {firstArc && firstD && firstArcActive && (
           <svg viewBox="0 0 1024 520" className="h-full w-full">
@@ -133,15 +159,7 @@ export default function HeroWithInteractiveMap() {
         {/* Scheduler-driven flows */}
         {flowsEnabled && <TradeFlows enabled={true} />}
       </div>
-      {/* Subtle background hint while map prepares */}
-      {mountMap && !worldReady && (
-        <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4 z-10 pointer-events-none">
-          <div className="bg-slate-900/60 text-slate-200 text-xs rounded-full px-2.5 py-1.5 backdrop-blur-md ring-1 ring-white/10 flex items-center gap-2">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
-            <span>Loading map…</span>
-          </div>
-        </div>
-      )}
+      <LoadingHint className="absolute bottom-3 left-3 md:bottom-4 md:left-4 z-10" />
     </motion.div>
   );
 
@@ -154,15 +172,7 @@ export default function HeroWithInteractiveMap() {
           {/* Map - Top Half */}
           <div className="h-[50vh] relative">
             {mountMap ? MapLayer : null}
-            <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/40 via-brand-bg/40 to-brand-bg/70 pointer-events-none" />
-            {!mountMap && (
-              <div className="absolute bottom-3 left-3 z-10 pointer-events-none">
-                <div className="bg-slate-900/60 text-slate-200 text-xs rounded-full px-2.5 py-1.5 backdrop-blur-md ring-1 ring-white/10 flex items-center gap-2">
-                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
-                  <span>Loading map…</span>
-                </div>
-              </div>
-            )}
+            {!mountMap && <LoadingHint className="absolute bottom-3 left-3 z-10" />}
           </div>
 
           {/* Form - Bottom Half */}
@@ -183,15 +193,7 @@ export default function HeroWithInteractiveMap() {
         {/* Tablet: Centered Layout (768px-1024px) */}
         <div className="hidden md:block lg:hidden">
           <div className="absolute inset-0" aria-hidden>{mountMap ? MapLayer : null}</div>
-          {!mountMap && (
-            <div className="absolute bottom-4 left-4 z-10 pointer-events-none md:block lg:hidden">
-              <div className="bg-slate-900/60 text-slate-200 text-xs rounded-full px-2.5 py-1.5 backdrop-blur-md ring-1 ring-white/10 flex items-center gap-2">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
-                <span>Loading map…</span>
-              </div>
-            </div>
-          )}
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/40 via-brand-bg/40 to-brand-bg/70 pointer-events-none" />
+          {!mountMap && <LoadingHint className="absolute bottom-4 left-4 z-10 md:block lg:hidden" />}
           <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
             <div className="max-w-md w-full">
               <div className="rounded-2xl bg-white/95 backdrop-blur-md shadow-xl ring-1 ring-black/5 p-6 text-gray-900">
@@ -212,14 +214,7 @@ export default function HeroWithInteractiveMap() {
         {/* Desktop: Floating Card Layout (>1024px) */}
         <div className="hidden lg:block">
           <div className="absolute inset-0" aria-hidden>{mountMap ? MapLayer : null}</div>
-          {!mountMap && (
-            <div className="absolute bottom-4 left-4 z-10 pointer-events-none hidden lg:block">
-              <div className="bg-slate-900/60 text-slate-200 text-xs rounded-full px-2.5 py-1.5 backdrop-blur-md ring-1 ring-white/10 flex items-center gap-2">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
-                <span>Loading map…</span>
-              </div>
-            </div>
-          )}
+          {!mountMap && <LoadingHint className="absolute bottom-4 left-4 z-10 hidden lg:block" />}
           <div className="absolute top-32 z-30">
             <div className="max-w-7xl mx-auto px-4 lg:px-8">
               <div className="max-w-md lg:max-w-lg w-96 lg:w-[28rem]">

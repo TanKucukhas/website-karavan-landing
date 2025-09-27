@@ -11,9 +11,10 @@ type Props = {
   zoom?: number;
   onClick?: () => void;
   showLabel?: boolean;
+  animated?: boolean;
 };
 
-export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding', zoom=1, onClick, showLabel=false }: Props) {
+export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding', zoom=1, onClick, showLabel=false, animated=true }: Props) {
   // Pastel flag colors for country nodes
   const FLAG_COLORS: Record<string, string> = {
     TR: '#e67e7e',  // Pastel Turkey red
@@ -31,7 +32,7 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
   return (
     <>
       {/* Halo Effect for Active Nodes */}
-      {(status === 'launching' || status === 'expanding') && (
+      {(status === 'launching' || status === 'expanding') && animated && (
             <motion.circle 
               cx={cx} 
               cy={cy} 
@@ -53,6 +54,7 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
       )}
       
       {/* Main Node */}
+          {animated ? (
           <motion.circle 
             cx={cx} 
             cy={cy} 
@@ -69,6 +71,9 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
               ease: "easeInOut" 
             }}
           />
+          ) : (
+            <circle cx={cx} cy={cy} r={6} fill={fill} filter="url(#glow)" opacity={0.8} />
+          )}
       
       {/* Inner White Dot */}
       <circle cx={cx} cy={cy} r={scaledR/2} fill="#fff" opacity={0.8}/>
