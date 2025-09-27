@@ -103,7 +103,6 @@ export default function HeroWithInteractiveMap() {
 
   const MapLayer = (
     <motion.div className="absolute inset-0 pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: stage !== 'loading' ? 1 : 0 }} transition={{ duration: 0.35 }}>
-      <SpinnerOverlay />
       <TradeMap
         nodes={visibleNodes}
         arcs={[]}
@@ -129,13 +128,13 @@ export default function HeroWithInteractiveMap() {
   return (
     <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
       <section className="relative bg-brand-bg text-brand-ink" style={{ minHeight: 'calc(100svh - var(--header-h, 64px))' }}>
+        <SpinnerOverlay />
 
         {/* Mobile: Stacked Layout (<768px) */}
         <div className="md:hidden">
           {/* Map - Top Half */}
           <div className="h-[50vh] relative">
             {mountMap ? MapLayer : null}
-            {!mountMap && <SpinnerOverlay />}
           </div>
 
           {/* Form - Bottom Half */}
@@ -156,7 +155,6 @@ export default function HeroWithInteractiveMap() {
         {/* Tablet: Centered Layout (768px-1024px) */}
         <div className="hidden md:block lg:hidden">
           <div className="absolute inset-0" aria-hidden>{mountMap ? MapLayer : null}</div>
-          {!mountMap && <SpinnerOverlay />}
           <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
             <div className="max-w-md w-full">
               <div className="rounded-2xl bg-white/95 backdrop-blur-md shadow-xl ring-1 ring-black/5 p-6 text-gray-900">
@@ -177,7 +175,6 @@ export default function HeroWithInteractiveMap() {
         {/* Desktop: Floating Card Layout (>1024px) */}
         <div className="hidden lg:block">
           <div className="absolute inset-0" aria-hidden>{mountMap ? MapLayer : null}</div>
-          {!mountMap && <SpinnerOverlay />}
           <div className="absolute top-32 z-30">
             <div className="max-w-7xl mx-auto px-4 lg:px-8">
               <div className="max-w-md lg:max-w-lg w-96 lg:w-[28rem]">

@@ -53,6 +53,8 @@ export default function TradeMap({
 
   const readyRef = useRef(false);
   const wrapperRef = useRef<HTMLDivElement|null>(null);
+  const geoCountRef = useRef(0);
+  const stableSentRef = useRef(false);
 
   // Stable paint detector: waits for two consecutive frames where
   // path count and bounding box are unchanged; also emits first paint
@@ -69,7 +71,8 @@ export default function TradeMap({
       if (canceled) return;
       const svg = root.querySelector('svg') as SVGSVGElement | null;
       if (!svg) { raf2 = requestAnimationFrame(measure); return; }
-      const paths = svg.querySelectorAll('path').length;
+      const world = svg.querySelector('g[data-world-geos]') as SVGGElement | null;
+      const paths = world ? world.querySelectorAll('path').length : 0;
       let w = 0, h = 0;
       try {
         const box = svg.getBBox();
@@ -86,8 +89,11 @@ export default function TradeMap({
       stableHits = same ? stableHits + 1 : 0;
       prev = { paths, w, h };
 
-      if (stableHits >= 2 && paths > 0 && w > 0 && h > 0) {
-        onStablePaint?.();
+      if (stableHits >= 2 && paths >= geoCountRef.current && w > 0 && h > 0) {
+        if (!stableSentRef.current) {
+          stableSentRef.current = true;
+          onStablePaint?.();
+        }
         return;
       }
       raf2 = requestAnimationFrame(measure);
@@ -159,6 +165,10 @@ export default function TradeMap({
           {/* World Map */}
           <Geographies geography={WORLD_URL}>
             {({ geographies }) => {
+              // Update geography count and signal readiness only when features are available
+              if (geographies && geographies.length) {
+                geoCountRef.current = geographies.length;
+              }
               if (!readyRef.current && geographies && geographies.length > 0) {
                 readyRef.current = true;
                 if (onReady) {
@@ -166,7 +176,9 @@ export default function TradeMap({
                 }
               }
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              return geographies.map((geo: any) => {
+              return (
+                <g data-world-geos>
+                {geographies.map((geo: any) => {
                 const id = Number(geo.id);
                 const active = showActiveOverlay && (revealedRegions
                   ? (() => {
@@ -252,7 +264,9 @@ export default function TradeMap({
                     )}
                   </g>
                 );
-              });
+              })}
+                </g>
+              );
             }}
           </Geographies>
 
