@@ -36,4 +36,5 @@ export type TradeMapProps = {
   onReady?: () => void;             // called when world geographies are loaded
   disableNodeAnimation?: boolean;   // when true, node pulse/pop animations are disabled
   onFirstPaint?: () => void;        // called once after first SVG paint
+  onStablePaint?: () => void;       // called once after 2 frames of stable paint
 };

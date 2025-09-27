@@ -1,39 +1,44 @@
 import { useEffect, useRef, useState } from 'react';
 
-type GateOpts = { minMs?: number; maxMs?: number };
+type GateOpts = { minMs?: number; maxMs?: number; fadeMs?: number };
 
-const rAF = (cb: FrameRequestCallback) => requestAnimationFrame(cb);
-const rIC = (cb: any) =>
-  (typeof window !== 'undefined' && 'requestIdleCallback' in window)
-    ? (window as any).requestIdleCallback(cb, { timeout: 500 })
-    : setTimeout(cb, 50);
-
-export function useMapLoadingGate(worldReady: boolean, gate: GateOpts = {}) {
+export function useMapLoadingGate(
+  deps: { geoReady: boolean; stablePaint: boolean },
+  gate: GateOpts = {}
+) {
   const minMs = gate.minMs ?? 900;
   const maxMs = gate.maxMs ?? 8000;
-  const [visible, setVisible] = useState(true);
-  const t0 = useRef<number>(performance.now());
-  const painted = useRef(false);
+  const fadeMs = gate.fadeMs ?? 180;
 
-  const markPainted = () => { painted.current = true; };
+  const [visible, setVisible] = useState(true);
+  const [fading, setFading] = useState(false);
+  const t0 = useRef(performance.now());
 
   useEffect(() => {
-    let minTimer: any, maxTimer: any;
+    let minTimer: any, maxTimer: any, rafId = 0;
 
-    minTimer = setTimeout(() => {
-      const tryHide = () => {
-        if (worldReady && painted.current) {
-          rAF(() => rIC(() => setVisible(false)));
-        }
-      };
-      tryHide();
-    }, Math.max(0, minMs - (performance.now() - t0.current)));
+    const tryHide = () => {
+      if (!deps.geoReady || !deps.stablePaint) return;
+      const elapsed = performance.now() - t0.current;
+      if (elapsed < minMs) {
+        minTimer = setTimeout(tryHide, minMs - elapsed);
+        return;
+      }
+      rafId = requestAnimationFrame(() => {
+        setFading(true);
+        setTimeout(() => setVisible(false), fadeMs);
+      });
+    };
 
     maxTimer = setTimeout(() => setVisible(false), maxMs);
+    tryHide();
 
-    return () => { clearTimeout(minTimer); clearTimeout(maxTimer); };
-  }, [worldReady, minMs, maxMs]);
+    return () => {
+      clearTimeout(minTimer);
+      clearTimeout(maxTimer);
+      cancelAnimationFrame(rafId);
+    };
+  }, [deps.geoReady, deps.stablePaint, minMs, maxMs, fadeMs]);
 
-  return { spinnerVisible: visible, markPainted };
+  return { spinnerVisible: visible, spinnerFading: fading };
 }
-

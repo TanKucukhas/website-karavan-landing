@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { MotionConfig, useReducedMotion, motion } from 'framer-motion';
 import TradeMap from './trade-map/TradeMap';
 import { NODES } from './trade-map/TradeMap.data';
@@ -13,14 +13,15 @@ const IMPORTANT_REGIONS = ['TR', 'UZ', 'KZ', 'AZ', 'HU'];
 
 export default function HeroWithInteractiveMap() {
   const reduced = useReducedMotion();
-  const [worldReady, setWorldReady] = useState(false);
+  const [geoReady, setGeoReady] = useState(false);
+  const [stablePaint, setStablePaint] = useState(false);
   const [stage, setStage] = useState<'loading'|'map'|'reveal'|'flows'>('loading');
   const [revealedRegions, setRevealedRegions] = useState<string[]>([]);
   const [pulsingRegion, setPulsingRegion] = useState<string | undefined>(undefined);
   const [flowsEnabled, setFlowsEnabled] = useState(false);
   const [mountMap, setMountMap] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { spinnerVisible, markPainted } = useMapLoadingGate(worldReady, { minMs: 900, maxMs: 8000 });
+  const { spinnerVisible, spinnerFading } = useMapLoadingGate({ geoReady, stablePaint }, { minMs: 900, maxMs: 8000, fadeMs: 180 });
 
   useEffect(() => { analytics.mapArcView(); }, []);
 
@@ -59,7 +60,7 @@ export default function HeroWithInteractiveMap() {
       setFlowsEnabled(true);
       return;
     }
-    if (!worldReady) return;
+    if (!geoReady) return;
     const t0 = performance.now();
     const spinner = window.setTimeout(() => {
       setStage('map');
@@ -81,7 +82,7 @@ export default function HeroWithInteractiveMap() {
       window.setTimeout(step, 150);
     }, Math.max(0, 700 - (performance.now() - t0)));
     return () => window.clearTimeout(spinner);
-  }, [worldReady, reduced]);
+  }, [geoReady, reduced]);
 
   // Begin flows when stage reaches 'flows'
   useEffect(() => {
@@ -92,7 +93,7 @@ export default function HeroWithInteractiveMap() {
 
   const SpinnerOverlay = () => (
     spinnerVisible ? (
-      <div className="absolute inset-0 z-40 grid place-items-center pointer-events-none">
+      <div className={`absolute inset-0 z-40 grid place-items-center pointer-events-none ${spinnerFading ? 'opacity-0 transition-opacity duration-200' : 'opacity-100'}`}>
         <div className="bg-slate-900/75 rounded-full px-3 py-2 backdrop-blur-md ring-1 ring-white/10 flex items-center justify-center">
           <span className="inline-block h-5 w-5 rounded-full border-2 border-sky-400/60 border-t-transparent animate-spin" />
         </div>
@@ -113,8 +114,8 @@ export default function HeroWithInteractiveMap() {
         reducedMotionFallback={reduced}
         className="h-full w-full"
         disableNodeAnimation={isMobile || !!reduced}
-        onReady={() => setWorldReady(true)}
-        onFirstPaint={markPainted}
+        onReady={() => setGeoReady(true)}
+        onStablePaint={() => setStablePaint(true)}
       />
       {/* Scrim between base map and flows to enhance contrast */}
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-brand-bg/30 via-brand-bg/30 to-brand-bg/50 pointer-events-none" />

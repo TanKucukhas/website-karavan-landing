@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, useEffect, useRef } from 'react';
+import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import { ComposableMap, Geographies, Geography, Graticule } from 'react-simple-maps';
 import { geoMercator } from 'd3-geo';
 import { MotionConfig } from 'framer-motion';
@@ -38,6 +38,7 @@ export default function TradeMap({
   onReady,
   disableNodeAnimation = false,
   onFirstPaint,
+  onStablePaint,
 }: TradeMapProps & { debug?: boolean }) {
 
   const zoom = 1; // Sabit zoom seviyesi
@@ -51,15 +52,50 @@ export default function TradeMap({
   []);
 
   const readyRef = useRef(false);
+  const wrapperRef = useRef<HTMLDivElement|null>(null);
 
-  // Signal first paint to the parent (hero) so spinner can hide after paint
+  // Stable paint detector: waits for two consecutive frames where
+  // path count and bounding box are unchanged; also emits first paint
   useEffect(() => {
+    const root = wrapperRef.current;
+    if (!root) return;
+    let raf1 = 0, raf2 = 0;
+    let prev = { w: 0, h: 0, paths: 0 };
+    let stableHits = 0;
+    let signaledFirst = false;
     let canceled = false;
-    requestAnimationFrame(() => {
-      if (!canceled) onFirstPaint?.();
-    });
-    return () => { canceled = true; };
-  }, [onFirstPaint]);
+
+    const measure = () => {
+      if (canceled) return;
+      const svg = root.querySelector('svg') as SVGSVGElement | null;
+      if (!svg) { raf2 = requestAnimationFrame(measure); return; }
+      const paths = svg.querySelectorAll('path').length;
+      let w = 0, h = 0;
+      try {
+        const box = svg.getBBox();
+        w = Math.round(box.width);
+        h = Math.round(box.height);
+      } catch { /* ignore */ }
+
+      if (!signaledFirst && paths > 0 && w > 0 && h > 0) {
+        signaledFirst = true;
+        onFirstPaint?.();
+      }
+
+      const same = paths === prev.paths && w === prev.w && h === prev.h;
+      stableHits = same ? stableHits + 1 : 0;
+      prev = { paths, w, h };
+
+      if (stableHits >= 2 && paths > 0 && w > 0 && h > 0) {
+        onStablePaint?.();
+        return;
+      }
+      raf2 = requestAnimationFrame(measure);
+    };
+
+    raf1 = requestAnimationFrame(() => { measure(); });
+    return () => { canceled = true; cancelAnimationFrame(raf1); cancelAnimationFrame(raf2); };
+  }, [onFirstPaint, onStablePaint]);
 
   // Memoized arc paths with distance-based curvature
   const arcDs = useMemo(() => {
@@ -79,6 +115,7 @@ export default function TradeMap({
 
   return (
     <div 
+      ref={wrapperRef}
       className={twMerge(clsx('relative w-full h-full z-10', className))} 
       aria-hidden
       style={{ touchAction: 'none' }}
@@ -122,10 +159,9 @@ export default function TradeMap({
           {/* World Map */}
           <Geographies geography={WORLD_URL}>
             {({ geographies }) => {
-              if (!readyRef.current) {
+              if (!readyRef.current && geographies && geographies.length > 0) {
                 readyRef.current = true;
                 if (onReady) {
-                  // Schedule outside of render to avoid React warning
                   setTimeout(onReady, 0);
                 }
               }
