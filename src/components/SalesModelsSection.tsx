@@ -80,53 +80,54 @@ export default function SalesModelsSection() {
         </div>
 
         {/* Sales Model Comparison */}
-        <div className="mt-16 lt-card p-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Sales Model Comparison</h3>
-          
-          <div className="overflow-x-auto">
+        <div className="mt-16 overflow-hidden rounded-2xl shadow-soft border border-gray-200">
+          <div className="bg-gradient-to-r from-brand-50 to-blue-50 px-6 py-4">
+            <h3 className="text-2xl font-bold text-gray-900 text-center">Sales Model Comparison</h3>
+          </div>
+          <div className="overflow-x-auto bg-white">
             <table className="w-full">
-              <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="text-left py-4 px-4 font-semibold text-gray-900">Model</th>
-                  <th className="text-left py-4 px-4 font-semibold text-gray-900">Best For</th>
-                  <th className="text-left py-4 px-4 font-semibold text-gray-900">Speed</th>
-                  <th className="text-left py-4 px-4 font-semibold text-gray-900">Price Control</th>
-                  <th className="text-left py-4 px-4 font-semibold text-gray-900">Complexity</th>
+              <thead className="bg-gray-50/80">
+                <tr className="text-left text-gray-700">
+                  <th className="py-4 px-4 font-semibold">Model</th>
+                  <th className="py-4 px-4 font-semibold">Best For</th>
+                  <th className="py-4 px-4 font-semibold">Speed</th>
+                  <th className="py-4 px-4 font-semibold">Price Control</th>
+                  <th className="py-4 px-4 font-semibold">Complexity</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr className="border-b border-gray-100">
-                  <td className="py-4 px-4 font-medium text-gray-900">Direct Purchase</td>
+              <tbody className="divide-y divide-gray-100">
+                <tr className="hover:bg-gray-50/80 transition-colors">
+                  <td className="py-4 px-4 font-semibold text-gray-900">Direct Purchase</td>
                   <td className="py-4 px-4 text-gray-600">Standard products</td>
-                  <td className="py-4 px-4 text-gray-600">Instant</td>
+                  <td className="py-4 px-4 text-gray-800"><span className="px-2 py-1 rounded bg-green-50 text-green-700 text-xs">Instant</span></td>
                   <td className="py-4 px-4 text-gray-600">Fixed</td>
                   <td className="py-4 px-4 text-gray-600">Low</td>
                 </tr>
-                <tr className="border-b border-gray-100">
-                  <td className="py-4 px-4 font-medium text-gray-900">RFQ</td>
+                <tr className="hover:bg-gray-50/80 transition-colors">
+                  <td className="py-4 px-4 font-semibold text-gray-900">RFQ</td>
                   <td className="py-4 px-4 text-gray-600">Custom requirements</td>
-                  <td className="py-4 px-4 text-gray-600">1-3 days</td>
+                  <td className="py-4 px-4 text-gray-800"><span className="px-2 py-1 rounded bg-blue-50 text-blue-700 text-xs">1–3 days</span></td>
                   <td className="py-4 px-4 text-gray-600">Competitive</td>
                   <td className="py-4 px-4 text-gray-600">Medium</td>
                 </tr>
-                <tr className="border-b border-gray-100">
-                  <td className="py-4 px-4 font-medium text-gray-900">RFP</td>
+                <tr className="hover:bg-gray-50/80 transition-colors">
+                  <td className="py-4 px-4 font-semibold text-gray-900">RFP</td>
                   <td className="py-4 px-4 text-gray-600">Large projects</td>
-                  <td className="py-4 px-4 text-gray-600">1-2 weeks</td>
+                  <td className="py-4 px-4 text-gray-800"><span className="px-2 py-1 rounded bg-amber-50 text-amber-700 text-xs">1–2 weeks</span></td>
                   <td className="py-4 px-4 text-gray-600">Negotiated</td>
                   <td className="py-4 px-4 text-gray-600">High</td>
                 </tr>
-                <tr className="border-b border-gray-100">
-                  <td className="py-4 px-4 font-medium text-gray-900">Buyer Auction</td>
-                  <td className="py-4 px-4 text-gray-600">Price-sensitive buyers</td>
-                  <td className="py-4 px-4 text-gray-600">1-7 days</td>
+                <tr className="hover:bg-gray-50/80 transition-colors">
+                  <td className="py-4 px-4 font-semibold text-gray-900">Buyer Auction</td>
+                  <td className="py-4 px-4 text-gray-600">Price‑sensitive buyers</td>
+                  <td className="py-4 px-4 text-gray-800"><span className="px-2 py-1 rounded bg-blue-50 text-blue-700 text-xs">1–7 days</span></td>
                   <td className="py-4 px-4 text-gray-600">Buyer sets max</td>
                   <td className="py-4 px-4 text-gray-600">Medium</td>
                 </tr>
-                <tr>
-                  <td className="py-4 px-4 font-medium text-gray-900">Seller Auction</td>
+                <tr className="hover:bg-gray-50/80 transition-colors">
+                  <td className="py-4 px-4 font-semibold text-gray-900">Seller Auction</td>
                   <td className="py-4 px-4 text-gray-600">Premium products</td>
-                  <td className="py-4 px-4 text-gray-600">1-7 days</td>
+                  <td className="py-4 px-4 text-gray-800"><span className="px-2 py-1 rounded bg-blue-50 text-blue-700 text-xs">1–7 days</span></td>
                   <td className="py-4 px-4 text-gray-600">Market driven</td>
                   <td className="py-4 px-4 text-gray-600">Medium</td>
                 </tr>

@@ -12,17 +12,23 @@ export default function TrustedPartnersSection() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6 lg:gap-8 items-center">
-          {partners.map((p: { name: string; logo: string; description: string }, idx: number) => (
-            <div key={idx} className="text-center">
-              <Image 
-                src={p.logo} 
-                alt={p.name} 
-                width={140} 
-                height={40} 
-                className="h-12 w-auto object-contain mx-auto grayscale hover:grayscale-0 transition-all duration-300" 
-              />
-            </div>
-          ))}
+          {partners.map((p: { name: string; logo: string; description: string }, idx: number) => {
+            const isTcci = p.name?.toLowerCase?.() === 'tcci';
+            const width = isTcci ? 200 : 140;
+            const height = isTcci ? 70 : 40;
+            const hClass = isTcci ? 'h-16' : 'h-12';
+            return (
+              <div key={idx} className="text-center">
+                <Image 
+                  src={p.logo} 
+                  alt={p.name} 
+                  width={width} 
+                  height={height} 
+                  className={`${hClass} w-auto object-contain mx-auto grayscale hover:grayscale-0 transition-all duration-300`} 
+                />
+              </div>
+            );
+          })}
         </div>
 
         <div className="mt-12 grid sm:grid-cols-2 gap-6">

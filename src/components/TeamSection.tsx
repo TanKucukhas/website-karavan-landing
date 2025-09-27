@@ -99,9 +99,7 @@ export default function TeamSection() {
                 </div>
               ))}
             </div>
-            <div className="text-center mt-6">
-              <a href="#about" className="btn-outline-brand">See full team</a>
-            </div>
+            {/* See full team link removed per request */}
           </>
         )}
 
