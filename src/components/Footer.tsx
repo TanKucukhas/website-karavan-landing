@@ -205,12 +205,9 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {new Date().getFullYear()} Karavan. All rights reserved.
-            </div>
+          <div className="flex flex-col md:flex-row justify-center items-center">
             <div className="text-gray-400 text-sm">
-              Trade Without Barriers
+              © {new Date().getFullYear()} Karavan. All rights reserved.
             </div>
           </div>
         </div>
