@@ -1,9 +1,7 @@
 "use client";
 
 import CountryFills from "@/components/animations/CountryFills";
-import dynamic from 'next/dynamic'
-
-const CountUp = dynamic(() => import('@/components/CountUp'), { ssr: false })
+import CountUp from '@/components/CountUp'
 
 export default function MetricsCountries() {
   return (

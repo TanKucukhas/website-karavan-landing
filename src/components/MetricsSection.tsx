@@ -2,10 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Flag from '@/components/Flag'
-import dynamic from 'next/dynamic'
-
-const ChartMini = dynamic(() => import('@/components/ChartMini'), { ssr: false })
-const CountUp = dynamic(() => import('@/components/CountUp'), { ssr: false })
+import ChartMini from '@/components/ChartMini'
+import CountUp from '@/components/CountUp'
 import { ChartBarIcon, GlobeAltIcon, UsersIcon, BoltIcon } from '@heroicons/react/24/outline'
 
 export default function MetricsSection() {

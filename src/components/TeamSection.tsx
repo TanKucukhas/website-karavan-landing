@@ -62,7 +62,7 @@ export default function TeamSection() {
               const decimals = m && m[1].includes('.') ? 1 : undefined
               return (
                 <div key={index} className="text-center">
-                  <div className="text-3xl font-bold text-brand-600 mb-1"><CountUp end={num} decimals={decimals as any} suffix={suffix} /></div>
+                  <div className="text-3xl font-bold text-brand-600 mb-1"><CountUp end={num} decimals={decimals} suffix={suffix} /></div>
                   <div className="text-gray-700 text-sm">{stat.label}</div>
                 </div>
               )

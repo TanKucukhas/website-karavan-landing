@@ -14,35 +14,35 @@ export default function SalesModelsSection() {
       description: 'Buyers can directly purchase products from verified suppliers at fixed prices.',
       features: ['Fixed pricing', 'Instant purchase', 'Immediate confirmation'],
       color: 'bg-blue-100 text-blue-800',
-      icon: ShoppingCartIcon as React.ComponentType<any>,
+      icon: ShoppingCartIcon as React.ComponentType<React.SVGProps<SVGSVGElement>>,
     },
     {
       name: 'Request for Quote (RFQ)',
       description: 'Buyers submit detailed requirements and receive competitive quotes from multiple suppliers.',
       features: ['Custom requirements', 'Multiple quotes', 'Price comparison'],
       color: 'bg-green-100 text-green-800',
-      icon: EnvelopeIcon as React.ComponentType<any>,
+      icon: EnvelopeIcon as React.ComponentType<React.SVGProps<SVGSVGElement>>,
     },
     {
       name: 'Request for Proposal (RFP)',
       description: 'Complex procurement process for large-scale projects with detailed proposals.',
       features: ['Detailed proposals', 'Technical evaluation', 'Long-term contracts'],
       color: 'bg-purple-100 text-purple-800',
-      icon: DocumentTextIcon as React.ComponentType<any>,
+      icon: DocumentTextIcon as React.ComponentType<React.SVGProps<SVGSVGElement>>,
     },
     {
       name: 'Buyer Auction',
       description: 'Buyers set maximum prices and suppliers compete to offer the best deals.',
       features: ['Price competition', 'Buyer control', 'Best value'],
       color: 'bg-orange-100 text-orange-800',
-      icon: MegaphoneIcon as React.ComponentType<any>,
+      icon: MegaphoneIcon as React.ComponentType<React.SVGProps<SVGSVGElement>>,
     },
     {
       name: 'Seller Auction',
       description: 'Suppliers auction their products to the highest bidding buyers.',
       features: ['Market pricing', 'Seller control', 'Premium products'],
       color: 'bg-red-100 text-red-800',
-      icon: TagIcon as React.ComponentType<any>,
+      icon: TagIcon as React.ComponentType<React.SVGProps<SVGSVGElement>>,
     }
   ];
 
