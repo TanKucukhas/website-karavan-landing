@@ -19,21 +19,19 @@ export default function CTABanner() {
   };
 
   return (
-    <section className="lt-section lt-muted">
-      <div className="lt-container">
+    <section className="py-20 bg-gradient-to-r from-[#0b1220] via-[#0e1a33] to-[#0b1220] text-white relative">
+      <div className="container mx-auto px-4">
         <div className="text-center">
-          <h2 className="lt-heading mb-6">Secure Your Early Access Spot</h2>
-          <p className="lt-subtext mb-8">
-            <span className="font-semibold text-brand-600">Limited spots available.</span> Verified suppliers, secure escrow, logistics included. Be among the first to experience the future of B2B trade.
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Secure Your Early Access Spot</h2>
+          <p className="text-white/80 mb-6 max-w-2xl mx-auto">Limited spots available. Verified suppliers, secure escrow, logistics included. Be among the first to experience the future of B2B trade.</p>
 
           {/* Enhanced CTA Form */}
           <div className="max-w-lg mx-auto">
             {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="lt-card p-8">
+              <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/15">
                 <div className="space-y-4">
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <label htmlFor="email" className="block text-sm font-medium text-white mb-2">Email Address</label>
                     <input
                       type="email"
                       id="email"
@@ -46,7 +44,7 @@ export default function CTABanner() {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">I want to:</label>
+                    <label className="block text-sm font-medium text-white mb-2">I want to:</label>
                     <div className="grid grid-cols-2 gap-3">
                       <button
                         type="button"
@@ -74,7 +72,7 @@ export default function CTABanner() {
                   </div>
                   
                   <div>
-                    <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">Country</label>
+                    <label htmlFor="country" className="block text-sm font-medium text-white mb-2">Country</label>
                     <select
                       id="country"
                       value={country}
@@ -93,7 +91,7 @@ export default function CTABanner() {
                     </select>
                   </div>
                   
-                  <button type="submit" className="w-full btn-brand text-lg">Get Early Access</button>
+                  <button type="submit" className="w-full btn-gradient-outline text-white text-lg">Get Early Access</button>
                 </div>
               </form>
             ) : (
@@ -103,22 +101,22 @@ export default function CTABanner() {
                 <p>We&apos;ll notify you when we launch.</p>
               </div>
             )}
-            <p className="text-gray-600 text-sm mt-4">No fees, no spam.</p>
+            <p className="text-white/90 text-sm mt-4">No fees. No spam. Just early access.</p>
           </div>
 
           {/* Benefits */}
           <div className="mt-12 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-1.5">Early Access</h3>
-              <p className="text-gray-700 text-sm">Be the first to use our platform before public launch</p>
+              <h3 className="text-lg font-semibold text-white mb-1.5">Early Access</h3>
+              <p className="text-white/80 text-sm">Be the first to use our platform before public launch</p>
             </div>
             <div className="text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-1.5">No Fees</h3>
-              <p className="text-gray-700 text-sm">Free access during beta period with special pricing</p>
+              <h3 className="text-lg font-semibold text-white mb-1.5">No Fees</h3>
+              <p className="text-white/80 text-sm">Free access during beta period with special pricing</p>
             </div>
             <div className="text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-1.5">No Spam</h3>
-              <p className="text-gray-700 text-sm">We respect your privacy and only send important updates</p>
+              <h3 className="text-lg font-semibold text-white mb-1.5">No Spam</h3>
+              <p className="text-white/80 text-sm">We respect your privacy and only send important updates</p>
             </div>
           </div>
         </div>

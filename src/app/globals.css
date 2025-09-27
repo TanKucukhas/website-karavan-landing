@@ -86,6 +86,27 @@
   .lt-badge { @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200; }
   .btn-brand { @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg-brand-600 hover:bg-brand-700 transition-colors shadow-soft; }
   .btn-outline-brand { @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-brand-600 border border-brand-600 bg-white hover:bg-brand-50 transition-colors; }
+  /* Enhanced gradient button */
+  .btn-brand-gradient {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 shadow-soft;
+    background-image: linear-gradient(135deg, #1f3f7a 0%, #3069B4 35%, #5FA0E4 75%);
+    background-size: 200% 200%;
+    box-shadow: 0 6px 30px -12px rgba(48,105,180,.55);
+  }
+  .btn-brand-gradient:hover { transform: translateY(-1px); background-position: 100% 0; box-shadow: 0 10px 36px -12px rgba(48,105,180,.65); }
+  .btn-brand-gradient:active { transform: translateY(0); }
+  .btn-brand-gradient:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(48,105,180,.35); }
+
+  /* Gradient outline variant (for dark backgrounds) */
+  .btn-gradient-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-white border-transparent;
+    background-image: linear-gradient(#0000,#0000), linear-gradient(135deg, #1f3f7a 0%, #3069B4 35%, #5FA0E4 75%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border: 2px solid transparent;
+  }
+  .btn-gradient-outline:hover { filter: brightness(1.08); }
+  .badge-soft { @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200; }
   /* Radiant Theme Helpers */
   .radiant-section {
     @apply relative section-padding bg-slate-950 text-slate-100 overflow-hidden;

@@ -114,7 +114,7 @@ export default function CategoriesSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
           {(showAll ? categories : categories.slice(0, 6)).map((category, index) => (
-            <div key={index} className="lt-card p-6">
+            <div key={index} className="lt-card p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-medium">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.name}</h3>
               
               <div className="space-y-3">
@@ -182,7 +182,7 @@ export default function CategoriesSection() {
           
           {!showRequestForm ? (
             <div className="text-center">
-              <button onClick={() => setShowRequestForm(true)} className="btn-brand">
+              <button onClick={() => setShowRequestForm(true)} className="btn-brand-gradient">
                 Request a Category
               </button>
             </div>

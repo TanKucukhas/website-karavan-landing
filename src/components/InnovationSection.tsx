@@ -18,7 +18,7 @@ export default function InnovationSection() {
   ];
 
   return (
-    <section className="lt-section">
+    <section className="lt-section bg-gradient-to-r from-blue-50 to-indigo-50/40">
       <div className="lt-container">
         <div className="text-center mb-14">
           <h2 className="lt-heading mb-4">AI-Driven Innovation</h2>

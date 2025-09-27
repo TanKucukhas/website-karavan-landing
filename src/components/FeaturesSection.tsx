@@ -32,9 +32,14 @@ export default function FeaturesSection() {
   return (
     <section id="features" className="lt-section">
       <div className="lt-container">
-        <div className="text-center mb-14">
+        <div className="text-center mb-6">
           <h2 className="lt-heading mb-4">Why Trade on Karavan?</h2>
           <p className="lt-subtext">Integrated solutions that eliminate the complexity of cross-border B2B trade.</p>
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+          {['Escrow','Logistics','Verified','Finance'].map((b,i)=> (
+            <span key={i} className="badge-soft">{b}</span>
+          ))}
         </div>
 
         {/* Featured Feature - Escrow */}

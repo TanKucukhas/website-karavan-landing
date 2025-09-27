@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Flag from '@/components/Flag'
+import { ChartBarIcon, GlobeAltIcon, UsersIcon, BoltIcon } from '@heroicons/react/24/outline'
 
 export default function MetricsSection() {
   const [counts, setCounts] = useState({
@@ -97,11 +98,17 @@ export default function MetricsSection() {
         </div>
 
         {/* KPI Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
           {metrics.map((metric, index) => (
             <div key={index} className="lt-card p-8 text-center">
-              <div className={`text-5xl font-bold ${metric.color} mb-4`}>{metric.value}</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">{metric.label}</h3>
+              <div className="flex items-center justify-center gap-3 mb-2">
+                {index === 0 && <UsersIcon className="h-6 w-6 text-blue-600" />}
+                {index === 1 && <BoltIcon className="h-6 w-6 text-green-600" />}
+                {index === 2 && <GlobeAltIcon className="h-6 w-6 text-purple-600" />}
+                {index === 3 && <ChartBarIcon className="h-6 w-6 text-orange-600" />}
+              </div>
+              <div className={`text-5xl font-bold ${metric.color} mb-2`}>{metric.value}</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">{metric.label}</h3>
               <p className="text-gray-600 text-sm mb-3">{metric.description}</p>
               <div className="text-xs text-gray-600 bg-gray-50 rounded-lg px-3 py-2 inline-block border border-gray-200">{metric.footnote}</div>
             </div>

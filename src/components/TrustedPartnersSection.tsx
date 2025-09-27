@@ -8,7 +8,7 @@ export default function TrustedPartnersSection() {
       <div className="lt-container">
         <div className="text-center mb-12">
           <h2 className="lt-heading mb-4">Trusted Partners</h2>
-          <p className="lt-subtext">An ecosystem of payment, logistics and compliance partners.</p>
+          <p className="lt-subtext">Backed by trusted global partners across payments, logistics and compliance.</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6 lg:gap-8 items-center">

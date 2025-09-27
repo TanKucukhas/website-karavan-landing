@@ -51,6 +51,14 @@ export default function SolutionsPartnersSection() {
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-1.5">{solution.title}</h4>
                   <p className="text-gray-700 leading-relaxed">{solution.description}</p>
+                  <p className="text-gray-500 text-xs mt-1">
+                    {solution.title.includes('Trust') && 'Verified profiles and audit trails'}
+                    {solution.title.includes('Payments') && 'Funds released only on delivery'}
+                    {solution.title.includes('Logistics') && 'Door-to-door orchestration'}
+                    {solution.title.includes('Customs') && 'Automated compliance checks'}
+                    {solution.title.includes('Insurance') && 'End-to-end coverage'}
+                    {solution.title.includes('Finance') && 'Flexible credit options'}
+                  </p>
                 </div>
               </div>
             ))}

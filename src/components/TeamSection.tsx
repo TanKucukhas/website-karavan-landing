@@ -63,12 +63,12 @@ export default function TeamSection() {
 
         {/* Leadership Team (from JSON) */}
         <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-3">Leadership Team</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">Core Leadership</h3>
           <p className="text-gray-700">Experienced leaders with proven track records in international trade and technology</p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {teamData.map((member: { name: string; title: string; linkedin: string; image: string }, idx: number) => (
+          {teamData.slice(0,4).map((member: { name: string; title: string; linkedin: string; image: string }, idx: number) => (
             <div key={idx} className="text-center">
               <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4 bg-gray-100 ring-1 ring-gray-200 relative z-0">
                 <Image src={`/images/team/${member.image}`} alt={member.name} width={128} height={128} className="w-32 h-32 object-cover object-top" />
@@ -81,6 +81,29 @@ export default function TeamSection() {
             </div>
           ))}
         </div>
+
+        {/* Advisors & Specialists */}
+        {teamData.length > 4 && (
+          <>
+            <div className="text-center mt-12 mb-6">
+              <h4 className="text-lg font-semibold text-gray-900">Advisors & Specialists</h4>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {teamData.slice(4,12).map((member: { name: string; title: string; linkedin: string; image: string }, idx: number) => (
+                <div key={idx} className="text-center">
+                  <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-3 bg-gray-100 ring-1 ring-gray-200">
+                    <Image src={`/images/team/${member.image}`} alt={member.name} width={96} height={96} className="w-24 h-24 object-cover object-top" />
+                  </div>
+                  <h5 className="font-medium text-gray-900 text-sm">{member.name}</h5>
+                  <p className="text-xs text-gray-600">{member.title}</p>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-6">
+              <a href="#about" className="btn-outline-brand">See full team</a>
+            </div>
+          </>
+        )}
 
         {/* Company Values */}
         <div className="mt-16 grid md:grid-cols-3 gap-6 lg:gap-8">

@@ -80,7 +80,7 @@ export default function EmailCaptureInline({ defaultRole='seller' }: Props) {
           <button
             type="submit"
             disabled={loading}
-            className="h-11 rounded-xl bg-red-600 px-6 py-3 font-semibold text-white hover:bg-red-700 disabled:opacity-60 focus:ring-2 focus:ring-red-500 focus:outline-none transition-colors shadow-sm"
+            className="h-11 rounded-xl btn-brand-gradient disabled:opacity-60 focus:ring-2 focus:ring-brand-600 focus:outline-none"
           >
             {loading ? 'Submitting...' : 'Get Early Access'}
           </button>

@@ -185,9 +185,8 @@ export default function HeroWithInteractiveMap() {
                     <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
                       Secure B2B trade across the <span className="text-brand-600">Turkic States</span>
                     </h1>
-                    <p className="text-lg text-gray-600 leading-relaxed">
-                      Launching first in Türkiye & Uzbekistan. Escrow payments, integrated logistics and customs, finance options.
-                    </p>
+                    <p className="text-lg text-gray-600 leading-relaxed">Launching first in Türkiye & Uzbekistan. Escrow payments, integrated logistics and customs, finance options.</p>
+                    <p className="mt-2 text-sm text-gray-500">Escrow, Logistics, and Verified Partners at your fingertips.</p>
                   </div>
                   <EmailCaptureInline defaultRole="seller" />
                 </div>

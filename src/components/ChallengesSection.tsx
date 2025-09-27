@@ -22,7 +22,7 @@ export default function ChallengesSection() {
           {challenges.map((item, index) => {
             const Icon = item.icon
             return (
-              <div key={index} className="group lt-card p-6">
+              <div key={index} className="group lt-card p-6 hover:-translate-y-1 hover:shadow-medium transition-all duration-200">
                 <div className="flex items-start gap-5">
                   <div className="h-12 w-12 rounded-xl grid place-items-center bg-gray-50 border border-gray-200 flex-shrink-0">
                     <Icon className="h-6 w-6 text-brand-600" />
