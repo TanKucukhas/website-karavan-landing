@@ -29,4 +29,9 @@ export type TradeMapProps = {
   showGraticule?: boolean;
   animated?: boolean;           // default true
   reducedMotionFallback?: boolean; // if true, disable animations
+  // New: staging controls
+  showActiveOverlay?: boolean;      // default true
+  revealedRegions?: string[];       // if set, only overlay these ISO2 codes
+  pulsingRegion?: string;           // ISO2 code currently pulsing
+  onReady?: () => void;             // called when world geographies are loaded
 };

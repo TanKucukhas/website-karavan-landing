@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import { ComposableMap, Geographies, Geography, Graticule } from 'react-simple-maps';
 import { geoMercator } from 'd3-geo';
 import { MotionConfig } from 'framer-motion';
@@ -31,7 +31,11 @@ export default function TradeMap({
   reducedMotionFallback = false,
   onNodeClick,
   onArcClick,
-  debug = false
+  debug = false,
+  showActiveOverlay = true,
+  revealedRegions,
+  pulsingRegion,
+  onReady,
 }: TradeMapProps & { debug?: boolean }) {
 
   const zoom = 1; // Sabit zoom seviyesi
@@ -43,6 +47,8 @@ export default function TradeMap({
       .scale(140)
       .translate([512, 260]), 
   []);
+
+  const readyRef = useRef(false);
 
   // Memoized arc paths with distance-based curvature
   const arcDs = useMemo(() => {
@@ -65,8 +71,6 @@ export default function TradeMap({
       className={twMerge(clsx('relative w-full h-full z-10', className))} 
       aria-hidden
       style={{ touchAction: 'none' }}
-      onWheel={(e) => e.preventDefault()}
-      onTouchMove={(e) => e.preventDefault()}
       onClick={(e) => {
         // If clicking on the map background (not on nodes), clear all selections
         if (e.target === e.currentTarget) {
@@ -106,11 +110,29 @@ export default function TradeMap({
 
           {/* World Map */}
           <Geographies geography={WORLD_URL}>
-            {({ geographies }) =>
+            {({ geographies }) => {
+              if (!readyRef.current) {
+                readyRef.current = true;
+                if (onReady) {
+                  // Schedule outside of render to avoid React warning
+                  setTimeout(onReady, 0);
+                }
+              }
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              geographies.map((geo: any) => {
+              return geographies.map((geo: any) => {
                 const id = Number(geo.id);
-                const active = id in ID_TO_COLOR;
+                const active = showActiveOverlay && (revealedRegions
+                  ? (() => {
+                      // Map numeric id to ISO2 used in our palette
+                      let iso: string | null = null;
+                      if (id === 792) iso = 'TR';
+                      else if (id === 860) iso = 'UZ';
+                      else if (id === 398) iso = 'KZ';
+                      else if (id === 31) iso = 'AZ';
+                      else if (id === 348) iso = 'HU';
+                      return iso ? revealedRegions.includes(iso) : false;
+                    })()
+                  : (id in ID_TO_COLOR));
                 
                 // Get country code for color mapping
                 let countryCode = '';
@@ -119,6 +141,14 @@ export default function TradeMap({
                 else if (id === 398) countryCode = 'KZ';
                 else if (id === 31) countryCode = 'AZ';
                 else if (id === 348) countryCode = 'HU';
+
+                const isPulsing = !!pulsingRegion && (
+                  (pulsingRegion === 'TR' && id === 792) ||
+                  (pulsingRegion === 'UZ' && id === 860) ||
+                  (pulsingRegion === 'KZ' && id === 398) ||
+                  (pulsingRegion === 'AZ' && id === 31) ||
+                  (pulsingRegion === 'HU' && id === 348)
+                );
 
                 return (
                   <g key={geo.rsmKey} style={{ pointerEvents: 'none' }}>
@@ -151,6 +181,7 @@ export default function TradeMap({
                       <>
                         <Geography
                           geography={geo}
+                          className={isPulsing ? 'animate-geoPulse' : undefined}
                           style={{ 
                             default: { 
                               fill: FILL_COLORS[countryCode as keyof typeof FILL_COLORS], 
@@ -160,6 +191,7 @@ export default function TradeMap({
                         />
                         <Geography
                           geography={geo}
+                          className={isPulsing ? 'animate-geoPulse' : undefined}
                           style={{ 
                             default: { 
                               fill: 'none', 
@@ -173,8 +205,8 @@ export default function TradeMap({
                     )}
                   </g>
                 );
-              })
-            }
+              });
+            }}
           </Geographies>
 
           {/* Grid Lines */}
