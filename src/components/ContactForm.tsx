@@ -48,10 +48,8 @@ export default function ContactForm() {
           message: '',
           honeypot: ''
         })
-        // Close form after successful submission
-        setTimeout(() => {
-          setIsFormVisible(false)
-        }, 2000)
+        // Close form immediately after successful submission
+        setIsFormVisible(false)
       } else {
         setSubmitStatus('error')
         console.error('API Error:', result.error)
@@ -236,13 +234,6 @@ export default function ContactForm() {
                 </div>
 
 
-                {submitStatus === 'success' && (
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                    <p className="text-green-800 text-sm">
-                      Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
-                    </p>
-                  </div>
-                )}
 
                 {submitStatus === 'error' && (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4">
