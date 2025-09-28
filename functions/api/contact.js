@@ -6,7 +6,7 @@ export const onRequestPost = async ({ request, env }) => {
     if (honeypot) {
       return new Response(JSON.stringify({ error: 'Bot detected' }), { status: 403, headers: { 'Content-Type': 'application/json' } });
     }
-    if (!name || !email || !subject || !message || typeof captcha === 'undefined') {
+    if (!name || !email || !subject || !message) {
       return new Response(JSON.stringify({ error: 'All fields are required' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
     }
 
