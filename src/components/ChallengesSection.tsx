@@ -123,7 +123,7 @@ export default function ChallengesSection() {
                 <div className="bg-emerald-500 text-white px-6 py-4 rounded-lg font-semibold">
                   <div className="text-2xl mb-2">✓</div>
                   <h3 className="text-lg font-bold mb-1">Thanks for your interest!</h3>
-                  <p className="text-sm">We'll send the next steps to your email soon.</p>
+                  <p className="text-sm">We&apos;ll send the next steps to your email soon.</p>
                 </div>
               </div>
             )}

@@ -250,7 +250,7 @@ export default function CategoriesSection() {
               <div className="bg-emerald-500 text-white px-6 py-4 rounded-lg font-semibold">
                 <div className="text-2xl mb-2">✓</div>
                 <h3 className="text-lg font-bold mb-1">Category Request Submitted!</h3>
-                <p className="text-sm">We'll review your request and get back to you soon.</p>
+                <p className="text-sm">We&apos;ll review your request and get back to you soon.</p>
               </div>
             </div>
           ) : (

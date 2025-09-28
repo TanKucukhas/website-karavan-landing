@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/catalyst/button'
-import { EnvelopeIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/outline'
+import { EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -71,7 +71,7 @@ export default function ContactForm() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Ready to start trading? Have questions about our platform? We're here to help.
+              Ready to start trading? Have questions about our platform? We&apos;re here to help.
             </p>
           </div>
 
@@ -118,7 +118,7 @@ export default function ContactForm() {
                 <div className="text-center py-8">
                   <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-4">
                     <p className="text-green-800 text-lg font-medium">
-                      Thank you! Your message has been sent successfully. We'll get back to you soon.
+                      Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
                     </p>
                   </div>
                   <button
@@ -239,7 +239,7 @@ export default function ContactForm() {
                 {submitStatus === 'success' && (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                     <p className="text-green-800 text-sm">
-                      Thank you! Your message has been sent successfully. We'll get back to you soon.
+                      Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
                     </p>
                   </div>
                 )}

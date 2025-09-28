@@ -1,4 +1,3 @@
-import HeroSection from '@/components/HeroSection'
 import CategoriesSection from '@/components/CategoriesSection'
 import CTABanner from '@/components/CTABanner'
 

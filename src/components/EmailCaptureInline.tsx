@@ -42,7 +42,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
       if (!res.ok) throw new Error('Submit failed');
       analytics.heroFormSubmit(role);
       setOk(true);
-    } catch (err) {
+    } catch {
       setError('Please try again');
     } finally {
       setLoading(false);

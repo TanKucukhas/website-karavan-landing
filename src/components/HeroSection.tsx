@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Emoji from '@/components/Emoji'
 import Flag from '@/components/Flag'
 
 export default function HeroSection() {
