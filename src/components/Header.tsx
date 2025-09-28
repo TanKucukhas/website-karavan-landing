@@ -54,23 +54,23 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-gray-700 hover:text-blue-600 transition-colors">
+            <a href="#features" className="text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600 transition-colors">
               Features
             </a>
-            <a href="#regions" className="text-gray-700 hover:text-blue-600 transition-colors">
+            <a href="#regions" className="text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600 transition-colors">
               Regions
             </a>
-            <a href="#categories" className="text-gray-700 hover:text-blue-600 transition-colors">
+            <a href="#categories" className="text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600 transition-colors">
               Categories
             </a>
           </nav>
 
           {/* Desktop CTA & Controls */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="text-gray-700 hover:text-blue-600 transition-colors">
+            <button className="text-[color:var(--ink)]/90 hover:text-brand-600 transition-colors">
               EN
             </button>
-            <button className="text-gray-700 hover:text-blue-600 transition-colors">
+            <button className="text-[color:var(--ink)]/90 hover:text-brand-600 transition-colors">
               🌙
             </button>
             <button className="btn btn-primary px-6 py-2">
@@ -93,16 +93,16 @@ export default function Header() {
         {isMobileMenuOpen && (
           <div className="md:hidden bg-white border-t">
             <div className="px-4 py-4 space-y-4">
-              <a href="#features" className="block text-gray-700 hover:text-blue-600">
+              <a href="#features" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
                 Features
               </a>
-              <a href="#regions" className="block text-gray-700 hover:text-blue-600">
+              <a href="#regions" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
                 Regions
               </a>
-              <a href="#categories" className="block text-gray-700 hover:text-blue-600">
+              <a href="#categories" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
                 Categories
               </a>
-              <a href="#about" className="block text-gray-700 hover:text-blue-600">
+              <a href="#about" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
                 About
               </a>
               <div className="flex items-center justify-between pt-4 border-t">

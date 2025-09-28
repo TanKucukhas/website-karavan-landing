@@ -4,7 +4,7 @@ import CountUp from '@/components/CountUp'
 
 export default function MarketSizeSection() {
   const bars = [
-    { label: 'TAM', value: 37, color: 'bg-blue-600' },
+    { label: 'TAM', value: 37, color: 'bg-brand-600' },
     { label: 'SAM', value: 24, color: 'bg-green-600' },
     { label: 'SOM', value: 24, color: 'bg-purple-600' },
   ]

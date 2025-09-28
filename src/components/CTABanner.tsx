@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { analytics } from '@/lib/analytics'
 // Light version without emojis
 
 
@@ -14,6 +15,7 @@ export default function CTABanner() {
     e.preventDefault();
     // TODO: Integrate with HubSpot
     console.log('Form submitted:', { email, role, country });
+    analytics.heroFormSubmit(role)
     setIsSubmitted(true);
     setTimeout(() => setIsSubmitted(false), 3000);
   };
@@ -50,7 +52,7 @@ export default function CTABanner() {
                     <div className="grid grid-cols-2 gap-3">
                       <button
                         type="button"
-                        onClick={() => setRole('buyer')}
+                        onClick={() => { setRole('buyer'); analytics.roleChange('buyer'); }}
                         className={`px-4 py-3 rounded-lg border transition-colors ${
                           role === 'buyer' 
                             ? 'border-brand-600 bg-brand-50 text-brand-700' 
@@ -61,7 +63,7 @@ export default function CTABanner() {
                       </button>
                       <button
                         type="button"
-                        onClick={() => setRole('seller')}
+                        onClick={() => { setRole('seller'); analytics.roleChange('seller'); }}
                         className={`px-4 py-3 rounded-lg border transition-colors ${
                           role === 'seller' 
                             ? 'border-brand-600 bg-brand-50 text-brand-700' 
@@ -93,7 +95,7 @@ export default function CTABanner() {
                     </select>
                   </div>
                   
-                  <button type="submit" className="w-full btn-gradient-outline text-white text-lg">Get Early Access</button>
+                  <button type="submit" className="w-full btn-gradient-outline text-white text-lg" onClick={() => analytics.ctaClick('cta-banner', role)}>Get Early Access</button>
                 </div>
               </form>
             ) : (

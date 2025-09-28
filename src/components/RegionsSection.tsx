@@ -1,3 +1,6 @@
+"use client";
+import { analytics } from '@/lib/analytics'
+
 export default function RegionsSection() {
   const regions = [
     { key: 'turkey', name: 'Turkey', flag: '🇹🇷', blurb: 'Export hub and operations HQ', href: '/regions/turkey' },
@@ -17,13 +20,13 @@ export default function RegionsSection() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {regions.map((r) => (
-            <a key={r.key} href={r.href} className="lt-card p-6 group hover:shadow-md transition-shadow">
+            <a key={r.key} href={r.href} className="lt-card p-6 group hover:shadow-md transition-shadow" onClick={() => analytics.mapNodeClick(r.name)}>
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-2xl" aria-hidden>{r.flag}</span>
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">{r.name}</h3>
+                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-brand-700 transition-colors">{r.name}</h3>
               </div>
               <p className="text-gray-700">{r.blurb}</p>
-              <div className="mt-4 text-sm text-blue-700">Explore →</div>
+              <div className="mt-4 text-sm text-brand-700">Explore →</div>
             </a>
           ))}
         </div>

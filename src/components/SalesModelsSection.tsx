@@ -1,3 +1,4 @@
+"use client";
 // Light version with Heroicons
 import {
   ShoppingCartIcon,
@@ -88,7 +89,7 @@ export default function SalesModelsSection() {
 
         {/* Sales Model Comparison */}
         <div className="mt-16 overflow-hidden rounded-2xl shadow-soft border border-gray-200">
-          <div className="bg-gradient-to-r from-brand-50 via-sky-50 to-blue-50 px-6 py-5">
+          <div className="bg-brand-sky px-6 py-5">
             <h3 className="text-2xl font-bold text-gray-900 text-center">Sales Model Comparison</h3>
             <p className="text-center text-gray-600 mt-1">Speed, control, and complexity at a glance</p>
           </div>
@@ -118,9 +119,9 @@ export default function SalesModelsSection() {
                 <tr className="hover:bg-gray-50/80 transition-colors">
                   <td className="py-4 px-4 font-semibold text-gray-900">RFQ</td>
                   <td className="py-4 px-4 text-gray-600">Custom requirements</td>
-                  <td className="py-4 px-4 text-gray-800"><span className="px-2 py-1 rounded bg-blue-50 text-blue-700 text-xs">1–3 days</span>
+                  <td className="py-4 px-4 text-gray-800"><span className="px-2 py-1 rounded bg-brand-50 text-brand-700 text-xs">1–3 days</span>
                     <div className="mt-1 h-1.5 rounded bg-gray-100">
-                      <div className="h-1.5 bg-blue-500 rounded" style={{ width: '70%' }} />
+                      <div className="h-1.5 bg-brand-500 rounded" style={{ width: '70%' }} />
                     </div>
                   </td>
                   <td className="py-4 px-4 text-gray-600">Competitive</td>
@@ -140,9 +141,9 @@ export default function SalesModelsSection() {
                 <tr className="hover:bg-gray-50/80 transition-colors">
                   <td className="py-4 px-4 font-semibold text-gray-900">Buyer Auction</td>
                   <td className="py-4 px-4 text-gray-600">Price‑sensitive buyers</td>
-                  <td className="py-4 px-4 text-gray-800"><span className="px-2 py-1 rounded bg-blue-50 text-blue-700 text-xs">1–7 days</span>
+                  <td className="py-4 px-4 text-gray-800"><span className="px-2 py-1 rounded bg-brand-50 text-brand-700 text-xs">1–7 days</span>
                     <div className="mt-1 h-1.5 rounded bg-gray-100">
-                      <div className="h-1.5 bg-blue-500 rounded" style={{ width: '55%' }} />
+                      <div className="h-1.5 bg-brand-500 rounded" style={{ width: '55%' }} />
                     </div>
                   </td>
                   <td className="py-4 px-4 text-gray-600">Buyer sets max</td>
@@ -151,9 +152,9 @@ export default function SalesModelsSection() {
                 <tr className="hover:bg-gray-50/80 transition-colors">
                   <td className="py-4 px-4 font-semibold text-gray-900">Seller Auction</td>
                   <td className="py-4 px-4 text-gray-600">Premium products</td>
-                  <td className="py-4 px-4 text-gray-800"><span className="px-2 py-1 rounded bg-blue-50 text-blue-700 text-xs">1–7 days</span>
+                  <td className="py-4 px-4 text-gray-800"><span className="px-2 py-1 rounded bg-brand-50 text-brand-700 text-xs">1–7 days</span>
                     <div className="mt-1 h-1.5 rounded bg-gray-100">
-                      <div className="h-1.5 bg-blue-500 rounded" style={{ width: '55%' }} />
+                      <div className="h-1.5 bg-brand-500 rounded" style={{ width: '55%' }} />
                     </div>
                   </td>
                   <td className="py-4 px-4 text-gray-600">Market driven</td>
@@ -166,7 +167,10 @@ export default function SalesModelsSection() {
 
         {/* CTA */}
         <div className="text-center mt-12">
-          <button className="btn-brand text-lg">Explore Sales Models</button>
+          <button className="btn-brand text-lg" onClick={() => {
+            // Lazy import to avoid SSR overhead if analytics not needed
+            import('@/lib/analytics').then(m => m.analytics.ctaClick('sales-models'))
+          }}>Explore Sales Models</button>
         </div>
       </div>
     </section>

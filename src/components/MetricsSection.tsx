@@ -30,7 +30,7 @@ export default function MetricsSection() {
       value: '150+',
       label: 'Suppliers Onboarded',
       description: 'Verified Turkish exporters ready to serve Central Asian markets',
-      color: 'text-blue-600',
+      color: 'text-brand-600',
       footnote: 'Pilot results from TR & UZ markets'
     },
     {
@@ -57,11 +57,11 @@ export default function MetricsSection() {
   ];
 
   const coreMarkets = [
-    { country: 'Turkey', flag: '🇹🇷', status: 'live', populationM: 86, color: 'bg-blue-100 text-blue-800' },
+    { country: 'Turkey', flag: '🇹🇷', status: 'live', populationM: 86, color: 'bg-brand-50 text-brand-800' },
     { country: 'Uzbekistan', flag: '🇺🇿', status: 'expanding', populationM: 36, color: 'bg-green-100 text-green-800' },
     { country: 'Kazakhstan', flag: '🇰🇿', status: 'expanding', populationM: 20, color: 'bg-green-100 text-green-800' },
-    { country: 'Kyrgyzstan', flag: '🇰🇬', status: 'live', populationM: 7, color: 'bg-blue-100 text-blue-800' },
-    { country: 'Turkmenistan', flag: '🇹🇲', status: 'live', populationM: 6, color: 'bg-blue-100 text-blue-800' },
+    { country: 'Kyrgyzstan', flag: '🇰🇬', status: 'live', populationM: 7, color: 'bg-brand-50 text-brand-800' },
+    { country: 'Turkmenistan', flag: '🇹🇲', status: 'live', populationM: 6, color: 'bg-brand-50 text-brand-800' },
     { country: 'Azerbaijan', flag: '🇦🇿', status: 'expanding', populationM: 10, color: 'bg-green-100 text-green-800' }
   ].sort((a, b) => {
     // Live markets first, then expanding

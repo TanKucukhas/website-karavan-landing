@@ -52,7 +52,7 @@ export default function EmailCaptureInline({ defaultRole='seller' }: Props) {
             type="email"
             required
             placeholder="your@company.com"
-            className="w-full rounded-xl bg-white border border-gray-300 shadow-sm px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-accent-700 focus:border-accent-700 focus:outline-none"
+            className="w-full rounded-xl bg-white border border-gray-300 shadow-sm px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:outline-none"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onBlur={() => {
@@ -94,7 +94,7 @@ export default function EmailCaptureInline({ defaultRole='seller' }: Props) {
           <span>No membership fees</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+          <div className="w-2 h-2 bg-brand-500 rounded-full"></div>
           <span>Pay only for services you use</span>
         </div>
       </div>

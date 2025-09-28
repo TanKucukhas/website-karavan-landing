@@ -22,6 +22,7 @@ export const analytics = {
   // Form events
   heroFormStart: (role: string) => track('hero_form_start', { role }),
   heroFormSubmit: (role: string) => track('hero_form_submit', { role }),
+  midFormSubmit: () => track('mid_form_submit'),
   
   // Map events
   mapNodeClick: (region: string) => track('map_node_click', { region }),
@@ -29,6 +30,7 @@ export const analytics = {
   
   // Role change
   roleChange: (role: string) => track('role_change', { role }),
+  languageChange: (code: string) => track('language_change', { code }),
   
   // CTA clicks
   ctaClick: (location: string, role?: string) => track('cta_click', { location, role }),

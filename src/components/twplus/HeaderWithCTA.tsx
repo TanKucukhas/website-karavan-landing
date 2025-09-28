@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { Button } from '@/components/catalyst/button'
+import { analytics, track } from '@/lib/analytics'
 
 const navigation = [
   { name: 'Features', href: '#features' },
@@ -57,7 +58,7 @@ export default function HeaderWithCTA() {
           {/* Right-aligned navigation */}
           <div className="hidden lg:flex lg:items-center lg:gap-x-6">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm font-semibold text-gray-700 hover:text-primary-600">
+              <a key={item.name} href={item.href} className="text-sm font-semibold text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600" onClick={() => track('nav_click', { item: item.name })}>
                 {item.name}
               </a>
             ))}
@@ -67,7 +68,8 @@ export default function HeaderWithCTA() {
           {/* CTA */}
           <a
             href="#cta"
-            className="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg text-white bg-[#3069B4] hover:bg-[#285a99] shadow-lg hover:shadow-xl transition-all duration-200 ring-1 ring-blue-600/20"
+            className="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg text-white bg-[#3069B4] hover:bg-[#285a99] shadow-lg hover:shadow-xl transition-all duration-200 ring-1 ring-[#3069B4]/20"
+            onClick={() => analytics.ctaClick('header-desktop')}
           >
             Get Early Access
           </a>
@@ -90,9 +92,10 @@ export default function HeaderWithCTA() {
                     onClick={() => {
                       setSelectedLanguage(language.code as typeof selectedLanguage)
                       setLanguageDropdownOpen(false)
+                      analytics.languageChange(language.code)
                     }}
                     className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left hover:bg-gray-50 ${
-                      selectedLanguage === language.code ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
+                      selectedLanguage === language.code ? 'bg-brand-50 text-brand-700' : 'text-gray-700'
                     }`}
                   >
                     <span className="text-base">{language.flag}</span>
@@ -121,6 +124,7 @@ export default function HeaderWithCTA() {
             <a
               href="#cta"
               className="ml-auto inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-lg text-white bg-[#3069B4] hover:bg-[#285a99] shadow-lg hover:shadow-xl transition-all duration-200"
+              onClick={() => analytics.ctaClick('header-mobile')}
             >
               Get Early Access
             </a>
@@ -148,13 +152,14 @@ export default function HeaderWithCTA() {
                   {languages.map((language) => (
                     <button
                       key={language.code}
-                      onClick={() => {
-                      setSelectedLanguage(language.code as typeof selectedLanguage)
-                      setMobileMenuOpen(false)
-                    }}
+                    onClick={() => {
+                    setSelectedLanguage(language.code as typeof selectedLanguage)
+                    setMobileMenuOpen(false)
+                    analytics.languageChange(language.code)
+                  }}
                       className={`w-full flex items-center gap-3 px-3 py-2 text-left text-sm rounded-lg ${
                         selectedLanguage === language.code 
-                          ? 'bg-blue-50 text-blue-700' 
+                          ? 'bg-brand-50 text-brand-700' 
                           : 'text-gray-700 hover:bg-gray-50'
                       }`}
                     >

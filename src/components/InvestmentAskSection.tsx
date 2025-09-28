@@ -1,6 +1,6 @@
 export default function InvestmentAskSection() {
   const allocation = [
-    { label: 'Product', value: 35, color: 'bg-blue-600' },
+    { label: 'Product', value: 35, color: 'bg-brand-600' },
     { label: 'Marketing', value: 30, color: 'bg-green-600' },
     { label: 'Platform Support', value: 15, color: 'bg-purple-600' },
     { label: 'HR', value: 10, color: 'bg-orange-600' },
@@ -45,4 +45,3 @@ export default function InvestmentAskSection() {
     </section>
   )
 }
-

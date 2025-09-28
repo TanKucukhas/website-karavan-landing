@@ -1,4 +1,6 @@
+"use client";
 import { ShieldCheckIcon, CreditCardIcon, TruckIcon, ClipboardDocumentListIcon, BanknotesIcon, LockClosedIcon } from '@heroicons/react/24/outline'
+import { analytics } from '@/lib/analytics'
 
 export default function ChallengesSection() {
   const challenges = [
@@ -45,14 +47,14 @@ export default function ChallengesSection() {
               <span className="font-semibold text-brand-600">Limited early access spots available.</span> Join the private beta and secure your position in the Turkic States market.
             </p>
             
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onSubmit={(e) => { e.preventDefault(); analytics.midFormSubmit(); }}>
               <input
                 type="email"
                 placeholder="your@company.com"
                 className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none"
                 required
               />
-              <button type="submit" className="btn-brand">Get Notified</button>
+              <button type="submit" className="btn-brand" onClick={() => analytics.ctaClick('challenges-mid-cta')}>Get Notified</button>
             </form>
           </div>
         </div>

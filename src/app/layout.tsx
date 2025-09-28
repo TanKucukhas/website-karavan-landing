@@ -23,10 +23,13 @@ export const viewport = {
 }
 
 import './globals.css'
+import Script from 'next/script'
 import HeaderWithCTA from '@/components/twplus/HeaderWithCTA'
 import GlobalBackground from '@/components/GlobalBackground'
 import Footer from '@/components/Footer'
 import ScrollAnimator from '@/components/ScrollAnimator'
+import Analytics from '@/components/Analytics'
+import { Suspense } from 'react'
 
 export default function RootLayout({
   children,
@@ -41,10 +44,32 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        {/* Google Analytics (GA4) */}
+        <Script
+          id="ga4-src"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-1L6Y7NBMDT'}`}
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            // Disable automatic page_view to avoid duplicates in App Router
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-1L6Y7NBMDT'}', {
+              send_page_view: false,
+              debug_mode: ${process.env.NODE_ENV !== 'production'}
+            });
+          `}
+        </Script>
       </head>
       <body>
         <GlobalBackground />
         <HeaderWithCTA />
+        {/* Tracks page_view on route changes */}
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
         <ScrollAnimator />
         <div className="pt-16">{children}</div>
         <Footer />

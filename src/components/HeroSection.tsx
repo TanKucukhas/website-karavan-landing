@@ -34,7 +34,7 @@ export default function HeroSection() {
           50% { opacity: 1; transform: rotate(var(--rotation)) scaleX(1); }
         }
       `}</style>
-      <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
+      <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center bg-brand-sky overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDZGOUEiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-20"></div>
@@ -45,13 +45,13 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-[color:var(--ink)] mb-6 leading-tight">
               Early access to{' '}
-              <span className="text-blue-600">verified suppliers</span> in the Turkic States
+              <span className="text-brand-600">verified suppliers</span> in the Turkic States
             </h1>
-            <p className="text-xl text-gray-600 mb-4 max-w-2xl">
+            <p className="text-xl text-gray-700 mb-4 max-w-2xl">
               Secure B2B trade with escrow, logistics, and financing included. 
-              <span className="font-semibold text-red-600"> Limited early access spots available.</span>
+              <span className="font-semibold text-coral-600"> Limited early access spots available.</span>
             </p>
             <p className="text-sm text-gray-500 mb-8 max-w-2xl">
               Join the private beta — no fees, no spam, early access only.
@@ -62,7 +62,7 @@ export default function HeroSection() {
               <form onSubmit={handleSubmit} className="max-w-md mx-auto lg:mx-0">
                 <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
                   <div className="mb-4">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-[color:var(--ink)] mb-2">
                       Email Address
                     </label>
                     <input
@@ -71,13 +71,13 @@ export default function HeroSection() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="your@company.com"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                       required
                     />
                   </div>
                   
                   <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-[color:var(--ink)] mb-2">
                       I want to:
                     </label>
                     <div className="grid grid-cols-2 gap-3">
@@ -86,7 +86,7 @@ export default function HeroSection() {
                         onClick={() => setRole('buyer')}
                         className={`px-4 py-3 rounded-lg border-2 transition-colors ${
                           role === 'buyer' 
-                            ? 'border-blue-500 bg-blue-50 text-blue-700' 
+                            ? 'border-brand-600 bg-brand-50 text-brand-700' 
                             : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
                         }`}
                       >
@@ -97,7 +97,7 @@ export default function HeroSection() {
                         onClick={() => setRole('seller')}
                         className={`px-4 py-3 rounded-lg border-2 transition-colors ${
                           role === 'seller' 
-                            ? 'border-blue-500 bg-blue-50 text-blue-700' 
+                            ? 'border-brand-600 bg-brand-50 text-brand-700' 
                             : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
                         }`}
                       >
@@ -108,7 +108,7 @@ export default function HeroSection() {
                   
                   <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
+                    className="w-full bg-coral-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-coral-600 transition-colors shadow-lg"
                   >
                     Get Early Access
                   </button>
@@ -129,13 +129,13 @@ export default function HeroSection() {
           <div className="relative">
             <div className="bg-white rounded-2xl shadow-2xl p-8 relative overflow-hidden">
               {/* Simplified Map */}
-              <div className="relative w-full h-96 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl">
+              <div className="relative w-full h-96 bg-gradient-to-br from-brand-50 to-brand-100 rounded-xl">
                 {/* Countries */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="grid grid-cols-3 gap-8 w-full max-w-md">
                     {/* Turkey */}
                     <div 
-                      className="bg-blue-600 text-white p-4 rounded-lg text-center cursor-pointer hover:scale-105 transition-transform"
+                      className="bg-brand-600 text-white p-4 rounded-lg text-center cursor-pointer hover:scale-105 transition-transform"
                       onMouseEnter={() => setHoveredCountry('TR')}
                       onMouseLeave={() => setHoveredCountry(null)}
                     >
@@ -146,7 +146,7 @@ export default function HeroSection() {
                     {/* Central Asia */}
                     <div className="space-y-2">
                       <div 
-                        className="bg-green-600 text-white p-2 rounded text-center cursor-pointer hover:scale-105 transition-transform"
+                        className="bg-brand-600 text-white p-2 rounded text-center cursor-pointer hover:scale-105 transition-transform"
                         onMouseEnter={() => setHoveredCountry('UZ')}
                         onMouseLeave={() => setHoveredCountry(null)}
                       >
@@ -154,7 +154,7 @@ export default function HeroSection() {
                         <div className="text-sm font-semibold">Uzbekistan</div>
                       </div>
                       <div 
-                        className="bg-green-600 text-white p-2 rounded text-center cursor-pointer hover:scale-105 transition-transform"
+                        className="bg-brand-600 text-white p-2 rounded text-center cursor-pointer hover:scale-105 transition-transform"
                         onMouseEnter={() => setHoveredCountry('KZ')}
                         onMouseLeave={() => setHoveredCountry(null)}
                       >
@@ -165,7 +165,7 @@ export default function HeroSection() {
                     
                     <div className="space-y-2">
                       <div 
-                        className="bg-green-600 text-white p-2 rounded text-center cursor-pointer hover:scale-105 transition-transform"
+                        className="bg-brand-600 text-white p-2 rounded text-center cursor-pointer hover:scale-105 transition-transform"
                         onMouseEnter={() => setHoveredCountry('KG')}
                         onMouseLeave={() => setHoveredCountry(null)}
                       >
@@ -173,7 +173,7 @@ export default function HeroSection() {
                         <div className="text-sm font-semibold">Kyrgyzstan</div>
                       </div>
                       <div 
-                        className="bg-green-600 text-white p-2 rounded text-center cursor-pointer hover:scale-105 transition-transform"
+                        className="bg-brand-600 text-white p-2 rounded text-center cursor-pointer hover:scale-105 transition-transform"
                         onMouseEnter={() => setHoveredCountry('TM')}
                         onMouseLeave={() => setHoveredCountry(null)}
                       >
@@ -195,14 +195,14 @@ export default function HeroSection() {
                         left: '20%',
                         width: '60%',
                         height: '3px',
-                        background: 'linear-gradient(90deg, #006F9E, #10B981)',
+                        background: 'linear-gradient(90deg, #3069B4, #5FA0E4)',
                         transform: `rotate(${index * 15 - 30}deg)`,
                         transformOrigin: 'left center',
                         animation: `tradeRoute 3s ease-in-out infinite`,
                         animationDelay: `${index * 0.5}s`,
                       }}
                     >
-                      <div className="w-2 h-2 bg-blue-500 rounded-full absolute right-0 top-1/2 transform -translate-y-1/2 animate-ping"></div>
+                      <div className="w-2 h-2 bg-brand-500 rounded-full absolute right-0 top-1/2 transform -translate-y-1/2 animate-ping"></div>
                     </div>
                   ))}
                 </div>
