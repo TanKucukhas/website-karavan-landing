@@ -5,7 +5,7 @@ import CountUp from '@/components/CountUp'
 
 export default function MetricsCountries() {
   return (
-    <section className="relative py-16 md:py-24">
+    <section className="relative section-padding">
       <CountryFills active={["TR", "UZ", "KZ", "AZ", "HU"]} />
       <div className="relative z-10 pointer-events-auto container mx-auto px-4 lg:px-8">
         <div className="grid md:grid-cols-4 gap-6">

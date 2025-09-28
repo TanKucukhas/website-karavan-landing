@@ -12,7 +12,6 @@ const InnovationSection = dynamic(() => import('@/components/InnovationSection')
 const SalesModelsSection = dynamic(() => import('@/components/SalesModelsSection'), { loading: () => <div className="lt-container py-16"><div className="h-24 rounded-xl bg-gray-100 animate-pulse" /></div> })
 const TeamSection = dynamic(() => import('@/components/TeamSection'), { loading: () => <div className="lt-container py-16"><div className="h-24 rounded-xl bg-gray-100 animate-pulse" /></div> })
 const CTABanner = dynamic(() => import('@/components/CTABanner'), { loading: () => <div className="lt-container py-16"><div className="h-24 rounded-xl bg-gray-100 animate-pulse" /></div> })
-const AboutSection = dynamic(() => import('@/components/AboutSection'), { loading: () => <div className="lt-container py-16"><div className="h-24 rounded-xl bg-gray-100 animate-pulse" /></div> })
 
 export default function Home() {
   return (
@@ -27,7 +26,6 @@ export default function Home() {
       <TrustedPartnersSection />
       <InnovationSection />
       <SalesModelsSection />
-      <AboutSection />
       <TeamSection />
       <CTABanner />
     </main>

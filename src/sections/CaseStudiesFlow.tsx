@@ -5,7 +5,7 @@ const ParticlesCanvas = dynamic(() => import("@/components/animations/ParticlesC
 
 export default function CaseStudiesFlow() {
   return (
-    <section className="relative py-16 md:py-24">
+    <section className="relative section-padding">
       {/* Hidden on mobile for perf */}
       <ParticlesCanvas
         paths={[
@@ -27,4 +27,3 @@ export default function CaseStudiesFlow() {
     </section>
   );
 }
-

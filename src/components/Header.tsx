@@ -63,9 +63,6 @@ export default function Header() {
             <a href="#categories" className="text-gray-700 hover:text-blue-600 transition-colors">
               Categories
             </a>
-            <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">
-              About
-            </a>
           </nav>
 
           {/* Desktop CTA & Controls */}

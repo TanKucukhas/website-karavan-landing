@@ -168,10 +168,6 @@ export default function CategoriesSection() {
           )}
         </div>
 
-        {/* Single section CTA */}
-        <div className="text-center">
-          <a href="#cta" className="btn-primary btn-lg">Open RFQ</a>
-        </div>
 
         {/* Request Category Form */}
         <div className="lt-card p-8">

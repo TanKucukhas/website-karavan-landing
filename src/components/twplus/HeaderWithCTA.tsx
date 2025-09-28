@@ -11,7 +11,6 @@ const navigation = [
   { name: 'Features', href: '#features' },
   { name: 'Regions', href: '#regions' },
   { name: 'Categories', href: '#categories' },
-  { name: 'About', href: '#about' },
 ]
 
 export default function HeaderWithCTA() {

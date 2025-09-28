@@ -20,7 +20,7 @@ export default async function RegionPage({ params }: RegionPageProps) {
   const regionName = decodeURIComponent(region)
   return (
     <main className="min-h-screen bg-white">
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 section-padding">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm font-medium text-blue-600">Region</p>
           <h1 className="mt-3 text-4xl md:text-5xl lg:text-6xl text-gray-900">
@@ -36,5 +36,4 @@ export default async function RegionPage({ params }: RegionPageProps) {
     </main>
   )
 }
-
 

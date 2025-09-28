@@ -33,7 +33,7 @@ export default function EffectsTestPage() {
       <MetricsCountries />
 
       {/* 4) Backdrop demo: Stripes (front) */}
-      <section className="relative py-16">
+      <section className="relative section-padding">
         <SectionBackdrop variant="stripes" front />
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="lt-card p-6 text-center">
@@ -44,7 +44,7 @@ export default function EffectsTestPage() {
       </section>
 
       {/* 5) Backdrop demo: Dots (front) */}
-      <section className="relative py-16">
+      <section className="relative section-padding">
         <SectionBackdrop variant="dots" front />
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="lt-card p-6 text-center">
@@ -58,7 +58,7 @@ export default function EffectsTestPage() {
       <CaseStudiesFlow />
 
       {/* 7) AmbientLight demo (now behind content) */}
-      <section className="relative py-16">
+      <section className="relative section-padding">
         <AmbientLight />
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="lt-card p-6 text-center">
@@ -69,7 +69,7 @@ export default function EffectsTestPage() {
       </section>
 
       {/* 8) Aurora Conic demo */}
-      <section className="relative py-16">
+      <section className="relative section-padding">
         <AuroraConic front />
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="lt-card p-6 text-center">
@@ -80,7 +80,7 @@ export default function EffectsTestPage() {
       </section>
 
       {/* 9) Noise Grain demo */}
-      <section className="relative py-16">
+      <section className="relative section-padding">
         <NoiseGrain front />
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="lt-card p-6 text-center">
@@ -91,7 +91,7 @@ export default function EffectsTestPage() {
       </section>
 
       {/* 10) Parallax Blobs demo */}
-      <section className="relative py-16">
+      <section className="relative section-padding">
         <ParallaxBlobs front />
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="lt-card p-6 text-center">
@@ -102,7 +102,7 @@ export default function EffectsTestPage() {
       </section>
 
       {/* 11) Waves Ribbon demo */}
-      <section className="relative py-16">
+      <section className="relative section-padding">
         <WavesRibbon front />
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="lt-card p-6 text-center">
@@ -113,7 +113,7 @@ export default function EffectsTestPage() {
       </section>
 
       {/* 12) Hex Grid Pulse demo */}
-        <section className="relative py-16">
+        <section className="relative section-padding">
           <HexGridPulse front />
           <div className="relative z-10 container mx-auto px-4 lg:px-8">
             <div className="lt-card p-6 text-center">
@@ -124,7 +124,7 @@ export default function EffectsTestPage() {
         </section>
 
       {/* 13) StarfieldCanvas */}
-      <section className="relative py-16">
+      <section className="relative section-padding">
         <StarfieldCanvas />
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="lt-card p-6 text-center">
@@ -135,7 +135,7 @@ export default function EffectsTestPage() {
       </section>
 
       {/* 14) SineWaves */}
-      <section className="relative py-16">
+      <section className="relative section-padding">
         <SineWaves />
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="lt-card p-6 text-center">
@@ -146,7 +146,7 @@ export default function EffectsTestPage() {
       </section>
 
       {/* 15) OrbitRings */}
-      <section className="relative py-16">
+      <section className="relative section-padding">
         <OrbitRings />
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="lt-card p-6 text-center">
@@ -157,7 +157,7 @@ export default function EffectsTestPage() {
       </section>
 
       {/* 16) MatrixRain */}
-      <section className="relative py-16">
+      <section className="relative section-padding">
         <MatrixRain />
         <div className="relative z-10 container mx-auto px-4 lg:px-8">
           <div className="lt-card p-6 text-center">

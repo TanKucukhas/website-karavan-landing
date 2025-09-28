@@ -19,7 +19,7 @@ export default function CTABanner() {
   };
 
   return (
-    <section id="cta" className="py-20 bg-gradient-to-r from-[#0b1220] via-[#0e1a33] to-[#0b1220] text-white relative animate-on-scroll">
+    <section id="cta" className="section-padding bg-gradient-to-r from-[#0b1220] via-[#0e1a33] to-[#0b1220] text-white relative animate-on-scroll">
       <div className="container mx-auto px-4">
         <div className="text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.6)]">

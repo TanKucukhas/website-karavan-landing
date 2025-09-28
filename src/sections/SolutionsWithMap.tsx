@@ -4,7 +4,7 @@ import SvgArcMap from "@/components/animations/SvgArcMap";
 
 export default function SolutionsWithMap() {
   return (
-    <section className="relative py-16 md:py-24">
+    <section className="relative section-padding">
       <SvgArcMap
         highlightCountries={["TR", "UZ", "KZ", "AZ", "HU"]}
         nodes={[{ lon: 28.97, lat: 41.01 }, { lon: 69.24, lat: 41.31 }, { lon: 76.89, lat: 43.23 }]}
@@ -23,4 +23,3 @@ export default function SolutionsWithMap() {
     </section>
   );
 }
-

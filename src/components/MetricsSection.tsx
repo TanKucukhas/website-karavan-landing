@@ -103,12 +103,6 @@ export default function MetricsSection() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
           {metrics.map((metric, index) => (
             <div key={index} className="lt-card p-8 text-center">
-              <div className="flex items-center justify-center gap-3 mb-2">
-                {index === 0 && <UsersIcon className="h-6 w-6 text-blue-600" />}
-                {index === 1 && <BoltIcon className="h-6 w-6 text-green-600" />}
-                {index === 2 && <GlobeAltIcon className="h-6 w-6 text-purple-600" />}
-                {index === 3 && <ChartBarIcon className="h-6 w-6 text-orange-600" />}
-              </div>
               <div className={`text-5xl font-bold ${metric.color} mb-2`}>
                 {index === 0 && <CountUp end={150} suffix="+" />}
                 {index === 1 && <span>7–14</span>}
@@ -145,37 +139,6 @@ export default function MetricsSection() {
           </div>
         </div>
 
-        {/* Mini Chart: Monthly Growth */}
-        <div className="mt-16 grid lg:grid-cols-2 gap-8 items-center">
-          <div className="lt-card p-6">
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Monthly RFQs</h4>
-            <p className="text-sm text-gray-600 mb-4">Demand growth driven by verified buyers</p>
-            <ChartMini
-              data={[
-                { label: 'Apr', value: 18, color: '#3B82F6' },
-                { label: 'May', value: 24, color: '#3B82F6' },
-                { label: 'Jun', value: 30, color: '#3B82F6' },
-                { label: 'Jul', value: 36, color: '#3B82F6' },
-                { label: 'Aug', value: 44, color: '#3B82F6' },
-                { label: 'Sep', value: 52, color: '#3B82F6' },
-              ]}
-              max={60}
-            />
-          </div>
-          <div className="lt-card p-6">
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Fulfillment Speed</h4>
-            <p className="text-sm text-gray-600 mb-4">Average days from order to delivery</p>
-            <ChartMini
-              data={[
-                { label: 'TR→UZ', value: 12, color: '#10B981' },
-                { label: 'TR→KZ', value: 14, color: '#10B981' },
-                { label: 'TR→KG', value: 11, color: '#10B981' },
-                { label: 'TR→TM', value: 15, color: '#10B981' },
-              ]}
-              max={20}
-            />
-          </div>
-        </div>
 
         {/* Additional Stats */}
         <div className="mt-16 grid md:grid-cols-3 gap-8 text-center">

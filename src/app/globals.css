@@ -77,7 +77,7 @@
 
 @layer components {
   /* Light Theme Helpers */
-  .lt-section { @apply relative py-20 md:py-24 bg-white text-[color:var(--ink)]; }
+  .lt-section { @apply relative section-padding bg-white text-[color:var(--ink)]; }
   .lt-container { @apply container mx-auto px-4 lg:px-8; }
   .lt-heading { @apply text-4xl md:text-5xl font-bold tracking-tight text-[color:var(--ink)]; }
   .lt-subtext { @apply text-lg text-gray-600 max-w-3xl mx-auto; }
@@ -223,6 +223,8 @@
 }
 
 @layer utilities {
+  /* Consistent vertical spacing for sections */
+  .section-padding { @apply py-20 md:py-24; }
   /* Reveal on scroll */
   .animate-on-scroll { @apply opacity-0 translate-y-8 transition-all duration-700 ease-out; }
   .animate-on-scroll.visible { @apply opacity-100 translate-y-0; }

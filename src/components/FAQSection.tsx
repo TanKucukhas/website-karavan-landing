@@ -20,7 +20,7 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section className="py-20 bg-white" id="faq">
+    <section className="section-padding bg-white" id="faq">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
@@ -47,5 +47,4 @@ export default function FAQSection() {
     </section>
   )
 }
-
 

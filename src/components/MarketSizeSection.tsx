@@ -10,7 +10,7 @@ export default function MarketSizeSection() {
   ]
 
   return (
-    <section className="py-20 bg-white animate-on-scroll">
+    <section className="section-padding bg-white animate-on-scroll">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Market Size</h2>
