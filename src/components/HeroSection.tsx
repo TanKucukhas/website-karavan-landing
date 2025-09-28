@@ -20,10 +20,34 @@ export default function HeroSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Integrate with HubSpot
-    console.log('Form submitted:', { email, role });
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    try {
+      const hutk = typeof document !== 'undefined'
+        ? document.cookie.split('; ').find(c => c.startsWith('hubspotutk='))?.split('=')[1]
+        : undefined;
+      const utm = typeof window !== 'undefined'
+        ? Object.fromEntries(new URLSearchParams(window.location.search).entries())
+        : {};
+      const res = await fetch('/api/contact/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          role,
+          source: 'hero',
+          pageUri: typeof window !== 'undefined' ? window.location.href : undefined,
+          pageName: typeof document !== 'undefined' ? document.title : undefined,
+          utm,
+          hutk,
+          lang: typeof navigator !== 'undefined' ? navigator.language : undefined,
+          honeypot: ''
+        })
+      });
+      if (!res.ok) throw new Error('Submit failed');
+      setIsSubmitted(true);
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -118,8 +142,8 @@ export default function HeroSection() {
               <div className="max-w-md mx-auto lg:mx-0">
                 <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
                   <div className="text-green-600 text-4xl mb-2">✓</div>
-                  <h3 className="text-lg font-semibold text-green-800 mb-2">Thank you!</h3>
-                  <p className="text-green-700">We&apos;ll notify you when we launch.</p>
+                  <h3 className="text-lg font-semibold text-green-800 mb-2">Thanks for your interest!</h3>
+                  <p className="text-green-700">We&apos;ll send the next steps to your email soon.</p>
                 </div>
               </div>
             )}

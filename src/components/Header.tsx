@@ -63,6 +63,9 @@ export default function Header() {
             <a href="#categories" className="text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600 transition-colors">
               Categories
             </a>
+            <a href="/contact" className="text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600 transition-colors">
+              Contact
+            </a>
           </nav>
 
           {/* Desktop CTA & Controls */}
@@ -99,12 +102,12 @@ export default function Header() {
               <a href="#regions" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
                 Regions
               </a>
-              <a href="#categories" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
-                Categories
-              </a>
-              <a href="#about" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
-                About
-              </a>
+                <a href="#categories" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
+                  Categories
+                </a>
+                <a href="/contact" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
+                  Contact
+                </a>
               <div className="flex items-center justify-between pt-4 border-t">
                 <div className="flex space-x-4">
                   <button className="text-gray-700">EN</button>

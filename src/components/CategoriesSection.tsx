@@ -19,6 +19,69 @@ import {
 export default function CategoriesSection() {
   const [showRequestForm, setShowRequestForm] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const [formData, setFormData] = useState({
+    categoryName: '',
+    email: '',
+    description: '',
+    honeypot: '',
+    captcha: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/contact/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.categoryName,
+          email: formData.email,
+          subject: 'Category Request',
+          message: `Category Request: ${formData.categoryName}\n\nDescription: ${formData.description}`,
+          honeypot: formData.honeypot,
+          captcha: formData.captcha,
+          source: 'category-request'
+        })
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          categoryName: '',
+          email: '',
+          description: '',
+          honeypot: '',
+          captcha: ''
+        });
+        setTimeout(() => {
+          setShowRequestForm(false);
+          setSubmitStatus('idle');
+        }, 2000);
+      } else {
+        setSubmitStatus('error');
+        console.error('API Error:', result.error);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Network Error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const categories = [
     {
@@ -182,35 +245,109 @@ export default function CategoriesSection() {
                 Request a Category
               </button>
             </div>
+          ) : submitStatus === 'success' ? (
+            <div className="max-w-md mx-auto text-center">
+              <div className="bg-emerald-500 text-white px-6 py-4 rounded-lg font-semibold">
+                <div className="text-2xl mb-2">✓</div>
+                <h3 className="text-lg font-bold mb-1">Category Request Submitted!</h3>
+                <p className="text-sm">We'll review your request and get back to you soon.</p>
+              </div>
+            </div>
           ) : (
-            <form className="max-w-md mx-auto space-y-4">
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+              {/* Honeypot field */}
+              <input
+                type="text"
+                name="honeypot"
+                value={formData.honeypot}
+                onChange={handleChange}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+              
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Category Name</label>
                 <input
                   type="text"
+                  name="categoryName"
+                  value={formData.categoryName}
+                  onChange={handleChange}
                   className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                   placeholder="e.g., Renewable Energy Equipment"
+                  required
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                   placeholder="your@email.com"
+                  required
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                 <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
                   className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                   rows={3}
                   placeholder="Tell us about this category and why it's important for Turkey-Central Asia trade"
+                  required
                 />
               </div>
+              
+              {/* Simple math captcha */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  What is 7 + 3? (Anti-spam)
+                </label>
+                <input
+                  type="text"
+                  name="captcha"
+                  value={formData.captcha}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
+                  placeholder="10"
+                  required
+                />
+              </div>
+
+              {submitStatus === 'error' && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                  <p className="text-sm">Failed to submit request. Please try again.</p>
+                </div>
+              )}
+
               <div className="flex gap-3">
-                <button type="submit" className="flex-1 btn-brand">Submit Request</button>
-                <button type="button" onClick={() => setShowRequestForm(false)} className="flex-1 btn-outline-brand">
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="flex-1 btn-brand disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Submitting...
+                    </>
+                  ) : (
+                    'Submit Request'
+                  )}
+                </button>
+                <button 
+                  type="button" 
+                  onClick={() => setShowRequestForm(false)} 
+                  className="flex-1 btn-outline-brand"
+                >
                   Cancel
                 </button>
               </div>

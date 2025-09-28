@@ -147,7 +147,7 @@ export default function HeroWithInteractiveMap() {
                   Escrow payments, logistics, customs, and finance options.
                 </p>
               </div>
-              <EmailCaptureInline defaultRole="seller" />
+              <EmailCaptureInline defaultRole="seller" source="hero-interactive-map" />
             </div>
           </div>
         </div>
@@ -167,7 +167,7 @@ export default function HeroWithInteractiveMap() {
                       Launching first in Türkiye & Uzbekistan. Escrow payments, integrated logistics and customs, finance options.
                     </p>
                   </div>
-                  <EmailCaptureInline defaultRole="seller" />
+                  <EmailCaptureInline defaultRole="seller" source="hero-interactive-map" />
                 </div>
               </div>
             </div>
@@ -188,7 +188,7 @@ export default function HeroWithInteractiveMap() {
                     <p className="text-lg text-gray-600 leading-relaxed">Launching first in Türkiye & Uzbekistan. Escrow payments, integrated logistics and customs, finance options.</p>
                     <p className="mt-2 text-sm text-gray-500">Escrow, Logistics, and Verified Partners at your fingertips.</p>
                   </div>
-                  <EmailCaptureInline defaultRole="seller" />
+                  <EmailCaptureInline defaultRole="seller" source="hero-interactive-map" />
                 </div>
               </div>
             </div>

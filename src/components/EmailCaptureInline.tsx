@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { analytics } from '@/lib/analytics';
 import ToggleSwitch from './ToggleSwitch';
 
-type Props = { defaultRole?: 'seller'|'buyer' };
+type Props = { defaultRole?: 'seller'|'buyer'; source?: string };
 
-export default function EmailCaptureInline({ defaultRole='seller' }: Props) {
+export default function EmailCaptureInline({ defaultRole='seller', source='inline' }: Props) {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState<'seller'|'buyer'>(defaultRole);
   const [loading, setLoading] = useState(false);
@@ -16,14 +16,31 @@ export default function EmailCaptureInline({ defaultRole='seller' }: Props) {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
     try {
-      // TODO: POST to /api/lead
-      // await fetch('/api/lead', { method:'POST', body: JSON.stringify({ email, role }) })
-      
-      // Analytics tracking
+      const hutk = typeof document !== 'undefined'
+        ? document.cookie.split('; ').find(c => c.startsWith('hubspotutk='))?.split('=')[1]
+        : undefined;
+      const utm = typeof window !== 'undefined'
+        ? Object.fromEntries(new URLSearchParams(window.location.search).entries())
+        : {};
+      const res = await fetch('/api/early-access/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          role,
+          country: '', // Could be added to the form if needed
+          source: source,
+          pageUri: typeof window !== 'undefined' ? window.location.href : undefined,
+          pageName: typeof document !== 'undefined' ? document.title : undefined,
+          utm,
+          hutk,
+          lang: typeof navigator !== 'undefined' ? navigator.language : undefined,
+          honeypot: ''
+        })
+      });
+      if (!res.ok) throw new Error('Submit failed');
       analytics.heroFormSubmit(role);
-      
       setOk(true);
     } catch (err) {
       setError('Please try again');
@@ -35,8 +52,8 @@ export default function EmailCaptureInline({ defaultRole='seller' }: Props) {
   if (ok) {
     return (
       <div className="rounded-xl bg-green-50 text-green-800 px-4 py-3 text-center">
-        <div className="font-semibold">Check your inbox</div>
-        <div className="text-sm">We&apos;ve sent you early access details</div>
+        <div className="font-semibold">Thanks for your interest!</div>
+        <div className="text-sm">We&apos;ll send the next steps to your email soon.</div>
       </div>
     );
   }

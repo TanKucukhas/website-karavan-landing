@@ -7,7 +7,10 @@ import {
   BriefcaseIcon, 
   CameraIcon, 
   TvIcon, 
-  BookOpenIcon 
+  BookOpenIcon,
+  EnvelopeIcon,
+  MapPinIcon,
+  PhoneIcon
 } from '@heroicons/react/24/outline'
 
 export default function Footer() {
@@ -53,7 +56,7 @@ export default function Footer() {
     company: [
       { name: 'Team', href: '#team' },
       { name: 'Careers', href: '#careers' },
-      { name: 'Contact', href: '#contact' }
+      { name: 'Contact', href: '/contact' }
     ],
     legal: [
       { name: 'Privacy Policy', href: '#privacy' },
@@ -67,14 +70,14 @@ export default function Footer() {
     { name: 'Website', icon: GlobeAltIcon, href: 'https://karavan.net/' },
     { name: 'LinkedIn', icon: BriefcaseIcon, href: 'https://www.linkedin.com/company/KaravanOfficial' },
     { name: 'Instagram', icon: CameraIcon, href: 'https://instagram.com/KaravanConnect' },
-    { name: 'YouTube', icon: TvIcon, href: 'www.youtube.com/@KaravanGlobal' },
+    { name: 'YouTube', icon: TvIcon, href: 'https://www.youtube.com/@KaravanGlobal' },
     { name: 'Facebook', icon: BookOpenIcon, href: 'https://www.facebook.com/KaravanConnect' }
   ];
 
   return (
     <footer className="bg-[color:var(--ink)] text-white">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="mb-6">
@@ -92,6 +95,34 @@ export default function Footer() {
                 The B2B platform connecting Turkish exporters with Central Asian markets. 
                 Trust, payments, logistics, and customs - all in one place.
               </p>
+              
+              {/* Contact Information */}
+              <div className="space-y-4 mb-6">
+                <div className="flex items-start gap-3">
+                  <MapPinIcon className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                  <div className="text-gray-400 text-sm">
+                    <div className="font-semibold text-white mb-1">KARAVAN DIGITAL CORP</div>
+                    <div>32 HILLCREST RD</div>
+                    <div>WARREN, NJ 07059</div>
+                    <div className="text-xs text-gray-500 mt-1">United States</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <EnvelopeIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                  <div>
+                    <a href="mailto:info@karavan.net" className="text-gray-400 hover:text-white transition-colors text-sm block">
+                      info@karavan.net
+                    </a>
+                    <div className="text-xs text-gray-500 mt-1">General Inquiries</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <PhoneIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                  <div>
+                    <div className="text-gray-400 text-sm">+1 (555) 123-4567</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Social Links */}
@@ -154,13 +185,22 @@ export default function Footer() {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
                   >
                     {link.name}
                   </a>
                 </li>
               ))}
             </ul>
+            
+            {/* Quick Stats */}
+            <div className="mt-6 pt-4 border-t border-gray-700">
+              <div className="text-xs text-gray-500 space-y-1">
+                <div>✓ 150+ Verified Suppliers</div>
+                <div>✓ 6 Languages Supported</div>
+                <div>✓ 91% Success Rate</div>
+              </div>
+            </div>
           </div>
 
           {/* Solutions Links */}

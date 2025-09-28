@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { Button } from '@/components/catalyst/button'
@@ -12,13 +13,19 @@ const navigation = [
   { name: 'Features', href: '#features' },
   { name: 'Regions', href: '#regions' },
   { name: 'Categories', href: '#categories' },
+  { name: 'Contact', href: '/contact' },
 ]
 
 export default function HeaderWithCTA() {
+  const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [selectedLanguage, setSelectedLanguage] = useState<'en'|'tr'|'ru'|'uz'|'kk'|'ky'>('en')
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+
+  // Only show navigation links on homepage
+  const isHomePage = pathname === '/'
+  const displayNavigation = isHomePage ? navigation : navigation.filter(item => item.name === 'Contact')
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -57,7 +64,7 @@ export default function HeaderWithCTA() {
           <div className="flex flex-1 items-center justify-end gap-x-4">
           {/* Right-aligned navigation */}
           <div className="hidden lg:flex lg:items-center lg:gap-x-6">
-            {navigation.map((item) => (
+            {displayNavigation.map((item) => (
               <a key={item.name} href={item.href} className="text-sm font-semibold text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600" onClick={() => track('nav_click', { item: item.name })}>
                 {item.name}
               </a>
@@ -136,7 +143,7 @@ export default function HeaderWithCTA() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-100">
               <div className="space-y-2 py-6">
-                {navigation.map((item) => (
+                {displayNavigation.map((item) => (
                   <a key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">
                     {item.name}
                   </a>

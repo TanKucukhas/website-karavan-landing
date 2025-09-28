@@ -1,0 +1,157 @@
+export const onRequestPost = async ({ request, env }) => {
+  try {
+    const { 
+      email, 
+      role, 
+      country, 
+      source, 
+      pageUri, 
+      pageName, 
+      utm, 
+      hutk, 
+      lang, 
+      honeypot 
+    } = await request.json()
+
+    // Bot detection
+    if (honeypot) {
+      return new Response(JSON.stringify({ error: 'Bot detected' }), { status: 403, headers: { 'Content-Type': 'application/json' } })
+    }
+
+    // Validation
+    if (!email || !role) {
+      return new Response(JSON.stringify({ error: 'Email and role are required' }), { status: 400, headers: { 'Content-Type': 'application/json' } })
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return new Response(JSON.stringify({ error: 'Invalid email format' }), { status: 400, headers: { 'Content-Type': 'application/json' } })
+    }
+
+    // 1) Google Script Integration (if configured)
+    let googleScriptSuccess = false
+    if (env.APPSCRIPT_WEBAPP_URL && env.APPSCRIPT_SHARED_SECRET) {
+      try {
+        const googleScriptUrl = env.APPSCRIPT_WEBAPP_URL
+        
+        const googleScriptRes = await fetch(googleScriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            secret: env.APPSCRIPT_SHARED_SECRET,
+            email,
+            role,
+            country,
+            company: '', // Add company field if needed
+            source,
+            pageUri,
+            pageName,
+            utm,
+            hutk,
+            lang,
+            timestamp: new Date().toISOString()
+          })
+        })
+        
+        if (googleScriptRes.ok) {
+          const responseText = await googleScriptRes.text()
+          console.log('Google Script response:', responseText)
+          
+          // Check if the response indicates success
+          try {
+            const responseData = JSON.parse(responseText)
+            if (responseData.ok === true) {
+              googleScriptSuccess = true
+              console.log('Google Script: Successfully logged to sheets')
+            } else {
+              console.error('Google Script: Failed to log to sheets', { error: responseData.error })
+            }
+          } catch (parseError) {
+            console.error('Google Script: Invalid JSON response', { response: responseText })
+          }
+        } else {
+          const errorText = await googleScriptRes.text()
+          console.error('Google Script error:', { status: googleScriptRes.status, error: errorText })
+        }
+      } catch (error) {
+        console.error('Google Script request failed:', error)
+      }
+    } else {
+      console.log('Google Script: Not configured (APPSCRIPT_WEBAPP_URL or APPSCRIPT_SHARED_SECRET missing)')
+    }
+
+    // 2) Brevo Notification Email (if configured)
+    let brevoSuccess = false
+    if (env.BREVO_API_KEY && env.BREVO_SENDER_EMAIL && env.CONTACT_TO_EMAIL) {
+      try {
+        const toName = env.CONTACT_TO_NAME || 'Karavan Team'
+        const senderName = env.BREVO_SENDER_NAME || 'Karavan'
+        const subject = 'New Early Access Lead'
+        
+        const htmlContent = `
+          <h3>New Early Access Lead</h3>
+          <p><b>Email:</b> ${email}</p>
+          <p><b>Role:</b> ${role}</p>
+          <p><b>Country:</b> ${country || 'Not specified'}</p>
+          <p><b>Source:</b> ${source || 'Not specified'}</p>
+          <p><b>Page:</b> ${pageName || 'Not specified'}<br>${pageUri || 'Not specified'}</p>
+          <p><b>Language:</b> ${lang || 'Not specified'}</p>
+          <p><b>Timestamp:</b> ${new Date().toLocaleString()}</p>
+        `
+        
+        const emailData = {
+          sender: { name: senderName, email: env.BREVO_SENDER_EMAIL },
+          to: [{ email: env.CONTACT_TO_EMAIL, name: toName }],
+          subject,
+          htmlContent,
+          textContent: `New Early Access Lead\nEmail: ${email}\nRole: ${role}\nCountry: ${country || 'Not specified'}\nSource: ${source || 'Not specified'}\nPage: ${pageName || 'Not specified'}\nURL: ${pageUri || 'Not specified'}\nLanguage: ${lang || 'Not specified'}\nTimestamp: ${new Date().toLocaleString()}`
+        }
+
+        console.log('Sending Brevo notification...', { toEmail: env.CONTACT_TO_EMAIL, senderEmail: env.BREVO_SENDER_EMAIL })
+
+        const brevoRes = await fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'api-key': env.BREVO_API_KEY },
+          body: JSON.stringify(emailData)
+        })
+
+        if (brevoRes.ok) {
+          brevoSuccess = true
+          const brevoResult = await brevoRes.json()
+          console.log('Brevo notification sent:', brevoResult)
+        } else {
+          const errorText = await brevoRes.text()
+          console.error('Brevo notification error:', errorText)
+        }
+      } catch (error) {
+        console.error('Brevo notification request failed:', error)
+      }
+    } else {
+      console.log('Brevo notification: Not configured (BREVO_API_KEY, BREVO_SENDER_EMAIL, or CONTACT_TO_EMAIL missing)')
+    }
+
+    // Return success if at least one method worked, or if neither is configured
+    const hasAnyMethod = googleScriptSuccess || brevoSuccess
+    const noMethodsConfigured = !env.APPSCRIPT_WEBAPP_URL && !env.BREVO_API_KEY
+
+    if (hasAnyMethod || noMethodsConfigured) {
+      return new Response(JSON.stringify({ 
+        success: true, 
+        message: 'Early access request submitted successfully',
+        details: {
+          googleScript: googleScriptSuccess,
+          brevoNotification: brevoSuccess,
+          configured: !noMethodsConfigured
+        }
+      }), { status: 200, headers: { 'Content-Type': 'application/json' } })
+    } else {
+      return new Response(JSON.stringify({ 
+        error: 'Failed to process early access request' 
+      }), { status: 500, headers: { 'Content-Type': 'application/json' } })
+    }
+
+  } catch (error) {
+    console.error('Early access form error:', error)
+    return new Response(JSON.stringify({ error: 'Failed to process request' }), { status: 500, headers: { 'Content-Type': 'application/json' } })
+  }
+}

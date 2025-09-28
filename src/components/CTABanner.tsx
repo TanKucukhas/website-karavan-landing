@@ -10,14 +10,43 @@ export default function CTABanner() {
   const [role, setRole] = useState<'buyer' | 'seller'>('buyer');
   const [country, setCountry] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Integrate with HubSpot
-    console.log('Form submitted:', { email, role, country });
-    analytics.heroFormSubmit(role)
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setIsSubmitting(true);
+    try {
+      const hutk = typeof document !== 'undefined'
+        ? document.cookie.split('; ').find(c => c.startsWith('hubspotutk='))?.split('=')[1]
+        : undefined;
+      const utm = typeof window !== 'undefined'
+        ? Object.fromEntries(new URLSearchParams(window.location.search).entries())
+        : {};
+      const res = await fetch('/api/early-access/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          role,
+          country,
+          source: 'secure-early-access-cta',
+          pageUri: typeof window !== 'undefined' ? window.location.href : undefined,
+          pageName: typeof document !== 'undefined' ? document.title : undefined,
+          utm,
+          hutk,
+          lang: typeof navigator !== 'undefined' ? navigator.language : undefined,
+          honeypot: ''
+        })
+      });
+      if (!res.ok) throw new Error('Submit failed');
+      analytics.heroFormSubmit(role)
+      setIsSubmitted(true);
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -85,24 +114,41 @@ export default function CTABanner() {
                       required
                     >
                       <option value="">Select your country</option>
-                      <option value="TR">Turkey</option>
-                      <option value="UZ">Uzbekistan</option>
-                      <option value="KZ">Kazakhstan</option>
-                      <option value="KG">Kyrgyzstan</option>
-                      <option value="TM">Turkmenistan</option>
-                      <option value="AZ">Azerbaijan</option>
-                      <option value="other">Other</option>
+                      <option value="Turkey">Turkey</option>
+                      <option value="Uzbekistan">Uzbekistan</option>
+                      <option value="Kazakhstan">Kazakhstan</option>
+                      <option value="Kyrgyzstan">Kyrgyzstan</option>
+                      <option value="Turkmenistan">Turkmenistan</option>
+                      <option value="Azerbaijan">Azerbaijan</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
                   
-                  <button type="submit" className="w-full btn-gradient-outline text-white text-lg" onClick={() => analytics.ctaClick('cta-banner', role)}>Get Early Access</button>
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full btn-gradient-outline text-white text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2" 
+                    onClick={() => analytics.ctaClick('cta-banner', role)}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Submitting...
+                      </>
+                    ) : (
+                      'Get Early Access'
+                    )}
+                  </button>
                 </div>
               </form>
             ) : (
               <div className="bg-emerald-500 text-white px-8 py-6 rounded-2xl font-semibold text-center">
                 <div className="text-4xl mb-2">✓</div>
-                <h3 className="text-xl font-bold mb-2">Thank you!</h3>
-                <p>We&apos;ll notify you when we launch.</p>
+                <h3 className="text-xl font-bold mb-2">Thanks for your interest!</h3>
+                <p>We&apos;ll send the next steps to your email soon.</p>
               </div>
             )}
             <p className="text-white/90 text-sm mt-4">No fees. No spam. Just early access.</p>
