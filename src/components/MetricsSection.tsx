@@ -1,27 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
 import Flag from '@/components/Flag'
 import CountUp from '@/components/CountUp'
 
 export default function MetricsSection() {
-  const [counts, setCounts] = useState({
-    suppliers: 0,
-    shippingTime: 0,
-    languages: 0,
-    cohorts: 0
-  });
-
-  // Log only when values change to avoid spam
-  const prev = useRef<string>('');
-  useEffect(() => {
-    const now = JSON.stringify(counts);
-    if (now !== prev.current) {
-      console.log('Current counts:', counts);
-      prev.current = now;
-    }
-  }, [counts]);
-
   const metrics = [
     {
       value: '150+',
@@ -66,27 +48,6 @@ export default function MetricsSection() {
     return a.status === 'live' ? -1 : 1
   });
 
-  useEffect(() => {
-    // Animate counters
-    const animateCount = (target: number, key: keyof typeof counts) => {
-      let current = 0;
-      const increment = target / 50;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          setCounts(prev => ({ ...prev, [key]: target }));
-          clearInterval(timer);
-        } else {
-          setCounts(prev => ({ ...prev, [key]: Math.floor(current) }));
-        }
-      }, 30);
-    };
-
-    animateCount(150, 'suppliers');
-    animateCount(14, 'shippingTime');
-    animateCount(6, 'languages');
-    animateCount(3, 'cohorts');
-  }, []);
 
   return (
     <section className="lt-section animate-on-scroll">

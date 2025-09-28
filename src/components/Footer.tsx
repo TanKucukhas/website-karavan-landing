@@ -119,9 +119,9 @@ export default function Footer() {
                 <Image 
                   src="/images/logo/karavan-logo.svg" 
                   alt="Karavan" 
-                  width={120}
+                  width={112}
                   height={32}
-                  className="h-8 w-auto mb-3 filter brightness-0 invert"
+                  className="mb-3 filter brightness-0 invert"
                 />
                 <div className="text-lg font-semibold text-white">
                   Trade Without Barriers

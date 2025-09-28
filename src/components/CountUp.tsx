@@ -6,6 +6,7 @@ import { animateNumber } from '@/lib/animateNumber'
 export default function CountUp({ end, duration = 1200, prefix = '', suffix = '', decimals }: { end: number; duration?: number; prefix?: string; suffix?: string; decimals?: number }) {
   const [val, setVal] = useState(0)
   const [visible, setVisible] = useState(false)
+  const [hasAnimated, setHasAnimated] = useState(false)
   const ref = useRef<HTMLSpanElement | null>(null)
 
   // Observe when the number enters the viewport
@@ -37,8 +38,9 @@ export default function CountUp({ end, duration = 1200, prefix = '', suffix = ''
 
   // Start the number animation once visible
   useEffect(() => {
-    if (!visible) return
-    // Reset before starting to ensure animation runs from 0 each time it becomes visible
+    if (!visible || hasAnimated) return
+    
+    setHasAnimated(true)
     setVal(0)
 
     const cancel = animateNumber({ to: end, duration, onUpdate: (v) => {
@@ -50,7 +52,7 @@ export default function CountUp({ end, duration = 1200, prefix = '', suffix = ''
       }
     } })
     return cancel
-  }, [visible, end, duration, decimals])
+  }, [visible, end, duration, decimals, hasAnimated])
 
   const formatted = typeof decimals === 'number'
     ? val.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals })

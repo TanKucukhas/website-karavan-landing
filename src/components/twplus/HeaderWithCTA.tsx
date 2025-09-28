@@ -57,7 +57,7 @@ export default function HeaderWithCTA() {
           <div className="flex lg:flex-1">
             <Link href="/" className="p-1.5">
               <span className="sr-only">Karavan</span>
-              <Image alt="Karavan" src="/images/logo/karavan-logo.svg" width={112} height={32} />
+              <Image alt="Karavan" src="/images/logo/karavan-logo.svg" width={112} height={32} priority />
             </Link>
           </div>
           <div className="flex flex-1 items-center justify-end gap-x-4">
@@ -125,7 +125,7 @@ export default function HeaderWithCTA() {
           <div className="flex items-center gap-x-6">
             <Link href="/" className="p-1.5">
               <span className="sr-only">Karavan</span>
-              <Image alt="Karavan" src="/images/logo/karavan-logo.svg" width={112} height={32} />
+              <Image alt="Karavan" src="/images/logo/karavan-logo.svg" width={112} height={32} priority />
             </Link>
             <a
               href="#cta"
