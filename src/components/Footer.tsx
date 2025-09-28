@@ -8,6 +8,7 @@ import {
   PhoneIcon
 } from '@heroicons/react/24/outline'
 import Image from 'next/image'
+import Flag from '@/components/Flag'
 
 export default function Footer() {
   const [selectedLanguage, setSelectedLanguage] = useState('English')
@@ -15,12 +16,12 @@ export default function Footer() {
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   const languages = [
-    { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
-    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-    { code: 'uz', name: "O'zbek", flag: '🇺🇿' },
-    { code: 'kk', name: 'Қазақша', flag: '🇰🇿' },
-    { code: 'ky', name: 'Кыргызча', flag: '🇰🇬' },
+    { code: 'en', name: 'English', flagCode: 'us' },
+    { code: 'tr', name: 'Türkçe', flagCode: 'tr' },
+    { code: 'ru', name: 'Русский', flagCode: 'ru' },
+    { code: 'uz', name: "O'zbek", flagCode: 'uz' },
+    { code: 'kk', name: 'Қазақша', flagCode: 'kz' },
+    { code: 'ky', name: 'Кыргызча', flagCode: 'kg' },
   ]
 
   // Close dropdown when clicking outside
@@ -184,8 +185,12 @@ export default function Footer() {
                 <span className="text-gray-400 text-sm">Language:</span>
                 <button
                   onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
-                  className="flex items-center gap-1 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm"
+                  className="flex items-center gap-2 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm"
                 >
+                  <Flag 
+                    code={languages.find(lang => lang.name === selectedLanguage)?.flagCode || 'us'} 
+                    size="sm" 
+                  />
                   {selectedLanguage}
                   <ChevronDownIcon className="h-4 w-4" />
                 </button>
@@ -204,7 +209,9 @@ export default function Footer() {
                         selectedLanguage === language.name ? 'bg-gray-700 text-white' : 'text-gray-300'
                       }`}
                     >
-                      <span className="text-base">{language.flag}</span>
+                      <span className="text-base">
+                        <Flag code={language.flagCode} size="sm" />
+                      </span>
                       <span>{language.name}</span>
                     </button>
                   ))}

@@ -24,10 +24,14 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
     HU: '#8a9b8a',  // Pastel Hungary green
   };
   
-      const fill = FLAG_COLORS[label || ''] || (status === 'launching' ? '#7bb3f0' : '#9bb3f0');
-      const strokeColor = status === 'launching' ? '#e67e7e80' : '#7bb3f080'; // 50% opacity
-  const scaledR = r / zoom;
-  const haloR = (12 / zoom);
+  // Mobil cihazlarda nokta boyutunu artır
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const mobileMultiplier = isMobile ? 1.5 : 1;
+  
+  const fill = FLAG_COLORS[label || ''] || (status === 'launching' ? '#7bb3f0' : '#9bb3f0');
+  const strokeColor = status === 'launching' ? '#e67e7e80' : '#7bb3f080'; // 50% opacity
+  const scaledR = (r * mobileMultiplier) / zoom;
+  const haloR = (12 * mobileMultiplier) / zoom;
   
   return (
     <>
@@ -58,7 +62,7 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
           <motion.circle 
             cx={cx} 
             cy={cy} 
-            r={6}
+            r={6 * mobileMultiplier}
             fill={fill}
             filter="url(#glow)"
             animate={{ 
@@ -72,7 +76,7 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
             }}
           />
           ) : (
-            <circle cx={cx} cy={cy} r={6} fill={fill} filter="url(#glow)" opacity={0.8} />
+            <circle cx={cx} cy={cy} r={6 * mobileMultiplier} fill={fill} filter="url(#glow)" opacity={0.8} />
           )}
       
       {/* Inner White Dot */}
@@ -101,7 +105,7 @@ export default function NodeDot({ cx, cy, r=3.5, label, name, status='expanding'
       <circle 
         cx={cx} 
         cy={cy} 
-        r={10/zoom} 
+        r={(10 * mobileMultiplier)/zoom} 
         fill="transparent" 
         className="cursor-pointer"
         onClick={onClick}

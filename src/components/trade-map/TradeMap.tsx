@@ -15,10 +15,7 @@ import NodeDot from './NodeDot';
 import Legend from './Legend';
 import type { TradeMapProps } from './TradeMap.types';
 import { ID_TO_COLOR, FILL_COLORS, BORDER_COLORS } from '@/utils/idColors';
-
-// Prefer a local TopoJSON copy; fall back to CDN if missing
-const WORLD_LOCAL = '/data/world-50m.json';
-const WORLD_CDN = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
+import { getWorldData } from '@/lib/worldDataCache';
 
 
 export default function TradeMap({
@@ -39,12 +36,16 @@ export default function TradeMap({
   const [selectedNodeIds, setSelectedNodeIds] = useState<Set<string>>(new Set());
 
   // Tek projeksiyon objesi - sabit; SVG ölçeklenerek tam genişlik verilir
-  const projection = useMemo(() => 
-    geoMercatorAny()
+  const projection = useMemo(() => {
+    // Mobil cihazlarda zoom seviyesini daha da artır
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const scale = isMobile ? 350 : 180;
+    
+    return geoMercatorAny()
       .center([35, 39])
-      .scale(180)
-      .translate([512, 260]), 
-  []);
+      .scale(scale)
+      .translate([512, 260]);
+  }, []);
 
   const readyRef = useRef(false);
   const wrapperRef = useRef<HTMLDivElement|null>(null);
@@ -53,17 +54,20 @@ export default function TradeMap({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [worldSrc, setWorldSrc] = useState<any>(null);
 
-  // Choose local world TopoJSON when available; otherwise fall back to CDN
+  // Use global cache for world data
   useEffect(() => {
     let canceled = false;
-    async function choose() {
+    async function loadWorldData() {
       try {
-        const res = await fetch(WORLD_LOCAL, { cache: 'force-cache' });
-        if (!canceled && res.ok) { setWorldSrc(WORLD_LOCAL); return; }
-      } catch { /* ignore */ }
-      if (!canceled) setWorldSrc(WORLD_CDN);
+        const data = await getWorldData();
+        if (!canceled) {
+          setWorldSrc(data);
+        }
+      } catch (error) {
+        console.error('Failed to load world data:', error);
+      }
     }
-    choose();
+    loadWorldData();
     return () => { canceled = true; };
   }, []);
 
@@ -153,7 +157,10 @@ export default function TradeMap({
       <MotionConfig reducedMotion={reducedMotionFallback ? 'always' : 'never'}>
         <ComposableMap
           projection="geoMercator"
-          projectionConfig={{ scale: 180, center: [35, 39] }}
+          projectionConfig={{ 
+            scale: typeof window !== 'undefined' && window.innerWidth < 768 ? 350 : 180, 
+            center: [35, 39] 
+          }}
           style={{ width:'100%', height:'100%' }}
           width={1024}
           height={520}
@@ -302,12 +309,20 @@ export default function TradeMap({
                   const fromNode = nodes.find(n => n.id === arc.from);
                   const status = fromNode?.status || 'expanding';
                   
+                  // Mobil cihazlarda arc görünürlüğünü artır
+                  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+                  const mobileWidthMultiplier = isMobile ? 2.0 : 1.0;
+                  const mobileOpacityMultiplier = isMobile ? 1.5 : 1.0;
+                  
                   return (
                     <ArcPath
                       key={arc.id}
                       d={arc.d}
-                      color={status === 'launching' ? '#e67e7e80' : '#7bb3f080'} // Pastel renkler with opacity
-                      width={arc.strength === 3 ? 1.8 : arc.strength === 2 ? 1.3 : 1.0}
+                      color={status === 'launching' ? 
+                        `#e67e7e${Math.round(128 * mobileOpacityMultiplier).toString(16).padStart(2, '0')}` : 
+                        `#7bb3f0${Math.round(128 * mobileOpacityMultiplier).toString(16).padStart(2, '0')}`
+                      }
+                      width={(arc.strength === 3 ? 1.8 : arc.strength === 2 ? 1.3 : 1.0) * mobileWidthMultiplier}
                       delayMs={index * 280}  // 🔑 start offset only, no repeatDelay
                       dashed={status === 'exploring'}
                       zoom={zoom}

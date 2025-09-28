@@ -36,12 +36,12 @@ export default function MetricsSection() {
   ];
 
   const coreMarkets = [
-    { country: 'Turkey', flag: '🇹🇷', status: 'live', populationM: 86, color: 'bg-brand-50 text-brand-800' },
-    { country: 'Uzbekistan', flag: '🇺🇿', status: 'expanding', populationM: 36, color: 'bg-green-100 text-green-800' },
-    { country: 'Kazakhstan', flag: '🇰🇿', status: 'expanding', populationM: 20, color: 'bg-green-100 text-green-800' },
-    { country: 'Kyrgyzstan', flag: '🇰🇬', status: 'live', populationM: 7, color: 'bg-brand-50 text-brand-800' },
-    { country: 'Turkmenistan', flag: '🇹🇲', status: 'live', populationM: 6, color: 'bg-brand-50 text-brand-800' },
-    { country: 'Azerbaijan', flag: '🇦🇿', status: 'expanding', populationM: 10, color: 'bg-green-100 text-green-800' }
+    { country: 'Turkey', flagCode: 'tr', status: 'live', populationM: 86, color: 'bg-brand-50 text-brand-800' },
+    { country: 'Uzbekistan', flagCode: 'uz', status: 'expanding', populationM: 36, color: 'bg-green-100 text-green-800' },
+    { country: 'Kazakhstan', flagCode: 'kz', status: 'expanding', populationM: 20, color: 'bg-green-100 text-green-800' },
+    { country: 'Kyrgyzstan', flagCode: 'kg', status: 'live', populationM: 7, color: 'bg-brand-50 text-brand-800' },
+    { country: 'Turkmenistan', flagCode: 'tm', status: 'live', populationM: 6, color: 'bg-brand-50 text-brand-800' },
+    { country: 'Azerbaijan', flagCode: 'az', status: 'expanding', populationM: 10, color: 'bg-green-100 text-green-800' }
   ].sort((a, b) => {
     // Live markets first, then expanding
     if (a.status === b.status) return 0
@@ -80,13 +80,14 @@ export default function MetricsSection() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {coreMarkets.map((market, index) => (
               <div key={index} className="text-center p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300">
-                <div className="text-3xl mb-2"><Flag code={
-                  market.country === 'Turkey' ? 'tr' :
-                  market.country === 'Uzbekistan' ? 'uz' :
-                  market.country === 'Kazakhstan' ? 'kz' :
-                  market.country === 'Kyrgyzstan' ? 'kg' :
-                  market.country === 'Turkmenistan' ? 'tm' :
-                  market.country === 'Azerbaijan' ? 'az' : 'tr'} size="lg" title={market.country} /></div>
+                <div className="text-3xl mb-2">
+                  <Flag 
+                    code={market.flagCode} 
+                    size="lg" 
+                    title={market.country}
+                    shadow={true}
+                  />
+                </div>
                 <div className="font-semibold text-gray-900 mb-1.5">{market.country}</div>
                 <div className="text-xs text-gray-600 mb-2"><CountUp end={market.populationM} suffix="M people" /></div>
                 <span className="lt-badge">

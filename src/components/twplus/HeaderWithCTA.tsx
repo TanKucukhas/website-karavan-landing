@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { analytics, track } from '@/lib/analytics'
+import Flag from '@/components/Flag'
 
 const navigation = [
   { name: 'Features', href: '#features' },
@@ -41,12 +42,12 @@ export default function HeaderWithCTA() {
   }, [])
 
   const languages = [
-    { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
-    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-    { code: 'uz', name: "O'zbek", flag: '🇺🇿' },
-    { code: 'kk', name: 'Қазақша', flag: '🇰🇿' },
-    { code: 'ky', name: 'Кыргызча', flag: '🇰🇬' },
+    { code: 'en', name: 'English', flagCode: 'us' },
+    { code: 'tr', name: 'Türkçe', flagCode: 'tr' },
+    { code: 'ru', name: 'Русский', flagCode: 'ru' },
+    { code: 'uz', name: "O'zbek", flagCode: 'uz' },
+    { code: 'kk', name: 'Қазақша', flagCode: 'kz' },
+    { code: 'ky', name: 'Кыргызча', flagCode: 'kg' },
   ]
   const currentLang = languages.find(l => l.code === selectedLanguage) ?? languages[0]
 
@@ -88,7 +89,11 @@ export default function HeaderWithCTA() {
               className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 rounded-lg hover:bg-gray-50"
             >
               <span className="uppercase">{selectedLanguage}</span>
-              <span className="text-base" aria-label={currentLang.name} title={currentLang.name}>{currentLang.flag}</span>
+              <Flag 
+                code={currentLang.flagCode} 
+                size="sm" 
+                title={currentLang.name}
+              />
             </button>
             {languageDropdownOpen && (
               <div className="absolute right-0 top-full mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
@@ -104,7 +109,11 @@ export default function HeaderWithCTA() {
                       selectedLanguage === language.code ? 'bg-brand-50 text-brand-700' : 'text-gray-700'
                     }`}
                   >
-                    <span className="text-base">{language.flag}</span>
+                    <Flag 
+                      code={language.flagCode} 
+                      size="sm" 
+                      title={language.name}
+                    />
                     <span>{language.name}</span>
                   </button>
                 ))}
