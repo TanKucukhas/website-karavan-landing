@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 
 export default function ScrollAnimator() {
   useEffect(() => {
+    // Wait for hydration to complete
     const getCandidates = () => Array.from(document.querySelectorAll<HTMLElement>('.animate-on-scroll:not(.visible)'))
 
     // Fallback/safety reveal using bounding rect checks
@@ -67,7 +68,8 @@ export default function ScrollAnimator() {
     w.addEventListener('visibilitychange', sweep)
 
     // Initial sweep in case user lands mid-page or fast-scrolls on load
-    sweep()
+    // Add small delay to ensure hydration is complete
+    setTimeout(sweep, 100)
 
     return () => {
       w.removeEventListener('scroll', onScroll)

@@ -6,41 +6,20 @@ import { animateNumber } from '@/lib/animateNumber'
 export default function CountUp({ end, duration = 1200, prefix = '', suffix = '', decimals }: { end: number; duration?: number; prefix?: string; suffix?: string; decimals?: number }) {
   const [val, setVal] = useState(0)
   const [visible, setVisible] = useState(false)
-  const [hasAnimated, setHasAnimated] = useState(false)
   const ref = useRef<HTMLSpanElement | null>(null)
 
-  // Observe when the number enters the viewport
+  // Simple visibility check with timeout
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    if (typeof window === 'undefined') return
-
-    // If IntersectionObserver is unavailable, fallback to immediate animation
-    if (!('IntersectionObserver' in window)) {
+    const timer = setTimeout(() => {
       setVisible(true)
-      return
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            setVisible(true)
-            io.unobserve(e.target)
-          }
-        }
-      },
-      { threshold: 0.18, rootMargin: '0px 0px -10% 0px' }
-    )
-    io.observe(el)
-    return () => io.disconnect()
+    }, 100)
+    return () => clearTimeout(timer)
   }, [])
 
   // Start the number animation once visible
   useEffect(() => {
-    if (!visible || hasAnimated) return
+    if (!visible) return
     
-    setHasAnimated(true)
     setVal(0)
 
     const cancel = animateNumber({ to: end, duration, onUpdate: (v) => {
@@ -52,7 +31,7 @@ export default function CountUp({ end, duration = 1200, prefix = '', suffix = ''
       }
     } })
     return cancel
-  }, [visible, end, duration, decimals, hasAnimated])
+  }, [visible, end, duration, decimals])
 
   const formatted = typeof decimals === 'number'
     ? val.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals })
