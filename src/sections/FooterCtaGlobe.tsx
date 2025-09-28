@@ -6,7 +6,7 @@ const GlobeLite = dynamic(() => import("@/components/animations/GlobeLite"), { s
 export default function FooterCtaGlobe() {
   return (
     <section className="relative section-padding bg-gradient-to-r from-[#0f1a30] to-[#0d1530] hidden md:block">
-      <GlobeLite jsonUrl="@/assets/lottie/world-lines.json" />
+      <GlobeLite />
       <div className="relative z-10 pointer-events-auto container mx-auto px-4 lg:px-8">
         <div className="mx-auto max-w-xl lt-card p-6 text-center">
           <h3 className="text-2xl font-bold text-white mb-3">Secure Your Early Access Spot</h3>

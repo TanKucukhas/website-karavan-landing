@@ -1,5 +1,8 @@
-import HeroWithInteractiveMap from '@/components/HeroWithInteractiveMap'
 import dynamic from 'next/dynamic'
+
+const HeroWithInteractiveMap = dynamic(() => import('@/components/HeroWithInteractiveMap'), { 
+  loading: () => <div className="min-h-screen bg-brand-bg flex items-center justify-center"><div className="h-10 w-10 animate-spin rounded-full border-2 border-slate-600 border-t-white" /></div> 
+})
 
 const FeaturesSection = dynamic(() => import('@/components/FeaturesSection'), { loading: () => <div className="lt-container py-16"><div className="h-24 w-full rounded-xl bg-gray-100 animate-pulse" /></div> })
 const MetricsSection = dynamic(() => import('@/components/MetricsSection'), { loading: () => <div className="lt-container py-16"><div className="grid grid-cols-2 md:grid-cols-4 gap-4">{Array.from({length:4}).map((_,i)=>(<div key={i} className="h-28 rounded-xl bg-gray-100 animate-pulse" />))}</div></div> })
@@ -11,7 +14,6 @@ const InnovationSection = dynamic(() => import('@/components/InnovationSection')
 const SalesModelsSection = dynamic(() => import('@/components/SalesModelsSection'), { loading: () => <div className="lt-container py-16"><div className="h-24 rounded-xl bg-gray-100 animate-pulse" /></div> })
 const TeamSection = dynamic(() => import('@/components/TeamSection'), { loading: () => <div className="lt-container py-16"><div className="h-24 rounded-xl bg-gray-100 animate-pulse" /></div> })
 const CTABanner = dynamic(() => import('@/components/CTABanner'), { loading: () => <div className="lt-container py-16"><div className="h-24 rounded-xl bg-gray-100 animate-pulse" /></div> })
-const ContactForm = dynamic(() => import('@/components/ContactForm'), { loading: () => <div className="py-20 bg-gray-50"><div className="container mx-auto px-4"><div className="h-96 rounded-xl bg-gray-100 animate-pulse" /></div></div> })
 
 export default function Home() {
   return (
@@ -26,7 +28,6 @@ export default function Home() {
       <InnovationSection />
       <SalesModelsSection />
       <TeamSection />
-      <ContactForm />
       <CTABanner />
     </main>
   )

@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image'
+
 type EmojiProps = {
   symbol: string;
   label?: string;
@@ -30,7 +32,7 @@ export default function Emoji({ symbol, label, className, size = 24 }: EmojiProp
   const code = toCodePoint(symbol)
   const src = `https://twemoji.maxcdn.com/v/latest/svg/${code}.svg`
   return (
-    <img
+    <Image
       src={src}
       alt={label || symbol}
       width={size}

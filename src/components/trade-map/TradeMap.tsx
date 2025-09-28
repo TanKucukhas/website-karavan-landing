@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import { ComposableMap, Geographies, Geography, Graticule } from 'react-simple-maps';
 import { geoMercator } from 'd3-geo';
 
@@ -13,31 +13,22 @@ import { normalizeLonLat, buildArcD } from '@/utils/geo';
 import ArcPath from './ArcPath';
 import NodeDot from './NodeDot';
 import Legend from './Legend';
-import type { TradeMapProps, Arc, Node } from './TradeMap.types';
+import type { TradeMapProps } from './TradeMap.types';
 import { ID_TO_COLOR, FILL_COLORS, BORDER_COLORS } from '@/utils/idColors';
 
-const WORLD_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
+// Prefer a local TopoJSON copy; fall back to CDN if missing
+const WORLD_LOCAL = '/data/world-50m.json';
+const WORLD_CDN = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
 
-// Flag colors for country nodes
-const FLAG_COLORS: Record<string, string> = {
-  TR: '#E30A17',  // Turkey red
-  UZ: '#1EB53A',  // Uzbekistan green
-  KZ: '#00A3DD',  // Kazakhstan blue
-  AZ: '#3F9C35',  // Azerbaijan green
-  HU: '#477050',  // Hungary green
-};
 
 export default function TradeMap({
   nodes, arcs, className,
   showGraticule = true,
-  animated = true,
   reducedMotionFallback = false,
   onNodeClick,
-  onArcClick,
   debug = false,
   showActiveOverlay = true,
   revealedRegions,
-  pulsingRegion,
   onReady,
   disableNodeAnimation = false,
   onFirstPaint,
@@ -59,7 +50,22 @@ export default function TradeMap({
   const wrapperRef = useRef<HTMLDivElement|null>(null);
   const geoCountRef = useRef(0);
   const stableSentRef = useRef(false);
-  const svgRef = useRef<SVGSVGElement | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [worldSrc, setWorldSrc] = useState<any>(null);
+
+  // Choose local world TopoJSON when available; otherwise fall back to CDN
+  useEffect(() => {
+    let canceled = false;
+    async function choose() {
+      try {
+        const res = await fetch(WORLD_LOCAL, { cache: 'force-cache' });
+        if (!canceled && res.ok) { setWorldSrc(WORLD_LOCAL); return; }
+      } catch { /* ignore */ }
+      if (!canceled) setWorldSrc(WORLD_CDN);
+    }
+    choose();
+    return () => { canceled = true; };
+  }, []);
 
   // Stable paint detector: waits for two consecutive frames where
   // path count and bounding box are unchanged; also emits first paint
@@ -130,15 +136,13 @@ export default function TradeMap({
     });
   }, [arcs, nodes, projection]);
 
-  // Aktif ülkeleri filtrele
-  const activeNodes = nodes.filter(n => n.status === 'launching' || n.status === 'expanding');
 
   return (
     <div 
       ref={wrapperRef}
       className={twMerge(clsx('relative w-full h-full z-10', className))} 
       aria-hidden
-      style={{ touchAction: 'none' }}
+      style={{ touchAction: 'pan-y pinch-zoom' }}
       onClick={(e) => {
         // If clicking on the map background (not on nodes), clear all selections
         if (e.target === e.currentTarget) {
@@ -179,7 +183,8 @@ export default function TradeMap({
           </defs>
 
           {/* World Map */}
-          <Geographies geography={WORLD_URL}>
+          {worldSrc && (
+          <Geographies geography={worldSrc}>
             {({ geographies }) => {
               // Update geography count and signal readiness only when features are available
               if (geographies && geographies.length) {
@@ -216,13 +221,6 @@ export default function TradeMap({
                 else if (id === 31) countryCode = 'AZ';
                 else if (id === 348) countryCode = 'HU';
 
-                const isPulsing = !!pulsingRegion && (
-                  (pulsingRegion === 'TR' && id === 792) ||
-                  (pulsingRegion === 'UZ' && id === 860) ||
-                  (pulsingRegion === 'KZ' && id === 398) ||
-                  (pulsingRegion === 'AZ' && id === 31) ||
-                  (pulsingRegion === 'HU' && id === 348)
-                );
 
                 return (
                   <g key={(geo as unknown as { rsmKey: string }).rsmKey} style={{ pointerEvents: 'none' }}>
@@ -282,6 +280,7 @@ export default function TradeMap({
               );
             }}
           </Geographies>
+          )}
 
            {/* Grid Lines */}
            {showGraticule && <Graticule stroke="#1f3356" strokeWidth={0.4} />}

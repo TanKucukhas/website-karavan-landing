@@ -2,6 +2,7 @@ import * as Headless from '@headlessui/react'
 import clsx from 'clsx'
 import React, { forwardRef } from 'react'
 import { TouchTarget } from './button'
+import Image from 'next/image'
 import { Link } from './link'
 
 type AvatarProps = {
@@ -45,7 +46,7 @@ export function Avatar({
           </text>
         </svg>
       )}
-      {src && <img className="size-full" src={src} alt={alt} />}
+      {src && <Image className="size-full" src={src} alt={alt} width={100} height={100} />}
     </span>
   )
 }

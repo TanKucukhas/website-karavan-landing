@@ -2,9 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Flag from '@/components/Flag'
-import ChartMini from '@/components/ChartMini'
 import CountUp from '@/components/CountUp'
-import { ChartBarIcon, GlobeAltIcon, UsersIcon, BoltIcon } from '@heroicons/react/24/outline'
 
 export default function MetricsSection() {
   const [counts, setCounts] = useState({
@@ -19,7 +17,6 @@ export default function MetricsSection() {
   useEffect(() => {
     const now = JSON.stringify(counts);
     if (now !== prev.current) {
-      // eslint-disable-next-line no-console
       console.log('Current counts:', counts);
       prev.current = now;
     }

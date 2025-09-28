@@ -2,7 +2,9 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { MotionConfig, useReducedMotion, motion } from 'framer-motion';
-import TradeMap from './trade-map/TradeMap';
+import dynamic from 'next/dynamic';
+// Lazy-load the heavy map code on the client only
+const TradeMap = dynamic(() => import('./trade-map/TradeMap'), { ssr: false });
 import { NODES } from './trade-map/TradeMap.data';
 import EmailCaptureInline from './EmailCaptureInline';
 import { analytics } from '@/lib/analytics';
@@ -118,7 +120,7 @@ export default function HeroWithInteractiveMap() {
       {/* Removed animated grid overlay for a cleaner background */}
       {/* Flows overlays */}
       <div className="absolute inset-0 z-30 pointer-events-none">
-        {flowsEnabled && <TradeFlows enabled={true} />}
+        {flowsEnabled && !isMobile && <TradeFlows enabled={true} />}
       </div>
     </motion.div>
   );

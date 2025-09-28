@@ -2,6 +2,13 @@ import type { NextConfig } from "next";
 
 const isProd = process.env.NODE_ENV === 'production';
 
+// Bundle analyzer
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 const nextConfig: NextConfig = {
   ...(isProd ? { output: 'export' } : {}),
   trailingSlash: true,
@@ -39,4 +46,4 @@ const nextConfig: NextConfig = {
   // },
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);

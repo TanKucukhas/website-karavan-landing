@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function ArcPath({
-  d, color, width = 1.2, delayMs = 0, zoom = 1, dashed = false, glow = true
+  d, color, width = 1.2, delayMs = 0, zoom = 1
 }: Props) {
   const ref = useRef<SVGPathElement | null>(null);
   const [len, setLen] = useState(0);
@@ -29,7 +29,6 @@ export default function ArcPath({
   const strokeWidth = width / (zoom || 1);
 
   // Dash-pattern: solid for launching/expanding; dashed for exploring
-  const dashArray = dashed ? `${8 / (zoom || 1)} ${8 / (zoom || 1)}` : '1000';
 
   return (
     <g>
