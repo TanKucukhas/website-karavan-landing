@@ -312,6 +312,7 @@ export default function TradeMap({
               {/* Trade Arcs */}
               <g>
                 {arcDs.slice(0, 5).map((arc, index) => {
+                  if (!arc) return null;
                   const fromNode = nodes.find(n => n.id === arc.from);
                   const status = fromNode?.status || 'expanding';
                   

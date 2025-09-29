@@ -1,10 +1,13 @@
 // Global cache for world data to prevent multiple fetches
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let worldDataCache: any = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let worldDataPromise: Promise<any> | null = null;
 
 const WORLD_LOCAL = '/data/world-50m.json';
 const WORLD_CDN = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function getWorldData(): Promise<any> {
   // Return cached data if available
   if (worldDataCache) {
@@ -32,7 +35,7 @@ export async function getWorldData(): Promise<any> {
         worldDataCache = data;
         return data;
       }
-    } catch (error) {
+    } catch {
       console.warn('Local world data not available, falling back to CDN');
     }
 

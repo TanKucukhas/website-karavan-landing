@@ -13,7 +13,9 @@ const TradeMap = dynamic(() => import('./trade-map/TradeMap'), { ssr: false });
 const TradeFlows = dynamic(() => import('@/components/TradeFlows'), { ssr: false });
 
 // Conditional data imports - only load on desktop
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let NODES: any[] = [];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let ARCS: any[] = [];
 
 if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
@@ -121,15 +123,23 @@ export default function HeroWithInteractiveMap() {
     return () => window.clearTimeout(spinner);
   }, [geoReady, reduced]);
 
-  // Begin flows when stage reaches 'flows'
+  // Begin flows when stage reaches 'flows' with delay
   useEffect(() => {
-    if (stage === 'flows') setFlowsEnabled(true);
+    if (stage === 'flows') {
+      // Add 2 second delay before starting flows
+      const timer = setTimeout(() => {
+        setFlowsEnabled(true);
+      }, 2000);
+      
+      return () => clearTimeout(timer);
+    }
   }, [stage]);
 
-  const visibleNodes = useMemo(() => NODES.filter(n => revealedRegions.includes(n.region)), [revealedRegions]);
+  // const visibleNodes = useMemo(() => NODES.filter(n => revealedRegions.includes(n.region)), [revealedRegions]);
 
   const SpinnerOverlay = () => (
-    spinnerVisible ? (
+    // Only show spinner on desktop where interactive map loads
+    (isDesktop && spinnerVisible) ? (
       <div className={`absolute inset-0 z-40 grid place-items-center pointer-events-none ${spinnerFading ? 'opacity-0 transition-opacity duration-200' : 'opacity-100'}`}>
         <div className="bg-slate-900/75 rounded-full px-3 py-2 backdrop-blur-md ring-1 ring-white/10 flex items-center justify-center">
           <span className="inline-block h-5 w-5 rounded-full border-2 border-sky-400/60 border-t-transparent animate-spin" />
@@ -186,7 +196,7 @@ export default function HeroWithInteractiveMap() {
 
     // Loading state for desktop
     return null;
-  }, [isMobile, isTablet, isDesktop, mountMap, stage, revealedRegions, pulsingRegion, reduced, flowsEnabled, geoReady, stablePaint]);
+  }, [isMobile, isTablet, isDesktop, mountMap, stage, revealedRegions, pulsingRegion, reduced, flowsEnabled]);
 
   return (
     <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>

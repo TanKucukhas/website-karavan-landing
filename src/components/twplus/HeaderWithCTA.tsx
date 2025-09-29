@@ -178,7 +178,11 @@ export default function HeaderWithCTA() {
                           : 'text-gray-700 hover:bg-gray-50'
                       }`}
                     >
-                      <span className="text-base">{language.flag}</span>
+                      <Flag 
+                        code={language.flagCode} 
+                        size="sm" 
+                        title={language.name}
+                      />
                       <span>{language.name}</span>
                     </button>
                   ))}

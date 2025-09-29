@@ -44,7 +44,7 @@ export function ArcPathNatural({
     }
     run();
     return () => { canceled = true; };
-  }, [active, len, reduced]);
+  }, [active, len, reduced, ctrl, id, onCycleEnd]);
 
   const strokeWidth = width / (zoom || 1);
 

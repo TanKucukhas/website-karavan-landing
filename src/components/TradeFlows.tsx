@@ -11,6 +11,7 @@ const geoMercatorAny = geoMercator as any;
 type Arc = { id:string; from:string; to:string; strength?:number };
 
 export default function TradeFlows({ enabled }:{ enabled:boolean }) {
+
   const arcs: Arc[] = ARCS;
   const projection = useMemo(() => {
     // Mobil cihazlarda zoom seviyesini daha da artır ve center'ı sola kaydır
