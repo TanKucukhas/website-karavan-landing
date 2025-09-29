@@ -3,13 +3,25 @@
 import { useEffect, useMemo, useState } from 'react';
 import { MotionConfig, useReducedMotion, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
-// Lazy-load the heavy map code on the client only
-const TradeMap = dynamic(() => import('./trade-map/TradeMap'), { ssr: false });
-import { NODES } from './trade-map/TradeMap.data';
 import EmailCaptureInline from './EmailCaptureInline';
 import { analytics } from '@/lib/analytics';
-import TradeFlows from '@/components/TradeFlows';
+import StaticMap from '@/components/StaticMap';
 import { useMapLoadingGate } from '@/hooks/useMapLoadingGate';
+
+// Conditional imports - only load heavy components on desktop
+const TradeMap = dynamic(() => import('./trade-map/TradeMap'), { ssr: false });
+const TradeFlows = dynamic(() => import('@/components/TradeFlows'), { ssr: false });
+
+// Conditional data imports - only load on desktop
+let NODES: any[] = [];
+let ARCS: any[] = [];
+
+if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
+  import('./trade-map/TradeMap.data').then(module => {
+    NODES = module.NODES;
+    ARCS = module.ARCS;
+  });
+}
 
 const IMPORTANT_REGIONS = ['TR', 'UZ', 'KZ', 'AZ', 'HU'];
 
@@ -23,12 +35,36 @@ export default function HeroWithInteractiveMap() {
   const [flowsEnabled, setFlowsEnabled] = useState(false);
   const [mountMap, setMountMap] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { spinnerVisible, spinnerFading } = useMapLoadingGate({ geoReady, stablePaint }, { minMs: 900, maxMs: 8000, fadeMs: 180 });
+  const [isTablet, setIsTablet] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  
+  // Only use loading gate on desktop
+  const { spinnerVisible, spinnerFading } = useMapLoadingGate(
+    { geoReady, stablePaint }, 
+    { minMs: 900, maxMs: 8000, fadeMs: 180 }
+  );
 
   useEffect(() => { analytics.mapArcView(); }, []);
 
-  // Mount map after initial content paints (background load)
+  // Device detection
   useEffect(() => {
+    const checkDevice = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsTablet(width >= 768 && width < 1024);
+      setIsDesktop(width >= 1024);
+    };
+
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
+
+  // Mount map after initial content paints (background load) - only on desktop
+  useEffect(() => {
+    if (!isDesktop) return;
+    
     let to: number | undefined;
     type WindowWithRIC = Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }
     const idle = (cb: () => void) => {
@@ -40,7 +76,7 @@ export default function HeroWithInteractiveMap() {
     };
     idle(() => setMountMap(true));
     return () => { if (to) window.clearTimeout(to); };
-  }, []);
+  }, [isDesktop]);
 
   // Spinner overlay (centered, non-blocking for content)
 
@@ -102,28 +138,55 @@ export default function HeroWithInteractiveMap() {
     ) : null
   );
 
-  const MapLayer = (
-    <motion.div className="absolute inset-0 pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: stage !== 'loading' ? 1 : 0 }} transition={{ duration: 0.35 }}>
-      <TradeMap
-        nodes={visibleNodes}
-        arcs={[]}
-        showGraticule
-        showActiveOverlay
-        revealedRegions={revealedRegions}
-        pulsingRegion={pulsingRegion}
-         reducedMotionFallback={!!reduced}
-        className="h-full w-full"
-        disableNodeAnimation={isMobile || !!reduced}
-        onReady={() => setGeoReady(true)}
-        onStablePaint={() => setStablePaint(true)}
-      />
-      {/* Removed animated grid overlay for a cleaner background */}
-      {/* Flows overlays */}
-      <div className="absolute inset-0 z-30 pointer-events-none">
-        {flowsEnabled && !isMobile && <TradeFlows enabled={true} />}
-      </div>
-    </motion.div>
-  );
+  // Conditional MapLayer - only load heavy components on desktop
+  const MapLayer = useMemo(() => {
+    // Mobile and tablet: use static map only
+    if (isMobile || isTablet) {
+      return (
+        <motion.div 
+          className="absolute inset-0 pointer-events-none overflow-hidden max-w-[100vw]"
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={{ duration: 0.35 }}
+        >
+          <StaticMap className="h-full w-full" />
+        </motion.div>
+      );
+    }
+
+    // Desktop: use interactive map
+    if (isDesktop && mountMap) {
+      return (
+        <motion.div 
+          className="absolute inset-0 pointer-events-none overflow-hidden max-w-[100vw]"
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: stage !== 'loading' ? 1 : 0 }} 
+          transition={{ duration: 0.35 }}
+        >
+          <TradeMap
+            nodes={NODES}
+            arcs={ARCS}
+            showGraticule
+            showActiveOverlay
+            revealedRegions={revealedRegions}
+            pulsingRegion={pulsingRegion}
+            reducedMotionFallback={!!reduced}
+            className="h-full w-full"
+            disableNodeAnimation={!!reduced}
+            onReady={() => setGeoReady(true)}
+            onStablePaint={() => setStablePaint(true)}
+          />
+          {/* Flows overlays */}
+          <div className="absolute inset-0 z-30 pointer-events-none">
+            {flowsEnabled && <TradeFlows enabled={true} />}
+          </div>
+        </motion.div>
+      );
+    }
+
+    // Loading state for desktop
+    return null;
+  }, [isMobile, isTablet, isDesktop, mountMap, stage, revealedRegions, pulsingRegion, reduced, flowsEnabled, geoReady, stablePaint]);
 
   return (
     <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
@@ -133,8 +196,8 @@ export default function HeroWithInteractiveMap() {
         {/* Mobile: Stacked Layout (<768px) */}
         <div className="md:hidden">
           {/* Map - Top Half */}
-          <div className="h-[50vh] relative">
-            {mountMap ? MapLayer : null}
+          <div className="h-[50vh] relative overflow-hidden">
+            {(isMobile || isTablet || mountMap) ? MapLayer : null}
           </div>
 
           {/* Form - Bottom Half */}
@@ -156,7 +219,7 @@ export default function HeroWithInteractiveMap() {
 
         {/* Tablet: Centered Layout (768px-1024px) */}
         <div className="hidden md:block lg:hidden">
-          <div className="absolute inset-0 w-full" aria-hidden>{mountMap ? MapLayer : null}</div>
+          <div className="absolute inset-0 w-full overflow-hidden" aria-hidden>{(isMobile || isTablet || mountMap) ? MapLayer : null}</div>
           <div className="relative z-10 min-h-screen">
             <div className="container mx-auto px-4 lg:px-8 py-16">
               <div className="max-w-md w-full">
@@ -178,7 +241,7 @@ export default function HeroWithInteractiveMap() {
 
         {/* Desktop: Floating Card Layout (>1024px) */}
         <div className="hidden lg:block">
-          <div className="absolute inset-0 w-full" aria-hidden>{mountMap ? MapLayer : null}</div>
+          <div className="absolute inset-0 w-full overflow-hidden" aria-hidden>{mountMap ? MapLayer : null}</div>
           <div className="absolute top-32 z-30 w-full">
             <div className="container mx-auto px-4 lg:px-8">
               <div className="max-w-md lg:max-w-lg w-96 lg:w-[28rem]">

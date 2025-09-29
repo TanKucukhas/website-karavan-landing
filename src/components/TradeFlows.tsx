@@ -13,11 +13,12 @@ type Arc = { id:string; from:string; to:string; strength?:number };
 export default function TradeFlows({ enabled }:{ enabled:boolean }) {
   const arcs: Arc[] = ARCS;
   const projection = useMemo(() => {
-    // Mobil cihazlarda zoom seviyesini daha da artır
+    // Mobil cihazlarda zoom seviyesini daha da artır ve center'ı sola kaydır
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const scale = isMobile ? 350 : 180;
+    const centerLon = isMobile ? 28 : 35; // Mobilde 7 derece sola kaydır (100px daha)
     
-    return geoMercatorAny().center([35,39]).scale(scale).translate([512, 260]);
+    return geoMercatorAny().center([centerLon, 39]).scale(scale).translate([512, 260]);
   }, []);
   const nodes = useMemo(() => new Map(NODES.map(n => [n.id, n])), []);
 
@@ -44,12 +45,16 @@ export default function TradeFlows({ enabled }:{ enabled:boolean }) {
   const zoom = 1; // if using ZoomableGroup, pass actual zoom
 
   return (
-    <svg viewBox="0 0 1024 520" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+    <svg 
+      viewBox="0 0 1024 520" 
+      preserveAspectRatio="xMidYMid slice" 
+      className="h-full w-full"
+    >
       <g>
         {arcs.map(a => {
           // Mobil cihazlarda arc kalınlığını artır
           const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-          const mobileWidthMultiplier = isMobile ? 2.5 : 1.0;
+          const mobileWidthMultiplier = isMobile ? 2.8 : 1.0;
           const baseWidth = a.strength === 3 ? 1.8 : a.strength === 2 ? 1.3 : 1.0;
           const width = baseWidth * mobileWidthMultiplier;
           

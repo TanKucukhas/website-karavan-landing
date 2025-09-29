@@ -37,12 +37,13 @@ export default function TradeMap({
 
   // Tek projeksiyon objesi - sabit; SVG ölçeklenerek tam genişlik verilir
   const projection = useMemo(() => {
-    // Mobil cihazlarda zoom seviyesini daha da artır
+    // Mobil cihazlarda zoom seviyesini daha da artır ve center'ı sola kaydır
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const scale = isMobile ? 350 : 180;
+    const centerLon = isMobile ? 28 : 35; // Mobilde 7 derece sola kaydır (100px daha)
     
     return geoMercatorAny()
-      .center([35, 39])
+      .center([centerLon, 39])
       .scale(scale)
       .translate([512, 260]);
   }, []);
@@ -133,11 +134,16 @@ export default function TradeMap({
     const nodesById = Object.fromEntries(nodes.map(n => [n.id, n]));
     return arcs.map(a => {
       const f = nodesById[a.from], t = nodesById[a.to];
+      // Güvenli kontrol: node'lar bulunamazsa arc'ı atla
+      if (!f || !t) {
+        console.warn(`Arc ${a.id}: Node not found - from: ${a.from}, to: ${a.to}`);
+        return null;
+      }
       return { 
         ...a,
         d: buildArcD(projection, [f.lon, f.lat], [t.lon, t.lat])
       };
-    });
+    }).filter(Boolean); // null değerleri filtrele
   }, [arcs, nodes, projection]);
 
 
@@ -159,7 +165,7 @@ export default function TradeMap({
           projection="geoMercator"
           projectionConfig={{ 
             scale: typeof window !== 'undefined' && window.innerWidth < 768 ? 350 : 180, 
-            center: [35, 39] 
+            center: typeof window !== 'undefined' && window.innerWidth < 768 ? [28, 39] : [35, 39]
           }}
           style={{ width:'100%', height:'100%' }}
           width={1024}
@@ -311,8 +317,8 @@ export default function TradeMap({
                   
                   // Mobil cihazlarda arc görünürlüğünü artır
                   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-                  const mobileWidthMultiplier = isMobile ? 2.0 : 1.0;
-                  const mobileOpacityMultiplier = isMobile ? 1.5 : 1.0;
+                  const mobileWidthMultiplier = isMobile ? 2.2 : 1.0;
+                  const mobileOpacityMultiplier = isMobile ? 1.8 : 1.0;
                   
                   return (
                     <ArcPath

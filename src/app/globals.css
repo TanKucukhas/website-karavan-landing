@@ -25,6 +25,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* prevent accidental horizontal scroll at root */
   }
   
   body {
@@ -32,6 +33,7 @@
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* prevent accidental horizontal scroll */
   }
   
   * {
