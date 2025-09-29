@@ -59,7 +59,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
   }
 
   return (
-    <div className="space-y-4 max-w-sm ml-0">
+    <div className="space-y-4 w-full max-w-sm">
       {/* Email Input - Full Line */}
       <form onSubmit={onSubmit} className="space-y-4">
         <div>
@@ -69,7 +69,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
             type="email"
             required
             placeholder="your@company.com"
-            className="w-full rounded-xl bg-white border border-gray-300 shadow-sm px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:outline-none"
+            className="w-full rounded-xl bg-white border border-gray-300 shadow-sm px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:outline-none text-base"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onBlur={() => {
@@ -84,7 +84,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
         </div>
 
         {/* Role Toggle and CTA Button Row */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col gap-4">
           {/* Role Toggle Switch */}
           <ToggleSwitch
             leftLabel="Seller"
@@ -97,7 +97,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
           <button
             type="submit"
             disabled={loading}
-            className="h-11 rounded-xl btn-brand-gradient disabled:opacity-60 focus:ring-2 focus:ring-brand-600 focus:outline-none"
+            className="w-full h-12 rounded-xl btn-brand-gradient disabled:opacity-60 focus:ring-2 focus:ring-brand-600 focus:outline-none text-base font-medium"
           >
             {loading ? 'Submitting...' : 'Get Early Access'}
           </button>

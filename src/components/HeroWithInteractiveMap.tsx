@@ -190,7 +190,7 @@ export default function HeroWithInteractiveMap() {
 
   return (
     <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
-      <section className="relative bg-white text-[color:var(--ink)] w-full overflow-hidden" style={{ minHeight: 'calc(100svh - var(--header-h, 64px))', width: '100vw', marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
+      <section className="relative bg-white text-[color:var(--ink)] w-full" style={{ minHeight: 'calc(100svh - var(--header-h, 64px))', width: '100vw', marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
         <SpinnerOverlay />
 
         {/* Mobile: Stacked Layout (<768px) */}
@@ -200,19 +200,21 @@ export default function HeroWithInteractiveMap() {
             {(isMobile || isTablet || mountMap) ? MapLayer : null}
           </div>
 
-          {/* Form - Bottom Half */}
-          <div className="h-[50vh] pt-8 pb-6 flex flex-col justify-start relative z-10 bg-white">
-            <div className="container mx-auto px-4 lg:px-8">
+          {/* Form - Bottom Half with proper scrolling */}
+          <div className="min-h-[50vh] -mt-36 pb-8 flex flex-col justify-start relative z-10 bg-white overflow-y-auto">
+            <div className="container mx-auto px-4 lg:px-8 flex-1">
               <div className="mb-6">
-                <h1 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight mb-4">
                   Secure B2B trade across the <span className="text-brand-600">Turkic States</span>
                 </h1>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
                   Launching first in Türkiye & Uzbekistan.<br />
                   Escrow payments, logistics, customs, and finance options.
                 </p>
               </div>
-              <EmailCaptureInline defaultRole="seller" source="hero-interactive-map" />
+              <div className="pb-4">
+                <EmailCaptureInline defaultRole="seller" source="hero-interactive-map" />
+              </div>
             </div>
           </div>
         </div>

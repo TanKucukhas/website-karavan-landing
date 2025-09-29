@@ -32,7 +32,7 @@ export default function ToggleSwitch({
   };
 
   return (
-    <div className={`relative inline-flex rounded-xl bg-gray-100 p-1 ${className}`} role="tablist">
+    <div className={`relative inline-flex rounded-xl bg-gray-100 p-1 w-full sm:w-auto ${className}`} role="tablist">
       {/* Background Slider */}
       <div 
         className={`absolute top-1 bottom-1 w-[calc(50%-2px)] bg-white rounded-lg shadow-sm ring-1 ring-gray-300 transition-transform duration-200 ease-in-out ${
@@ -45,7 +45,7 @@ export default function ToggleSwitch({
         type="button"
         role="tab"
         aria-selected={value === 'left'}
-        className={`relative z-10 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
+        className={`relative z-10 px-4 py-3 sm:py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex-1 ${
           value === 'left' 
             ? 'text-gray-900' 
             : 'text-gray-600 hover:text-gray-800'
@@ -60,7 +60,7 @@ export default function ToggleSwitch({
         type="button"
         role="tab"
         aria-selected={value === 'right'}
-        className={`relative z-10 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
+        className={`relative z-10 px-4 py-3 sm:py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex-1 ${
           value === 'right' 
             ? 'text-gray-900' 
             : 'text-gray-600 hover:text-gray-800'

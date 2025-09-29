@@ -57,8 +57,8 @@ export default function MetricsSection() {
           <p className="lt-subtext">Our platform is already facilitating secure trade between Turkey and Central Asia with measurable results.</p>
         </div>
 
-        {/* KPI Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
+        {/* KPI Cards - Single Stack */}
+        <div className="space-y-6 mb-16">
           {metrics.map((metric, index) => (
             <div key={index} className="lt-card p-8 text-center">
               <div className={`text-5xl font-bold ${metric.color} mb-2`}>
