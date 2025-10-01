@@ -139,9 +139,9 @@ export default function Footer() {
                 <div className="flex items-start gap-3">
                   <MapPinIcon className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" />
                   <div className="text-gray-400 text-sm">
-                    <div className="font-semibold text-white mb-1">KARAVAN DIGITAL CORP</div>
-                    <div>32 HILLCREST RD</div>
-                    <div>WARREN, NJ 07059</div>
+                    <div className="font-semibold text-white mb-1">Karavan Digital Corp</div>
+                    <div>32 Hillcrest Rd</div>
+                    <div>Warren, NJ 07059</div>
                     <div className="text-xs text-gray-500 mt-1">United States</div>
                   </div>
                 </div>

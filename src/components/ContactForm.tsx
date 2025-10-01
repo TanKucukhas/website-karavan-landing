@@ -86,9 +86,9 @@ export default function ContactForm() {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Office Address</h4>
                     <address className="not-italic text-gray-600">
-                      <div className="font-semibold">KARAVAN DIGITAL CORP</div>
-                      <div>32 HILLCREST RD</div>
-                      <div>WARREN, NJ 07059</div>
+                      <div className="font-semibold">Karavan Digital Corp</div>
+                      <div>32 Hillcrest Rd</div>
+                      <div>Warren, NJ 07059</div>
                       <div className="text-sm text-gray-500 mt-1">United States</div>
                     </address>
                   </div>
@@ -293,13 +293,13 @@ export default function ContactForm() {
                   </div>
                 )}
 
-                <Button
+                <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-6 px-8 rounded-lg text-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg min-h-[60px]"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
-                </Button>
+                </button>
                 </form>
               )}
             </div>

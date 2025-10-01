@@ -27,7 +27,6 @@ import Script from 'next/script'
 import HeaderWithCTA from '@/components/twplus/HeaderWithCTA'
 import GlobalBackground from '@/components/GlobalBackground'
 import Footer from '@/components/Footer'
-import ScrollAnimator from '@/components/ScrollAnimator'
 import Analytics from '@/components/Analytics'
 import { Suspense } from 'react'
 
@@ -63,14 +62,13 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="js-enabled">
+      <body>
         <GlobalBackground />
         <HeaderWithCTA />
         {/* Tracks page_view on route changes */}
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>
-        <ScrollAnimator />
         <div className="pt-16">{children}</div>
         <Footer />
       </body>
