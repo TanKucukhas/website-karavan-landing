@@ -238,8 +238,8 @@
   .section-padding { @apply py-20 md:py-24; }
   /* Reveal on scroll - start visible for SSR/SEO, animate only when JS loads */
   .animate-on-scroll { @apply opacity-100 translate-y-0 transition-all duration-700 ease-out; }
-  body.js-loaded .animate-on-scroll:not(.visible) { @apply opacity-0 translate-y-8; }
-  body.js-loaded .animate-on-scroll.visible { @apply opacity-100 translate-y-0; }
+  body.js-enabled .animate-on-scroll:not(.visible) { @apply opacity-0 translate-y-8; }
+  body.js-enabled .animate-on-scroll.visible { @apply opacity-100 translate-y-0; }
 
   /* Light grid overlay + Aurora blobs (for advanced background feel) */
   .grid-overlay-light {

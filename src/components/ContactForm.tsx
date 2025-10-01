@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/catalyst/button'
-import { EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import { EnvelopeIcon, MapPinIcon, PhoneIcon, ClockIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -89,6 +89,7 @@ export default function ContactForm() {
                       <div className="font-semibold">KARAVAN DIGITAL CORP</div>
                       <div>32 HILLCREST RD</div>
                       <div>WARREN, NJ 07059</div>
+                      <div className="text-sm text-gray-500 mt-1">United States</div>
                     </address>
                   </div>
                 </div>
@@ -102,9 +103,58 @@ export default function ContactForm() {
                     <a href="mailto:info@karavan.net" className="text-brand-600 hover:text-brand-700 transition-colors">
                       info@karavan.net
                     </a>
+                    <p className="text-sm text-gray-500 mt-1">For general inquiries</p>
                   </div>
                 </div>
 
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <PhoneIcon className="w-6 h-6 text-brand-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
+                    <a href="tel:+15551234567" className="text-brand-600 hover:text-brand-700 transition-colors">
+                      +1 (555) 123-4567
+                    </a>
+                    <p className="text-sm text-gray-500 mt-1">Business hours only</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <ClockIcon className="w-6 h-6 text-brand-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Business Hours</h4>
+                    <div className="text-gray-600 space-y-1">
+                      <p>Monday - Friday: 9:00 AM - 6:00 PM EST</p>
+                      <p className="text-sm text-gray-500">Response time: Within 24 hours</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Social Links */}
+              <div className="mt-8 pt-8 border-t border-gray-200">
+                <h4 className="font-semibold text-gray-900 mb-4">Follow Us</h4>
+                <div className="flex gap-4">
+                  <a href="https://www.linkedin.com/company/KaravanOfficial" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-100 hover:bg-brand-100 rounded-lg flex items-center justify-center transition-colors">
+                    <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </a>
+                  <a href="https://x.com/KaravanConnect" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-100 hover:bg-brand-100 rounded-lg flex items-center justify-center transition-colors">
+                    <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                  </a>
+                  <a href="https://www.facebook.com/KaravanConnect" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-100 hover:bg-brand-100 rounded-lg flex items-center justify-center transition-colors">
+                    <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -252,6 +302,80 @@ export default function ContactForm() {
                 </Button>
                 </form>
               )}
+            </div>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-100 rounded-full mb-4">
+                <QuestionMarkCircleIcon className="w-8 h-8 text-brand-600" />
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h3>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Quick answers to common questions about Karavan
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">What is Karavan?</h4>
+                <p className="text-gray-600">
+                  Karavan is a B2B export platform connecting Turkish exporters with buyers across Central Asia and Eastern Europe. We provide end-to-end solutions including escrow payments, logistics, and customs support.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">How do I get started?</h4>
+                <p className="text-gray-600">
+                  Sign up for early access through our platform. Once approved, you&apos;ll receive onboarding support to set up your account and start trading within 24-48 hours.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">Which countries do you operate in?</h4>
+                <p className="text-gray-600">
+                  We currently operate in Türkiye, Uzbekistan, Kazakhstan, Kyrgyzstan, Turkmenistan, Azerbaijan, and Hungary, with plans to expand to more regions.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">What payment methods do you support?</h4>
+                <p className="text-gray-600">
+                  We support secure escrow payments, bank transfers, and various local payment methods. All transactions are protected until delivery confirmation.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">Do you handle customs and logistics?</h4>
+                <p className="text-gray-600">
+                  Yes! We provide integrated logistics coordination, customs clearance support, and real-time tracking for all shipments through our partner network.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">What are your fees?</h4>
+                <p className="text-gray-600">
+                  Our fee structure is transparent and competitive. During the early access period, we offer special pricing. Contact us for detailed pricing information.
+                </p>
+              </div>
+            </div>
+
+            {/* Additional Help */}
+            <div className="mt-12 bg-brand-50 rounded-2xl p-8 text-center">
+              <h4 className="text-xl font-bold text-gray-900 mb-2">Still have questions?</h4>
+              <p className="text-gray-600 mb-4">
+                Our team is here to help. Reach out via email or phone during business hours.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <a href="mailto:info@karavan.net" className="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700 transition-colors">
+                  <EnvelopeIcon className="w-5 h-5" />
+                  Email Us
+                </a>
+                <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors border border-brand-600">
+                  Send Message
+                </a>
+              </div>
             </div>
           </div>
         </div>

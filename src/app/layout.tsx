@@ -63,7 +63,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body>
+      <body className="js-enabled">
         <GlobalBackground />
         <HeaderWithCTA />
         {/* Tracks page_view on route changes */}

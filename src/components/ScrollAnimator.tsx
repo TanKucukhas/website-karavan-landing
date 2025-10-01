@@ -13,9 +13,7 @@ export default function ScrollAnimator() {
   useEffect(() => {
     if (!isHydrated) return
 
-    // Mark body as JS-enabled for CSS
-    document.body.classList.add('js-loaded')
-
+    // Body already has js-enabled class from layout
     const getCandidates = () => Array.from(document.querySelectorAll<HTMLElement>('.animate-on-scroll:not(.visible)'))
 
     // Fallback/safety reveal using bounding rect checks
@@ -64,28 +62,25 @@ export default function ScrollAnimator() {
     // Observe initial candidates
     getCandidates().forEach((el) => io.observe(el))
 
-    // Fallback sweep on fast jumps and hash navigation
-    const onScroll = () => requestAnimationFrame(sweep)
-    const onResize = () => requestAnimationFrame(() => {
-      // On resize, re-observe any newly added candidates and sweep
-      getCandidates().forEach((el) => io.observe(el))
-      sweep()
-    })
-
-    const w = window as Window
-    w.addEventListener('scroll', onScroll, { passive: true })
-    w.addEventListener('resize', onResize)
-    w.addEventListener('orientationchange', onResize)
-    w.addEventListener('visibilitychange', sweep)
-
-    // Initial sweep immediately after hydration
+    // Initial sweep for elements already in viewport
     sweep()
 
+    // Only handle resize and visibility change (no scroll listener needed)
+    const onResize = () => {
+      requestAnimationFrame(() => {
+        // Re-observe any newly visible candidates
+        getCandidates().forEach((el) => io.observe(el))
+        sweep()
+      })
+    }
+
+    const w = window as Window
+    w.addEventListener('resize', onResize, { passive: true })
+    w.addEventListener('orientationchange', onResize, { passive: true })
+
     return () => {
-      w.removeEventListener('scroll', onScroll)
       w.removeEventListener('resize', onResize)
       w.removeEventListener('orientationchange', onResize)
-      w.removeEventListener('visibilitychange', sweep)
       io.disconnect()
     }
   }, [isHydrated])

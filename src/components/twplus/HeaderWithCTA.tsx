@@ -11,8 +11,8 @@ import Flag from '@/components/Flag'
 
 const navigation = [
   { name: 'Features', href: '#features' },
-  { name: 'Regions', href: '#regions' },
   { name: 'Categories', href: '#categories' },
+  { name: 'Regions', href: '#regions' },
   { name: 'Contact', href: '/contact' },
 ]
 
