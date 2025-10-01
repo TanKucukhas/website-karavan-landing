@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { analytics } from '@/lib/analytics'
-// Light version without emojis
 
 
 export default function CTABanner() {
@@ -114,7 +114,7 @@ export default function CTABanner() {
                       required
                     >
                       <option value="">Select your country</option>
-                      <option value="Turkey">Turkey</option>
+                      <option value="Türkiye">Türkiye</option>
                       <option value="Uzbekistan">Uzbekistan</option>
                       <option value="Kazakhstan">Kazakhstan</option>
                       <option value="Kyrgyzstan">Kyrgyzstan</option>
@@ -146,7 +146,7 @@ export default function CTABanner() {
               </form>
             ) : (
               <div className="bg-emerald-500 text-white px-8 py-6 rounded-2xl font-semibold text-center">
-                <div className="text-4xl mb-2">✓</div>
+                <CheckCircleIcon className="w-12 h-12 mx-auto mb-2" />
                 <h3 className="text-xl font-bold mb-2">Thanks for your interest!</h3>
                 <p>We&apos;ll send the next steps to your email soon.</p>
               </div>

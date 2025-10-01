@@ -15,7 +15,7 @@ export default function MetricsSection() {
     {
       value: '7-14',
       label: 'Days Shipping Lead Time',
-      description: 'Average delivery time from Turkey to Central Asia',
+      description: 'Average delivery time from Türkiye to Central Asia',
       color: 'text-green-600',
       footnote: 'Based on pilot shipments'
     },
@@ -36,12 +36,13 @@ export default function MetricsSection() {
   ];
 
   const coreMarkets = [
-    { country: 'Turkey', flagCode: 'tr', status: 'live', populationM: 86, color: 'bg-brand-50 text-brand-800' },
+    { country: 'Türkiye', flagCode: 'tr', status: 'live', populationM: 86, color: 'bg-brand-50 text-brand-800' },
     { country: 'Uzbekistan', flagCode: 'uz', status: 'expanding', populationM: 36, color: 'bg-green-100 text-green-800' },
     { country: 'Kazakhstan', flagCode: 'kz', status: 'expanding', populationM: 20, color: 'bg-green-100 text-green-800' },
     { country: 'Kyrgyzstan', flagCode: 'kg', status: 'live', populationM: 7, color: 'bg-brand-50 text-brand-800' },
     { country: 'Turkmenistan', flagCode: 'tm', status: 'live', populationM: 6, color: 'bg-brand-50 text-brand-800' },
-    { country: 'Azerbaijan', flagCode: 'az', status: 'expanding', populationM: 10, color: 'bg-green-100 text-green-800' }
+    { country: 'Azerbaijan', flagCode: 'az', status: 'expanding', populationM: 10, color: 'bg-green-100 text-green-800' },
+    { country: 'Hungary', flagCode: 'hu', status: 'expanding', populationM: 10, color: 'bg-green-100 text-green-800' }
   ].sort((a, b) => {
     // Live markets first, then expanding
     if (a.status === b.status) return 0
@@ -54,7 +55,7 @@ export default function MetricsSection() {
       <div className="lt-container">
         <div className="text-center mb-14">
           <h2 className="lt-heading mb-4">Secure B2B Trade Metrics</h2>
-          <p className="lt-subtext">Our platform is already facilitating secure trade between Turkey and Central Asia with measurable results.</p>
+          <p className="lt-subtext">Our platform is already facilitating secure trade between Türkiye and Central Asia with measurable results.</p>
         </div>
 
         {/* KPI Cards - Single Stack */}
@@ -77,7 +78,7 @@ export default function MetricsSection() {
         {/* Core Markets Strip */}
         <div className="lt-card p-8">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Core Markets</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
             {coreMarkets.map((market, index) => (
               <div key={index} className="text-center p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300">
                 <div className="text-3xl mb-2">

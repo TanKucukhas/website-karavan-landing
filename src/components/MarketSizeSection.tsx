@@ -33,7 +33,7 @@ export default function MarketSizeSection() {
           </div>
 
           <p className="mt-8 text-gray-600 text-center">
-            Combined addressable market spans Central Asia and adjacent regions with strong trade corridors from Turkey.
+            Combined addressable market spans Central Asia and adjacent regions with strong trade corridors from Türkiye.
           </p>
         </div>
       </div>

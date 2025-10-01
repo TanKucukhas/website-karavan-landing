@@ -1,7 +1,7 @@
 export default function PartnershipsSection() {
   const metrics = [
-    { value: '2.5M', label: 'Companies' },
-    { value: '6', label: 'Chambers Engaged' },
+    { value: '3M', label: 'Companies' },
+    { value: '8', label: 'National Chambers' },
   ]
 
   const partners = ['TCCI', 'TOBB', 'Chambers', 'Navlungo', 'Stripe', 'PayPorter']

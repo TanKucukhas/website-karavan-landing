@@ -22,7 +22,6 @@ export default function ArcPath({
     if (!ref.current) return;
     const L = ref.current.getTotalLength();
     setLen(L);
-    console.log('Path length:', L); // Debug için
   }, [d, delayMs]);
 
   // non-scaling stroke keeps width stable on zoom

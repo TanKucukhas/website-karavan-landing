@@ -36,12 +36,12 @@ export default function TrustedPartnersSection() {
 
         <div className="mt-12 grid sm:grid-cols-2 gap-6">
           <div className="lt-card p-6 text-center">
-            <div className="text-3xl font-bold text-brand-600"><CountUp end={2.5} decimals={1} suffix="M" /></div>
-            <div className="text-gray-700">Companies Connected</div>
+            <div className="text-3xl font-bold text-brand-600"><CountUp end={3} suffix="M" /></div>
+            <div className="text-gray-700">Companies</div>
           </div>
           <div className="lt-card p-6 text-center">
-            <div className="text-3xl font-bold text-brand-600"><CountUp end={6} /></div>
-            <div className="text-gray-700">Chambers Engaged</div>
+            <div className="text-3xl font-bold text-brand-600"><CountUp end={8} /></div>
+            <div className="text-gray-700">National Chambers</div>
           </div>
         </div>
       </div>

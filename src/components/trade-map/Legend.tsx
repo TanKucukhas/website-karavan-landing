@@ -1,10 +1,13 @@
 'use client';
 
+import Flag from '@/components/Flag';
+
 const FLAG_COLORS: Record<string, string> = {
   TR: '#e67e7e',  // Pastel Turkey red
   UZ: '#7bb3a8',  // Pastel Uzbekistan green
   KZ: '#7bb3f0',  // Pastel Kazakhstan blue
   AZ: '#7bb3a8',  // Pastel Azerbaijan green
+  TM: '#90c695',  // Pastel Turkmenistan green
   HU: '#8a9b8a',  // Pastel Hungary green
 };
 
@@ -13,6 +16,7 @@ const COUNTRY_NAMES: Record<string, string> = {
   UZ: 'Uzbekistan',
   KZ: 'Kazakhstan',
   AZ: 'Azerbaijan',
+  TM: 'Turkmenistan',
   HU: 'Hungary',
 };
 
@@ -30,6 +34,7 @@ export default function Legend({ className = '' }: Props) {
               className="w-2 h-2 rounded-full shadow-sm" 
               style={{ backgroundColor: color }}
             />
+            <Flag code={code.toLowerCase()} size="xs" className="w-3 h-3" />
                 <span className="text-gray-400 font-normal text-xs">
               {COUNTRY_NAMES[code]}
             </span>

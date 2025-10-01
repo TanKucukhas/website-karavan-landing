@@ -1,10 +1,21 @@
 "use client";
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function ScrollAnimator() {
+  const [isHydrated, setIsHydrated] = useState(false)
+
   useEffect(() => {
-    // Wait for hydration to complete
+    // Mark as hydrated
+    setIsHydrated(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isHydrated) return
+
+    // Mark body as JS-enabled for CSS
+    document.body.classList.add('js-loaded')
+
     const getCandidates = () => Array.from(document.querySelectorAll<HTMLElement>('.animate-on-scroll:not(.visible)'))
 
     // Fallback/safety reveal using bounding rect checks
@@ -67,9 +78,8 @@ export default function ScrollAnimator() {
     w.addEventListener('orientationchange', onResize)
     w.addEventListener('visibilitychange', sweep)
 
-    // Initial sweep in case user lands mid-page or fast-scrolls on load
-    // Add small delay to ensure hydration is complete
-    setTimeout(sweep, 100)
+    // Initial sweep immediately after hydration
+    sweep()
 
     return () => {
       w.removeEventListener('scroll', onScroll)
@@ -78,6 +88,6 @@ export default function ScrollAnimator() {
       w.removeEventListener('visibilitychange', sweep)
       io.disconnect()
     }
-  }, [])
+  }, [isHydrated])
   return null
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import Flag from '@/components/Flag'
 
 export default function HeroSection() {
@@ -10,11 +11,11 @@ export default function HeroSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const tradeRoutes = [
-    { from: 'TR', to: 'UZ', label: 'Turkey → Uzbekistan' },
-    { from: 'TR', to: 'KZ', label: 'Turkey → Kazakhstan' },
-    { from: 'TR', to: 'KG', label: 'Turkey → Kyrgyzstan' },
-    { from: 'TR', to: 'TM', label: 'Turkey → Turkmenistan' },
-    { from: 'TR', to: 'AZ', label: 'Turkey → Azerbaijan' },
+    { from: 'TR', to: 'UZ', label: 'Türkiye → Uzbekistan' },
+    { from: 'TR', to: 'KZ', label: 'Türkiye → Kazakhstan' },
+    { from: 'TR', to: 'KG', label: 'Türkiye → Kyrgyzstan' },
+    { from: 'TR', to: 'TM', label: 'Türkiye → Turkmenistan' },
+    { from: 'TR', to: 'AZ', label: 'Türkiye → Azerbaijan' },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -140,7 +141,7 @@ export default function HeroSection() {
             ) : (
               <div className="max-w-md mx-auto lg:mx-0">
                 <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
-                  <div className="text-green-600 text-4xl mb-2">✓</div>
+                  <CheckCircleIcon className="w-12 h-12 text-green-600 mx-auto mb-2" />
                   <h3 className="text-lg font-semibold text-green-800 mb-2">Thanks for your interest!</h3>
                   <p className="text-green-700">We&apos;ll send the next steps to your email soon.</p>
                 </div>
@@ -156,14 +157,14 @@ export default function HeroSection() {
                 {/* Countries */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="grid grid-cols-3 gap-8 w-full max-w-md">
-                    {/* Turkey */}
+                    {/* Türkiye */}
                     <div 
                       className="bg-brand-600 text-white p-4 rounded-lg text-center cursor-pointer hover:scale-105 transition-transform"
                       onMouseEnter={() => setHoveredCountry('TR')}
                       onMouseLeave={() => setHoveredCountry(null)}
                     >
-                      <div className="text-2xl mb-2"><Flag code="tr" title="Turkey" /></div>
-                      <div className="font-semibold">Turkey</div>
+                      <div className="text-2xl mb-2"><Flag code="tr" title="Türkiye" /></div>
+                      <div className="font-semibold">Türkiye</div>
                     </div>
                     
                     {/* Central Asia */}

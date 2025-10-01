@@ -1,6 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { ShieldCheckIcon, CreditCardIcon, TruckIcon, ClipboardDocumentListIcon, BanknotesIcon, LockClosedIcon } from '@heroicons/react/24/outline'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { analytics } from '@/lib/analytics'
 
 export default function ChallengesSection() {
@@ -121,7 +122,7 @@ export default function ChallengesSection() {
             ) : (
               <div className="max-w-md mx-auto text-center">
                 <div className="bg-emerald-500 text-white px-6 py-4 rounded-lg font-semibold">
-                  <div className="text-2xl mb-2">✓</div>
+                  <CheckCircleIcon className="w-8 h-8 mx-auto mb-2" />
                   <h3 className="text-lg font-bold mb-1">Thanks for your interest!</h3>
                   <p className="text-sm">We&apos;ll send the next steps to your email soon.</p>
                 </div>

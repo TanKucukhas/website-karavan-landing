@@ -5,7 +5,8 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { 
   EnvelopeIcon,
   MapPinIcon,
-  PhoneIcon
+  PhoneIcon,
+  CheckCircleIcon
 } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Flag from '@/components/Flag'
@@ -239,9 +240,18 @@ export default function Footer() {
             {/* Quick Stats */}
             <div className="mt-6 pt-4 border-t border-gray-700">
               <div className="text-xs text-gray-500 space-y-1">
-                <div>✓ 150+ Verified Suppliers</div>
-                <div>✓ 6 Languages Supported</div>
-                <div>✓ 91% Success Rate</div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircleIcon className="w-3 h-3" />
+                  <span>150+ Verified Suppliers</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircleIcon className="w-3 h-3" />
+                  <span>6 Languages Supported</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircleIcon className="w-3 h-3" />
+                  <span>91% Success Rate</span>
+                </div>
               </div>
             </div>
           </div>

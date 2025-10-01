@@ -14,6 +14,7 @@ import {
   BoltIcon,
   CubeIcon,
 } from '@heroicons/react/24/outline'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
 
 
 export default function CategoriesSection() {
@@ -185,7 +186,7 @@ export default function CategoriesSection() {
       <div className="lt-container">
         <div className="text-center mb-14">
           <h2 className="lt-heading mb-4">Top B2B Categories</h2>
-          <p className="lt-subtext">Discover the most popular product categories in Turkey-Central Asia trade, with verified suppliers and streamlined processes.</p>
+          <p className="lt-subtext">Discover the most popular product categories in Türkiye-Central Asia trade, with verified suppliers and streamlined processes.</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-12">
@@ -248,7 +249,7 @@ export default function CategoriesSection() {
           ) : submitStatus === 'success' ? (
             <div className="max-w-md mx-auto text-center">
               <div className="bg-emerald-500 text-white px-6 py-4 rounded-lg font-semibold">
-                <div className="text-2xl mb-2">✓</div>
+                <CheckCircleIcon className="w-8 h-8 mx-auto mb-2" />
                 <h3 className="text-lg font-bold mb-1">Category Request Submitted!</h3>
                 <p className="text-sm">We&apos;ll review your request and get back to you soon.</p>
               </div>
@@ -298,7 +299,7 @@ export default function CategoriesSection() {
                   onChange={handleChange}
                   className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                   rows={3}
-                  placeholder="Tell us about this category and why it's important for Turkey-Central Asia trade"
+                  placeholder="Tell us about this category and why it's important for Türkiye-Central Asia trade"
                   required
                 />
               </div>

@@ -47,7 +47,7 @@ export default function SolutionsPartnersSection() {
       <div className="lt-container">
         <div className="text-center mb-12">
           <h2 className="lt-heading mb-4">Solutions</h2>
-          <p className="lt-subtext">We’ve built a comprehensive ecosystem of solutions to make Turkey-Central Asia trade seamless and secure.</p>
+          <p className="lt-subtext">We've built a comprehensive ecosystem of solutions to make Türkiye-Central Asia trade seamless and secure.</p>
         </div>
         <div>
           <h3 className="text-2xl font-bold text-gray-900 mb-8">Integrated Solutions</h3>
