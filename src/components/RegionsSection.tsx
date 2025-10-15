@@ -4,7 +4,7 @@ import Flag from '@/components/Flag'
 
 export default function RegionsSection() {
   const regions = [
-    { key: 'turkey', name: 'Türkiye', flagCode: 'tr', blurb: 'Export hub and operations HQ', href: '/regions/turkey' },
+    { key: 'turkiye', name: 'Türkiye', flagCode: 'tr', blurb: 'Export hub and operations HQ', href: '/regions/turkiye' },
     { key: 'uzbekistan', name: 'Uzbekistan', flagCode: 'uz', blurb: 'Fast‑growing demand center', href: '/regions/uzbekistan' },
     { key: 'kazakhstan', name: 'Kazakhstan', flagCode: 'kz', blurb: 'Gateway to Central Asia', href: '/regions/kazakhstan' },
     { key: 'kyrgyzstan', name: 'Kyrgyzstan', flagCode: 'kg', blurb: 'Agile cross‑border trade', href: '/regions/kyrgyzstan' },

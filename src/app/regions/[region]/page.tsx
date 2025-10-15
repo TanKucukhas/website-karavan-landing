@@ -4,20 +4,31 @@ type RegionPageProps = {
   params: Promise<{ region: string }>
 }
 
+const REGION_NAMES: Record<string, string> = {
+  'turkiye': 'Türkiye',
+  'uzbekistan': 'Uzbekistan',
+  'kazakhstan': 'Kazakhstan',
+  'azerbaijan': 'Azerbaijan',
+  'kyrgyzstan': 'Kyrgyzstan',
+  'turkmenistan': 'Turkmenistan',
+  'hungary': 'Hungary',
+}
+
 export async function generateStaticParams() {
   return [
-    { region: 'turkey' },
+    { region: 'turkiye' },
     { region: 'uzbekistan' },
     { region: 'kazakhstan' },
     { region: 'azerbaijan' },
     { region: 'kyrgyzstan' },
     { region: 'turkmenistan' },
+    { region: 'hungary' },
   ]
 }
 
 export default async function RegionPage({ params }: RegionPageProps) {
   const { region } = await params
-  const regionName = decodeURIComponent(region)
+  const regionName = REGION_NAMES[region] || decodeURIComponent(region)
   return (
     <main className="min-h-screen bg-white">
       <section className="bg-brand-sky section-padding">

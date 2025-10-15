@@ -8,7 +8,7 @@ export const NODES: Node[] = [
     lat:41.0082, 
     region:'TR', 
     status:'launching', 
-    href:'/regions/turkey',
+    href:'/regions/turkiye',
     topCategories:['Textiles','Machinery','Food'] 
   },
   { 
