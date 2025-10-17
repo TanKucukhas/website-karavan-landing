@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { EnvelopeIcon, MapPinIcon, PhoneIcon, ClockIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline'
 import SocialMediaLinks from '@/components/SocialMediaLinks'
 import { useTranslations } from 'next-intl'
+import { formTracking, leadQuality } from '@/lib/analytics'
 
 export default function ContactForm() {
   const t = useTranslations('contact')
@@ -18,18 +19,61 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [isFormVisible, setIsFormVisible] = useState(true)
+  
+  // Enhanced tracking state
+  const [formStarted, setFormStarted] = useState(false)
+  const [filledFields, setFilledFields] = useState<string[]>([])
+  const formStartTime = useRef<number | null>(null)
+  const abandonTracked = useRef(false)
+
+  // Track form abandonment on component unmount
+  useEffect(() => {
+    return () => {
+      // If form was started but not submitted, track abandonment
+      if (formStarted && !abandonTracked.current && submitStatus !== 'success') {
+        formTracking.abandon('contact', filledFields);
+        abandonTracked.current = true;
+      }
+    };
+  }, [formStarted, filledFields, submitStatus]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const fieldName = e.target.name;
+    const fieldValue = e.target.value;
+    
+    // Track form start on first interaction
+    if (!formStarted) {
+      setFormStarted(true);
+      formStartTime.current = Date.now();
+      formTracking.start('contact');
+    }
+
+    // Update filled fields list
+    if (fieldValue && !filledFields.includes(fieldName)) {
+      setFilledFields(prev => [...prev, fieldName]);
+    }
+    
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [fieldName]: fieldValue
     })
+  }
+
+  const handleFieldFocus = (fieldName: string) => {
+    formTracking.fieldFocus('contact', fieldName);
+  }
+
+  const handleFieldError = (fieldName: string, errorMessage: string) => {
+    formTracking.error('contact', fieldName, errorMessage);
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
+
+    // Track submit attempt
+    formTracking.submitAttempt('contact');
 
     try {
       const response = await fetch('/api/contact/', {
@@ -42,6 +86,31 @@ export default function ContactForm() {
       
       if (response.ok) {
         setSubmitStatus('success')
+        abandonTracked.current = true; // Prevent abandon tracking
+        
+        // Calculate time spent on form
+        const timeOnForm = formStartTime.current 
+          ? Math.floor((Date.now() - formStartTime.current) / 1000)
+          : 0;
+
+        // Assess lead quality
+        const quality = leadQuality.assess('contact', {
+          hasCompany: !!formData.company,
+          hasMessage: !!formData.message,
+          messageLength: formData.message.length,
+          timeOnPage: timeOnForm,
+        });
+
+        // Track successful submission with lead quality
+        formTracking.submitSuccess('contact', 'unknown', {
+          subject: formData.subject,
+          has_company: !!formData.company,
+          message_length: formData.message.length,
+          time_on_form: timeOnForm,
+          lead_quality: quality.quality,
+          quality_score: quality.score,
+        });
+
         setFormData({
           name: '',
           email: '',
@@ -54,10 +123,13 @@ export default function ContactForm() {
         setIsFormVisible(false)
       } else {
         setSubmitStatus('error')
+        formTracking.submitError('contact', result.error || 'API Error');
         console.error('API Error:', result.error)
       }
     } catch (error) {
       setSubmitStatus('error')
+      const errorMessage = error instanceof Error ? error.message : 'Network Error';
+      formTracking.submitError('contact', errorMessage);
       console.error('Network Error:', error)
     } finally {
       setIsSubmitting(false)
@@ -189,6 +261,7 @@ export default function ContactForm() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      onFocus={() => handleFieldFocus('name')}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
                       placeholder={t('form.fullNamePlaceholder')}
@@ -204,6 +277,13 @@ export default function ContactForm() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      onFocus={() => handleFieldFocus('email')}
+                      onBlur={(e) => {
+                        const email = e.target.value;
+                        if (email && !email.includes('@')) {
+                          handleFieldError('email', 'Invalid email format');
+                        }
+                      }}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
                       placeholder={t('form.emailPlaceholder')}
@@ -222,6 +302,7 @@ export default function ContactForm() {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
+                      onFocus={() => handleFieldFocus('company')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
                       placeholder={t('form.companyPlaceholder')}
                     />
@@ -235,6 +316,7 @@ export default function ContactForm() {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
+                      onFocus={() => handleFieldFocus('subject')}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
                     >
@@ -257,6 +339,7 @@ export default function ContactForm() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
+                    onFocus={() => handleFieldFocus('message')}
                     required
                     rows={5}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors resize-none"

@@ -1,17 +1,48 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ShieldCheckIcon, CreditCardIcon, TruckIcon, ClipboardDocumentListIcon, BanknotesIcon, LockClosedIcon } from '@heroicons/react/24/outline'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
-import { analytics } from '@/lib/analytics'
+import { formTracking } from '@/lib/analytics'
 
 export default function ChallengesSection() {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  // Enhanced tracking state
+  const [formStarted, setFormStarted] = useState(false);
+  const formStartTime = useRef<number | null>(null);
+  const abandonTracked = useRef(false);
+
+  // Track form abandonment
+  useEffect(() => {
+    return () => {
+      if (formStarted && !abandonTracked.current && !isSubmitted) {
+        const filledFields = [];
+        if (email) filledFields.push('email');
+        formTracking.abandon('early_access_challenges', filledFields, 'buyer');
+        abandonTracked.current = true;
+      }
+    };
+  }, [formStarted, isSubmitted, email]);
+
+  const handleEmailChange = (value: string) => {
+    // Track form start on first interaction
+    if (!formStarted && value) {
+      setFormStarted(true);
+      formStartTime.current = Date.now();
+      formTracking.start('early_access_challenges', 'buyer');
+    }
+    setEmail(value);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
+    // Track submit attempt
+    formTracking.submitAttempt('early_access_challenges', 'buyer');
+    
     try {
       const hutk = typeof document !== 'undefined'
         ? document.cookie.split('; ').find(c => c.startsWith('hubspotutk='))?.split('=')[1]
@@ -36,11 +67,25 @@ export default function ChallengesSection() {
         })
       });
       if (!res.ok) throw new Error('Submit failed');
-      analytics.midFormSubmit();
+      
+      abandonTracked.current = true; // Prevent abandon tracking
+      
+      // Calculate time spent on form
+      const timeOnForm = formStartTime.current 
+        ? Math.floor((Date.now() - formStartTime.current) / 1000)
+        : 0;
+
+      // Track successful submission
+      formTracking.submitSuccess('early_access_challenges', 'buyer', {
+        source: 'challenges-mid-cta',
+        time_on_form: timeOnForm,
+      });
+      
       setIsSubmitted(true);
       setTimeout(() => setIsSubmitted(false), 3000);
     } catch (err) {
       console.error(err);
+      formTracking.submitError('early_access_challenges', err instanceof Error ? err.message : 'Submit failed', 'buyer');
     } finally {
       setIsSubmitting(false);
     }
@@ -95,7 +140,8 @@ export default function ChallengesSection() {
                 <input
                   type="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => handleEmailChange(e.target.value)}
+                  onFocus={() => formTracking.fieldFocus('early_access_challenges', 'email')}
                   placeholder="your@company.com"
                   className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none"
                   required
@@ -103,8 +149,7 @@ export default function ChallengesSection() {
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="btn-brand disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2" 
-                  onClick={() => analytics.ctaClick('challenges-mid-cta')}
+                  className="btn-brand disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>

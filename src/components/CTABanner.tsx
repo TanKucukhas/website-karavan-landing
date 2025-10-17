@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
-import { analytics } from '@/lib/analytics'
+import { formTracking } from '@/lib/analytics'
 import { useTranslations } from 'next-intl'
 
 
@@ -13,10 +13,52 @@ export default function CTABanner() {
   const [country, setCountry] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Enhanced tracking state
+  const [formStarted, setFormStarted] = useState(false);
+  const formStartTime = useRef<number | null>(null);
+  const abandonTracked = useRef(false);
+
+  // Track form abandonment
+  useEffect(() => {
+    return () => {
+      if (formStarted && !abandonTracked.current && !isSubmitted) {
+        const filledFields = [];
+        if (email) filledFields.push('email');
+        if (country) filledFields.push('country');
+        formTracking.abandon('early_access_cta', filledFields, role);
+        abandonTracked.current = true;
+      }
+    };
+  }, [formStarted, isSubmitted, email, country, role]);
+
+  const handleFieldChange = (fieldName: string, value: string) => {
+    // Track form start on first interaction
+    if (!formStarted) {
+      setFormStarted(true);
+      formStartTime.current = Date.now();
+      formTracking.start('early_access_cta', role);
+    }
+
+    // Update state based on field
+    if (fieldName === 'email') setEmail(value);
+    else if (fieldName === 'country') setCountry(value);
+  };
+
+  const handleRoleChange = (newRole: 'buyer' | 'seller') => {
+    setRole(newRole);
+    if (formStarted) {
+      formTracking.fieldFocus('early_access_cta', 'role');
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
+    // Track submit attempt
+    formTracking.submitAttempt('early_access_cta', role);
+    
     try {
       const hutk = typeof document !== 'undefined'
         ? document.cookie.split('; ').find(c => c.startsWith('hubspotutk='))?.split('=')[1]
@@ -41,11 +83,25 @@ export default function CTABanner() {
         })
       });
       if (!res.ok) throw new Error('Submit failed');
-      analytics.heroFormSubmit(role)
+      
+      abandonTracked.current = true; // Prevent abandon tracking
+      
+      // Calculate time spent on form
+      const timeOnForm = formStartTime.current 
+        ? Math.floor((Date.now() - formStartTime.current) / 1000)
+        : 0;
+
+      // Track successful submission
+      formTracking.submitSuccess('early_access_cta', role, {
+        country: country,
+        time_on_form: timeOnForm,
+      });
+      
       setIsSubmitted(true);
       setTimeout(() => setIsSubmitted(false), 3000);
     } catch (err) {
       console.error(err);
+      formTracking.submitError('early_access_cta', err instanceof Error ? err.message : 'Submit failed', role);
     } finally {
       setIsSubmitting(false);
     }
@@ -69,7 +125,8 @@ export default function CTABanner() {
                       type="email"
                       id="email"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => handleFieldChange('email', e.target.value)}
+                      onFocus={() => formTracking.fieldFocus('early_access_cta', 'email')}
                       placeholder={t('form.emailPlaceholder')}
                       className="w-full px-4 py-3 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                       required
@@ -81,7 +138,7 @@ export default function CTABanner() {
                     <div className="grid grid-cols-2 gap-3">
                       <button
                         type="button"
-                        onClick={() => { setRole('buyer'); analytics.roleChange('buyer'); }}
+                        onClick={() => handleRoleChange('buyer')}
                         className={`px-4 py-3 rounded-lg border transition-colors ${
                           role === 'buyer' 
                             ? 'border-brand-600 bg-brand-50 text-brand-700' 
@@ -92,7 +149,7 @@ export default function CTABanner() {
                       </button>
                       <button
                         type="button"
-                        onClick={() => { setRole('seller'); analytics.roleChange('seller'); }}
+                        onClick={() => handleRoleChange('seller')}
                         className={`px-4 py-3 rounded-lg border transition-colors ${
                           role === 'seller' 
                             ? 'border-brand-600 bg-brand-50 text-brand-700' 
@@ -109,7 +166,8 @@ export default function CTABanner() {
                     <select
                       id="country"
                       value={country}
-                      onChange={(e) => setCountry(e.target.value)}
+                      onChange={(e) => handleFieldChange('country', e.target.value)}
+                      onFocus={() => formTracking.fieldFocus('early_access_cta', 'country')}
                       className="w-full px-4 py-3 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                       required
                     >
@@ -127,8 +185,7 @@ export default function CTABanner() {
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full btn-gradient-outline text-white text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2" 
-                    onClick={() => analytics.ctaClick('cta-banner', role)}
+                    className="w-full btn-gradient-outline text-white text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>

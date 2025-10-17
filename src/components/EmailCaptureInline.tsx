@@ -1,6 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { analytics } from '@/lib/analytics';
+import { useState, useEffect, useRef } from 'react';
+import { formTracking, leadQuality } from '@/lib/analytics';
 import ToggleSwitch from './ToggleSwitch';
 import { useTranslations } from 'next-intl'
 
@@ -13,11 +13,50 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
   const [loading, setLoading] = useState(false);
   const [ok, setOk] = useState(false);
   const [error, setError] = useState('');
+  
+  // Enhanced tracking state
+  const [formStarted, setFormStarted] = useState(false);
+  const formStartTime = useRef<number | null>(null);
+  const abandonTracked = useRef(false);
+  const formType = source === 'inline' ? 'early_access_hero' : 'early_access_hero';
+
+  // Track form abandonment
+  useEffect(() => {
+    return () => {
+      if (formStarted && !abandonTracked.current && !ok) {
+        const filledFields = [];
+        if (email) filledFields.push('email');
+        formTracking.abandon(formType as any, filledFields, role);
+        abandonTracked.current = true;
+      }
+    };
+  }, [formStarted, ok, email, role, formType]);
+
+  const handleEmailChange = (value: string) => {
+    // Track form start on first interaction
+    if (!formStarted && value) {
+      setFormStarted(true);
+      formStartTime.current = Date.now();
+      formTracking.start(formType as any, role);
+    }
+    setEmail(value);
+  };
+
+  const handleRoleChange = (newRole: 'seller' | 'buyer') => {
+    setRole(newRole);
+    if (formStarted) {
+      formTracking.fieldFocus(formType as any, 'role');
+    }
+  };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError('');
+    
+    // Track submit attempt
+    formTracking.submitAttempt(formType as any, role);
+    
     try {
       const hutk = typeof document !== 'undefined'
         ? document.cookie.split('; ').find(c => c.startsWith('hubspotutk='))?.split('=')[1]
@@ -42,10 +81,24 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
         })
       });
       if (!res.ok) throw new Error('Submit failed');
-      analytics.heroFormSubmit(role);
+      
+      abandonTracked.current = true; // Prevent abandon tracking
+      
+      // Calculate time spent on form
+      const timeOnForm = formStartTime.current 
+        ? Math.floor((Date.now() - formStartTime.current) / 1000)
+        : 0;
+
+      // Track successful submission
+      formTracking.submitSuccess(formType as any, role, {
+        source: source,
+        time_on_form: timeOnForm,
+      });
+      
       setOk(true);
-    } catch {
+    } catch (err) {
       setError('Please try again');
+      formTracking.submitError(formType as any, err instanceof Error ? err.message : 'Submit failed', role);
     } finally {
       setLoading(false);
     }
@@ -73,10 +126,12 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
             placeholder={t('emailPlaceholder')}
             className="w-full rounded-xl bg-white border border-gray-300 shadow-sm px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:outline-none text-base"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => handleEmailChange(e.target.value)}
+            onFocus={() => formTracking.fieldFocus(formType as any, 'email')}
             onBlur={() => {
               if (email && !email.includes('@')) {
                 setError('Invalid email');
+                formTracking.error(formType as any, 'email', 'Invalid email format');
               } else {
                 setError('');
               }
@@ -92,7 +147,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
             leftLabel={t('startSelling')}
             rightLabel={t('findSuppliers')}
             defaultValue={defaultRole === 'seller' ? 'left' : 'right'}
-            onToggle={(value) => setRole(value === 'left' ? 'seller' : 'buyer')}
+            onToggle={(value) => handleRoleChange(value === 'left' ? 'seller' : 'buyer')}
           />
 
           {/* CTA Button */}
