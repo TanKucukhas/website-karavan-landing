@@ -20,8 +20,6 @@ export default function Footer() {
       { name: t('nav.categories'), href: '#categories' }
     ],
     solutions: [
-      { name: t('links.forBuyers'), href: '/buyer' },
-      { name: t('links.forSellers'), href: '/seller' },
       { name: t('links.regions'), href: '/regions' },
       { name: t('links.partnerships'), href: '#partnerships' }
     ],

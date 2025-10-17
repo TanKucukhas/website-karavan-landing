@@ -27,8 +27,6 @@
       "emailLabel": "Genel sorular için"
     },
     "links": {
-      "forBuyers": "Alıcılar İçin",
-      "forSellers": "Satıcılar İçin",
       "regions": "Bölgeler",
       "partnerships": "İş Ortaklıkları",
       "team": "Ekip",
@@ -276,18 +274,6 @@
       "emailUs": "E-posta Gönder",
       "sendMessage": "Mesaj Gönder"
     }
-  },
-  "buyer": {
-    "badge": "Alıcılar İçin",
-    "title": "Doğrulanmış",
-    "titleHighlight": "Tedarikçiler",
-    "subtitle": "Sigorta ve lojistik desteği ile öncelikli kategorilerde doğrulanmış Türk tedarikçilere erişin."
-  },
-  "seller": {
-    "badge": "Satıcılar İçin",
-    "title": "Orta Asya'daki",
-    "titleHighlight": "Alıcılara Ulaşın",
-    "subtitle": "Doğrulanmış tedarikçi programına katılın, RFQ'lara erişin ve sigorta, lojistik ve gümrük desteğiyle satış yapın."
   },
   "region": {
     "badge": "Bölge",
