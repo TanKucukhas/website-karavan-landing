@@ -6,6 +6,7 @@ import HeaderWithCTA from '@/components/twplus/HeaderWithCTA';
 import GlobalBackground from '@/components/GlobalBackground';
 import Footer from '@/components/Footer';
 import Analytics from '@/components/Analytics';
+import LocaleSync from '@/components/LocaleSync';
 import { Suspense } from 'react';
 
 // Force static generation for all locale pages
@@ -36,6 +37,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <LocaleSync locale={locale} />
       <GlobalBackground />
       <HeaderWithCTA />
       <Suspense fallback={null}>

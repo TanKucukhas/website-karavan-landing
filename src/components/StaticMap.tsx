@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 
 interface StaticMapProps {
   className?: string;
@@ -37,23 +36,24 @@ export default function StaticMap({ className = '' }: StaticMapProps) {
 
   const getImageAlt = () => {
     if (isMobile) {
-      return 'Karavan Trade Map - Mobile View';
+      return 'Trade routes map on mobile';
     } else if (isTablet) {
-      return 'Karavan Trade Map - Tablet View';
+      return 'Trade routes map on tablet';
     } else {
-      return 'Karavan Trade Map - Desktop View';
+      return 'Trade routes map';
     }
   };
 
   return (
     <div className={`relative w-full h-full min-h-[400px] overflow-hidden max-w-[100vw] ${className}`}>
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={getImageSrc()}
         alt={getImageAlt()}
-        fill
-        className="object-cover"
-        priority
-        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
+        className="object-cover absolute inset-0 w-full h-full"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
       />
     </div>
   );

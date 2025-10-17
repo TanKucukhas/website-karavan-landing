@@ -47,10 +47,12 @@ for img in "$INPUT_DIR"/*.webp; do
             
             # Use ImageMagick if available
             if command -v convert &> /dev/null; then
-                convert "$img" -resize "${size}x${size}^" -gravity center -extent "${size}x${size}" -quality 85 "$output_file"
+                # Resize without cropping, maintain aspect ratio
+                convert "$img" -resize "${size}x${size}" -quality 85 "$output_file"
             # Otherwise use sharp-cli
             elif command -v sharp &> /dev/null; then
-                sharp resize $size $size --fit cover --quality 85 --input "$img" --output "$output_file"
+                # Use 'inside' fit to avoid cropping
+                sharp resize $size $size --fit inside --quality 85 --input "$img" --output "$output_file"
             fi
             
             if [ -f "$output_file" ]; then
