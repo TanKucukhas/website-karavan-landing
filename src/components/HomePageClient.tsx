@@ -2,9 +2,8 @@
 
 import dynamic from 'next/dynamic'
 
-const HeroWithInteractiveMap = dynamic(() => import('@/components/HeroWithInteractiveMap'), { 
-  loading: () => <div className="min-h-screen bg-brand-bg flex items-center justify-center"><div className="h-10 w-10 animate-spin rounded-full border-2 border-slate-600 border-t-white" /></div> 
-})
+// Import Hero directly for instant LCP - no loading spinner
+import HeroWithInteractiveMap from '@/components/HeroWithInteractiveMap'
 
 const FeaturesSection = dynamic(() => import('@/components/FeaturesSection'), { loading: () => <div className="lt-container py-16"><div className="h-24 w-full rounded-xl bg-gray-100 animate-pulse" /></div> })
 const MetricsSection = dynamic(() => import('@/components/MetricsSection'), { ssr: false, loading: () => <div className="lt-container py-16"><div className="grid grid-cols-2 md:grid-cols-4 gap-4">{Array.from({length:4}).map((_,i)=>(<div key={i} className="h-28 rounded-xl bg-gray-100 animate-pulse" />))}</div></div> })

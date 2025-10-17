@@ -37,13 +37,10 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        {/* Preload critical resources */}
-        <link rel="preload" href="/data/world-50m.json" as="fetch" crossOrigin="anonymous" />
-        {/* DNS prefetch for external resources */}
+        {/* Critical resource hints - DNS prefetch for external domains */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Note: Removed world-50m.json preload as it's only needed on desktop and loaded conditionally */}
+        {/* Font preconnect removed - no custom fonts used, relying on system fonts */}
         {/* PWA Manifest - Lazy loaded to reduce critical path */}
         <Script id="load-manifest" strategy="afterInteractive">
           {`
@@ -53,22 +50,47 @@ export default function RootLayout({
             document.head.appendChild(link);
           `}
         </Script>
-        {/* Google Analytics (GA4) - Lazy loaded for better performance */}
-        <Script
-          id="ga4-src"
-          strategy="lazyOnload"
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-1L6Y7NBMDT'}`}
-        />
-        <Script id="ga4-init" strategy="lazyOnload">
+        {/* Google Analytics (GA4) - Ultra-lazy loaded for optimal performance */}
+        {/* Only load after idle time or after 5 seconds */}
+        <Script id="ga4-loader" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            // Disable automatic page_view to avoid duplicates in App Router
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-1L6Y7NBMDT'}', {
-              send_page_view: false,
-              debug_mode: ${process.env.NODE_ENV !== 'production'}
-            });
+            (function() {
+              const loadGA = function() {
+                if (window.gaLoaded) return;
+                window.gaLoaded = true;
+                
+                // Load GA4 script
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-1L6Y7NBMDT'}';
+                document.head.appendChild(script);
+                
+                // Initialize dataLayer
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-1L6Y7NBMDT'}', {
+                  send_page_view: false,
+                  debug_mode: ${process.env.NODE_ENV !== 'production'}
+                });
+              };
+              
+              // Load on idle or after 5 seconds, whichever comes first
+              if ('requestIdleCallback' in window) {
+                requestIdleCallback(loadGA, { timeout: 5000 });
+              } else {
+                setTimeout(loadGA, 5000);
+              }
+              
+              // Also load on first user interaction
+              const events = ['mousedown', 'touchstart', 'keydown', 'scroll'];
+              const loadOnce = function() {
+                loadGA();
+                events.forEach(e => document.removeEventListener(e, loadOnce));
+              };
+              events.forEach(e => document.addEventListener(e, loadOnce, { once: true, passive: true }));
+            })();
           `}
         </Script>
       </head>

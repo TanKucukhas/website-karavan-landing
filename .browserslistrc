@@ -1,0 +1,34 @@
+# Modern browsers only - reduces polyfill size significantly
+# This eliminates legacy JavaScript and reduces bundle size
+
+# Chrome 90+ (April 2021)
+chrome >= 90
+
+# Firefox 88+ (April 2021)
+firefox >= 88
+
+# Safari 14+ (September 2020)
+safari >= 14
+
+# Edge 90+ (April 2021)
+edge >= 90
+
+# iOS Safari 14+ (September 2020)
+ios_saf >= 14
+
+# Samsung Internet 14+ (April 2021)
+samsung >= 14
+
+# Opera 76+ (April 2021)
+opera >= 76
+
+# Not dead browsers
+not dead
+
+# Not IE 11
+not IE 11
+
+# Not older than 2 years
+> 0.2%
+last 2 versions
+

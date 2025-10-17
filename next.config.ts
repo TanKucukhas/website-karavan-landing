@@ -25,8 +25,15 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizeCss: false,
-    // Reduce client-side JS
-    optimizePackageImports: ['react-simple-maps', 'd3-geo', 'topojson-client'],
+    // Reduce client-side JS - removed react-simple-maps due to barrel optimization conflicts
+    optimizePackageImports: ['d3-geo', 'topojson-client', 'framer-motion'],
+  },
+  // Modern browserslist - target modern browsers only
+  compiler: {
+    // Remove console.log in production
+    removeConsole: isProd ? {
+      exclude: ['error', 'warn'],
+    } : false,
   },
   typescript: {
     ignoreBuildErrors: false,
@@ -36,6 +43,10 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: false,
     dirs: ['src'],
   },
+  // Optimize production builds
+  // Note: swcMinify is enabled by default in Next.js 15+
+  reactStrictMode: true,
+  poweredByHeader: false,
   // Removed rewrites to allow Cloudflare Pages Functions to work in development
   // async rewrites() {
   //   // In local development, proxy API calls to the Apps Script Web App
