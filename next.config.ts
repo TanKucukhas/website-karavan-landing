@@ -14,8 +14,8 @@ const withBundleAnalyzer = bundleAnalyzer({
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const nextConfig: NextConfig = {
-  // Temporarily disabled for i18n middleware support
-  // ...(isProd ? { output: 'export' } : {}),
+  // Enable static export for Cloudflare Pages
+  output: 'export',
   trailingSlash: true,
   images: {
     unoptimized: true,

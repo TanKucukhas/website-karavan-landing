@@ -1,10 +1,8 @@
-import createMiddleware from 'next-intl/middleware';
-import { routing } from './i18n/routing';
-
-export default createMiddleware(routing);
+// Middleware is not supported in static export mode
+// Locale detection and routing is handled client-side
+// See src/app/page.tsx for client-side redirect logic
 
 export const config = {
-  // Match only internationalized pathnames
-  matcher: ['/', '/(tr|en|ru)/:path*']
+  matcher: []
 };
 

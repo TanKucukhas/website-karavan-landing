@@ -8,6 +8,9 @@ import Footer from '@/components/Footer';
 import Analytics from '@/components/Analytics';
 import { Suspense } from 'react';
 
+// Force static generation for all locale pages
+export const dynamic = 'force-static'
+
 type LocaleLayoutProps = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;

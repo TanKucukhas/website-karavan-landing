@@ -2,6 +2,9 @@ import { getTranslations } from 'next-intl/server'
 import CategoriesSection from '@/components/CategoriesSection'
 import { routing } from '@/i18n/routing'
 
+// Force static generation
+export const dynamic = 'force-static'
+
 type RegionPageProps = {
   params: Promise<{ region: string; locale: string }>
 }
