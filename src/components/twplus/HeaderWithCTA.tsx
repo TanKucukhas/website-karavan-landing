@@ -88,7 +88,10 @@ export default function HeaderWithCTA() {
             <a
               href="#cta"
               className="ml-auto inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-lg text-white bg-[#3069B4] hover:bg-[#285a99] shadow-lg hover:shadow-xl transition-all duration-200 whitespace-nowrap"
-              onClick={() => analytics.ctaClick('header-mobile')}
+              onClick={() => {
+                setMobileMenuOpen(false)
+                analytics.ctaClick('header-mobile')
+              }}
             >
               {t('cta')}
             </a>
@@ -102,11 +105,27 @@ export default function HeaderWithCTA() {
               <div className="space-y-2 py-6">
                 {displayNavigation.map((item) => (
                   item.isAnchor ? (
-                    <a key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">
+                    <a 
+                      key={item.name} 
+                      href={item.href} 
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
+                      onClick={() => {
+                        setMobileMenuOpen(false)
+                        track('nav_click', { item: item.name })
+                      }}
+                    >
                       {item.name}
                     </a>
                   ) : (
-                    <Link key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">
+                    <Link 
+                      key={item.name} 
+                      href={item.href} 
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
+                      onClick={() => {
+                        setMobileMenuOpen(false)
+                        track('nav_click', { item: item.name })
+                      }}
+                    >
                       {item.name}
                     </Link>
                   )

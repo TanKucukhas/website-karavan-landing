@@ -1,8 +1,10 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import dynamic from 'next/dynamic'
 import CategoriesSection from '@/components/CategoriesSection'
-import CTABanner from '@/components/CTABanner'
+
+const CTABanner = dynamic(() => import('@/components/CTABanner'), { ssr: false })
 
 export default function BuyerPage() {
   const t = useTranslations('buyer')

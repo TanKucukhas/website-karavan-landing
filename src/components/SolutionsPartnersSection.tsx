@@ -59,7 +59,7 @@ export default function SolutionsPartnersSection() {
         </div>
         <div>
           <h3 className="text-2xl font-bold text-gray-900 mb-8">{t('integratedHeading')}</h3>
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {solutions.map((solution, index) => {
               const IconComponent = solution.icon;
               return (

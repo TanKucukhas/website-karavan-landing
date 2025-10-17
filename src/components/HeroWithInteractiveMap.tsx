@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import { MotionConfig, useReducedMotion, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
-import EmailCaptureInline from './EmailCaptureInline';
 import { analytics } from '@/lib/analytics';
 import StaticMap from '@/components/StaticMap';
 import { useMapLoadingGate } from '@/hooks/useMapLoadingGate';
@@ -14,6 +13,7 @@ import type { Node } from './trade-map/TradeMap.types';
 // Conditional imports - only load heavy components on desktop
 const TradeMap = dynamic(() => import('./trade-map/TradeMap'), { ssr: false });
 const TradeFlows = dynamic(() => import('@/components/TradeFlows'), { ssr: false });
+const EmailCaptureInline = dynamic(() => import('./EmailCaptureInline'), { ssr: false });
 
 // Conditional data imports - only load on desktop
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

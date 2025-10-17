@@ -49,19 +49,19 @@ export default function FeaturesSection() {
 
         {/* Featured Feature - Payment & Insurance */}
         <div className="mb-16">
-          <div className="lt-card p-8">
-            <div className="flex items-start gap-6">
+          <div className="lt-card p-6 md:p-8">
+            <div className="flex flex-col md:flex-row items-start gap-6">
               <div className="rounded-2xl bg-brand-50 p-4 border border-brand-100">
                 <ShieldCheckIcon className="h-10 w-10 text-brand-600" />
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{t('paymentInsurance.title')}</h3>
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">{t('paymentInsurance.title')}</h3>
                 <p className="text-gray-700 mb-6 leading-relaxed">{t('paymentInsurance.description')}</p>
-                <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {[t('paymentInsurance.benefits.multiple'), t('paymentInsurance.benefits.insurance'), t('paymentInsurance.benefits.risk')].map((benefit, bIndex) => (
                     <div key={bIndex} className="flex items-center gap-3 rounded-lg bg-gray-50 px-3 py-2 border border-gray-200">
-                      <CheckCircleIcon className="h-5 w-5 text-green-600" />
-                      <span className="text-gray-800">{benefit}</span>
+                      <CheckCircleIcon className="h-5 w-5 text-green-600 flex-shrink-0" />
+                      <span className="text-gray-800 text-sm">{benefit}</span>
                     </div>
                   ))}
                 </div>
