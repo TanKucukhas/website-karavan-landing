@@ -3,8 +3,10 @@
 import { useState } from 'react'
 import { EnvelopeIcon, MapPinIcon, PhoneIcon, ClockIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline'
 import SocialMediaLinks from '@/components/SocialMediaLinks'
+import { useTranslations } from 'next-intl'
 
 export default function ContactForm() {
+  const t = useTranslations('contact')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -67,16 +69,16 @@ export default function ContactForm() {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('heading')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Ready to start trading? Have questions about our platform? We&apos;re here to help.
+              {t('subheading')}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">{t('information.title')}</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -84,7 +86,7 @@ export default function ContactForm() {
                     <MapPinIcon className="w-6 h-6 text-brand-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Main Address</h4>
+                    <h4 className="font-semibold text-gray-900 mb-1">{t('information.mainAddress')}</h4>
                     <address className="not-italic text-gray-600">
                       <div>Merkez Mah. Hasat Sok.</div>
                       <div>Kamara Apt No:52/1</div>
@@ -92,7 +94,7 @@ export default function ContactForm() {
                       <div className="text-sm text-gray-500 mt-1">Türkiye</div>
                     </address>
                     <div className="mt-4 pt-4 border-t border-gray-200">
-                      <div className="text-sm font-medium text-gray-700 mb-1">Branch Office</div>
+                      <div className="text-sm font-medium text-gray-700 mb-1">{t('information.branchOffice')}</div>
                       <div className="text-sm text-gray-600">
                         <div>Karavan Digital Corp</div>
                         <div>32 Hillcrest Rd</div>
@@ -108,11 +110,11 @@ export default function ContactForm() {
                     <EnvelopeIcon className="w-6 h-6 text-brand-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
+                    <h4 className="font-semibold text-gray-900 mb-1">{t('information.email')}</h4>
                     <a href="mailto:info@karavan.net" className="text-brand-600 hover:text-brand-700 transition-colors">
                       info@karavan.net
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">For general inquiries</p>
+                    <p className="text-sm text-gray-500 mt-1">{t('information.emailLabel')}</p>
                   </div>
                 </div>
 
@@ -121,11 +123,11 @@ export default function ContactForm() {
                     <PhoneIcon className="w-6 h-6 text-brand-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
+                    <h4 className="font-semibold text-gray-900 mb-1">{t('information.phone')}</h4>
                     <a href="tel:+15551234567" className="text-brand-600 hover:text-brand-700 transition-colors">
                       +1 (555) 123-4567
                     </a>
-                    <p className="text-sm text-gray-500 mt-1">Business hours only</p>
+                    <p className="text-sm text-gray-500 mt-1">{t('information.phoneLabel')}</p>
                   </div>
                 </div>
 
@@ -134,10 +136,10 @@ export default function ContactForm() {
                     <ClockIcon className="w-6 h-6 text-brand-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Business Hours</h4>
+                    <h4 className="font-semibold text-gray-900 mb-1">{t('information.businessHours')}</h4>
                     <div className="text-gray-600 space-y-1">
-                      <p>Monday - Friday: 9:00 AM - 6:00 PM EST</p>
-                      <p className="text-sm text-gray-500">Response time: Within 24 hours</p>
+                      <p>{t('information.hours')}</p>
+                      <p className="text-sm text-gray-500">{t('information.responseTime')}</p>
                     </div>
                   </div>
                 </div>
@@ -146,20 +148,20 @@ export default function ContactForm() {
 
               {/* Social Links */}
               <div className="mt-8 pt-8 border-t border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-4">Follow Us</h4>
+                <h4 className="font-semibold text-gray-900 mb-4">{t('information.followUs')}</h4>
                 <SocialMediaLinks variant="light" />
               </div>
             </div>
 
             {/* Contact Form */}
             <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">{t('form.title')}</h3>
               
               {!isFormVisible && submitStatus === 'success' && (
                 <div className="text-center py-8">
                   <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-4">
                     <p className="text-green-800 text-lg font-medium">
-                      Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
+                      {t('form.successMessage')}
                     </p>
                   </div>
                   <button
@@ -169,7 +171,7 @@ export default function ContactForm() {
                     }}
                     className="text-brand-600 hover:text-brand-700 font-medium underline"
                   >
-                    Send another message
+                    {t('form.sendAnother')}
                   </button>
                 </div>
               )}
@@ -179,7 +181,7 @@ export default function ContactForm() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Full Name *
+                      {t('form.fullName')}
                     </label>
                     <input
                       type="text"
@@ -189,12 +191,12 @@ export default function ContactForm() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
-                      placeholder="Your full name"
+                      placeholder={t('form.fullNamePlaceholder')}
                     />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address *
+                      {t('form.email')}
                     </label>
                     <input
                       type="email"
@@ -204,7 +206,7 @@ export default function ContactForm() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
-                      placeholder="your@email.com"
+                      placeholder={t('form.emailPlaceholder')}
                     />
                   </div>
                 </div>
@@ -212,7 +214,7 @@ export default function ContactForm() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                      Company
+                      {t('form.company')}
                     </label>
                     <input
                       type="text"
@@ -221,12 +223,12 @@ export default function ContactForm() {
                       value={formData.company}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
-                      placeholder="Your company name"
+                      placeholder={t('form.companyPlaceholder')}
                     />
                   </div>
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      Subject *
+                      {t('form.subject')}
                     </label>
                     <select
                       id="subject"
@@ -236,19 +238,19 @@ export default function ContactForm() {
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
                     >
-                      <option value="">Select a subject</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="partnership">Partnership</option>
-                      <option value="support">Technical Support</option>
-                      <option value="sales">Sales Question</option>
-                      <option value="other">Other</option>
+                      <option value="">{t('form.subjectPlaceholder')}</option>
+                      <option value="general">{t('form.subjectOptions.general')}</option>
+                      <option value="partnership">{t('form.subjectOptions.partnership')}</option>
+                      <option value="support">{t('form.subjectOptions.support')}</option>
+                      <option value="sales">{t('form.subjectOptions.sales')}</option>
+                      <option value="other">{t('form.subjectOptions.other')}</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message *
+                    {t('form.message')}
                   </label>
                   <textarea
                     id="message"
@@ -258,7 +260,7 @@ export default function ContactForm() {
                     required
                     rows={5}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors resize-none"
-                    placeholder="Tell us how we can help you..."
+                    placeholder={t('form.messagePlaceholder')}
                   />
                 </div>
 
@@ -281,7 +283,7 @@ export default function ContactForm() {
                 {submitStatus === 'error' && (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                     <p className="text-red-800 text-sm">
-                      Sorry, there was an error sending your message. Please try again.
+                      {t('form.errorMessage')}
                     </p>
                   </div>
                 )}
@@ -291,7 +293,7 @@ export default function ContactForm() {
                   disabled={isSubmitting}
                   className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-6 px-8 rounded-lg text-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg min-h-[60px]"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? t('form.sending') : t('form.submit')}
                 </button>
                 </form>
               )}
@@ -304,69 +306,55 @@ export default function ContactForm() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-100 rounded-full mb-4">
                 <QuestionMarkCircleIcon className="w-8 h-8 text-brand-600" />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h3>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">{t('faq.heading')}</h3>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Quick answers to common questions about Karavan
+                {t('faq.subheading')}
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">What is Karavan?</h4>
-                <p className="text-gray-600">
-                  Karavan is a B2B export platform connecting Turkish exporters with buyers across Central Asia and Eastern Europe. We provide end-to-end solutions including escrow payments, logistics, and customs support.
-                </p>
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">{t('faq.whatIsKaravan.question')}</h4>
+                <p className="text-gray-600">{t('faq.whatIsKaravan.answer')}</p>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">How do I get started?</h4>
-                <p className="text-gray-600">
-                  Sign up for early access through our platform. Once approved, you&apos;ll receive onboarding support to set up your account and start trading within 24-48 hours.
-                </p>
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">{t('faq.howToStart.question')}</h4>
+                <p className="text-gray-600">{t('faq.howToStart.answer')}</p>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">Which countries do you operate in?</h4>
-                <p className="text-gray-600">
-                  We currently operate in Türkiye, Uzbekistan, Kazakhstan, Kyrgyzstan, Turkmenistan, Azerbaijan, and Hungary, with plans to expand to more regions.
-                </p>
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">{t('faq.countries.question')}</h4>
+                <p className="text-gray-600">{t('faq.countries.answer')}</p>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">What payment methods do you support?</h4>
-                <p className="text-gray-600">
-                  We support secure escrow payments, bank transfers, and various local payment methods. All transactions are protected until delivery confirmation.
-                </p>
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">{t('faq.payments.question')}</h4>
+                <p className="text-gray-600">{t('faq.payments.answer')}</p>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">Do you handle customs and logistics?</h4>
-                <p className="text-gray-600">
-                  Yes! We provide integrated logistics coordination, customs clearance support, and real-time tracking for all shipments through our partner network.
-                </p>
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">{t('faq.logistics.question')}</h4>
+                <p className="text-gray-600">{t('faq.logistics.answer')}</p>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">What are your fees?</h4>
-                <p className="text-gray-600">
-                  Our fee structure is transparent and competitive. During the early access period, we offer special pricing. Contact us for detailed pricing information.
-                </p>
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">{t('faq.fees.question')}</h4>
+                <p className="text-gray-600">{t('faq.fees.answer')}</p>
               </div>
             </div>
 
             {/* Additional Help */}
             <div className="mt-12 bg-brand-50 rounded-2xl p-8 text-center">
-              <h4 className="text-xl font-bold text-gray-900 mb-2">Still have questions?</h4>
-              <p className="text-gray-600 mb-4">
-                Our team is here to help. Reach out via email or phone during business hours.
-              </p>
+              <h4 className="text-xl font-bold text-gray-900 mb-2">{t('faq.stillHaveQuestions')}</h4>
+              <p className="text-gray-600 mb-4">{t('faq.stillHaveQuestionsDesc')}</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a href="mailto:info@karavan.net" className="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700 transition-colors">
                   <EnvelopeIcon className="w-5 h-5" />
-                  Email Us
+                  {t('faq.emailUs')}
                 </a>
                 <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors border border-brand-600">
-                  Send Message
+                  {t('faq.sendMessage')}
                 </a>
               </div>
             </div>
