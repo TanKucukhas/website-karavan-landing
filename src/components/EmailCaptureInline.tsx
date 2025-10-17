@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import { formTracking, leadQuality } from '@/lib/analytics';
+import { formTracking } from '@/lib/analytics';
 import ToggleSwitch from './ToggleSwitch';
 import { useTranslations } from 'next-intl'
 
@@ -26,7 +26,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
       if (formStarted && !abandonTracked.current && !ok) {
         const filledFields = [];
         if (email) filledFields.push('email');
-        formTracking.abandon(formType as any, filledFields, role);
+        formTracking.abandon(formType, filledFields, role);
         abandonTracked.current = true;
       }
     };
@@ -37,7 +37,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
     if (!formStarted && value) {
       setFormStarted(true);
       formStartTime.current = Date.now();
-      formTracking.start(formType as any, role);
+      formTracking.start(formType, role);
     }
     setEmail(value);
   };
@@ -45,7 +45,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
   const handleRoleChange = (newRole: 'seller' | 'buyer') => {
     setRole(newRole);
     if (formStarted) {
-      formTracking.fieldFocus(formType as any, 'role');
+      formTracking.fieldFocus(formType, 'role');
     }
   };
 
@@ -55,7 +55,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
     setError('');
     
     // Track submit attempt
-    formTracking.submitAttempt(formType as any, role);
+    formTracking.submitAttempt(formType, role);
     
     try {
       const hutk = typeof document !== 'undefined'
@@ -90,7 +90,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
         : 0;
 
       // Track successful submission
-      formTracking.submitSuccess(formType as any, role, {
+      formTracking.submitSuccess(formType, role, {
         source: source,
         time_on_form: timeOnForm,
       });
@@ -98,7 +98,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
       setOk(true);
     } catch (err) {
       setError('Please try again');
-      formTracking.submitError(formType as any, err instanceof Error ? err.message : 'Submit failed', role);
+      formTracking.submitError(formType, err instanceof Error ? err.message : 'Submit failed', role);
     } finally {
       setLoading(false);
     }
@@ -127,11 +127,11 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
             className="w-full rounded-xl bg-white border border-gray-300 shadow-sm px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:outline-none text-base"
             value={email}
             onChange={(e) => handleEmailChange(e.target.value)}
-            onFocus={() => formTracking.fieldFocus(formType as any, 'email')}
+            onFocus={() => formTracking.fieldFocus(formType, 'email')}
             onBlur={() => {
               if (email && !email.includes('@')) {
                 setError('Invalid email');
-                formTracking.error(formType as any, 'email', 'Invalid email format');
+                formTracking.error(formType, 'email', 'Invalid email format');
               } else {
                 setError('');
               }
