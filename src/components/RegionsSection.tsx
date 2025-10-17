@@ -1,6 +1,7 @@
 "use client";
 import { analytics } from '@/lib/analytics'
 import Flag from '@/components/Flag'
+import Image from 'next/image'
 
 export default function RegionsSection() {
   const regions = [
@@ -10,6 +11,7 @@ export default function RegionsSection() {
     { key: 'kyrgyzstan', name: 'Kyrgyzstan', flagCode: 'kg', blurb: 'Agile cross‑border trade', href: '/regions/kyrgyzstan' },
     { key: 'turkmenistan', name: 'Turkmenistan', flagCode: 'tm', blurb: 'Selective import market', href: '/regions/turkmenistan' },
     { key: 'azerbaijan', name: 'Azerbaijan', flagCode: 'az', blurb: 'Link to Caucasus', href: '/regions/azerbaijan' },
+    { key: 'kktc', name: 'KKTC', flagCode: 'tr', blurb: 'Strategic Mediterranean trade hub', href: '/regions/kktc' },
     { key: 'hungary', name: 'Hungary', flagCode: 'hu', blurb: 'European gateway', href: '/regions/hungary' },
   ]
 
@@ -24,7 +26,18 @@ export default function RegionsSection() {
           {regions.map((r) => (
             <a key={r.key} href={r.href} className="lt-card p-6 group hover:shadow-md transition-shadow" onClick={() => analytics.mapNodeClick(r.name)}>
               <div className="flex items-center gap-3 mb-2">
-                <Flag code={r.flagCode} size="lg" title={r.name} shadow />
+                {r.name === 'KKTC' ? (
+                  <Image 
+                    src="/images/flags/kktc.png" 
+                    alt="KKTC Flag" 
+                    width={48} 
+                    height={32}
+                    className="drop-shadow-sm"
+                    style={{ objectFit: 'cover' }}
+                  />
+                ) : (
+                  <Flag code={r.flagCode} size="lg" title={r.name} shadow />
+                )}
                 <h3 className="text-lg font-semibold text-gray-900 group-hover:text-brand-700 transition-colors">{r.name}</h3>
               </div>
               <p className="text-gray-700">{r.blurb}</p>

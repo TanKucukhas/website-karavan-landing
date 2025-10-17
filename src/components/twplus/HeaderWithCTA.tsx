@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { analytics, track } from '@/lib/analytics'
-import Flag from '@/components/Flag'
+import LanguageSelector from '@/components/LanguageSelector'
 
 const navigation = [
   { name: 'Features', href: '#features' },
@@ -19,37 +19,10 @@ const navigation = [
 export default function HeaderWithCTA() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [selectedLanguage, setSelectedLanguage] = useState<'en'|'tr'|'ru'|'uz'|'kk'|'ky'>('en')
-  const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
 
   // Only show navigation links on homepage
   const isHomePage = pathname === '/'
   const displayNavigation = isHomePage ? navigation : navigation.filter(item => item.name === 'Contact')
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setLanguageDropdownOpen(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
-
-  const languages = [
-    { code: 'en', name: 'English', flagCode: 'us' },
-    { code: 'tr', name: 'Türkçe', flagCode: 'tr' },
-    { code: 'ru', name: 'Русский', flagCode: 'ru' },
-    { code: 'uz', name: "O'zbek", flagCode: 'uz' },
-    { code: 'kk', name: 'Қазақша', flagCode: 'kz' },
-    { code: 'ky', name: 'Кыргызча', flagCode: 'kg' },
-  ]
-  const currentLang = languages.find(l => l.code === selectedLanguage) ?? languages[0]
 
   return (
     <header className="bg-white/90 backdrop-blur-md fixed top-0 inset-x-0 z-50 border-b border-gray-200/50">
@@ -82,43 +55,12 @@ export default function HeaderWithCTA() {
           </a>
           {/* Divider */}
           <span className="hidden lg:block h-6 w-px bg-gray-200" aria-hidden="true" />
-          {/* Language Selector (EN + flag) */}
-          <div className="hidden lg:block relative" ref={dropdownRef}>
-            <button
-              onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 rounded-lg hover:bg-gray-50"
-            >
-              <span className="uppercase">{selectedLanguage}</span>
-              <Flag 
-                code={currentLang.flagCode} 
-                size="sm" 
-                title={currentLang.name}
-              />
-            </button>
-            {languageDropdownOpen && (
-              <div className="absolute right-0 top-full mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
-                {languages.map((language) => (
-                  <button
-                    key={language.code}
-                    onClick={() => {
-                      setSelectedLanguage(language.code as typeof selectedLanguage)
-                      setLanguageDropdownOpen(false)
-                      analytics.languageChange(language.code)
-                    }}
-                    className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left hover:bg-gray-50 ${
-                      selectedLanguage === language.code ? 'bg-brand-50 text-brand-700' : 'text-gray-700'
-                    }`}
-                  >
-                    <Flag 
-                      code={language.flagCode} 
-                      size="sm" 
-                      title={language.name}
-                    />
-                    <span>{language.name}</span>
-                  </button>
-                ))}
-              </div>
-            )}
+          {/* Language Selector */}
+          <div className="hidden lg:block">
+            <LanguageSelector 
+              mode="dropdown" 
+              buttonClassName="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 rounded-lg hover:bg-gray-50"
+            />
           </div>
 
           <button type="button" onClick={() => setMobileMenuOpen(true)} className="-m-2.5 lg:hidden inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
@@ -163,29 +105,8 @@ export default function HeaderWithCTA() {
                 <div className="px-3 mb-3">
                   <span className="text-sm font-medium text-gray-500">Language</span>
                 </div>
-                <div className="space-y-1">
-                  {languages.map((language) => (
-                    <button
-                      key={language.code}
-                    onClick={() => {
-                    setSelectedLanguage(language.code as typeof selectedLanguage)
-                    setMobileMenuOpen(false)
-                    analytics.languageChange(language.code)
-                  }}
-                      className={`w-full flex items-center gap-3 px-3 py-2 text-left text-sm rounded-lg ${
-                        selectedLanguage === language.code 
-                          ? 'bg-brand-50 text-brand-700' 
-                          : 'text-gray-700 hover:bg-gray-50'
-                      }`}
-                    >
-                      <Flag 
-                        code={language.flagCode} 
-                        size="sm" 
-                        title={language.name}
-                      />
-                      <span>{language.name}</span>
-                    </button>
-                  ))}
+                <div className="px-3">
+                  <LanguageSelector mode="buttons" />
                 </div>
               </div>
             </div>

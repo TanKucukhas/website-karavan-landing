@@ -28,6 +28,7 @@ import HeaderWithCTA from '@/components/twplus/HeaderWithCTA'
 import GlobalBackground from '@/components/GlobalBackground'
 import Footer from '@/components/Footer'
 import Analytics from '@/components/Analytics'
+import { LanguageProvider } from '@/contexts/LanguageContext'
 import { Suspense } from 'react'
 
 export default function RootLayout({
@@ -63,14 +64,16 @@ export default function RootLayout({
         </Script>
       </head>
       <body>
-        <GlobalBackground />
-        <HeaderWithCTA />
-        {/* Tracks page_view on route changes */}
-        <Suspense fallback={null}>
-          <Analytics />
-        </Suspense>
-        <div className="pt-16">{children}</div>
-        <Footer />
+        <LanguageProvider>
+          <GlobalBackground />
+          <HeaderWithCTA />
+          {/* Tracks page_view on route changes */}
+          <Suspense fallback={null}>
+            <Analytics />
+          </Suspense>
+          <div className="pt-16">{children}</div>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   )

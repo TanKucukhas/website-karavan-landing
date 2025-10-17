@@ -15,7 +15,6 @@ export default function InnovationSection() {
   const paymentMethods = [
     { name: 'Bank Transfers', description: 'Direct bank-to-bank transfers with SWIFT support' },
     { name: 'Credit Cards', description: 'Visa, Mastercard, and local card networks' },
-    { name: 'Digital Wallets', description: 'Apple Pay, Google Pay, and regional wallets' },
     { name: 'International Transfers', description: 'Cross-border payment solutions and remittances' },
   ];
 
@@ -23,8 +22,8 @@ export default function InnovationSection() {
     <section className="lt-section animate-on-scroll bg-brand-sky">
       <div className="lt-container">
         <div className="text-center mb-14">
-          <h2 className="lt-heading mb-4">AI-Driven Innovation</h2>
-          <p className="lt-subtext">Our platform leverages cutting-edge AI technology to automate and optimize every aspect of cross-border trade.</p>
+          <h2 className="lt-heading mb-4">Platform Innovation</h2>
+          <p className="lt-subtext">Our platform leverages cutting-edge technology to automate and optimize every aspect of cross-border trade.</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -56,7 +55,7 @@ export default function InnovationSection() {
           {/* Right: Payment Methods */}
           <div>
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Multiple Payment Methods</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               {paymentMethods.map((method, index) => (
                 <div key={index} className="p-6 lt-card">
                   <h4 className="font-semibold text-gray-900 mb-1.5">{method.name}</h4>
@@ -74,30 +73,6 @@ export default function InnovationSection() {
               <p className="text-gray-700 text-sm leading-relaxed">
                 All transactions are protected with 256-bit SSL encryption, PCI DSS compliance, and advanced fraud detection systems.
               </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Innovation Showcase */}
-        <div className="mt-16 lt-card p-8">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">The Future of B2B Trade</h3>
-            <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-              Our AI-driven platform is constantly learning and improving, making cross-border trade more efficient, secure, and accessible.
-            </p>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-brand-600 mb-1"><CountUp end={24} />/7</div>
-                <div className="text-gray-700">AI Monitoring</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-brand-600 mb-1"><CountUp end={99.9} decimals={1} suffix="%" /></div>
-                <div className="text-gray-700">Uptime Guarantee</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-brand-600 mb-1"><CountUp end={0.1} decimals={1} suffix="s" /></div>
-                <div className="text-gray-700">Response Time</div>
-              </div>
             </div>
           </div>
         </div>

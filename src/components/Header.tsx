@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import LanguageSelector from '@/components/LanguageSelector';
 
 export default function Header() {
   const ref = useRef<HTMLElement|null>(null);
@@ -70,9 +71,11 @@ export default function Header() {
 
           {/* Desktop CTA & Controls */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="text-[color:var(--ink)]/90 hover:text-brand-600 transition-colors">
-              EN
-            </button>
+            {/* Language Selector */}
+            <LanguageSelector 
+              mode="dropdown" 
+              buttonClassName="text-[color:var(--ink)]/90 hover:text-brand-600"
+            />
             <button className="text-[color:var(--ink)]/90 hover:text-brand-600 transition-colors">
               🌙
             </button>
@@ -109,8 +112,8 @@ export default function Header() {
                   Contact
                 </a>
               <div className="flex items-center justify-between pt-4 border-t">
-                <div className="flex space-x-4">
-                  <button className="text-gray-700">EN</button>
+                <div className="flex space-x-4 items-center">
+                  <LanguageSelector mode="buttons" />
                   <button className="text-gray-700">🌙</button>
                 </div>
                 <button className="btn btn-primary px-4 py-2">

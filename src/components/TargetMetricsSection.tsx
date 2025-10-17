@@ -4,7 +4,7 @@ import CountUp from '@/components/CountUp'
 
 export default function TargetMetricsSection() {
   const current = [
-    { label: 'Suppliers', value: 150 },
+    { label: 'Suppliers', value: 65 },
     { label: 'Products', value: 1200 },
     { label: 'Brands', value: 180 },
   ]

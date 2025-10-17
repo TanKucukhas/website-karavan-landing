@@ -11,6 +11,7 @@ const REGION_NAMES: Record<string, string> = {
   'azerbaijan': 'Azerbaijan',
   'kyrgyzstan': 'Kyrgyzstan',
   'turkmenistan': 'Turkmenistan',
+  'kktc': 'KKTC',
   'hungary': 'Hungary',
 }
 
@@ -22,6 +23,7 @@ export async function generateStaticParams() {
     { region: 'azerbaijan' },
     { region: 'kyrgyzstan' },
     { region: 'turkmenistan' },
+    { region: 'kktc' },
     { region: 'hungary' },
   ]
 }
