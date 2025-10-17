@@ -24,12 +24,6 @@ export const viewport = {
 
 import './globals.css'
 import Script from 'next/script'
-import HeaderWithCTA from '@/components/twplus/HeaderWithCTA'
-import GlobalBackground from '@/components/GlobalBackground'
-import Footer from '@/components/Footer'
-import Analytics from '@/components/Analytics'
-import { LanguageProvider } from '@/contexts/LanguageContext'
-import { Suspense } from 'react'
 
 export default function RootLayout({
   children,
@@ -37,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -63,18 +57,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body>
-        <LanguageProvider>
-          <GlobalBackground />
-          <HeaderWithCTA />
-          {/* Tracks page_view on route changes */}
-          <Suspense fallback={null}>
-            <Analytics />
-          </Suspense>
-          <div className="pt-16">{children}</div>
-          <Footer />
-        </LanguageProvider>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

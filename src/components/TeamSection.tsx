@@ -3,20 +3,22 @@
 // Light version without emojis
 import Image from 'next/image'
 import teamData from '../../public/images/team/team.json'
+import { useTranslations } from 'next-intl'
 
 export default function TeamSection() {
+  const t = useTranslations('team')
   const expertise = [
     {
-      title: 'Trade & Finance',
-      description: 'Deep expertise in international trade, finance, and cross-border payments with 20+ years combined experience.'
+      title: t('expertise.tradeFinance.title'),
+      description: t('expertise.tradeFinance.description')
     },
     {
-      title: 'Logistics & Supply Chain',
-      description: 'Comprehensive knowledge of logistics, customs, and supply chain management across Central Asia.'
+      title: t('expertise.logisticsSupply.title'),
+      description: t('expertise.logisticsSupply.description')
     },
     {
-      title: 'Technology & Innovation',
-      description: 'Cutting-edge technology solutions with AI, blockchain, and modern web technologies.'
+      title: t('expertise.technologyInnovation.title'),
+      description: t('expertise.technologyInnovation.description')
     }
   ];
 
@@ -24,8 +26,8 @@ export default function TeamSection() {
     <section className="lt-section">
       <div className="lt-container">
         <div className="text-center mb-14">
-          <h2 className="lt-heading mb-4">Team & Expertise</h2>
-          <p className="lt-subtext">Our diverse team brings together deep expertise in trade, logistics, and technology to build the future of B2B commerce.</p>
+          <h2 className="lt-heading mb-4">{t('heading')}</h2>
+          <p className="lt-subtext">{t('subheading')}</p>
         </div>
 
         {/* Expertise Cards */}
@@ -34,15 +36,15 @@ export default function TeamSection() {
             <div key={index} className="lt-card p-8 text-center">
               <h3 className="text-xl font-bold text-gray-900 mb-3">{area.title}</h3>
               <p className="text-gray-700 leading-relaxed mb-5">{area.description}</p>
-              <span className="lt-badge">Core Expertise</span>
+              <span className="lt-badge">{t('expertise.badge')}</span>
             </div>
           ))}
         </div>
 
         {/* Leadership Team (from JSON) */}
         <div className="text-center mb-8 animate-on-scroll">
-          <h3 className="text-2xl font-bold text-gray-900 mb-3">Core Leadership</h3>
-          <p className="text-gray-700">Experienced leaders with proven track records in international trade and technology</p>
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">{t('leadership.heading')}</h3>
+          <p className="text-gray-700">{t('leadership.subheading')}</p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -88,16 +90,16 @@ export default function TeamSection() {
         {/* Company Values */}
         <div className="mt-16 grid md:grid-cols-3 gap-6 lg:gap-8">
           <div className="lt-card p-6 text-center">
-            <h4 className="text-lg font-semibold text-gray-900 mb-1.5">Global Perspective</h4>
-            <p className="text-gray-700 text-sm">Understanding of international markets and cultural nuances</p>
+            <h4 className="text-lg font-semibold text-gray-900 mb-1.5">{t('values.globalPerspective.title')}</h4>
+            <p className="text-gray-700 text-sm">{t('values.globalPerspective.description')}</p>
           </div>
           <div className="lt-card p-6 text-center">
-            <h4 className="text-lg font-semibold text-gray-900 mb-1.5">Innovation First</h4>
-            <p className="text-gray-700 text-sm">Cutting-edge technology solutions for modern trade challenges</p>
+            <h4 className="text-lg font-semibold text-gray-900 mb-1.5">{t('values.innovationFirst.title')}</h4>
+            <p className="text-gray-700 text-sm">{t('values.innovationFirst.description')}</p>
           </div>
           <div className="lt-card p-6 text-center">
-            <h4 className="text-lg font-semibold text-gray-900 mb-1.5">Partnership Focus</h4>
-            <p className="text-gray-700 text-sm">Building strong relationships with all stakeholders</p>
+            <h4 className="text-lg font-semibold text-gray-900 mb-1.5">{t('values.partnershipFocus.title')}</h4>
+            <p className="text-gray-700 text-sm">{t('values.partnershipFocus.description')}</p>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from 'next-intl/plugin';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -9,8 +10,12 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
+// Create next-intl plugin
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+
 const nextConfig: NextConfig = {
-  ...(isProd ? { output: 'export' } : {}),
+  // Temporarily disabled for i18n middleware support
+  // ...(isProd ? { output: 'export' } : {}),
   trailingSlash: true,
   images: {
     unoptimized: true,
@@ -46,4 +51,4 @@ const nextConfig: NextConfig = {
   // },
 };
 
-export default withBundleAnalyzer(nextConfig);
+export default withNextIntl(withBundleAnalyzer(nextConfig));

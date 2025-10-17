@@ -3,36 +3,38 @@
 import Flag from '@/components/Flag'
 import CountUp from '@/components/CountUp'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 export default function MetricsSection() {
+  const t = useTranslations('metrics')
   const metrics = [
     {
       value: '65+',
-      label: 'Suppliers Onboarded',
-      description: 'Verified Turkish exporters ready to serve Central Asian markets',
+      label: t('cards.suppliersOnboarded.label'),
+      description: t('cards.suppliersOnboarded.description'),
       color: 'text-brand-600',
-      footnote: 'Pilot results from TR & UZ markets'
+      footnote: t('cards.suppliersOnboarded.footnote')
     },
     {
       value: '7-14',
-      label: 'Days Shipping Lead Time',
-      description: 'Average delivery time from Türkiye to Central Asia',
+      label: t('cards.shippingLeadTime.label'),
+      description: t('cards.shippingLeadTime.description'),
       color: 'text-green-600',
-      footnote: 'Based on pilot shipments'
+      footnote: t('cards.shippingLeadTime.footnote')
     },
     {
       value: '3',
-      label: 'Languages Supported',
-      description: 'Turkish, English, Russian',
+      label: t('cards.languagesSupported.label'),
+      description: t('cards.languagesSupported.description'),
       color: 'text-purple-600',
-      footnote: 'Native speaker support'
+      footnote: t('cards.languagesSupported.footnote')
     },
     {
       value: '190',
-      label: 'Brands',
-      description: 'Leading brands available on the platform',
+      label: t('cards.brands.label'),
+      description: t('cards.brands.description'),
       color: 'text-orange-600',
-      footnote: 'Pilot results in TR & UZ'
+      footnote: t('cards.brands.footnote')
     }
   ];
 
@@ -56,8 +58,8 @@ export default function MetricsSection() {
     <section className="lt-section animate-on-scroll">
       <div className="lt-container">
         <div className="text-center mb-14">
-          <h2 className="lt-heading mb-4">Secure B2B Trade Metrics</h2>
-          <p className="lt-subtext">Our platform is already facilitating secure trade between Türkiye and Central Asia with measurable results.</p>
+          <h2 className="lt-heading mb-4">{t('heading')}</h2>
+          <p className="lt-subtext">{t('subheading')}</p>
         </div>
 
         {/* KPI Cards - Single Stack */}
@@ -79,7 +81,7 @@ export default function MetricsSection() {
 
         {/* Core Markets Strip */}
         <div className="lt-card p-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Core Markets</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">{t('coreMarkets.heading')}</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {coreMarkets.map((market, index) => (
               <div key={index} className="text-center p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300">
@@ -103,9 +105,9 @@ export default function MetricsSection() {
                   )}
                 </div>
                 <div className="font-semibold text-gray-900 mb-1.5">{market.country}</div>
-                <div className="text-xs text-gray-600 mb-2"><CountUp end={market.populationM} suffix="M people" /></div>
+                <div className="text-xs text-gray-600 mb-2"><CountUp end={market.populationM} suffix={t('coreMarkets.peopleSuffix')} /></div>
                 <span className="lt-badge">
-                  {market.status === 'live' ? 'Live' : 'Expanding'}
+                  {market.status === 'live' ? t('coreMarkets.live') : t('coreMarkets.expanding')}
                 </span>
               </div>
             ))}

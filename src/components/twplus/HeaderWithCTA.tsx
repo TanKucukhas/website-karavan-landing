@@ -1,28 +1,29 @@
 "use client"
 
 import { useState } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { analytics, track } from '@/lib/analytics'
+import { useTranslations } from 'next-intl'
+import { Link, usePathname } from '@/i18n/routing'
 import LanguageSelector from '@/components/LanguageSelector'
 
-const navigation = [
-  { name: 'Features', href: '#features' },
-  { name: 'Categories', href: '#categories' },
-  { name: 'Regions', href: '#regions' },
-  { name: 'Contact', href: '/contact' },
-]
-
 export default function HeaderWithCTA() {
+  const t = useTranslations('header')
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  const navigation = [
+    { name: t('nav.features'), href: '#features', isAnchor: true },
+    { name: t('nav.categories'), href: '#categories', isAnchor: true },
+    { name: t('nav.regions'), href: '#regions', isAnchor: true },
+    { name: t('nav.contact'), href: '/contact', isAnchor: false },
+  ]
+
   // Only show navigation links on homepage
   const isHomePage = pathname === '/'
-  const displayNavigation = isHomePage ? navigation : navigation.filter(item => item.name === 'Contact')
+  const displayNavigation = isHomePage ? navigation : navigation.filter(item => item.href.includes('contact'))
 
   return (
     <header className="bg-white/90 backdrop-blur-md fixed top-0 inset-x-0 z-50 border-b border-gray-200/50">
@@ -38,9 +39,15 @@ export default function HeaderWithCTA() {
           {/* Right-aligned navigation */}
           <div className="hidden lg:flex lg:items-center lg:gap-x-6">
             {displayNavigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm font-semibold text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600" onClick={() => track('nav_click', { item: item.name })}>
-                {item.name}
-              </a>
+              item.isAnchor ? (
+                <a key={item.name} href={item.href} className="text-sm font-semibold text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600" onClick={() => track('nav_click', { item: item.name })}>
+                  {item.name}
+                </a>
+              ) : (
+                <Link key={item.name} href={item.href} className="text-sm font-semibold text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600" onClick={() => track('nav_click', { item: item.name })}>
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
           {/* Divider */}
@@ -48,10 +55,10 @@ export default function HeaderWithCTA() {
           {/* CTA */}
           <a
             href="#cta"
-            className="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg text-white bg-[#3069B4] hover:bg-[#285a99] shadow-lg hover:shadow-xl transition-all duration-200 ring-1 ring-[#3069B4]/20"
+            className="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg text-white bg-[#3069B4] hover:bg-[#285a99] shadow-lg hover:shadow-xl transition-all duration-200 ring-1 ring-[#3069B4]/20 whitespace-nowrap"
             onClick={() => analytics.ctaClick('header-desktop')}
           >
-            Get Early Access
+            {t('cta')}
           </a>
           {/* Divider */}
           <span className="hidden lg:block h-6 w-px bg-gray-200" aria-hidden="true" />
@@ -80,10 +87,10 @@ export default function HeaderWithCTA() {
             </Link>
             <a
               href="#cta"
-              className="ml-auto inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-lg text-white bg-[#3069B4] hover:bg-[#285a99] shadow-lg hover:shadow-xl transition-all duration-200"
+              className="ml-auto inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-lg text-white bg-[#3069B4] hover:bg-[#285a99] shadow-lg hover:shadow-xl transition-all duration-200 whitespace-nowrap"
               onClick={() => analytics.ctaClick('header-mobile')}
             >
-              Get Early Access
+              {t('cta')}
             </a>
             <button type="button" onClick={() => setMobileMenuOpen(false)} className="-m-2.5 rounded-md p-2.5 text-gray-700">
               <span className="sr-only">Close menu</span>
@@ -94,9 +101,15 @@ export default function HeaderWithCTA() {
             <div className="-my-6 divide-y divide-gray-100">
               <div className="space-y-2 py-6">
                 {displayNavigation.map((item) => (
-                  <a key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">
-                    {item.name}
-                  </a>
+                  item.isAnchor ? (
+                    <a key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">
+                      {item.name}
+                    </Link>
+                  )
                 ))}
               </div>
               

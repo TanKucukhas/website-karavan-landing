@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl'
 import {
   SwatchIcon,
   Cog6ToothIcon,
@@ -18,6 +19,7 @@ import { CheckCircleIcon } from '@heroicons/react/24/solid'
 
 
 export default function CategoriesSection() {
+  const t = useTranslations('categories')
   const [showRequestForm, setShowRequestForm] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [formData, setFormData] = useState({
@@ -86,95 +88,95 @@ export default function CategoriesSection() {
 
   const categories = [
     {
-      name: 'Textiles & Apparel',
-      subcategories: ['Cotton fabrics', 'Ready-made garments', 'Home textiles'],
+      name: t('items.textilesApparel'),
+      subcategories: ['Cotton fabrics', 'Ready-made garments', 'Home textiles'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['OEKO-TEX', 'GOTS'],
       moq: '$5,000',
       leadTime: '7-14 days',
       corridors: ['TR→UZ', 'TR→KZ'],
-      demand: 'High'
+      demand: t('demand.high')
     },
     {
-      name: 'Machinery & Equipment',
-      subcategories: ['Agricultural machinery', 'Industrial equipment', 'Construction machinery'],
+      name: t('items.machineryEquipment'),
+      subcategories: ['Agricultural machinery', 'Industrial equipment', 'Construction machinery'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['CE', 'ISO 9001'],
       moq: '$25,000',
       leadTime: '21-30 days',
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG'],
-      demand: 'Medium'
+      demand: t('demand.medium')
     },
     {
-      name: 'Chemicals & Pharmaceuticals',
-      subcategories: ['Industrial chemicals', 'Pharmaceuticals', 'Cosmetics'],
+      name: t('items.chemicalsPharmaceuticals'),
+      subcategories: ['Industrial chemicals', 'Pharmaceuticals', 'Cosmetics'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['GMP', 'ISO 14001'],
       moq: '$10,000',
       leadTime: '14-21 days',
       corridors: ['TR→UZ', 'TR→KZ'],
-      demand: 'High'
+      demand: t('demand.high')
     },
     {
-      name: 'Agriculture & Food',
-      subcategories: ['Dried fruits', 'Nuts', 'Spices', 'Processed foods'],
+      name: t('items.agricultureFood'),
+      subcategories: ['Dried fruits', 'Nuts', 'Spices', 'Processed foods'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['HACCP', 'Organic'],
       moq: '$3,000',
       leadTime: '7-10 days',
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG'],
-      demand: 'Very High'
+      demand: t('demand.veryHigh')
     },
     {
-      name: 'Construction Materials',
-      subcategories: ['Cement', 'Steel products', 'Ceramic tiles'],
+      name: t('items.constructionMaterials'),
+      subcategories: ['Cement', 'Steel products', 'Ceramic tiles'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['CE', 'ISO 9001'],
       moq: '$15,000',
       leadTime: '14-21 days',
       corridors: ['TR→UZ', 'TR→KZ', 'TR→TM'],
-      demand: 'High'
+      demand: t('demand.high')
     },
     {
-      name: 'Automotive Parts',
-      subcategories: ['Engine parts', 'Brake systems', 'Electrical components'],
+      name: t('items.automotiveParts'),
+      subcategories: ['Engine parts', 'Brake systems', 'Electrical components'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['IATF 16949', 'CE'],
       moq: '$8,000',
       corridors: ['TR→UZ', 'TR→KZ']
     },
     {
-      name: 'Electronics & IT',
-      subcategories: ['Consumer electronics', 'IT equipment', 'Telecommunications'],
+      name: t('items.electronicsIT'),
+      subcategories: ['Consumer electronics', 'IT equipment', 'Telecommunications'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['CE', 'FCC'],
       moq: '$12,000',
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
     },
     {
-      name: 'Medical Equipment',
-      subcategories: ['Diagnostic equipment', 'Surgical instruments', 'Disposables'],
+      name: t('items.medicalEquipment'),
+      subcategories: ['Diagnostic equipment', 'Surgical instruments', 'Disposables'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['CE Medical', 'FDA'],
       moq: '$20,000',
       corridors: ['TR→UZ', 'TR→KZ']
     },
     {
-      name: 'Furniture & Home',
-      subcategories: ['Office furniture', 'Home furniture', 'Decorative items'],
+      name: t('items.furnitureHome'),
+      subcategories: ['Office furniture', 'Home furniture', 'Decorative items'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['FSC', 'CE'],
       moq: '$7,000',
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
     },
     {
-      name: 'Energy & Power',
-      subcategories: ['Solar panels', 'Generators', 'Electrical equipment'],
+      name: t('items.energyPower'),
+      subcategories: ['Solar panels', 'Generators', 'Electrical equipment'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['IEC', 'CE'],
       moq: '$30,000',
       corridors: ['TR→UZ', 'TR→KZ', 'TR→TM']
     },
     {
-      name: 'Packaging Materials',
-      subcategories: ['Plastic packaging', 'Cardboard boxes', 'Labels'],
+      name: t('items.packagingMaterials'),
+      subcategories: ['Plastic packaging', 'Cardboard boxes', 'Labels'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['ISO 9001', 'FSC'],
       moq: '$4,000',
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
     },
     {
-      name: 'Tools & Hardware',
-      subcategories: ['Hand tools', 'Power tools', 'Hardware supplies'],
+      name: t('items.toolsHardware'),
+      subcategories: ['Hand tools', 'Power tools', 'Hardware supplies'].map((s) => t(`subitems.${s.replace(/[^a-zA-Z]/g,'').toLowerCase()}`)),
       certificates: ['CE', 'ISO 9001'],
       moq: '$6,000',
       corridors: ['TR→UZ', 'TR→KZ', 'TR→KG']
@@ -185,8 +187,8 @@ export default function CategoriesSection() {
     <section id="categories" className="lt-section animate-on-scroll">
       <div className="lt-container">
         <div className="text-center mb-14">
-          <h2 className="lt-heading mb-4">Top B2B Categories</h2>
-          <p className="lt-subtext">Discover the most popular product categories in Türkiye-Central Asia trade, with verified suppliers and streamlined processes.</p>
+          <h2 className="lt-heading mb-4">{t('heading')}</h2>
+          <p className="lt-subtext">{t('subheading')}</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-12">
@@ -214,7 +216,7 @@ export default function CategoriesSection() {
                     <Icon className="h-5 w-5 text-brand-600" aria-hidden="true" />
                     <h3 className="text-base font-semibold text-gray-900">{category.name}</h3>
                   </div>
-                  <span className="lt-badge">{category.demand ?? 'High'}</span>
+                  <span className="lt-badge">{category.demand ?? t('demand.high')}</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5 mb-3">
                   {tags.map((t, i) => (
@@ -228,7 +230,7 @@ export default function CategoriesSection() {
         </div>
         <div className="text-center mb-12">
           {!showAll && (
-            <button className="btn-outline-brand" onClick={() => setShowAll(true)}>View all categories</button>
+            <button className="btn-outline-brand" onClick={() => setShowAll(true)}>{t('viewAll')}</button>
           )}
         </div>
 
@@ -236,22 +238,22 @@ export default function CategoriesSection() {
         {/* Request Category Form */}
         <div className="lt-card p-8">
           <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Don&apos;t See Your Category?</h3>
-            <p className="text-gray-600">Request a new category to be added to our platform</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('requestSection.heading')}</h3>
+            <p className="text-gray-600">{t('requestSection.subheading')}</p>
           </div>
           
           {!showRequestForm ? (
             <div className="text-center">
               <button onClick={() => setShowRequestForm(true)} className="btn-brand-gradient">
-                Request a Category
+                {t('requestSection.cta')}
               </button>
             </div>
           ) : submitStatus === 'success' ? (
             <div className="max-w-md mx-auto text-center">
               <div className="bg-emerald-500 text-white px-6 py-4 rounded-lg font-semibold">
                 <CheckCircleIcon className="w-8 h-8 mx-auto mb-2" />
-                <h3 className="text-lg font-bold mb-1">Category Request Submitted!</h3>
-                <p className="text-sm">We&apos;ll review your request and get back to you soon.</p>
+                <h3 className="text-lg font-bold mb-1">{t('requestSection.successTitle')}</h3>
+                <p className="text-sm">{t('requestSection.successMessage')}</p>
               </div>
             </div>
           ) : (
@@ -268,38 +270,38 @@ export default function CategoriesSection() {
               />
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Category Name</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t('requestSection.form.categoryName')}</label>
                 <input
                   type="text"
                   name="categoryName"
                   value={formData.categoryName}
                   onChange={handleChange}
                   className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
-                  placeholder="e.g., Renewable Energy Equipment"
+                  placeholder={t('requestSection.form.categoryNamePlaceholder')}
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t('requestSection.form.email')}</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
-                  placeholder="your@email.com"
+                  placeholder={t('requestSection.form.emailPlaceholder')}
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{t('requestSection.form.description')}</label>
                 <textarea
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                   className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                   rows={3}
-                  placeholder="Tell us about this category and why it's important for Türkiye-Central Asia trade"
+                  placeholder={t('requestSection.form.descriptionPlaceholder')}
                   required
                 />
               </div>
@@ -307,7 +309,7 @@ export default function CategoriesSection() {
               {/* Simple math captcha */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  What is 7 + 3? (Anti-spam)
+                  {t('requestSection.form.captchaLabel')}
                 </label>
                 <input
                   type="text"
@@ -315,7 +317,7 @@ export default function CategoriesSection() {
                   value={formData.captcha}
                   onChange={handleChange}
                   className="w-full px-3 py-2 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
-                  placeholder="10"
+                  placeholder={t('requestSection.form.captchaPlaceholder')}
                   required
                 />
               </div>
@@ -338,10 +340,10 @@ export default function CategoriesSection() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Submitting...
+                      {t('requestSection.form.submitting')}
                     </>
                   ) : (
-                    'Submit Request'
+                    t('requestSection.form.submit')
                   )}
                 </button>
                 <button 
@@ -349,7 +351,7 @@ export default function CategoriesSection() {
                   onClick={() => setShowRequestForm(false)} 
                   className="flex-1 btn-outline-brand"
                 >
-                  Cancel
+                  {t('requestSection.form.cancel')}
                 </button>
               </div>
             </form>

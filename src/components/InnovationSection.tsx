@@ -2,34 +2,25 @@
 
 // Light version without emoji icons
 import CountUp from '@/components/CountUp'
+import { useTranslations } from 'next-intl'
 
 export default function InnovationSection() {
-  const aiFeatures = [
-    'Unified payment processing across multiple currencies',
-    'Automated compliance checking and documentation',
-    'AI-powered risk assessment and fraud detection',
-    'Smart document automation and translation',
-    'Real-time analytics and reporting dashboard'
-  ];
-
-  const paymentMethods = [
-    { name: 'Bank Transfers', description: 'Direct bank-to-bank transfers with SWIFT support' },
-    { name: 'Credit Cards', description: 'Visa, Mastercard, and local card networks' },
-    { name: 'International Transfers', description: 'Cross-border payment solutions and remittances' },
-  ];
+  const t = useTranslations('innovation')
+  const aiFeatures = t.raw('aiFeatures') as string[]
+  const paymentMethods = t.raw('paymentMethods') as { name: string; description: string }[]
 
   return (
     <section className="lt-section animate-on-scroll bg-brand-sky">
       <div className="lt-container">
         <div className="text-center mb-14">
-          <h2 className="lt-heading mb-4">Platform Innovation</h2>
-          <p className="lt-subtext">Our platform leverages cutting-edge technology to automate and optimize every aspect of cross-border trade.</p>
+          <h2 className="lt-heading mb-4">{t('heading')}</h2>
+          <p className="lt-subtext">{t('subheading')}</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: AI Features */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">AI-Powered Features</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">{t('aiHeading')}</h3>
             <div className="space-y-3">
               {aiFeatures.map((feature, index) => (
                 <div key={index} className="flex items-start gap-3 p-4 lt-card">
@@ -43,24 +34,24 @@ export default function InnovationSection() {
             <div className="mt-8 grid grid-cols-2 gap-6">
               <div className="text-center p-4 lt-card">
                 <div className="text-2xl font-bold text-brand-600 mb-1"><CountUp end={95} suffix="%" /></div>
-                <div className="text-sm text-gray-700">Automation Rate</div>
+                <div className="text-sm text-gray-700">{t('stats.automationRate')}</div>
               </div>
               <div className="text-center p-4 lt-card">
                 <div className="text-2xl font-bold text-brand-600 mb-1"><CountUp end={3} suffix="x" /></div>
-                <div className="text-sm text-gray-700">Faster Processing</div>
+                <div className="text-sm text-gray-700">{t('stats.fasterProcessing')}</div>
               </div>
             </div>
           </div>
 
           {/* Right: Payment Methods */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Multiple Payment Methods</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">{t('paymentMethodsHeading')}</h3>
             <div className="grid grid-cols-1 gap-4">
               {paymentMethods.map((method, index) => (
                 <div key={index} className="p-6 lt-card">
                   <h4 className="font-semibold text-gray-900 mb-1.5">{method.name}</h4>
                   <p className="text-sm text-gray-700 mb-3">{method.description}</p>
-                  <span className="lt-badge">Available</span>
+                  <span className="lt-badge">{t('availableBadge')}</span>
                 </div>
               ))}
             </div>
@@ -68,11 +59,9 @@ export default function InnovationSection() {
             {/* Payment Security */}
             <div className="mt-8 p-6 lt-card">
               <div className="mb-2">
-                <h4 className="text-lg font-semibold text-gray-900">Bank-Grade Security</h4>
+                <h4 className="text-lg font-semibold text-gray-900">{t('securityHeading')}</h4>
               </div>
-              <p className="text-gray-700 text-sm leading-relaxed">
-                All transactions are protected with 256-bit SSL encryption, PCI DSS compliance, and advanced fraud detection systems.
-              </p>
+              <p className="text-gray-700 text-sm leading-relaxed">{t('securityText')}</p>
             </div>
           </div>
         </div>

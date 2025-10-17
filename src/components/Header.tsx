@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { Link } from '@/i18n/routing';
 import LanguageSelector from '@/components/LanguageSelector';
 
 export default function Header() {
@@ -64,9 +65,9 @@ export default function Header() {
             <a href="#categories" className="text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600 transition-colors">
               Categories
             </a>
-            <a href="/contact" className="text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600 transition-colors">
+            <Link href="/contact" className="text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600 transition-colors">
               Contact
-            </a>
+            </Link>
           </nav>
 
           {/* Desktop CTA & Controls */}
@@ -108,9 +109,9 @@ export default function Header() {
                 <a href="#categories" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
                   Categories
                 </a>
-                <a href="/contact" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
+                <Link href="/contact" className="block text-[color:var(--ink)]/90 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600">
                   Contact
-                </a>
+                </Link>
               <div className="flex items-center justify-between pt-4 border-t">
                 <div className="flex space-x-4 items-center">
                   <LanguageSelector mode="buttons" />

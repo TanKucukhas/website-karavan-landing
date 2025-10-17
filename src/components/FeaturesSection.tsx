@@ -2,33 +2,35 @@
 
 import { ShieldCheckIcon, TruckIcon, CheckCircleIcon, BanknotesIcon } from '@heroicons/react/24/outline'
 import CountUp from '@/components/CountUp'
+import { useTranslations } from 'next-intl'
 
 
 export default function FeaturesSection() {
+  const t = useTranslations('features')
   const features = [
     {
       icon: <ShieldCheckIcon className="h-7 w-7 text-sky-300" />, 
-      title: 'Payment & Insurance',
-      description: 'Secure payment processing with comprehensive insurance coverage for all transactions.',
-      benefits: ['Multiple payment methods', 'Insurance coverage', 'Risk protection']
+      title: t('paymentInsurance.title'),
+      description: t('paymentInsurance.description'),
+      benefits: [t('paymentInsurance.benefits.multiple'), t('paymentInsurance.benefits.insurance'), t('paymentInsurance.benefits.risk')]
     },
     {
       icon: <TruckIcon className="h-7 w-7 text-sky-300" />, 
-      title: 'Logistics & Customs',
-      description: 'End-to-end logistics coordination with customs clearance and documentation support.',
-      benefits: ['Door-to-door delivery', 'Customs clearance', 'Real-time tracking']
+      title: t('logisticsCustoms.title'),
+      description: t('logisticsCustoms.description'),
+      benefits: [t('logisticsCustoms.benefits.delivery'), t('logisticsCustoms.benefits.customs'), t('logisticsCustoms.benefits.tracking')]
     },
     {
       icon: <CheckCircleIcon className="h-7 w-7 text-sky-300" />, 
-      title: 'Verified Suppliers',
-      description: 'Comprehensive verification system with business credentials, certifications, and KYB KYC.',
-      benefits: ['Business verification', 'Certification tracking', 'KYB KYC']
+      title: t('verifiedSuppliers.title'),
+      description: t('verifiedSuppliers.description'),
+      benefits: [t('verifiedSuppliers.benefits.verification'), t('verifiedSuppliers.benefits.certification'), t('verifiedSuppliers.benefits.kyb')]
     },
     {
       icon: <BanknotesIcon className="h-7 w-7 text-sky-300" />, 
-      title: 'Financing & Insurance',
-      description: 'Integrated trade finance solutions and comprehensive insurance coverage for all transactions.',
-      benefits: ['Trade finance', 'Insurance coverage', 'Credit facilities']
+      title: t('financingInsurance.title'),
+      description: t('financingInsurance.description'),
+      benefits: [t('financingInsurance.benefits.finance'), t('financingInsurance.benefits.insurance'), t('financingInsurance.benefits.credit')]
     }
   ];
 
@@ -36,12 +38,12 @@ export default function FeaturesSection() {
     <section id="features" className="lt-section animate-on-scroll">
       <div className="lt-container">
         <div className="text-center mb-6">
-          <h2 className="lt-heading mb-4">Why Trade on Karavan?</h2>
-          <p className="lt-subtext">Integrated solutions that eliminate the complexity of cross-border B2B trade.</p>
+          <h2 className="lt-heading mb-4">{t('heading')}</h2>
+          <p className="lt-subtext">{t('subheading')}</p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-          {['Escrow','Logistics','Verified','Finance'].map((b,i)=> (
-            <span key={i} className="badge-soft">{b}</span>
+          {['escrow','logistics','verified','finance'].map((b,i)=> (
+            <span key={i} className="badge-soft">{t(`badges.${b}`)}</span>
           ))}
         </div>
 
@@ -53,10 +55,10 @@ export default function FeaturesSection() {
                 <ShieldCheckIcon className="h-10 w-10 text-brand-600" />
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Payment & Insurance</h3>
-                <p className="text-gray-700 mb-6 leading-relaxed">Secure payment processing with comprehensive insurance coverage for all transactions.</p>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{t('paymentInsurance.title')}</h3>
+                <p className="text-gray-700 mb-6 leading-relaxed">{t('paymentInsurance.description')}</p>
                 <div className="grid md:grid-cols-3 gap-4">
-                  {['Multiple payment methods', 'Insurance coverage', 'Risk protection'].map((benefit, bIndex) => (
+                  {[t('paymentInsurance.benefits.multiple'), t('paymentInsurance.benefits.insurance'), t('paymentInsurance.benefits.risk')].map((benefit, bIndex) => (
                     <div key={bIndex} className="flex items-center gap-3 rounded-lg bg-gray-50 px-3 py-2 border border-gray-200">
                       <CheckCircleIcon className="h-5 w-5 text-green-600" />
                       <span className="text-gray-800">{benefit}</span>
@@ -91,15 +93,15 @@ export default function FeaturesSection() {
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-brand-600 mb-2"><CountUp end={100} suffix="%" /></div>
-              <div className="text-gray-700">Secure Transactions</div>
+              <div className="text-gray-700">{t('stats.secureTransactions')}</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-brand-600 mb-2"><CountUp end={24} />/7</div>
-              <div className="text-gray-700">Support Available</div>
+              <div className="text-gray-700">{t('stats.supportAvailable')}</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-brand-600 mb-2"><CountUp end={5} suffix="+" /></div>
-              <div className="text-gray-700">Countries Connected</div>
+              <div className="text-gray-700">{t('stats.countriesConnected')}</div>
             </div>
           </div>
         </div>

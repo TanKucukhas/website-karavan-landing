@@ -7,38 +7,46 @@ import {
   LockClosedIcon, 
   BanknotesIcon 
 } from '@heroicons/react/24/outline';
+import { useTranslations } from 'next-intl';
 
 export default function SolutionsPartnersSection() {
+  const t = useTranslations('solutions')
   const solutions = [
     {
       icon: ShieldCheckIcon,
-      title: 'Trust & Verification',
-      description: 'Comprehensive supplier verification with business credentials, certifications, and trade history tracking.'
+      title: t('items.trustVerification.title'),
+      description: t('items.trustVerification.description'),
+      footnote: t('items.trustVerification.footnote')
     },
     {
       icon: CreditCardIcon,
-      title: 'Secure Payments',
-      description: 'Escrow-based payment system with automated dispute resolution and multi-currency support.'
+      title: t('items.securePayments.title'),
+      description: t('items.securePayments.description'),
+      footnote: t('items.securePayments.footnote')
     },
     {
       icon: TruckIcon,
-      title: 'Logistics Coordination',
-      description: 'End-to-end logistics management with real-time tracking and customs clearance support.'
+      title: t('items.logisticsCoordination.title'),
+      description: t('items.logisticsCoordination.description'),
+      footnote: t('items.logisticsCoordination.footnote')
     },
     {
       icon: ClipboardDocumentListIcon,
-      title: 'Customs & Compliance',
-      description: 'Automated documentation and compliance management for seamless cross-border trade.'
+      title: t('items.customsCompliance.title'),
+      description: t('items.customsCompliance.description'),
+      footnote: t('items.customsCompliance.footnote')
     },
     {
       icon: LockClosedIcon,
-      title: 'Insurance Coverage',
-      description: 'Comprehensive trade insurance covering goods in transit and transaction protection.'
+      title: t('items.insuranceCoverage.title'),
+      description: t('items.insuranceCoverage.description'),
+      footnote: t('items.insuranceCoverage.footnote')
     },
     {
       icon: BanknotesIcon,
-      title: 'Trade Finance',
-      description: 'Integrated financing solutions including letters of credit and trade credit facilities.'
+      title: t('items.tradeFinance.title'),
+      description: t('items.tradeFinance.description'),
+      footnote: t('items.tradeFinance.footnote')
     }
   ];
 
@@ -46,11 +54,11 @@ export default function SolutionsPartnersSection() {
     <section className="lt-section animate-on-scroll">
       <div className="lt-container">
         <div className="text-center mb-12">
-          <h2 className="lt-heading mb-4">Solutions</h2>
-          <p className="lt-subtext">We&apos;ve built a comprehensive ecosystem of solutions to make Türkiye-Central Asia trade seamless and secure.</p>
+          <h2 className="lt-heading mb-4">{t('heading')}</h2>
+          <p className="lt-subtext">{t('subheading')}</p>
         </div>
         <div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-8">Integrated Solutions</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-8">{t('integratedHeading')}</h3>
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {solutions.map((solution, index) => {
               const IconComponent = solution.icon;
@@ -67,14 +75,7 @@ export default function SolutionsPartnersSection() {
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-1.5">{solution.title}</h4>
                   <p className="text-gray-700 leading-relaxed">{solution.description}</p>
-                  <p className="text-gray-500 text-xs mt-1">
-                    {solution.title.includes('Trust') && 'Verified profiles and audit trails'}
-                    {solution.title.includes('Payments') && 'Funds released only on delivery'}
-                    {solution.title.includes('Logistics') && 'Door-to-door orchestration'}
-                    {solution.title.includes('Customs') && 'Automated compliance checks'}
-                    {solution.title.includes('Insurance') && 'End-to-end coverage'}
-                    {solution.title.includes('Finance') && 'Flexible credit options'}
-                  </p>
+                  <p className="text-gray-500 text-xs mt-1">{solution.footnote}</p>
                 </div>
               </div>
               );

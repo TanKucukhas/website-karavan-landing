@@ -1,0 +1,531 @@
+{
+  "header": {
+    "nav": {
+      "features": "Özellikler",
+      "categories": "Kategoriler",
+      "regions": "Bölgeler",
+      "contact": "İletişim"
+    },
+    "cta": "Erken Erişim Al"
+  },
+  "footer": {
+    "tagline": "Engelsiz Ticaret",
+    "description": "Türk ihracatçıları Orta Asya pazarlarıyla buluşturan B2B platformu. Güven, ödeme, lojistik ve gümrük - hepsi tek yerde.",
+    "mainAddress": "Ana Adres",
+    "generalInquiries": "Genel Sorular",
+    "language": "Dil",
+    "product": "Ürün",
+    "solutions": "Çözümler",
+    "company": "Şirket",
+    "legal": "Yasal",
+    "nav": {
+      "features": "Özellikler",
+      "categories": "Kategoriler"
+    },
+    "information": {
+      "mainAddress": "Ana Adres",
+      "emailLabel": "Genel sorular için"
+    },
+    "links": {
+      "forBuyers": "Alıcılar İçin",
+      "forSellers": "Satıcılar İçin",
+      "regions": "Bölgeler",
+      "partnerships": "İş Ortaklıkları",
+      "team": "Ekip",
+      "careers": "Kariyer",
+      "contact": "İletişim",
+      "privacyPolicy": "Gizlilik Politikası",
+      "termsOfService": "Kullanım Şartları",
+      "cookiePolicy": "Çerez Politikası",
+      "gdpr": "GDPR"
+    },
+    "stats": {
+      "verifiedSuppliers": "Doğrulanmış Tedarikçi",
+      "languagesSupported": "Desteklenen Dil",
+      "brands": "Marka"
+    },
+    "copyright": "Karavan Digital Inc. Tüm hakları saklıdır."
+  },
+  "hero": {
+    "title": "Türk Devletlerinde",
+    "titleHighlight": "doğrulanmış tedarikçilere",
+    "titleEnd": "erken erişim",
+    "subtitle": "Escrow, lojistik ve finansman dahil güvenli B2B ticaret.",
+    "subtitleHighlight": "Sınırlı erken erişim kontenjanı.",
+    "description": "Özel beta'ya katılın — ücret yok, spam yok, sadece erken erişim.",
+    "emailLabel": "E-posta Adresi",
+    "emailPlaceholder": "sizin@sirketiniz.com",
+    "roleLabel": "İstediğim:",
+    "findSuppliers": "Tedarikçi Bul",
+    "startSelling": "Satmaya Başla",
+    "cta": "Erken Erişim Al",
+    "successTitle": "İlginiz için teşekkürler!",
+    "successMessage": "Sonraki adımları yakında e-postanıza göndereceğiz.",
+    "activeTradeCoridor": "Aktif ticaret koridoru",
+    "trust": {
+      "noMembershipFees": "Üyelik ücreti yok",
+      "payOnlyForServices": "Yalnızca kullandığınız hizmetler için ödeme yapın"
+    }
+  },
+  "features": {
+    "heading": "Neden Karavan'da Ticaret Yapmalısınız?",
+    "subheading": "Sınır ötesi B2B ticaretin karmaşıklığını ortadan kaldıran entegre çözümler.",
+    "badges": {
+      "escrow": "Escrow",
+      "logistics": "Lojistik",
+      "verified": "Doğrulanmış",
+      "finance": "Finansman"
+    },
+    "paymentInsurance": {
+      "title": "Ödeme ve Sigorta",
+      "description": "Tüm işlemler için kapsamlı sigorta kapsamıyla güvenli ödeme işleme.",
+      "benefits": {
+        "multiple": "Çoklu ödeme yöntemleri",
+        "insurance": "Sigorta kapsamı",
+        "risk": "Risk koruması"
+      }
+    },
+    "logisticsCustoms": {
+      "title": "Lojistik ve Gümrük",
+      "description": "Gümrük işlemleri ve dokümantasyon desteği ile uçtan uca lojistik koordinasyonu.",
+      "benefits": {
+        "delivery": "Kapıdan kapıya teslimat",
+        "customs": "Gümrük işlemleri",
+        "tracking": "Gerçek zamanlı takip"
+      }
+    },
+    "verifiedSuppliers": {
+      "title": "Doğrulanmış Tedarikçiler",
+      "description": "İşletme kimlik bilgileri, sertifikalar ve KYB KYC ile kapsamlı doğrulama sistemi.",
+      "benefits": {
+        "verification": "İşletme doğrulaması",
+        "certification": "Sertifika takibi",
+        "kyb": "KYB KYC"
+      }
+    },
+    "financingInsurance": {
+      "title": "Finansman ve Sigorta",
+      "description": "Entegre ticaret finansmanı çözümleri ve tüm işlemler için kapsamlı sigorta kapsamı.",
+      "benefits": {
+        "finance": "Ticaret finansmanı",
+        "insurance": "Sigorta kapsamı",
+        "credit": "Kredi imkanları"
+      }
+    },
+    "stats": {
+      "secureTransactions": "Güvenli İşlemler",
+      "supportAvailable": "Destek Mevcut",
+      "countriesConnected": "Bağlı Ülke"
+    }
+  },
+  "categories": {
+    "heading": "En Popüler B2B Kategoriler",
+    "subheading": "Türkiye-Orta Asya ticaretinde en popüler ürün kategorilerini doğrulanmış tedarikçiler ve optimize edilmiş süreçlerle keşfedin.",
+    "viewAll": "Tüm kategorileri görüntüle",
+    "requestSection": {
+      "heading": "Kategorinizi Görmüyor musunuz?",
+      "subheading": "Platformumuza eklenmesi için yeni bir kategori talep edin",
+      "cta": "Kategori Talep Et",
+      "successTitle": "Kategori Talebi Gönderildi!",
+      "successMessage": "Talebinizi inceleyip en kısa sürede size geri döneceğiz.",
+      "form": {
+        "categoryName": "Kategori Adı",
+        "categoryNamePlaceholder": "örn., Yenilenebilir Enerji Ekipmanları",
+        "email": "E-posta Adresiniz",
+        "emailPlaceholder": "sizin@email.com",
+        "description": "Açıklama",
+        "descriptionPlaceholder": "Bu kategori hakkında ve Türkiye-Orta Asya ticareti için neden önemli olduğunu bize anlatın",
+        "captchaLabel": "7 + 3 kaç eder? (Spam önleme)",
+        "captchaPlaceholder": "10",
+        "submit": "Talebi Gönder",
+        "submitting": "Gönderiliyor...",
+        "cancel": "İptal",
+        "error": "Talep gönderilemedi. Lütfen tekrar deneyin."
+      }
+    },
+    "items": {
+      "textilesApparel": "Tekstil ve Hazır Giyim",
+      "machineryEquipment": "Makine ve Ekipman",
+      "chemicalsPharmaceuticals": "Kimyasallar ve İlaçlar",
+      "agricultureFood": "Tarım ve Gıda",
+      "constructionMaterials": "İnşaat Malzemeleri",
+      "automotiveParts": "Otomotiv Parçaları",
+      "electronicsIT": "Elektronik ve BT",
+      "medicalEquipment": "Tıbbi Ekipman",
+      "furnitureHome": "Mobilya ve Ev",
+      "energyPower": "Enerji ve Güç",
+      "packagingMaterials": "Ambalaj Malzemeleri",
+      "toolsHardware": "Aletler ve Hırdavat"
+    },
+    "demand": {
+      "veryHigh": "Çok Yüksek",
+      "high": "Yüksek",
+      "medium": "Orta"
+    },
+    "subitems": {
+      "cottonfabrics": "Pamuklu kumaşlar",
+      "readymadegarments": "Hazır giyim",
+      "hometextiles": "Ev tekstili",
+      "agriculturalmachinery": "Tarım makineleri",
+      "industrialequipment": "Endüstriyel ekipman",
+      "constructionmachinery": "İnşaat makineleri",
+      "industrialchemicals": "Endüstriyel kimyasallar",
+      "pharmaceuticals": "İlaçlar",
+      "cosmetics": "Kozmetik",
+      "driedfruits": "Kuru meyveler",
+      "nuts": "Kuruyemiş",
+      "spices": "Baharat",
+      "processedfoods": "İşlenmiş gıdalar",
+      "cement": "Çimento",
+      "steelproducts": "Çelik ürünler",
+      "ceramictiles": "Seramik karolar",
+      "engineparts": "Motor parçaları",
+      "brakesystems": "Fren sistemleri",
+      "electricalcomponents": "Elektrik bileşenleri",
+      "consumerelectronics": "Tüketici elektroniği",
+      "itequipment": "BT ekipmanları",
+      "telecommunications": "Telekomünikasyon",
+      "diagnosticequipment": "Teşhis ekipmanları",
+      "surgicalinstruments": "Cerrahi aletler",
+      "disposables": "Sarf malzemeleri",
+      "officefurniture": "Ofis mobilyaları",
+      "homefurniture": "Ev mobilyaları",
+      "decorativeitems": "Dekoratif ürünler",
+      "solarpanels": "Güneş panelleri",
+      "generators": "Jeneratörler",
+      "electricalequipment": "Elektrik ekipmanları",
+      "plasticpackaging": "Plastik ambalaj",
+      "cardboardboxes": "Karton kutular",
+      "labels": "Etiketler",
+      "handtools": "El aletleri",
+      "powertools": "Elektrikli el aletleri",
+      "hardwaresupplies": "Hırdavat malzemeleri"
+    }
+  },
+  "contact": {
+    "heading": "İletişime Geçin",
+    "subheading": "Ticarete başlamaya hazır mısınız? Platformumuz hakkında sorularınız mı var? Size yardımcı olmak için buradayız.",
+    "information": {
+      "title": "İletişim Bilgileri",
+      "mainAddress": "Ana Adres",
+      "branchOffice": "Şube Ofis",
+      "email": "E-posta",
+      "emailLabel": "Genel sorular için",
+      "phone": "Telefon",
+      "phoneLabel": "Sadece iş saatleri",
+      "businessHours": "Çalışma Saatleri",
+      "hours": "Pazartesi - Cuma: 9:00 - 18:00 EST",
+      "responseTime": "Yanıt süresi: 24 saat içinde",
+      "followUs": "Bizi Takip Edin"
+    },
+    "form": {
+      "title": "Bize Mesaj Gönderin",
+      "fullName": "Ad Soyad",
+      "fullNamePlaceholder": "Adınız soyadınız",
+      "email": "E-posta Adresi",
+      "emailPlaceholder": "sizin@email.com",
+      "company": "Şirket",
+      "companyPlaceholder": "Şirket adınız",
+      "subject": "Konu",
+      "subjectPlaceholder": "Bir konu seçin",
+      "subjectOptions": {
+        "general": "Genel Soru",
+        "partnership": "İş Ortaklığı",
+        "support": "Teknik Destek",
+        "sales": "Satış Sorusu",
+        "other": "Diğer"
+      },
+      "message": "Mesaj",
+      "messagePlaceholder": "Size nasıl yardımcı olabileceğimizi bize söyleyin...",
+      "submit": "Mesaj Gönder",
+      "sending": "Gönderiliyor...",
+      "successMessage": "Teşekkürler! Mesajınız başarıyla gönderildi. En kısa sürede size geri döneceğiz.",
+      "sendAnother": "Başka bir mesaj gönder",
+      "errorMessage": "Üzgünüz, mesajınız gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
+      "required": "*"
+    },
+    "faq": {
+      "heading": "Sık Sorulan Sorular",
+      "subheading": "Karavan hakkında sık sorulan soruların hızlı cevapları",
+      "whatIsKaravan": {
+        "question": "Karavan nedir?",
+        "answer": "Karavan, Türk ihracatçıları Orta Asya ve Doğu Avrupa'daki alıcılarla buluşturan bir B2B ihracat platformudur. Escrow ödemeleri, lojistik ve gümrük desteği dahil uçtan uca çözümler sunuyoruz."
+      },
+      "howToStart": {
+        "question": "Nasıl başlarım?",
+        "answer": "Platformumuz üzerinden erken erişim için kaydolun. Onaylandıktan sonra, 24-48 saat içinde hesabınızı oluşturmak ve ticarete başlamak için işe alım desteği alacaksınız."
+      },
+      "countries": {
+        "question": "Hangi ülkelerde faaliyet gösteriyorsunuz?",
+        "answer": "Şu anda Türkiye, Özbekistan, Kazakistan, Kırgızistan, Türkmenistan, Azerbaycan ve Macaristan'da faaliyet gösteriyoruz, daha fazla bölgeye genişleme planlarımız var."
+      },
+      "payments": {
+        "question": "Hangi ödeme yöntemlerini destekliyorsunuz?",
+        "answer": "Güvenli escrow ödemeleri, banka transferleri ve çeşitli yerel ödeme yöntemlerini destekliyoruz. Tüm işlemler teslimat onayına kadar korunur."
+      },
+      "logistics": {
+        "question": "Gümrük ve lojistik işlemlerini hallediyor musunuz?",
+        "answer": "Evet! Ortak ağımız aracılığıyla tüm gönderiler için entegre lojistik koordinasyonu, gümrük işlemleri desteği ve gerçek zamanlı takip sağlıyoruz."
+      },
+      "fees": {
+        "question": "Ücretleriniz nedir?",
+        "answer": "Ücret yapımız şeffaf ve rekabetçidir. Erken erişim döneminde özel fiyatlandırma sunuyoruz. Detaylı fiyatlandırma bilgileri için bizimle iletişime geçin."
+      },
+      "stillHaveQuestions": "Hala sorularınız mı var?",
+      "stillHaveQuestionsDesc": "Ekibimiz yardım etmek için burada. İş saatleri içinde e-posta veya telefon ile bize ulaşın.",
+      "emailUs": "E-posta Gönder",
+      "sendMessage": "Mesaj Gönder"
+    }
+  },
+  "buyer": {
+    "badge": "Alıcılar İçin",
+    "title": "Doğrulanmış",
+    "titleHighlight": "Tedarikçiler",
+    "subtitle": "Escrow ödemeleri ve lojistik desteği ile öncelikli kategorilerde doğrulanmış Türk tedarikçilere erişin."
+  },
+  "seller": {
+    "badge": "Satıcılar İçin",
+    "title": "Orta Asya'daki",
+    "titleHighlight": "Alıcılara Ulaşın",
+    "subtitle": "Doğrulanmış tedarikçi programına katılın, RFQ'lara erişin ve escrow, lojistik ve gümrük desteğiyle satış yapın."
+  },
+  "region": {
+    "badge": "Bölge",
+    "title": "Toptan tedarikçiler:",
+    "subtitle": "Yerel koridorlar, doğrulanmış tedarikçiler ve kategori liderleri:"
+  },
+  "regions": {
+    "turkiye": "Türkiye",
+    "uzbekistan": "Özbekistan",
+    "kazakhstan": "Kazakistan",
+    "azerbaijan": "Azerbaycan",
+    "kyrgyzstan": "Kırgızistan",
+    "turkmenistan": "Türkmenistan",
+    "kktc": "KKTC",
+    "hungary": "Macaristan"
+  },
+  "regionsSection": {
+    "subheading": "Türkiye ve Orta Asya genelinde odaklı kapsama ile sınır ötesi B2B ticareti kolaylaştırıyoruz."
+  },
+  "common": {
+    "explore": "Keşfet →"
+  },
+  "metrics": {
+    "heading": "Güvenli B2B Ticaret Göstergeleri",
+    "subheading": "Platformumuz Türkiye ile Orta Asya arasında ölçülebilir sonuçlarla güvenli ticareti zaten kolaylaştırıyor.",
+    "cards": {
+      "suppliersOnboarded": {
+        "label": "Katılan Tedarikçiler",
+        "description": "Orta Asya pazarlarına hizmet vermeye hazır doğrulanmış Türk ihracatçılar",
+        "footnote": "TR ve UZ pazarlarından pilot sonuçlar"
+      },
+      "shippingLeadTime": {
+        "label": "Gün Kargo Süresi",
+        "description": "Türkiye'den Orta Asya'ya ortalama teslimat süresi",
+        "footnote": "Pilot sevkiyatlara dayalı"
+      },
+      "languagesSupported": {
+        "label": "Desteklenen Diller",
+        "description": "Türkçe, İngilizce, Rusça",
+        "footnote": "Anadili destekli iletişim"
+      },
+      "brands": {
+        "label": "Marka",
+        "description": "Platformda yer alan lider markalar",
+        "footnote": "TR ve UZ'de pilot sonuçlar"
+      }
+    },
+    "coreMarkets": {
+      "heading": "Temel Pazarlar",
+      "peopleSuffix": "M kişi",
+      "live": "Canlı",
+      "expanding": "Genişliyor"
+    }
+  },
+  "solutions": {
+    "heading": "Çözümler",
+    "subheading": "Türkiye-Orta Asya ticaretini sorunsuz ve güvenli hale getirmek için kapsamlı bir çözüm ekosistemi oluşturduk.",
+    "integratedHeading": "Entegre Çözümler",
+    "items": {
+      "trustVerification": {
+        "title": "Güven ve Doğrulama",
+        "description": "İşletme kimlik bilgileri, sertifikalar ve ticaret geçmişi takibi ile kapsamlı tedarikçi doğrulaması.",
+        "footnote": "Doğrulanmış profiller ve denetim izi"
+      },
+      "securePayments": {
+        "title": "Güvenli Ödemeler",
+        "description": "Otomatik uyuşmazlık çözümü ve çoklu para birimi desteği ile escrow tabanlı ödeme sistemi.",
+        "footnote": "Ödemeler yalnızca teslimatta serbest bırakılır"
+      },
+      "logisticsCoordination": {
+        "title": "Lojistik Koordinasyon",
+        "description": "Gerçek zamanlı takip ve gümrük işlemleri desteği ile uçtan uca lojistik yönetimi.",
+        "footnote": "Kapıdan kapıya orkestrasyon"
+      },
+      "customsCompliance": {
+        "title": "Gümrük ve Uyum",
+        "description": "Sınır ötesi ticaret için otomatik belge yönetimi ve uyumluluk.",
+        "footnote": "Otomatik uyumluluk kontrolleri"
+      },
+      "insuranceCoverage": {
+        "title": "Sigorta Kapsamı",
+        "description": "Yolda malları ve işlemleri koruyan kapsamlı ticaret sigortası.",
+        "footnote": "Uçtan uca koruma"
+      },
+      "tradeFinance": {
+        "title": "Ticaret Finansmanı",
+        "description": "Akreditif ve ticari kredi olanaklarını içeren entegre finansman çözümleri.",
+        "footnote": "Esnek kredi seçenekleri"
+      }
+    }
+  },
+  "innovation": {
+    "heading": "Platform İnovasyonu",
+    "subheading": "Platformumuz, sınır ötesi ticaretin her yönünü otomatikleştirmek ve optimize etmek için son teknoloji kullanır.",
+    "aiHeading": "Yapay Zeka Destekli Özellikler",
+    "aiFeatures": [
+      "Birden fazla para biriminde birleşik ödeme işleme",
+      "Otomatik uyumluluk kontrolü ve dokümantasyon",
+      "Yapay zeka destekli risk değerlendirmesi ve sahtekarlık tespiti",
+      "Akıllı doküman otomasyonu ve çeviri",
+      "Gerçek zamanlı analitik ve raporlama paneli"
+    ],
+    "stats": {
+      "automationRate": "Otomasyon Oranı",
+      "fasterProcessing": "Daha Hızlı İşlem"
+    },
+    "paymentMethodsHeading": "Birden Fazla Ödeme Yöntemi",
+    "paymentMethods": [
+      { "name": "Banka Havalesi", "description": "SWIFT destekli doğrudan banka transferleri" },
+      { "name": "Kredi Kartları", "description": "Visa, Mastercard ve yerel kart ağları" },
+      { "name": "Uluslararası Transferler", "description": "Sınır ötesi ödeme çözümleri ve havaleler" }
+    ],
+    "availableBadge": "Mevcut",
+    "securityHeading": "Banka Seviyesinde Güvenlik",
+    "securityText": "Tüm işlemler 256‑bit SSL şifreleme, PCI DSS uyumluluğu ve gelişmiş sahtekarlık tespit sistemleri ile korunur."
+  },
+  "cta": {
+    "heading": "Erken Erişim Hakkınızı Güvenceye Alın",
+    "description": "Sınırlı kontenjan. Doğrulanmış tedarikçiler, güvenli escrow, lojistik dahil. B2B ticaretin geleceğini ilk deneyimleyenlerden olun.",
+    "form": {
+      "emailLabel": "E-posta Adresi",
+      "emailPlaceholder": "sizin@sirketiniz.com",
+      "roleLabel": "İstiyorum:",
+      "roles": {
+        "findSuppliers": "Tedarikçi Bul",
+        "startSelling": "Satmaya Başla"
+      },
+      "countryLabel": "Ülke",
+      "selectCountry": "Ülkenizi seçin",
+      "other": "Diğer",
+      "submit": "Erken Erişim Al",
+      "submitting": "Gönderiliyor..."
+    },
+    "successTitle": "İlginiz için teşekkürler!",
+    "successMessage": "Sonraki adımları yakında e‑postanıza göndereceğiz.",
+    "footerNote": "Ücret yok. Spam yok. Sadece erken erişim.",
+    "benefits": {
+      "earlyAccessTitle": "Erken Erişim",
+      "earlyAccessDesc": "Genel lansmandan önce platformumuzu ilk siz kullanın",
+      "noFeesTitle": "Ücret Yok",
+      "noFeesDesc": "Beta döneminde ücretsiz erişim ve özel fiyatlandırma",
+      "noSpamTitle": "Spam Yok",
+      "noSpamDesc": "Gizliliğinize saygı duyar, sadece önemli güncellemeleri göndeririz"
+    }
+  },
+  "trustedPartners": {
+    "heading": "Güvenilir İş Ortakları",
+    "subheading": "Ödemeler, lojistik ve uyum alanlarında güvenilir küresel ortaklar tarafından desteklenmektedir.",
+    "companies": "Şirket",
+    "nationalChambers": "Ulusal Odalar"
+  },
+  "team": {
+    "heading": "Ekip ve Uzmanlık",
+    "subheading": "Çeşitli ekibimiz, B2B ticaretin geleceğini inşa etmek için ticaret, lojistik ve teknoloji alanlarında derin uzmanlığı bir araya getiriyor.",
+    "expertise": {
+      "tradeFinance": {
+        "title": "Ticaret ve Finans",
+        "description": "Uluslararası ticaret, finans ve sınır ötesi ödemelerde 20+ yıllık birleşik deneyime sahip derin uzmanlık."
+      },
+      "logisticsSupply": {
+        "title": "Lojistik ve Tedarik Zinciri",
+        "description": "Orta Asya genelinde lojistik, gümrük ve tedarik zinciri yönetimi konusunda kapsamlı bilgi."
+      },
+      "technologyInnovation": {
+        "title": "Teknoloji ve İnovasyon",
+        "description": "Yapay zeka, blokzincir ve modern web teknolojileri ile ileri düzey çözümler."
+      },
+      "badge": "Çekirdek Uzmanlık"
+    },
+    "leadership": {
+      "heading": "Çekirdek Liderlik",
+      "subheading": "Uluslararası ticaret ve teknoloji alanlarında kanıtlanmış geçmişe sahip deneyimli liderler"
+    },
+    "values": {
+      "globalPerspective": {
+        "title": "Küresel Bakış",
+        "description": "Uluslararası pazarlar ve kültürel nüanslara hakimiyet"
+      },
+      "innovationFirst": {
+        "title": "Önce İnovasyon",
+        "description": "Modern ticaret zorlukları için ileri teknoloji çözümleri"
+      },
+      "partnershipFocus": {
+        "title": "Ortaklık Odaklılık",
+        "description": "Tüm paydaşlarla güçlü ilişkiler kurma"
+      }
+    }
+  },
+  "salesModels": {
+    "heading": "Esnek Satış Modelleri",
+    "subheading": "İş ihtiyaçlarınıza en uygun satış modelini seçin. Doğrudan satın almadan rekabetçi açık artırmalara kadar tüm B2B işlem türlerini destekliyoruz.",
+    "availableNow": "Şimdi Mevcut",
+    "ctaExplore": "Satış Modellerini Keşfet",
+    "models": {
+      "directPurchase": {
+        "name": "Doğrudan Satın Alma",
+        "description": "Alıcılar, doğrulanmış tedarikçilerden sabit fiyatlarla doğrudan ürün satın alabilir.",
+        "features": ["Sabit fiyatlandırma", "Anında satın alma", "Anında onay"]
+      },
+      "rfq": {
+        "name": "Teklif Talebi (RFQ)",
+        "description": "Alıcılar detaylı gereksinimlerini iletir ve birden fazla tedarikçiden rekabetçi teklifler alır.",
+        "features": ["Özel gereksinimler", "Birden çok teklif", "Fiyat karşılaştırma"]
+      },
+      "rfp": {
+        "name": "Teklif Çağrısı (RFP)",
+        "description": "Büyük ölçekli projeler için detaylı tekliflerle karmaşık tedarik süreçleri.",
+        "features": ["Detaylı teklif", "Teknik değerlendirme", "Uzun vadeli sözleşmeler"]
+      },
+      "buyerAuction": {
+        "name": "Alıcı Açık Artırması",
+        "description": "Alıcılar maksimum fiyatı belirler ve tedarikçiler en iyi teklifi sunmak için yarışır.",
+        "features": ["Fiyat rekabeti", "Alıcı kontrolü", "En iyi değer"]
+      },
+      "sellerAuction": {
+        "name": "Satıcı Açık Artırması",
+        "description": "Tedarikçiler ürünlerini en yüksek teklifi veren alıcılara açık artırma ile satar.",
+        "features": ["Piyasa fiyatlaması", "Satıcı kontrolü", "Premium ürünler"]
+      }
+    },
+    "comparison": {
+      "heading": "Satış Modelleri Karşılaştırması",
+      "subheading": "Hız, kontrol ve karmaşıklığı tek bakışta",
+      "tableHeaders": {
+        "model": "Model",
+        "bestFor": "En Uygun",
+        "speed": "Hız",
+        "priceControl": "Fiyat Kontrolü",
+        "complexity": "Karmaşıklık"
+      },
+      "rows": {
+        "directPurchase": { "bestFor": "Standart ürünler", "speed": "Anında", "priceControl": "Sabit", "complexity": "Düşük" },
+        "rfq": { "bestFor": "Özel gereksinimler", "speed": "1–3 gün", "priceControl": "Rekabetçi", "complexity": "Orta" },
+        "rfp": { "bestFor": "Büyük projeler", "speed": "1–2 hafta", "priceControl": "Müzakereye bağlı", "complexity": "Yüksek" },
+        "buyerAuction": { "bestFor": "Fiyata duyarlı alıcılar", "speed": "1–7 gün", "priceControl": "Alıcı belirler", "complexity": "Orta" },
+        "sellerAuction": { "bestFor": "Premium ürünler", "speed": "1–7 gün", "priceControl": "Piyasa odaklı", "complexity": "Orta" }
+      }
+    }
+  }
+}
+

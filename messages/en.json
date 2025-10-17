@@ -1,0 +1,531 @@
+{
+  "header": {
+    "nav": {
+      "features": "Features",
+      "categories": "Categories",
+      "regions": "Regions",
+      "contact": "Contact"
+    },
+    "cta": "Get Early Access"
+  },
+  "footer": {
+    "tagline": "Trade Without Barriers",
+    "description": "The B2B platform connecting Turkish exporters with Central Asian markets. Trust, payments, logistics, and customs - all in one place.",
+    "mainAddress": "Main Address",
+    "generalInquiries": "General Inquiries",
+    "language": "Language",
+    "product": "Product",
+    "solutions": "Solutions",
+    "company": "Company",
+    "legal": "Legal",
+    "nav": {
+      "features": "Features",
+      "categories": "Categories"
+    },
+    "information": {
+      "mainAddress": "Main Address",
+      "emailLabel": "For general inquiries"
+    },
+    "links": {
+      "forBuyers": "For Buyers",
+      "forSellers": "For Sellers",
+      "regions": "Regions",
+      "partnerships": "Partnerships",
+      "team": "Team",
+      "careers": "Careers",
+      "contact": "Contact",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "cookiePolicy": "Cookie Policy",
+      "gdpr": "GDPR"
+    },
+    "stats": {
+      "verifiedSuppliers": "Verified Suppliers",
+      "languagesSupported": "Languages Supported",
+      "brands": "Brands"
+    },
+    "copyright": "Karavan Digital Inc. All rights reserved."
+  },
+  "hero": {
+    "title": "Early access to",
+    "titleHighlight": "verified suppliers",
+    "titleEnd": "in the Turkic States",
+    "subtitle": "Secure B2B trade with escrow, logistics, and financing included.",
+    "subtitleHighlight": "Limited early access spots available.",
+    "description": "Join the private beta — no fees, no spam, early access only.",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "your@company.com",
+    "roleLabel": "I want to:",
+    "findSuppliers": "Find Suppliers",
+    "startSelling": "Start Selling",
+    "cta": "Get Early Access",
+    "successTitle": "Thanks for your interest!",
+    "successMessage": "We'll send the next steps to your email soon.",
+    "activeTradeCoridor": "Active trade corridor",
+    "trust": {
+      "noMembershipFees": "No membership fees",
+      "payOnlyForServices": "Pay only for services you use"
+    }
+  },
+  "features": {
+    "heading": "Why Trade on Karavan?",
+    "subheading": "Integrated solutions that eliminate the complexity of cross-border B2B trade.",
+    "badges": {
+      "escrow": "Escrow",
+      "logistics": "Logistics",
+      "verified": "Verified",
+      "finance": "Finance"
+    },
+    "paymentInsurance": {
+      "title": "Payment & Insurance",
+      "description": "Secure payment processing with comprehensive insurance coverage for all transactions.",
+      "benefits": {
+        "multiple": "Multiple payment methods",
+        "insurance": "Insurance coverage",
+        "risk": "Risk protection"
+      }
+    },
+    "logisticsCustoms": {
+      "title": "Logistics & Customs",
+      "description": "End-to-end logistics coordination with customs clearance and documentation support.",
+      "benefits": {
+        "delivery": "Door-to-door delivery",
+        "customs": "Customs clearance",
+        "tracking": "Real-time tracking"
+      }
+    },
+    "verifiedSuppliers": {
+      "title": "Verified Suppliers",
+      "description": "Comprehensive verification system with business credentials, certifications, and KYB KYC.",
+      "benefits": {
+        "verification": "Business verification",
+        "certification": "Certification tracking",
+        "kyb": "KYB KYC"
+      }
+    },
+    "financingInsurance": {
+      "title": "Financing & Insurance",
+      "description": "Integrated trade finance solutions and comprehensive insurance coverage for all transactions.",
+      "benefits": {
+        "finance": "Trade finance",
+        "insurance": "Insurance coverage",
+        "credit": "Credit facilities"
+      }
+    },
+    "stats": {
+      "secureTransactions": "Secure Transactions",
+      "supportAvailable": "Support Available",
+      "countriesConnected": "Countries Connected"
+    }
+  },
+  "categories": {
+    "heading": "Top B2B Categories",
+    "subheading": "Discover the most popular product categories in Türkiye-Central Asia trade, with verified suppliers and streamlined processes.",
+    "viewAll": "View all categories",
+    "requestSection": {
+      "heading": "Don't See Your Category?",
+      "subheading": "Request a new category to be added to our platform",
+      "cta": "Request a Category",
+      "successTitle": "Category Request Submitted!",
+      "successMessage": "We'll review your request and get back to you soon.",
+      "form": {
+        "categoryName": "Category Name",
+        "categoryNamePlaceholder": "e.g., Renewable Energy Equipment",
+        "email": "Your Email",
+        "emailPlaceholder": "your@email.com",
+        "description": "Description",
+        "descriptionPlaceholder": "Tell us about this category and why it's important for Türkiye-Central Asia trade",
+        "captchaLabel": "What is 7 + 3? (Anti-spam)",
+        "captchaPlaceholder": "10",
+        "submit": "Submit Request",
+        "submitting": "Submitting...",
+        "cancel": "Cancel",
+        "error": "Failed to submit request. Please try again."
+      }
+    },
+    "items": {
+      "textilesApparel": "Textiles & Apparel",
+      "machineryEquipment": "Machinery & Equipment",
+      "chemicalsPharmaceuticals": "Chemicals & Pharmaceuticals",
+      "agricultureFood": "Agriculture & Food",
+      "constructionMaterials": "Construction Materials",
+      "automotiveParts": "Automotive Parts",
+      "electronicsIT": "Electronics & IT",
+      "medicalEquipment": "Medical Equipment",
+      "furnitureHome": "Furniture & Home",
+      "energyPower": "Energy & Power",
+      "packagingMaterials": "Packaging Materials",
+      "toolsHardware": "Tools & Hardware"
+    },
+    "demand": {
+      "veryHigh": "Very High",
+      "high": "High",
+      "medium": "Medium"
+    },
+    "subitems": {
+      "cottonfabrics": "Cotton fabrics",
+      "readymadegarments": "Ready-made garments",
+      "hometextiles": "Home textiles",
+      "agriculturalmachinery": "Agricultural machinery",
+      "industrialequipment": "Industrial equipment",
+      "constructionmachinery": "Construction machinery",
+      "industrialchemicals": "Industrial chemicals",
+      "pharmaceuticals": "Pharmaceuticals",
+      "cosmetics": "Cosmetics",
+      "driedfruits": "Dried fruits",
+      "nuts": "Nuts",
+      "spices": "Spices",
+      "processedfoods": "Processed foods",
+      "cement": "Cement",
+      "steelproducts": "Steel products",
+      "ceramictiles": "Ceramic tiles",
+      "engineparts": "Engine parts",
+      "brakesystems": "Brake systems",
+      "electricalcomponents": "Electrical components",
+      "consumerelectronics": "Consumer electronics",
+      "itequipment": "IT equipment",
+      "telecommunications": "Telecommunications",
+      "diagnosticequipment": "Diagnostic equipment",
+      "surgicalinstruments": "Surgical instruments",
+      "disposables": "Disposables",
+      "officefurniture": "Office furniture",
+      "homefurniture": "Home furniture",
+      "decorativeitems": "Decorative items",
+      "solarpanels": "Solar panels",
+      "generators": "Generators",
+      "electricalequipment": "Electrical equipment",
+      "plasticpackaging": "Plastic packaging",
+      "cardboardboxes": "Cardboard boxes",
+      "labels": "Labels",
+      "handtools": "Hand tools",
+      "powertools": "Power tools",
+      "hardwaresupplies": "Hardware supplies"
+    }
+  },
+  "contact": {
+    "heading": "Get in Touch",
+    "subheading": "Ready to start trading? Have questions about our platform? We're here to help.",
+    "information": {
+      "title": "Contact Information",
+      "mainAddress": "Main Address",
+      "branchOffice": "Branch Office",
+      "email": "Email",
+      "emailLabel": "For general inquiries",
+      "phone": "Phone",
+      "phoneLabel": "Business hours only",
+      "businessHours": "Business Hours",
+      "hours": "Monday - Friday: 9:00 AM - 6:00 PM EST",
+      "responseTime": "Response time: Within 24 hours",
+      "followUs": "Follow Us"
+    },
+    "form": {
+      "title": "Send us a Message",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "company": "Company",
+      "companyPlaceholder": "Your company name",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "subjectOptions": {
+        "general": "General Inquiry",
+        "partnership": "Partnership",
+        "support": "Technical Support",
+        "sales": "Sales Question",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Tell us how we can help you...",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "successMessage": "Thank you! Your message has been sent successfully. We'll get back to you soon.",
+      "sendAnother": "Send another message",
+      "errorMessage": "Sorry, there was an error sending your message. Please try again.",
+      "required": "*"
+    },
+    "faq": {
+      "heading": "Frequently Asked Questions",
+      "subheading": "Quick answers to common questions about Karavan",
+      "whatIsKaravan": {
+        "question": "What is Karavan?",
+        "answer": "Karavan is a B2B export platform connecting Turkish exporters with buyers across Central Asia and Eastern Europe. We provide end-to-end solutions including escrow payments, logistics, and customs support."
+      },
+      "howToStart": {
+        "question": "How do I get started?",
+        "answer": "Sign up for early access through our platform. Once approved, you'll receive onboarding support to set up your account and start trading within 24-48 hours."
+      },
+      "countries": {
+        "question": "Which countries do you operate in?",
+        "answer": "We currently operate in Türkiye, Uzbekistan, Kazakhstan, Kyrgyzstan, Turkmenistan, Azerbaijan, and Hungary, with plans to expand to more regions."
+      },
+      "payments": {
+        "question": "What payment methods do you support?",
+        "answer": "We support secure escrow payments, bank transfers, and various local payment methods. All transactions are protected until delivery confirmation."
+      },
+      "logistics": {
+        "question": "Do you handle customs and logistics?",
+        "answer": "Yes! We provide integrated logistics coordination, customs clearance support, and real-time tracking for all shipments through our partner network."
+      },
+      "fees": {
+        "question": "What are your fees?",
+        "answer": "Our fee structure is transparent and competitive. During the early access period, we offer special pricing. Contact us for detailed pricing information."
+      },
+      "stillHaveQuestions": "Still have questions?",
+      "stillHaveQuestionsDesc": "Our team is here to help. Reach out via email or phone during business hours.",
+      "emailUs": "Email Us",
+      "sendMessage": "Send Message"
+    }
+  },
+  "buyer": {
+    "badge": "For Buyers",
+    "title": "Find Verified",
+    "titleHighlight": "Suppliers",
+    "subtitle": "Access vetted Turkish suppliers across priority categories with escrow payments and logistics support."
+  },
+  "seller": {
+    "badge": "For Sellers",
+    "title": "Reach Buyers in",
+    "titleHighlight": "Central Asia",
+    "subtitle": "Join verified suppliers program, access RFQs, and sell with escrow, logistics and customs support."
+  },
+  "region": {
+    "badge": "Region",
+    "title": "Wholesale suppliers in",
+    "subtitle": "Local corridors, verified suppliers, and category leaders for"
+  },
+  "regions": {
+    "turkiye": "Türkiye",
+    "uzbekistan": "Uzbekistan",
+    "kazakhstan": "Kazakhstan",
+    "azerbaijan": "Azerbaijan",
+    "kyrgyzstan": "Kyrgyzstan",
+    "turkmenistan": "Turkmenistan",
+    "kktc": "KKTC",
+    "hungary": "Hungary"
+  },
+  "regionsSection": {
+    "subheading": "Focused coverage across Türkiye and Central Asia to streamline cross-border B2B trade."
+  },
+  "common": {
+    "explore": "Explore →"
+  },
+  "metrics": {
+    "heading": "Secure B2B Trade Metrics",
+    "subheading": "Our platform is already facilitating secure trade between Türkiye and Central Asia with measurable results.",
+    "cards": {
+      "suppliersOnboarded": {
+        "label": "Suppliers Onboarded",
+        "description": "Verified Turkish exporters ready to serve Central Asian markets",
+        "footnote": "Pilot results from TR & UZ markets"
+      },
+      "shippingLeadTime": {
+        "label": "Days Shipping Lead Time",
+        "description": "Average delivery time from Türkiye to Central Asia",
+        "footnote": "Based on pilot shipments"
+      },
+      "languagesSupported": {
+        "label": "Languages Supported",
+        "description": "Turkish, English, Russian",
+        "footnote": "Native speaker support"
+      },
+      "brands": {
+        "label": "Brands",
+        "description": "Leading brands available on the platform",
+        "footnote": "Pilot results in TR & UZ"
+      }
+    },
+    "coreMarkets": {
+      "heading": "Core Markets",
+      "peopleSuffix": "M people",
+      "live": "Live",
+      "expanding": "Expanding"
+    }
+  },
+  "solutions": {
+    "heading": "Solutions",
+    "subheading": "We've built a comprehensive ecosystem of solutions to make Türkiye-Central Asia trade seamless and secure.",
+    "integratedHeading": "Integrated Solutions",
+    "items": {
+      "trustVerification": {
+        "title": "Trust & Verification",
+        "description": "Comprehensive supplier verification with business credentials, certifications, and trade history tracking.",
+        "footnote": "Verified profiles and audit trails"
+      },
+      "securePayments": {
+        "title": "Secure Payments",
+        "description": "Escrow-based payment system with automated dispute resolution and multi-currency support.",
+        "footnote": "Funds released only on delivery"
+      },
+      "logisticsCoordination": {
+        "title": "Logistics Coordination",
+        "description": "End-to-end logistics management with real-time tracking and customs clearance support.",
+        "footnote": "Door-to-door orchestration"
+      },
+      "customsCompliance": {
+        "title": "Customs & Compliance",
+        "description": "Automated documentation and compliance management for seamless cross-border trade.",
+        "footnote": "Automated compliance checks"
+      },
+      "insuranceCoverage": {
+        "title": "Insurance Coverage",
+        "description": "Comprehensive trade insurance covering goods in transit and transaction protection.",
+        "footnote": "End-to-end coverage"
+      },
+      "tradeFinance": {
+        "title": "Trade Finance",
+        "description": "Integrated financing solutions including letters of credit and trade credit facilities.",
+        "footnote": "Flexible credit options"
+      }
+    }
+  },
+  "innovation": {
+    "heading": "Platform Innovation",
+    "subheading": "Our platform leverages cutting-edge technology to automate and optimize every aspect of cross-border trade.",
+    "aiHeading": "AI-Powered Features",
+    "aiFeatures": [
+      "Unified payment processing across multiple currencies",
+      "Automated compliance checking and documentation",
+      "AI-powered risk assessment and fraud detection",
+      "Smart document automation and translation",
+      "Real-time analytics and reporting dashboard"
+    ],
+    "stats": {
+      "automationRate": "Automation Rate",
+      "fasterProcessing": "Faster Processing"
+    },
+    "paymentMethodsHeading": "Multiple Payment Methods",
+    "paymentMethods": [
+      { "name": "Bank Transfers", "description": "Direct bank-to-bank transfers with SWIFT support" },
+      { "name": "Credit Cards", "description": "Visa, Mastercard, and local card networks" },
+      { "name": "International Transfers", "description": "Cross-border payment solutions and remittances" }
+    ],
+    "availableBadge": "Available",
+    "securityHeading": "Bank-Grade Security",
+    "securityText": "All transactions are protected with 256-bit SSL encryption, PCI DSS compliance, and advanced fraud detection systems."
+  },
+  "cta": {
+    "heading": "Secure Your Early Access Spot",
+    "description": "Limited spots available. Verified suppliers, secure escrow, logistics included. Be among the first to experience the future of B2B trade.",
+    "form": {
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "your@company.com",
+      "roleLabel": "I want to:",
+      "roles": {
+        "findSuppliers": "Find Suppliers",
+        "startSelling": "Start Selling"
+      },
+      "countryLabel": "Country",
+      "selectCountry": "Select your country",
+      "other": "Other",
+      "submit": "Get Early Access",
+      "submitting": "Submitting..."
+    },
+    "successTitle": "Thanks for your interest!",
+    "successMessage": "We'll send the next steps to your email soon.",
+    "footerNote": "No fees. No spam. Just early access.",
+    "benefits": {
+      "earlyAccessTitle": "Early Access",
+      "earlyAccessDesc": "Be the first to use our platform before public launch",
+      "noFeesTitle": "No Fees",
+      "noFeesDesc": "Free access during beta period with special pricing",
+      "noSpamTitle": "No Spam",
+      "noSpamDesc": "We respect your privacy and only send important updates"
+    }
+  },
+  "trustedPartners": {
+    "heading": "Trusted Partners",
+    "subheading": "Backed by trusted global partners across payments, logistics and compliance.",
+    "companies": "Companies",
+    "nationalChambers": "National Chambers"
+  },
+  "team": {
+    "heading": "Team & Expertise",
+    "subheading": "Our diverse team brings together deep expertise in trade, logistics, and technology to build the future of B2B commerce.",
+    "expertise": {
+      "tradeFinance": {
+        "title": "Trade & Finance",
+        "description": "Deep expertise in international trade, finance, and cross-border payments with 20+ years combined experience."
+      },
+      "logisticsSupply": {
+        "title": "Logistics & Supply Chain",
+        "description": "Comprehensive knowledge of logistics, customs, and supply chain management across Central Asia."
+      },
+      "technologyInnovation": {
+        "title": "Technology & Innovation",
+        "description": "Cutting-edge technology solutions with AI, blockchain, and modern web technologies."
+      },
+      "badge": "Core Expertise"
+    },
+    "leadership": {
+      "heading": "Core Leadership",
+      "subheading": "Experienced leaders with proven track records in international trade and technology"
+    },
+    "values": {
+      "globalPerspective": {
+        "title": "Global Perspective",
+        "description": "Understanding of international markets and cultural nuances"
+      },
+      "innovationFirst": {
+        "title": "Innovation First",
+        "description": "Cutting-edge technology solutions for modern trade challenges"
+      },
+      "partnershipFocus": {
+        "title": "Partnership Focus",
+        "description": "Building strong relationships with all stakeholders"
+      }
+    }
+  },
+  "salesModels": {
+    "heading": "Flexible Sales Models",
+    "subheading": "Choose the sales model that works best for your business needs. From direct purchases to competitive auctions, we support all B2B transaction types.",
+    "availableNow": "Available Now",
+    "ctaExplore": "Explore Sales Models",
+    "models": {
+      "directPurchase": {
+        "name": "Direct Purchase",
+        "description": "Buyers can directly purchase products from verified suppliers at fixed prices.",
+        "features": ["Fixed pricing", "Instant purchase", "Immediate confirmation"]
+      },
+      "rfq": {
+        "name": "Request for Quote (RFQ)",
+        "description": "Buyers submit detailed requirements and receive competitive quotes from multiple suppliers.",
+        "features": ["Custom requirements", "Multiple quotes", "Price comparison"]
+      },
+      "rfp": {
+        "name": "Request for Proposal (RFP)",
+        "description": "Complex procurement process for large-scale projects with detailed proposals.",
+        "features": ["Detailed proposals", "Technical evaluation", "Long-term contracts"]
+      },
+      "buyerAuction": {
+        "name": "Buyer Auction",
+        "description": "Buyers set maximum prices and suppliers compete to offer the best deals.",
+        "features": ["Price competition", "Buyer control", "Best value"]
+      },
+      "sellerAuction": {
+        "name": "Seller Auction",
+        "description": "Suppliers auction their products to the highest bidding buyers.",
+        "features": ["Market pricing", "Seller control", "Premium products"]
+      }
+    },
+    "comparison": {
+      "heading": "Sales Model Comparison",
+      "subheading": "Speed, control, and complexity at a glance",
+      "tableHeaders": {
+        "model": "Model",
+        "bestFor": "Best For",
+        "speed": "Speed",
+        "priceControl": "Price Control",
+        "complexity": "Complexity"
+      },
+      "rows": {
+        "directPurchase": { "bestFor": "Standard products", "speed": "Instant", "priceControl": "Fixed", "complexity": "Low" },
+        "rfq": { "bestFor": "Custom requirements", "speed": "1–3 days", "priceControl": "Competitive", "complexity": "Medium" },
+        "rfp": { "bestFor": "Large projects", "speed": "1–2 weeks", "priceControl": "Negotiated", "complexity": "High" },
+        "buyerAuction": { "bestFor": "Price‑sensitive buyers", "speed": "1–7 days", "priceControl": "Buyer sets max", "complexity": "Medium" },
+        "sellerAuction": { "bestFor": "Premium products", "speed": "1–7 days", "priceControl": "Market driven", "complexity": "Medium" }
+      }
+    }
+  }
+}
+

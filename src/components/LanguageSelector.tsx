@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useTransition } from 'react';
+import { useLocale } from 'next-intl';
+import { useRouter, usePathname } from '@/i18n/routing';
 import Flag from '@/components/Flag';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Language {
   code: string;
@@ -31,9 +32,21 @@ export default function LanguageSelector({
   itemClassName = '',
   selectedItemClassName = ''
 }: LanguageSelectorProps) {
-  const { selectedLanguage, setSelectedLanguage } = useLanguage();
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const currentLanguage = LANGUAGES.find(lang => lang.code === locale) || LANGUAGES[0];
+
+  const changeLocale = (newLocale: string) => {
+    startTransition(() => {
+      // next-intl's router automatically handles locale switching
+      router.replace(pathname, { locale: newLocale });
+    });
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -57,10 +70,11 @@ export default function LanguageSelector({
         {LANGUAGES.map((lang) => (
           <button
             key={lang.code}
-            onClick={() => setSelectedLanguage(lang.name)}
+            onClick={() => changeLocale(lang.code)}
+            disabled={isPending || locale === lang.code}
             className={`flex items-center gap-1 px-2 py-1 rounded transition-colors ${
-              selectedLanguage === lang.name ? 'bg-brand-50 text-brand-600' : 'text-gray-700 hover:bg-gray-100'
-            } ${buttonClassName}`}
+              locale === lang.code ? 'bg-brand-50 text-brand-600' : 'text-gray-700 hover:bg-gray-100'
+            } ${buttonClassName} ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <Flag code={lang.flagCode} size="xs" />
             <span className="text-xs">{lang.code.toUpperCase()}</span>
@@ -75,13 +89,14 @@ export default function LanguageSelector({
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
-        className={`flex items-center gap-2 transition-colors ${buttonClassName}`}
+        disabled={isPending}
+        className={`flex items-center gap-2 transition-colors ${buttonClassName} ${isPending ? 'opacity-50' : ''}`}
       >
         <Flag 
-          code={LANGUAGES.find(lang => lang.name === selectedLanguage)?.flagCode || 'us'} 
+          code={currentLanguage.flagCode} 
           size="sm" 
         />
-        <span className="text-sm">{selectedLanguage}</span>
+        <span className="text-sm">{currentLanguage.name}</span>
         <svg 
           className={`w-4 h-4 transition-transform ${languageDropdownOpen ? 'rotate-180' : ''}`} 
           fill="none" 
@@ -97,14 +112,15 @@ export default function LanguageSelector({
             <button
               key={language.code}
               onClick={() => {
-                setSelectedLanguage(language.name);
+                changeLocale(language.code);
                 setLanguageDropdownOpen(false);
               }}
+              disabled={isPending || locale === language.code}
               className={`w-full px-4 py-2 text-left text-sm flex items-center gap-2 ${
-                selectedLanguage === language.name 
+                locale === language.code
                   ? `bg-gray-50 text-brand-600 ${selectedItemClassName || itemClassName}` 
                   : `text-gray-700 hover:bg-gray-100 ${itemClassName}`
-              }`}
+              } ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               <Flag code={language.flagCode} size="sm" />
               <span>{language.name}</span>

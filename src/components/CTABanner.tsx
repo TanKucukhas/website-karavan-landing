@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { analytics } from '@/lib/analytics'
+import { useTranslations } from 'next-intl'
 
 
 export default function CTABanner() {
+  const t = useTranslations('cta')
   const [email, setEmail] = useState('');
   const [role, setRole] = useState<'buyer' | 'seller'>('buyer');
   const [country, setCountry] = useState('');
@@ -53,10 +55,8 @@ export default function CTABanner() {
     <section id="cta" className="section-padding bg-gradient-to-r from-[#0b1220] via-[#0e1a33] to-[#0b1220] text-white relative animate-on-scroll">
       <div className="container mx-auto px-4">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.6)]">
-            Secure Your Early Access Spot
-          </h2>
-          <p className="text-white/85 mb-6 max-w-2xl mx-auto">Limited spots available. Verified suppliers, secure escrow, logistics included. Be among the first to experience the future of B2B trade.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.6)]">{t('heading')}</h2>
+          <p className="text-white/85 mb-6 max-w-2xl mx-auto">{t('description')}</p>
 
           {/* Enhanced CTA Form */}
           <div className="max-w-lg mx-auto">
@@ -64,20 +64,20 @@ export default function CTABanner() {
               <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/15">
                 <div className="space-y-4">
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">Email Address</label>
+                    <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">{t('form.emailLabel')}</label>
                     <input
                       type="email"
                       id="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="your@company.com"
+                      placeholder={t('form.emailPlaceholder')}
                       className="w-full px-4 py-3 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-semibold text-white mb-2">I want to:</label>
+                    <label className="block text-sm font-semibold text-white mb-2">{t('form.roleLabel')}</label>
                     <div className="grid grid-cols-2 gap-3">
                       <button
                         type="button"
@@ -88,7 +88,7 @@ export default function CTABanner() {
                             : 'border-gray-300 bg-white text-gray-900 hover:bg-gray-50'
                         }`}
                       >
-                        Find Suppliers
+                        {t('form.roles.findSuppliers')}
                       </button>
                       <button
                         type="button"
@@ -99,13 +99,13 @@ export default function CTABanner() {
                             : 'border-gray-300 bg-white text-gray-900 hover:bg-gray-50'
                         }`}
                       >
-                        Start Selling
+                        {t('form.roles.startSelling')}
                       </button>
                     </div>
                   </div>
                   
                   <div>
-                    <label htmlFor="country" className="block text-sm font-semibold text-white mb-2">Country</label>
+                    <label htmlFor="country" className="block text-sm font-semibold text-white mb-2">{t('form.countryLabel')}</label>
                     <select
                       id="country"
                       value={country}
@@ -113,14 +113,14 @@ export default function CTABanner() {
                       className="w-full px-4 py-3 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-brand-600 focus:outline-none border border-gray-300"
                       required
                     >
-                      <option value="">Select your country</option>
+                      <option value="">{t('form.selectCountry')}</option>
                       <option value="Türkiye">Türkiye</option>
                       <option value="Uzbekistan">Uzbekistan</option>
                       <option value="Kazakhstan">Kazakhstan</option>
                       <option value="Kyrgyzstan">Kyrgyzstan</option>
                       <option value="Turkmenistan">Turkmenistan</option>
                       <option value="Azerbaijan">Azerbaijan</option>
-                      <option value="Other">Other</option>
+                      <option value="Other">{t('form.other')}</option>
                     </select>
                   </div>
                   
@@ -136,10 +136,10 @@ export default function CTABanner() {
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        Submitting...
+                        {t('form.submitting')}
                       </>
                     ) : (
-                      'Get Early Access'
+                      t('form.submit')
                     )}
                   </button>
                 </div>
@@ -147,26 +147,26 @@ export default function CTABanner() {
             ) : (
               <div className="bg-emerald-500 text-white px-8 py-6 rounded-2xl font-semibold text-center">
                 <CheckCircleIcon className="w-12 h-12 mx-auto mb-2" />
-                <h3 className="text-xl font-bold mb-2">Thanks for your interest!</h3>
-                <p>We&apos;ll send the next steps to your email soon.</p>
+                <h3 className="text-xl font-bold mb-2">{t('successTitle')}</h3>
+                <p>{t('successMessage')}</p>
               </div>
             )}
-            <p className="text-white/90 text-sm mt-4">No fees. No spam. Just early access.</p>
+            <p className="text-white/90 text-sm mt-4">{t('footerNote')}</p>
           </div>
 
           {/* Benefits */}
           <div className="mt-12 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
-              <h3 className="text-lg font-bold text-white mb-1.5">Early Access</h3>
-              <p className="text-white/90 text-sm">Be the first to use our platform before public launch</p>
+              <h3 className="text-lg font-bold text-white mb-1.5">{t('benefits.earlyAccessTitle')}</h3>
+              <p className="text-white/90 text-sm">{t('benefits.earlyAccessDesc')}</p>
             </div>
             <div className="text-center">
-              <h3 className="text-lg font-bold text-white mb-1.5">No Fees</h3>
-              <p className="text-white/90 text-sm">Free access during beta period with special pricing</p>
+              <h3 className="text-lg font-bold text-white mb-1.5">{t('benefits.noFeesTitle')}</h3>
+              <p className="text-white/90 text-sm">{t('benefits.noFeesDesc')}</p>
             </div>
             <div className="text-center">
-              <h3 className="text-lg font-bold text-white mb-1.5">No Spam</h3>
-              <p className="text-white/90 text-sm">We respect your privacy and only send important updates</p>
+              <h3 className="text-lg font-bold text-white mb-1.5">{t('benefits.noSpamTitle')}</h3>
+              <p className="text-white/90 text-sm">{t('benefits.noSpamDesc')}</p>
             </div>
           </div>
         </div>

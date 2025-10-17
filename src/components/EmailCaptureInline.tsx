@@ -2,10 +2,12 @@
 import { useState } from 'react';
 import { analytics } from '@/lib/analytics';
 import ToggleSwitch from './ToggleSwitch';
+import { useTranslations } from 'next-intl'
 
 type Props = { defaultRole?: 'seller'|'buyer'; source?: string };
 
 export default function EmailCaptureInline({ defaultRole='seller', source='inline' }: Props) {
+  const t = useTranslations('hero')
   const [email, setEmail] = useState('');
   const [role, setRole] = useState<'seller'|'buyer'>(defaultRole);
   const [loading, setLoading] = useState(false);
@@ -52,8 +54,8 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
   if (ok) {
     return (
       <div className="rounded-xl bg-green-50 text-green-800 px-4 py-3 text-center">
-        <div className="font-semibold">Thanks for your interest!</div>
-        <div className="text-sm">We&apos;ll send the next steps to your email soon.</div>
+        <div className="font-semibold">{t('successTitle')}</div>
+        <div className="text-sm">{t('successMessage')}</div>
       </div>
     );
   }
@@ -63,18 +65,18 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
       {/* Email Input - Full Line */}
       <form onSubmit={onSubmit} className="space-y-4">
         <div>
-          <label htmlFor="email" className="sr-only">Email Address</label>
+          <label htmlFor="email" className="sr-only">{t('emailLabel')}</label>
           <input
             id="email"
             type="email"
             required
-            placeholder="your@company.com"
+            placeholder={t('emailPlaceholder')}
             className="w-full rounded-xl bg-white border border-gray-300 shadow-sm px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:outline-none text-base"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onBlur={() => {
               if (email && !email.includes('@')) {
-                setError('Please enter a valid email');
+                setError('Invalid email');
               } else {
                 setError('');
               }
@@ -87,8 +89,8 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
         <div className="flex flex-col gap-4">
           {/* Role Toggle Switch */}
           <ToggleSwitch
-            leftLabel="Seller"
-            rightLabel="Buyer"
+            leftLabel={t('startSelling')}
+            rightLabel={t('findSuppliers')}
             defaultValue={defaultRole === 'seller' ? 'left' : 'right'}
             onToggle={(value) => setRole(value === 'left' ? 'seller' : 'buyer')}
           />
@@ -99,7 +101,7 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
             disabled={loading}
             className="w-full h-12 rounded-xl btn-brand-gradient disabled:opacity-60 focus:ring-2 focus:ring-brand-600 focus:outline-none text-base font-medium"
           >
-            {loading ? 'Submitting...' : 'Get Early Access'}
+            {loading ? 'Submitting...' : t('cta')}
           </button>
         </div>
       </form>
@@ -108,11 +110,11 @@ export default function EmailCaptureInline({ defaultRole='seller', source='inlin
       <div className="text-sm text-gray-500 mt-4">
         <div className="flex items-center gap-2 mb-2">
           <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-          <span>No membership fees</span>
+          <span>{t('trust.noMembershipFees')}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-brand-500 rounded-full"></div>
-          <span>Pay only for services you use</span>
+          <span>{t('trust.payOnlyForServices')}</span>
         </div>
       </div>
     </div>

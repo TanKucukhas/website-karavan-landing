@@ -1,12 +1,15 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import { MotionConfig, useReducedMotion, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import EmailCaptureInline from './EmailCaptureInline';
 import { analytics } from '@/lib/analytics';
 import StaticMap from '@/components/StaticMap';
 import { useMapLoadingGate } from '@/hooks/useMapLoadingGate';
+import { useTranslations } from 'next-intl';
+import { useRouter } from '@/i18n/routing';
+import type { Node } from './trade-map/TradeMap.types';
 
 // Conditional imports - only load heavy components on desktop
 const TradeMap = dynamic(() => import('./trade-map/TradeMap'), { ssr: false });
@@ -28,6 +31,8 @@ if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
 const IMPORTANT_REGIONS = ['TR', 'UZ', 'KZ', 'AZ', 'HU'];
 
 export default function HeroWithInteractiveMap() {
+  const tHero = useTranslations('hero');
+  const router = useRouter();
   const reduced = useReducedMotion();
   const [geoReady, setGeoReady] = useState(false);
   const [stablePaint, setStablePaint] = useState(false);
@@ -45,6 +50,13 @@ export default function HeroWithInteractiveMap() {
     { geoReady, stablePaint }, 
     { minMs: 900, maxMs: 8000, fadeMs: 180 }
   );
+
+  const handleNodeClick = useCallback((node: Node) => {
+    analytics.mapNodeClick(node.name);
+    if (node.href) {
+      router.push(node.href);
+    }
+  }, [router]);
 
   useEffect(() => { analytics.mapArcView(); }, []);
 
@@ -185,6 +197,7 @@ export default function HeroWithInteractiveMap() {
             disableNodeAnimation={!!reduced}
             onReady={() => setGeoReady(true)}
             onStablePaint={() => setStablePaint(true)}
+            onNodeClick={handleNodeClick}
           />
           {/* Flows overlays */}
           <div className="absolute inset-0 z-30 pointer-events-none">
@@ -196,7 +209,7 @@ export default function HeroWithInteractiveMap() {
 
     // Loading state for desktop
     return null;
-  }, [isMobile, isTablet, isDesktop, mountMap, stage, revealedRegions, pulsingRegion, reduced, flowsEnabled]);
+  }, [isMobile, isTablet, isDesktop, mountMap, stage, revealedRegions, pulsingRegion, reduced, flowsEnabled, handleNodeClick]);
 
   return (
     <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
@@ -215,11 +228,10 @@ export default function HeroWithInteractiveMap() {
             <div className="container mx-auto px-4 lg:px-8 flex-1">
               <div className="mb-6">
                 <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight mb-4">
-                  Secure B2B trade across the <span className="text-brand-600">Turkic States</span>
+                  {tHero('title')} <span className="text-brand-600">{tHero('titleHighlight')}</span> {tHero('titleEnd')}
                 </h1>
                 <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                  Launching first in Türkiye & Uzbekistan.<br />
-                  Escrow payments, logistics, customs, and finance options.
+                  {tHero('subtitle')} <span className="font-semibold text-coral-600">{tHero('subtitleHighlight')}</span>
                 </p>
               </div>
               <div className="pb-4">
@@ -238,11 +250,9 @@ export default function HeroWithInteractiveMap() {
                 <div className="rounded-2xl bg-white shadow-xl ring-1 ring-black/5 p-6 text-gray-900">
                   <div className="mb-6">
                     <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-4">
-                      Secure B2B trade across the <span className="text-brand-600">Turkic States</span>
+                      {tHero('title')} <span className="text-brand-600">{tHero('titleHighlight')}</span> {tHero('titleEnd')}
                     </h1>
-                    <p className="text-lg text-gray-600 leading-relaxed">
-                      Launching first in Türkiye & Uzbekistan. Escrow payments, integrated logistics and customs, finance options.
-                    </p>
+                    <p className="text-lg text-gray-600 leading-relaxed">{tHero('subtitle')}</p>
                   </div>
                   <EmailCaptureInline defaultRole="seller" source="hero-interactive-map" />
                 </div>
@@ -260,10 +270,10 @@ export default function HeroWithInteractiveMap() {
                 <div className="rounded-2xl bg-white shadow-xl ring-1 ring-black/5 p-6 lg:p-8 text-gray-900 pointer-events-auto">
                   <div className="mb-6">
                     <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
-                      Secure B2B trade across the <span className="text-brand-600">Turkic States</span>
+                      {tHero('title')} <span className="text-brand-600">{tHero('titleHighlight')}</span> {tHero('titleEnd')}
                     </h1>
-                    <p className="text-lg text-gray-600 leading-relaxed">Launching first in Türkiye & Uzbekistan. Escrow payments, integrated logistics and customs, finance options.</p>
-                    <p className="mt-2 text-sm text-gray-500">Escrow, Logistics, and Verified Partners at your fingertips.</p>
+                    <p className="text-lg text-gray-600 leading-relaxed">{tHero('subtitle')}</p>
+                    <p className="mt-2 text-sm text-gray-500">{tHero('description')}</p>
                   </div>
                   <EmailCaptureInline defaultRole="seller" source="hero-interactive-map" />
                 </div>
