@@ -8,6 +8,10 @@ const ACTIVE_COUNTRIES: Record<string, string> = {
   KZ: '#4ea1ff',
   AZ: '#4ea1ff',
   KG: '#4ea1ff',
+  TM: '#4ea1ff',  // Turkmenistan
+  NC: '#4ea1ff',  // KKTC
+  CY: '#4ea1ff',  // Cyprus (includes KKTC in map data)
+  HU: '#4ea1ff',  // Hungary
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

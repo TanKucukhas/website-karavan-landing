@@ -1,6 +1,7 @@
 'use client';
 
 import Flag from '@/components/Flag';
+import Image from 'next/image';
 
 const FLAG_COLORS: Record<string, string> = {
   TR: '#e67e7e',  // Pastel Turkey red
@@ -8,6 +9,7 @@ const FLAG_COLORS: Record<string, string> = {
   KZ: '#7bb3f0',  // Pastel Kazakhstan blue
   AZ: '#7bb3a8',  // Pastel Azerbaijan green
   TM: '#90c695',  // Pastel Turkmenistan green
+  NC: '#ffb3ec',  // Pastel KKTC pink
   HU: '#8a9b8a',  // Pastel Hungary green
 };
 
@@ -17,6 +19,7 @@ const COUNTRY_NAMES: Record<string, string> = {
   KZ: 'Kazakhstan',
   AZ: 'Azerbaijan',
   TM: 'Turkmenistan',
+  NC: 'KKTC',
   HU: 'Hungary',
 };
 
@@ -34,8 +37,19 @@ export default function Legend({ className = '' }: Props) {
               className="w-2 h-2 rounded-full shadow-sm" 
               style={{ backgroundColor: color }}
             />
-            <Flag code={code.toLowerCase()} size="xs" className="w-3 h-3" />
-                <span className="text-gray-400 font-normal text-xs">
+            {code === 'NC' ? (
+              <Image 
+                src="/images/flags/kktc.png" 
+                alt="KKTC" 
+                width={12} 
+                height={8}
+                className="w-3 h-2"
+                style={{ objectFit: 'cover' }}
+              />
+            ) : (
+              <Flag code={code.toLowerCase()} size="xs" className="w-3 h-3" />
+            )}
+            <span className="text-gray-400 font-normal text-xs">
               {COUNTRY_NAMES[code]}
             </span>
           </div>
