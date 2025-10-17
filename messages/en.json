@@ -50,7 +50,7 @@
     "title": "Early access to",
     "titleHighlight": "verified suppliers",
     "titleEnd": "in the Turkic States",
-    "subtitle": "Secure B2B trade with escrow, logistics, and financing included.",
+    "subtitle": "Secure B2B trade with insurance, logistics, and financing included.",
     "subtitleHighlight": "Limited early access spots available.",
     "description": "Join the private beta — no fees, no spam, early access only.",
     "emailLabel": "Email Address",
@@ -71,7 +71,7 @@
     "heading": "Why Trade on Karavan?",
     "subheading": "Integrated solutions that eliminate the complexity of cross-border B2B trade.",
     "badges": {
-      "escrow": "Escrow",
+      "insurance": "Insurance",
       "logistics": "Logistics",
       "verified": "Verified",
       "finance": "Finance"
@@ -249,7 +249,7 @@
       "subheading": "Quick answers to common questions about Karavan",
       "whatIsKaravan": {
         "question": "What is Karavan?",
-        "answer": "Karavan is a B2B export platform connecting Turkish exporters with buyers across Central Asia and Eastern Europe. We provide end-to-end solutions including escrow payments, logistics, and customs support."
+        "answer": "Karavan is a B2B export platform connecting Turkish exporters with buyers across Central Asia and Eastern Europe. We provide end-to-end solutions including secure payments, logistics, and customs support."
       },
       "howToStart": {
         "question": "How do I get started?",
@@ -261,7 +261,7 @@
       },
       "payments": {
         "question": "What payment methods do you support?",
-        "answer": "We support secure escrow payments, bank transfers, and various local payment methods. All transactions are protected until delivery confirmation."
+        "answer": "We support secure payments, bank transfers, and various local payment methods. All transactions are protected until delivery confirmation."
       },
       "logistics": {
         "question": "Do you handle customs and logistics?",
@@ -281,13 +281,13 @@
     "badge": "For Buyers",
     "title": "Find Verified",
     "titleHighlight": "Suppliers",
-    "subtitle": "Access vetted Turkish suppliers across priority categories with escrow payments and logistics support."
+    "subtitle": "Access vetted Turkish suppliers across priority categories with insurance and logistics support."
   },
   "seller": {
     "badge": "For Sellers",
     "title": "Reach Buyers in",
     "titleHighlight": "Central Asia",
-    "subtitle": "Join verified suppliers program, access RFQs, and sell with escrow, logistics and customs support."
+    "subtitle": "Join verified suppliers program, access RFQs, and sell with insurance, logistics and customs support."
   },
   "region": {
     "badge": "Region",
@@ -354,7 +354,7 @@
       },
       "securePayments": {
         "title": "Secure Payments",
-        "description": "Escrow-based payment system with automated dispute resolution and multi-currency support.",
+        "description": "Secure payment system with automated dispute resolution and multi-currency support.",
         "footnote": "Funds released only on delivery"
       },
       "logisticsCoordination": {
@@ -406,7 +406,7 @@
   },
   "cta": {
     "heading": "Secure Your Early Access Spot",
-    "description": "Limited spots available. Verified suppliers, secure escrow, logistics included. Be among the first to experience the future of B2B trade.",
+    "description": "Limited spots available. Verified suppliers, insurance, logistics included. Be among the first to experience the future of B2B trade.",
     "form": {
       "emailLabel": "Email Address",
       "emailPlaceholder": "your@company.com",

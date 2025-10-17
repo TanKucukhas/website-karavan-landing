@@ -4,7 +4,7 @@ export default function CompetitorComparison() {
     { criteria: 'Revenue Streams', karavan: 'Payments, logistics, subscriptions', others: 'Freight fees, ads' },
     { criteria: 'Users', karavan: 'Exporters ↔ Buyers', others: 'Shippers, merchants' },
     { criteria: 'Sales Models', karavan: 'Direct, RFQ/RFP, auctions', others: 'Direct only' },
-    { criteria: 'Payments', karavan: 'Escrow, multi-currency', others: 'Card/gateway' },
+    { criteria: 'Payments', karavan: 'Secure payments, multi-currency', others: 'Card/gateway' },
     { criteria: 'Logistics', karavan: 'Integrated partners', others: 'Own/outsourced' },
     { criteria: 'Challenges', karavan: 'Trust, customs, finance', others: 'Varies' },
   ]

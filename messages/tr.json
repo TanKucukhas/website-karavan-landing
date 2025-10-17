@@ -50,7 +50,7 @@
     "title": "Türk Devletlerinde",
     "titleHighlight": "doğrulanmış tedarikçilere",
     "titleEnd": "erken erişim",
-    "subtitle": "Escrow, lojistik ve finansman dahil güvenli B2B ticaret.",
+    "subtitle": "Sigorta, lojistik ve finansman dahil güvenli B2B ticaret.",
     "subtitleHighlight": "Sınırlı erken erişim kontenjanı.",
     "description": "Özel beta'ya katılın — ücret yok, spam yok, sadece erken erişim.",
     "emailLabel": "E-posta Adresi",
@@ -71,7 +71,7 @@
     "heading": "Neden Karavan'da Ticaret Yapmalısınız?",
     "subheading": "Sınır ötesi B2B ticaretin karmaşıklığını ortadan kaldıran entegre çözümler.",
     "badges": {
-      "escrow": "Escrow",
+      "insurance": "Sigorta",
       "logistics": "Lojistik",
       "verified": "Doğrulanmış",
       "finance": "Finansman"
@@ -249,7 +249,7 @@
       "subheading": "Karavan hakkında sık sorulan soruların hızlı cevapları",
       "whatIsKaravan": {
         "question": "Karavan nedir?",
-        "answer": "Karavan, Türk ihracatçıları Orta Asya ve Doğu Avrupa'daki alıcılarla buluşturan bir B2B ihracat platformudur. Escrow ödemeleri, lojistik ve gümrük desteği dahil uçtan uca çözümler sunuyoruz."
+        "answer": "Karavan, Türk ihracatçıları Orta Asya ve Doğu Avrupa'daki alıcılarla buluşturan bir B2B ihracat platformudur. Güvenli ödemeler, lojistik ve gümrük desteği dahil uçtan uca çözümler sunuyoruz."
       },
       "howToStart": {
         "question": "Nasıl başlarım?",
@@ -261,7 +261,7 @@
       },
       "payments": {
         "question": "Hangi ödeme yöntemlerini destekliyorsunuz?",
-        "answer": "Güvenli escrow ödemeleri, banka transferleri ve çeşitli yerel ödeme yöntemlerini destekliyoruz. Tüm işlemler teslimat onayına kadar korunur."
+        "answer": "Güvenli ödemeler, banka transferleri ve çeşitli yerel ödeme yöntemlerini destekliyoruz. Tüm işlemler teslimat onayına kadar korunur."
       },
       "logistics": {
         "question": "Gümrük ve lojistik işlemlerini hallediyor musunuz?",
@@ -281,13 +281,13 @@
     "badge": "Alıcılar İçin",
     "title": "Doğrulanmış",
     "titleHighlight": "Tedarikçiler",
-    "subtitle": "Escrow ödemeleri ve lojistik desteği ile öncelikli kategorilerde doğrulanmış Türk tedarikçilere erişin."
+    "subtitle": "Sigorta ve lojistik desteği ile öncelikli kategorilerde doğrulanmış Türk tedarikçilere erişin."
   },
   "seller": {
     "badge": "Satıcılar İçin",
     "title": "Orta Asya'daki",
     "titleHighlight": "Alıcılara Ulaşın",
-    "subtitle": "Doğrulanmış tedarikçi programına katılın, RFQ'lara erişin ve escrow, lojistik ve gümrük desteğiyle satış yapın."
+    "subtitle": "Doğrulanmış tedarikçi programına katılın, RFQ'lara erişin ve sigorta, lojistik ve gümrük desteğiyle satış yapın."
   },
   "region": {
     "badge": "Bölge",
@@ -354,7 +354,7 @@
       },
       "securePayments": {
         "title": "Güvenli Ödemeler",
-        "description": "Otomatik uyuşmazlık çözümü ve çoklu para birimi desteği ile escrow tabanlı ödeme sistemi.",
+        "description": "Otomatik uyuşmazlık çözümü ve çoklu para birimi desteği ile güvenli ödeme sistemi.",
         "footnote": "Ödemeler yalnızca teslimatta serbest bırakılır"
       },
       "logisticsCoordination": {
@@ -406,7 +406,7 @@
   },
   "cta": {
     "heading": "Erken Erişim Hakkınızı Güvenceye Alın",
-    "description": "Sınırlı kontenjan. Doğrulanmış tedarikçiler, güvenli escrow, lojistik dahil. B2B ticaretin geleceğini ilk deneyimleyenlerden olun.",
+    "description": "Sınırlı kontenjan. Doğrulanmış tedarikçiler, sigorta, lojistik dahil. B2B ticaretin geleceğini ilk deneyimleyenlerden olun.",
     "form": {
       "emailLabel": "E-posta Adresi",
       "emailPlaceholder": "sizin@sirketiniz.com",

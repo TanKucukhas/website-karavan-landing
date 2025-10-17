@@ -42,7 +42,7 @@ export default function FeaturesSection() {
           <p className="lt-subtext">{t('subheading')}</p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-          {['escrow','logistics','verified','finance'].map((b,i)=> (
+          {['insurance','logistics','verified','finance'].map((b,i)=> (
             <span key={i} className="badge-soft">{t(`badges.${b}`)}</span>
           ))}
         </div>
