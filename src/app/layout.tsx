@@ -38,6 +38,13 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        {/* Preload critical resources */}
+        <link rel="preload" href="/data/world-50m.json" as="fetch" crossOrigin="anonymous" />
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Google Analytics (GA4) - Lazy loaded for better performance */}
         <Script
           id="ga4-src"

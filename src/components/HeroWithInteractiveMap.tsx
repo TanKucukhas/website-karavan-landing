@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState, useCallback } from 'react';
-import { MotionConfig, useReducedMotion, motion } from 'framer-motion';
+import { useReducedMotion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { analytics } from '@/lib/analytics';
 import StaticMap from '@/components/StaticMap';
@@ -162,24 +162,19 @@ export default function HeroWithInteractiveMap() {
     // Mobile and tablet: use static map only
     if (isMobile || isTablet) {
       return (
-        <motion.div 
-          className="absolute inset-0 pointer-events-none overflow-hidden max-w-[100vw]"
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
-          transition={{ duration: 0.35 }}
+        <div 
+          className="absolute inset-0 pointer-events-none overflow-hidden max-w-[100vw] animate-on-scroll"
         >
           <StaticMap className="h-full w-full" />
-        </motion.div>
+        </div>
       );
     }
 
     // Desktop: use interactive map (only when mountMap is true)
     return (
-      <motion.div 
-        className="absolute inset-0 pointer-events-none overflow-hidden max-w-[100vw]"
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: stage !== 'loading' ? 1 : 0 }} 
-        transition={{ duration: 0.35 }}
+      <div 
+        className="absolute inset-0 pointer-events-none overflow-hidden max-w-[100vw] transition-opacity duration-350"
+        style={{ opacity: stage !== 'loading' ? 1 : 0 }}
       >
         <TradeMap
           nodes={NODES}
@@ -199,12 +194,12 @@ export default function HeroWithInteractiveMap() {
         <div className="absolute inset-0 z-30 pointer-events-none">
           {flowsEnabled && <TradeFlows enabled={true} />}
         </div>
-      </motion.div>
+      </div>
     );
   }, [shouldShowMap, isMobile, isTablet, stage, revealedRegions, pulsingRegion, reduced, flowsEnabled, handleNodeClick]);
 
   return (
-    <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
+    <>
       <style jsx>{`
         @keyframes floatDots {
           0%, 100% { transform: translateY(0px); }
@@ -373,6 +368,6 @@ export default function HeroWithInteractiveMap() {
           </div>
         </div>
       </section>
-    </MotionConfig>
+    </>
   );
 }

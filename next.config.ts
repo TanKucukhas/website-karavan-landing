@@ -19,9 +19,14 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: true,
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [128, 256, 384, 640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   experimental: {
     optimizeCss: false,
+    // Reduce client-side JS
+    optimizePackageImports: ['react-simple-maps', 'd3-geo', 'topojson-client'],
   },
   typescript: {
     ignoreBuildErrors: false,

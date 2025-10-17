@@ -1,7 +1,6 @@
 "use client";
 
 // Light version without emojis
-import Image from 'next/image'
 import teamData from '../../public/images/team/team.json'
 import { useTranslations } from 'next-intl'
 
@@ -55,7 +54,16 @@ export default function TeamSection() {
               style={{ transitionDelay: `${idx * 80}ms` }}
             >
               <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4 bg-gray-100 ring-1 ring-gray-200 relative z-0">
-                <Image src={`/images/team/${member.image}`} alt={member.name} width={128} height={128} className="object-cover object-top" style={{ width: '8rem', height: '8rem' }} priority={idx < 4} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src={`/images/team/${member.image}`} 
+                  alt={member.name} 
+                  width="128" 
+                  height="128" 
+                  className="object-cover object-top w-full h-full" 
+                  loading={idx < 4 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
               </div>
               <h4 className="font-medium text-gray-900 mb-1">{member.name}</h4>
               <p className="text-sm text-gray-600 mb-2">{member.title}</p>
@@ -76,7 +84,16 @@ export default function TeamSection() {
               {teamData.slice(4,12).map((member: { name: string; title: string; linkedin: string; image: string }, idx: number) => (
                 <div key={idx} className="text-center">
                   <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-3 bg-gray-100 ring-1 ring-gray-200">
-                    <Image src={`/images/team/${member.image}`} alt={member.name} width={96} height={96} className="object-cover object-top" style={{ width: '6rem', height: '6rem' }} loading="lazy" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img 
+                      src={`/images/team/${member.image}`} 
+                      alt={member.name} 
+                      width="96" 
+                      height="96" 
+                      className="object-cover object-top w-full h-full" 
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                   <h5 className="font-medium text-gray-900 text-sm">{member.name}</h5>
                   <p className="text-xs text-gray-600">{member.title}</p>
