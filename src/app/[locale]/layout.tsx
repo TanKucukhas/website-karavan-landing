@@ -32,10 +32,10 @@ export default async function LocaleLayout({
   }
 
   // Get messages for the current locale
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
   return (
-    <NextIntlClientProvider messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       <GlobalBackground />
       <HeaderWithCTA />
       <Suspense fallback={null}>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useTransition } from 'react';
 import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from '@/i18n/routing';
+import { useRouter as useNextRouter, usePathname as useNextPathname } from 'next/navigation';
 import Flag from '@/components/Flag';
 
 interface Language {
@@ -33,8 +33,8 @@ export default function LanguageSelector({
   selectedItemClassName = ''
 }: LanguageSelectorProps) {
   const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
+  const router = useNextRouter();
+  const pathname = useNextPathname();
   const [isPending, startTransition] = useTransition();
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -43,8 +43,20 @@ export default function LanguageSelector({
 
   const changeLocale = (newLocale: string) => {
     startTransition(() => {
-      // next-intl's router automatically handles locale switching
-      router.replace(pathname, { locale: newLocale });
+      // Replace current locale in pathname with new locale
+      // pathname is like "/en/contact" or "/tr/regions/turkiye"
+      const pathSegments = pathname.split('/').filter(Boolean);
+      
+      // First segment is the locale, replace it
+      if (pathSegments.length > 0 && ['en', 'tr', 'ru'].includes(pathSegments[0])) {
+        pathSegments[0] = newLocale;
+      } else {
+        // If no locale in path, prepend it
+        pathSegments.unshift(newLocale);
+      }
+      
+      const newPath = '/' + pathSegments.join('/') + '/';
+      router.push(newPath);
     });
   };
 
