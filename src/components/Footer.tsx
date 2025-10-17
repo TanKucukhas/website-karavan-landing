@@ -68,7 +68,7 @@ export default function Footer() {
                     <div>Merkez Mah. Hasat Sok.</div>
                     <div>Kamara Apt No:52/1</div>
                     <div>Şişli, İstanbul</div>
-                    <div className="text-xs text-gray-500 mt-1">Türkiye</div>
+                    <div className="text-xs text-gray-400 mt-1">Türkiye</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -77,7 +77,7 @@ export default function Footer() {
                     <a href="mailto:info@karavan.net" className="text-gray-400 hover:text-white transition-colors text-sm block">
                       info@karavan.net
                     </a>
-                    <div className="text-xs text-gray-500 mt-1">{t('information.emailLabel')}</div>
+                    <div className="text-xs text-gray-400 mt-1">{t('information.emailLabel')}</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -123,7 +123,7 @@ export default function Footer() {
             
             {/* Quick Stats */}
             <div className="mt-6 pt-4 border-t border-gray-700">
-              <div className="text-xs text-gray-500 space-y-1">
+              <div className="text-xs text-gray-400 space-y-1">
                 <div className="flex items-center gap-1.5">
                   <CheckCircleIcon className="w-3 h-3" />
                   <span>65+ {t('stats.verifiedSuppliers')}</span>
