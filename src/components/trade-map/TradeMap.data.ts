@@ -45,12 +45,22 @@ export const NODES: Node[] = [
     region:'HU', 
     status:'expanding' 
   },
+  { 
+    id:'NC-NIC', 
+    name:'KKTC', 
+    lon:33.3, 
+    lat:35.2, 
+    region:'NC', 
+    status:'expanding',
+    href:'/regions/kktc'
+  },
 ];
 
 export const ARCS: Arc[] = [
   { id:'TR-UZ-1', from:'TR-IST', to:'UZ-TAS', strength:2, delayMs:0 },
   { id:'TR-KZ-1', from:'TR-IST', to:'KZ-ALM', strength:1, delayMs:300 },
   { id:'TR-AZ-1', from:'TR-IST', to:'AZ-BAK', strength:1, delayMs:600 },
+  { id:'TR-NC-1', from:'TR-IST', to:'NC-NIC', strength:1, delayMs:750 },
   { id:'TR-HU-1', from:'TR-IST', to:'HU-BUD', strength:1, delayMs:900 },
   { id:'UZ-KZ-1', from:'UZ-TAS', to:'KZ-ALM', strength:1, delayMs:1200 },
   { id:'KZ-AZ-1', from:'KZ-ALM', to:'AZ-BAK', strength:1, delayMs:1500 },
@@ -62,5 +72,6 @@ export const ACTIVE_COUNTRIES: Record<string, string> = {
   UZ: "#4ecdc4",  // Uzbekistan → bright teal
   KZ: "#45b7d1",  // Kazakhstan → bright blue
   AZ: "#96ceb4",  // Azerbaijan → bright green
+  NC: "#ff9ff3",  // KKTC → bright pink
   HU: "#feca57",  // Hungary → bright yellow
 };

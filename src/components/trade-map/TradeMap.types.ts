@@ -1,4 +1,4 @@
-export type RegionCode = 'TR'|'UZ'|'KZ'|'AZ'|'KG'|'TM'|'HU'|'EU'|'MENA'|'OTHER';
+export type RegionCode = 'TR'|'UZ'|'KZ'|'AZ'|'KG'|'TM'|'NC'|'HU'|'EU'|'MENA'|'OTHER';
 
 export type Node = {
   id: string;
