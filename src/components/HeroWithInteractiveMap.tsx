@@ -60,13 +60,17 @@ export default function HeroWithInteractiveMap() {
 
   useEffect(() => { analytics.mapArcView(); }, []);
 
-  // Device detection
+  // Device detection - single unified effect
   useEffect(() => {
     const checkDevice = () => {
       const width = window.innerWidth;
-      setIsMobile(width < 768);
-      setIsTablet(width >= 768 && width < 1024);
-      setIsDesktop(width >= 1024);
+      const mobile = width < 768;
+      const tablet = width >= 768 && width < 1024;
+      const desktop = width >= 1024;
+      
+      setIsMobile(mobile);
+      setIsTablet(tablet);
+      setIsDesktop(desktop);
     };
 
     checkDevice();
@@ -91,17 +95,6 @@ export default function HeroWithInteractiveMap() {
     idle(() => setMountMap(true));
     return () => { if (to) window.clearTimeout(to); };
   }, [isDesktop]);
-
-  // Spinner overlay (centered, non-blocking for content)
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(max-width: 767px)');
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
 
   // Stage machine
   useEffect(() => {
@@ -160,8 +153,12 @@ export default function HeroWithInteractiveMap() {
     ) : null
   );
 
-  // Conditional MapLayer - only load heavy components on desktop
+  // Conditional MapLayer - memoized to prevent multiple renders
+  const shouldShowMap = (isMobile || isTablet) || (isDesktop && mountMap);
+  
   const MapLayer = useMemo(() => {
+    if (!shouldShowMap) return null;
+
     // Mobile and tablet: use static map only
     if (isMobile || isTablet) {
       return (
@@ -176,40 +173,35 @@ export default function HeroWithInteractiveMap() {
       );
     }
 
-    // Desktop: use interactive map
-    if (isDesktop && mountMap) {
-      return (
-        <motion.div 
-          className="absolute inset-0 pointer-events-none overflow-hidden max-w-[100vw]"
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: stage !== 'loading' ? 1 : 0 }} 
-          transition={{ duration: 0.35 }}
-        >
-          <TradeMap
-            nodes={NODES}
-            arcs={ARCS}
-            showGraticule
-            showActiveOverlay
-            revealedRegions={revealedRegions}
-            pulsingRegion={pulsingRegion}
-            reducedMotionFallback={!!reduced}
-            className="h-full w-full"
-            disableNodeAnimation={!!reduced}
-            onReady={() => setGeoReady(true)}
-            onStablePaint={() => setStablePaint(true)}
-            onNodeClick={handleNodeClick}
-          />
-          {/* Flows overlays */}
-          <div className="absolute inset-0 z-30 pointer-events-none">
-            {flowsEnabled && <TradeFlows enabled={true} />}
-          </div>
-        </motion.div>
-      );
-    }
-
-    // Loading state for desktop
-    return null;
-  }, [isMobile, isTablet, isDesktop, mountMap, stage, revealedRegions, pulsingRegion, reduced, flowsEnabled, handleNodeClick]);
+    // Desktop: use interactive map (only when mountMap is true)
+    return (
+      <motion.div 
+        className="absolute inset-0 pointer-events-none overflow-hidden max-w-[100vw]"
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: stage !== 'loading' ? 1 : 0 }} 
+        transition={{ duration: 0.35 }}
+      >
+        <TradeMap
+          nodes={NODES}
+          arcs={ARCS}
+          showGraticule
+          showActiveOverlay
+          revealedRegions={revealedRegions}
+          pulsingRegion={pulsingRegion}
+          reducedMotionFallback={!!reduced}
+          className="h-full w-full"
+          disableNodeAnimation={!!reduced}
+          onReady={() => setGeoReady(true)}
+          onStablePaint={() => setStablePaint(true)}
+          onNodeClick={handleNodeClick}
+        />
+        {/* Flows overlays */}
+        <div className="absolute inset-0 z-30 pointer-events-none">
+          {flowsEnabled && <TradeFlows enabled={true} />}
+        </div>
+      </motion.div>
+    );
+  }, [shouldShowMap, isMobile, isTablet, stage, revealedRegions, pulsingRegion, reduced, flowsEnabled, handleNodeClick]);
 
   return (
     <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
@@ -236,7 +228,7 @@ export default function HeroWithInteractiveMap() {
           <div className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden bg-gradient-to-br from-indigo-950 via-slate-900 to-blue-950">
             {/* Map Background Layer with Subtle Opacity */}
             <div className="absolute inset-0 scale-105 opacity-30">
-              {(isMobile || isTablet || mountMap) ? MapLayer : null}
+              {MapLayer}
             </div>
             
             {/* Modern Gradient Mesh Effect */}
@@ -319,7 +311,7 @@ export default function HeroWithInteractiveMap() {
 
         {/* Tablet: Professional Centered Layout (768px-1024px) */}
         <div className="hidden md:block lg:hidden">
-          <div className="absolute inset-0 w-full overflow-hidden" aria-hidden>{(isMobile || isTablet || mountMap) ? MapLayer : null}</div>
+          <div className="absolute inset-0 w-full overflow-hidden" aria-hidden>{MapLayer}</div>
           <div className="relative z-10 min-h-screen">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
               <div className="max-w-lg w-full">
@@ -351,7 +343,7 @@ export default function HeroWithInteractiveMap() {
 
         {/* Desktop: Professional Floating Card Layout (>1024px) */}
         <div className="hidden lg:block">
-          <div className="absolute inset-0 w-full overflow-hidden" aria-hidden>{mountMap ? MapLayer : null}</div>
+          <div className="absolute inset-0 w-full overflow-hidden" aria-hidden>{MapLayer}</div>
           <div className="absolute top-32 z-30 w-full">
             <div className="container mx-auto px-4 lg:px-8">
               <div className="max-w-lg lg:max-w-xl w-96 lg:w-[32rem]">

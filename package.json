@@ -9,7 +9,13 @@
     "lint": "eslint",
     "export": "next build && next export",
     "deploy": "npm run build",
-    "analyze": "ANALYZE=true npm run build"
+    "analyze": "ANALYZE=true npm run build",
+    "clean": "rm -rf .next out node_modules/.cache .turbo",
+    "clean:all": "rm -rf .next out node_modules/.cache .turbo node_modules package-lock.json",
+    "clean:install": "npm run clean:all && npm install",
+    "fresh": "npm run clean && npm run dev",
+    "restart": "pkill -f 'next dev' || true && npm run clean && npm run dev",
+    "kill:ports": "lsof -ti:3000,3001,3002,3003 | xargs kill -9 || true"
   },
   "dependencies": {
     "@headlessui/react": "2.2.9",
