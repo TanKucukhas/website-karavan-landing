@@ -46,14 +46,13 @@ export default function StaticMap({ className = '' }: StaticMapProps) {
   };
 
   return (
-    <div className={`relative w-full h-full overflow-hidden max-w-[100vw] ${className}`}>
+    <div className={`relative w-full h-full min-h-[400px] overflow-hidden max-w-[100vw] ${className}`}>
       <Image
         src={getImageSrc()}
         alt={getImageAlt()}
         fill
         className="object-cover"
         priority
-        quality={85}
         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
       />
     </div>
