@@ -22,7 +22,7 @@ export default function Footer() {
       { name: t('nav.categories'), href: '#categories', isAnchor: true }
     ],
     solutions: [
-      { name: t('links.regions'), href: '/regions', isAnchor: false },
+      { name: t('links.regions'), href: '#regions', isAnchor: true },
       { name: t('links.partnerships'), href: '#partnerships', isAnchor: true }
     ],
     company: [
