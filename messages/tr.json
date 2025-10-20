@@ -288,7 +288,17 @@
     "kyrgyzstan": "Kırgızistan",
     "turkmenistan": "Türkmenistan",
     "kktc": "KKTC",
-    "hungary": "Macaristan"
+    "hungary": "Macaristan",
+    "blurbs": {
+      "turkiye": "İhracat merkezi ve operasyon karargahı",
+      "uzbekistan": "Hızla büyüyen talep merkezi",
+      "kazakhstan": "Orta Asya'ya açılan kapı",
+      "kyrgyzstan": "Çevik sınır ötesi ticaret",
+      "turkmenistan": "Seçici ithalat pazarı",
+      "azerbaijan": "Kafkasya'ya bağlantı",
+      "kktc": "Stratejik Akdeniz ticaret merkezi",
+      "hungary": "Avrupa'ya açılan kapı"
+    }
   },
   "regionsSection": {
     "subheading": "Türkiye ve Orta Asya genelinde odaklı kapsama ile sınır ötesi B2B ticareti kolaylaştırıyoruz."

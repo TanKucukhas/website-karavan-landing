@@ -11,14 +11,14 @@ export default function RegionsSection() {
   const tSection = useTranslations('regionsSection')
   const tCommon = useTranslations('common')
   const regions = [
-    { key: 'turkiye', name: t('turkiye'), flagCode: 'tr', blurb: 'Export hub and operations HQ', href: '/regions/turkiye' },
-    { key: 'uzbekistan', name: t('uzbekistan'), flagCode: 'uz', blurb: 'Fast‑growing demand center', href: '/regions/uzbekistan' },
-    { key: 'kazakhstan', name: t('kazakhstan'), flagCode: 'kz', blurb: 'Gateway to Central Asia', href: '/regions/kazakhstan' },
-    { key: 'kyrgyzstan', name: t('kyrgyzstan'), flagCode: 'kg', blurb: 'Agile cross‑border trade', href: '/regions/kyrgyzstan' },
-    { key: 'turkmenistan', name: t('turkmenistan'), flagCode: 'tm', blurb: 'Selective import market', href: '/regions/turkmenistan' },
-    { key: 'azerbaijan', name: t('azerbaijan'), flagCode: 'az', blurb: 'Link to Caucasus', href: '/regions/azerbaijan' },
-    { key: 'kktc', name: t('kktc'), flagCode: 'tr', blurb: 'Strategic Mediterranean trade hub', href: '/regions/kktc' },
-    { key: 'hungary', name: t('hungary'), flagCode: 'hu', blurb: 'European gateway', href: '/regions/hungary' },
+    { key: 'turkiye', name: t('turkiye'), flagCode: 'tr', blurb: t('blurbs.turkiye'), href: '/regions/turkiye' },
+    { key: 'uzbekistan', name: t('uzbekistan'), flagCode: 'uz', blurb: t('blurbs.uzbekistan'), href: '/regions/uzbekistan' },
+    { key: 'kazakhstan', name: t('kazakhstan'), flagCode: 'kz', blurb: t('blurbs.kazakhstan'), href: '/regions/kazakhstan' },
+    { key: 'kyrgyzstan', name: t('kyrgyzstan'), flagCode: 'kg', blurb: t('blurbs.kyrgyzstan'), href: '/regions/kyrgyzstan' },
+    { key: 'turkmenistan', name: t('turkmenistan'), flagCode: 'tm', blurb: t('blurbs.turkmenistan'), href: '/regions/turkmenistan' },
+    { key: 'azerbaijan', name: t('azerbaijan'), flagCode: 'az', blurb: t('blurbs.azerbaijan'), href: '/regions/azerbaijan' },
+    { key: 'kktc', name: t('kktc'), flagCode: 'tr', blurb: t('blurbs.kktc'), href: '/regions/kktc' },
+    { key: 'hungary', name: t('hungary'), flagCode: 'hu', blurb: t('blurbs.hungary'), href: '/regions/hungary' },
   ]
 
   return (

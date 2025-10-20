@@ -288,7 +288,17 @@
     "kyrgyzstan": "Kyrgyzstan",
     "turkmenistan": "Turkmenistan",
     "kktc": "KKTC",
-    "hungary": "Hungary"
+    "hungary": "Hungary",
+    "blurbs": {
+      "turkiye": "Export hub and operations HQ",
+      "uzbekistan": "Fast-growing demand center",
+      "kazakhstan": "Gateway to Central Asia",
+      "kyrgyzstan": "Agile cross-border trade",
+      "turkmenistan": "Selective import market",
+      "azerbaijan": "Link to Caucasus",
+      "kktc": "Strategic Mediterranean trade hub",
+      "hungary": "European gateway"
+    }
   },
   "regionsSection": {
     "subheading": "Focused coverage across Türkiye and Central Asia to streamline cross-border B2B trade."
