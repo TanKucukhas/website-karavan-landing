@@ -84,6 +84,8 @@ export default function LanguageSelector({
             key={lang.code}
             onClick={() => changeLocale(lang.code)}
             disabled={isPending || locale === lang.code}
+            aria-label={`Change language to ${lang.name}`}
+            aria-current={locale === lang.code ? 'true' : undefined}
             className={`flex items-center gap-1 px-2 py-1 rounded transition-colors ${
               locale === lang.code ? 'bg-brand-50 text-brand-600' : 'text-gray-700 hover:bg-gray-100'
             } ${buttonClassName} ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -102,6 +104,9 @@ export default function LanguageSelector({
       <button
         onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
         disabled={isPending}
+        aria-label={`Change language. Current: ${currentLanguage.name}`}
+        aria-expanded={languageDropdownOpen}
+        aria-haspopup="true"
         className={`flex items-center gap-2 transition-colors ${buttonClassName} ${isPending ? 'opacity-50' : ''}`}
       >
         <Flag 
@@ -114,12 +119,13 @@ export default function LanguageSelector({
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       {languageDropdownOpen && (
-        <div className={`absolute w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50 ${dropdownClassName || 'right-0 mt-2'}`}>
+        <div className={`absolute w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50 ${dropdownClassName || 'right-0 mt-2'}`} role="menu">
           {LANGUAGES.map((language) => (
             <button
               key={language.code}
@@ -128,6 +134,9 @@ export default function LanguageSelector({
                 setLanguageDropdownOpen(false);
               }}
               disabled={isPending || locale === language.code}
+              role="menuitem"
+              aria-label={`Change language to ${language.name}`}
+              aria-current={locale === language.code ? 'true' : undefined}
               className={`w-full px-4 py-2 text-left text-sm flex items-center gap-2 ${
                 locale === language.code
                   ? `bg-gray-50 text-brand-600 ${selectedItemClassName || itemClassName}` 
