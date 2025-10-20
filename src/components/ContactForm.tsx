@@ -5,6 +5,7 @@ import { EnvelopeIcon, MapPinIcon, PhoneIcon, ClockIcon, QuestionMarkCircleIcon 
 import SocialMediaLinks from '@/components/SocialMediaLinks'
 import { useTranslations } from 'next-intl'
 import { formTracking, leadQuality } from '@/lib/analytics'
+import { contactConfig } from '@/config/contact'
 
 export default function ContactForm() {
   const t = useTranslations('contact')
@@ -160,18 +161,18 @@ export default function ContactForm() {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">{t('information.mainAddress')}</h4>
                     <address className="not-italic text-gray-600">
-                      <div>Merkez Mah. Hasat Sok.</div>
-                      <div>Kamara Apt No:52/1</div>
-                      <div>Şişli, İstanbul</div>
-                      <div className="text-sm text-gray-500 mt-1">Türkiye</div>
+                      <div>{contactConfig.address.main.street}</div>
+                      <div>{contactConfig.address.main.building}</div>
+                      <div>{contactConfig.address.main.district}, {contactConfig.address.main.city}</div>
+                      <div className="text-sm text-gray-500 mt-1">{contactConfig.address.main.postalCode} {contactConfig.address.main.country}</div>
                     </address>
                     <div className="mt-4 pt-4 border-t border-gray-200">
                       <div className="text-sm font-medium text-gray-700 mb-1">{t('information.branchOffice')}</div>
                       <div className="text-sm text-gray-600">
-                        <div>Karavan Digital Corp</div>
-                        <div>32 Hillcrest Rd</div>
-                        <div>Warren, NJ 07059</div>
-                        <div className="text-xs text-gray-500 mt-1">United States</div>
+                        <div>{contactConfig.address.branch.company}</div>
+                        <div>{contactConfig.address.branch.street}</div>
+                        <div>{contactConfig.address.branch.city}</div>
+                        <div className="text-xs text-gray-500 mt-1">{contactConfig.address.branch.country}</div>
                       </div>
                     </div>
                   </div>
@@ -183,25 +184,27 @@ export default function ContactForm() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">{t('information.email')}</h4>
-                    <a href="mailto:info@karavan.net" className="text-brand-600 hover:text-brand-700 transition-colors">
-                      info@karavan.net
+                    <a href={`mailto:${contactConfig.email.primary}`} className="text-brand-600 hover:text-brand-700 transition-colors">
+                      {contactConfig.email.primary}
                     </a>
                     <p className="text-sm text-gray-500 mt-1">{t('information.emailLabel')}</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <PhoneIcon className="w-6 h-6 text-brand-600" />
+                {contactConfig.phone.primary && (
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <PhoneIcon className="w-6 h-6 text-brand-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-1">{t('information.phone')}</h4>
+                      <a href={`tel:${contactConfig.phone.primary.replace(/\s/g, '')}`} className="text-brand-600 hover:text-brand-700 transition-colors">
+                        {contactConfig.phone.primary}
+                      </a>
+                      <p className="text-sm text-gray-500 mt-1">{t('information.phoneLabel')}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">{t('information.phone')}</h4>
-                    <a href="tel:+15551234567" className="text-brand-600 hover:text-brand-700 transition-colors">
-                      +1 (555) 123-4567
-                    </a>
-                    <p className="text-sm text-gray-500 mt-1">{t('information.phoneLabel')}</p>
-                  </div>
-                </div>
+                )}
 
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -432,7 +435,7 @@ export default function ContactForm() {
               <h4 className="text-xl font-bold text-gray-900 mb-2">{t('faq.stillHaveQuestions')}</h4>
               <p className="text-gray-600 mb-4">{t('faq.stillHaveQuestionsDesc')}</p>
               <div className="flex flex-wrap justify-center gap-4">
-                <a href="mailto:info@karavan.net" className="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700 transition-colors">
+                <a href={`mailto:${contactConfig.email.primary}`} className="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700 transition-colors">
                   <EnvelopeIcon className="w-5 h-5" />
                   {t('faq.emailUs')}
                 </a>

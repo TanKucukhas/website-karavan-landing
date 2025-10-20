@@ -24,7 +24,7 @@ export default function HeroContent({ variant }: HeroContentProps) {
         <div className="w-full px-4 sm:px-6">
           <div className="space-y-2 sm:space-y-4">
             <div>
-              <h1 className="text-lg sm:text-xl md:text-2xl font-black text-white leading-tight mb-1.5 sm:mb-2 drop-shadow-lg">
+              <h1 className="!text-3xl sm:!text-xl md:!text-2xl font-black text-white mb-1.5 sm:mb-2 drop-shadow-lg">
                 {tHero('title')} <span className="text-blue-400">{tHero('titleHighlight')}</span> {tHero('titleEnd')}
               </h1>
               
@@ -54,7 +54,7 @@ export default function HeroContent({ variant }: HeroContentProps) {
           <div className="max-w-lg w-full">
             <div className="rounded-3xl bg-white shadow-2xl ring-1 ring-black/5 p-6 sm:p-8 text-gray-900">
               <div className="mb-8">
-                <h1 className="text-4xl sm:text-5xl font-black text-gray-900 leading-[1.1] mb-6">
+                <h1 className="!text-4xl sm:!text-5xl font-black text-gray-900 mb-6">
                   {tHero('title')} <span className="text-brand-600">{tHero('titleHighlight')}</span> {tHero('titleEnd')}
                 </h1>
                 
@@ -83,7 +83,7 @@ export default function HeroContent({ variant }: HeroContentProps) {
         <div className="max-w-lg lg:max-w-xl w-96 lg:w-[32rem]">
           <div className="rounded-3xl bg-white shadow-2xl ring-1 ring-black/5 p-8 lg:p-10 text-gray-900 pointer-events-auto">
             <div className="mb-8">
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 leading-[1.1] mb-6">
+              <h1 className="!text-4xl lg:!text-5xl xl:!text-5xl font-black text-gray-900 mb-6">
                 {tHero('title')} <span className="text-brand-600">{tHero('titleHighlight')}</span> {tHero('titleEnd')}
               </h1>
               

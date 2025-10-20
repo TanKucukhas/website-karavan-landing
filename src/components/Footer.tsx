@@ -8,31 +8,33 @@ import {
 } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/routing'
 import LanguageSelector from '@/components/LanguageSelector'
 import SocialMediaLinks from '@/components/SocialMediaLinks'
+import { contactConfig } from '@/config/contact'
 
 export default function Footer() {
   const t = useTranslations('footer')
   
   const footerLinks = {
     product: [
-      { name: t('nav.features'), href: '#features' },
-      { name: t('nav.categories'), href: '#categories' }
+      { name: t('nav.features'), href: '#features', isAnchor: true },
+      { name: t('nav.categories'), href: '#categories', isAnchor: true }
     ],
     solutions: [
-      { name: t('links.regions'), href: '/regions' },
-      { name: t('links.partnerships'), href: '#partnerships' }
+      { name: t('links.regions'), href: '/regions', isAnchor: false },
+      { name: t('links.partnerships'), href: '#partnerships', isAnchor: true }
     ],
     company: [
-      { name: t('links.team'), href: '#team' },
-      { name: t('links.careers'), href: '#careers' },
-      { name: t('links.contact'), href: '/contact' }
+      { name: t('links.team'), href: '#team', isAnchor: true },
+      { name: t('links.careers'), href: '#careers', isAnchor: true },
+      { name: t('links.contact'), href: '/contact', isAnchor: false }
     ],
     legal: [
-      { name: t('links.privacyPolicy'), href: '#privacy' },
-      { name: t('links.termsOfService'), href: '#terms' },
-      { name: t('links.cookiePolicy'), href: '#cookies' },
-      { name: t('links.gdpr'), href: '#gdpr' }
+      { name: t('links.privacyPolicy'), href: '#privacy', isAnchor: true },
+      { name: t('links.termsOfService'), href: '#terms', isAnchor: true },
+      { name: t('links.cookiePolicy'), href: '#cookies', isAnchor: true },
+      { name: t('links.gdpr'), href: '#gdpr', isAnchor: true }
     ]
   };
 
@@ -65,27 +67,29 @@ export default function Footer() {
                   <MapPinIcon className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" />
                   <div className="text-gray-400 text-sm">
                     <div className="font-semibold text-white mb-1">{t('information.mainAddress')}</div>
-                    <div>Merkez Mah. Hasat Sok.</div>
-                    <div>Kamara Apt No:52/1</div>
-                    <div>Şişli, İstanbul</div>
-                    <div className="text-xs text-gray-400 mt-1">Türkiye</div>
+                    <div>{contactConfig.address.main.street}</div>
+                    <div>{contactConfig.address.main.building}</div>
+                    <div>{contactConfig.address.main.district}, {contactConfig.address.main.city} {contactConfig.address.main.postalCode}</div>
+                    <div className="text-xs text-gray-400 mt-1">{contactConfig.address.main.country}</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <EnvelopeIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
                   <div>
-                    <a href="mailto:info@karavan.net" className="text-gray-400 hover:text-white transition-colors text-sm block">
-                      info@karavan.net
+                    <a href={`mailto:${contactConfig.email.primary}`} className="text-gray-400 hover:text-white transition-colors text-sm block">
+                      {contactConfig.email.primary}
                     </a>
                     <div className="text-xs text-gray-400 mt-1">{t('information.emailLabel')}</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <PhoneIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                  <div>
-                    <div className="text-gray-400 text-sm">+1 (555) 123-4567</div>
+                {contactConfig.phone.primary && (
+                  <div className="flex items-center gap-3">
+                    <PhoneIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                    <div>
+                      <div className="text-gray-400 text-sm">{contactConfig.phone.primary}</div>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
 
@@ -111,12 +115,21 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.product.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
-                  >
-                    {link.name}
-                  </a>
+                  {link.isAnchor ? (
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors text-sm"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors text-sm"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -146,12 +159,21 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.solutions.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </a>
+                  {link.isAnchor ? (
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -163,12 +185,21 @@ export default function Footer() {
             <ul className="space-y-3 mb-6">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </a>
+                  {link.isAnchor ? (
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -177,12 +208,21 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.legal.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </a>
+                  {link.isAnchor ? (
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
