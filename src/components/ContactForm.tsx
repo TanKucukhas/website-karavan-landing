@@ -198,7 +198,7 @@ export default function ContactForm() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">{t('information.phone')}</h4>
-                      <a href={`tel:${contactConfig.phone.primary.replace(/\s/g, '')}`} className="text-brand-600 hover:text-brand-700 transition-colors">
+                      <a href={`tel:${String(contactConfig.phone.primary).replace(/\s/g, '')}`} className="text-brand-600 hover:text-brand-700 transition-colors">
                         {contactConfig.phone.primary}
                       </a>
                       <p className="text-sm text-gray-500 mt-1">{t('information.phoneLabel')}</p>
