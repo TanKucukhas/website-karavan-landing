@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage -->
+  <url>
+    <loc>https://karavan.net/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/" />
+  </url>
+  
+  <!-- English Pages -->
+  <url>
+    <loc>https://karavan.net/en/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/en/contact/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/contact/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/contact/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/en/careers/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/careers/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/careers/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/careers/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/en/partnership/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/partnership/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/partnership/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/partnership/" />
+  </url>
+  
+  <!-- Legal Pages - English -->
+  <url>
+    <loc>https://karavan.net/en/legal/privacy-policy/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/privacy-policy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/privacy-policy/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/privacy-policy/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/en/legal/terms-of-service/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/terms-of-service/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/terms-of-service/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/terms-of-service/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/en/legal/cookie-policy/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/cookie-policy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/cookie-policy/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/cookie-policy/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/en/legal/gdpr/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/gdpr/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/gdpr/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/gdpr/" />
+  </url>
+  
+  <!-- Turkish Pages -->
+  <url>
+    <loc>https://karavan.net/tr/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/tr/contact/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/contact/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/contact/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/tr/careers/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/careers/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/careers/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/careers/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/tr/partnership/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/partnership/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/partnership/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/partnership/" />
+  </url>
+  
+  <!-- Legal Pages - Turkish -->
+  <url>
+    <loc>https://karavan.net/tr/legal/privacy-policy/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/privacy-policy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/privacy-policy/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/privacy-policy/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/tr/legal/terms-of-service/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/terms-of-service/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/terms-of-service/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/terms-of-service/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/tr/legal/cookie-policy/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/cookie-policy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/cookie-policy/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/cookie-policy/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/tr/legal/gdpr/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/gdpr/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/gdpr/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/gdpr/" />
+  </url>
+  
+  <!-- Russian Pages -->
+  <url>
+    <loc>https://karavan.net/ru/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/ru/contact/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/contact/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/contact/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/ru/careers/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/careers/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/careers/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/careers/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/ru/partnership/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/partnership/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/partnership/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/partnership/" />
+  </url>
+  
+  <!-- Legal Pages - Russian -->
+  <url>
+    <loc>https://karavan.net/ru/legal/privacy-policy/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/privacy-policy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/privacy-policy/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/privacy-policy/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/ru/legal/terms-of-service/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/terms-of-service/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/terms-of-service/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/terms-of-service/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/ru/legal/cookie-policy/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/cookie-policy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/cookie-policy/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/cookie-policy/" />
+  </url>
+  
+  <url>
+    <loc>https://karavan.net/ru/legal/gdpr/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://karavan.net/en/legal/gdpr/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://karavan.net/tr/legal/gdpr/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://karavan.net/ru/legal/gdpr/" />
+  </url>
+</urlset>

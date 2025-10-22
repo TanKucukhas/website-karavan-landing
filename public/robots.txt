@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://karavan.net/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+
+# Allow all public pages
+Allow: /en/
+Allow: /tr/
+Allow: /ru/
+Allow: /legal/
+Allow: /careers/
+Allow: /contact/
+Allow: /partnership/
+
+# Crawl delay (optional)
+Crawl-delay: 1

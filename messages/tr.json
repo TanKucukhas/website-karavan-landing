@@ -647,6 +647,597 @@
         "sellerAuction": { "bestFor": "Premium ürünler", "speed": "1–7 gün", "priceControl": "Piyasa odaklı", "complexity": "Orta" }
       }
     }
+  },
+  "legal": {
+    "privacyPolicy": {
+      "title": "Gizlilik Politikası",
+      "lastUpdated": "Son güncelleme: Ocak 2025",
+      "sections": {
+        "introduction": {
+          "title": "Giriş",
+          "content": "Karavan Digital Inc. olarak, gizliliğinizi ve kişisel verilerinizi korumaya kararlıyız. Bu Gizlilik Politikası, B2B ticaret platformumuzu kullandığınızda bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu açıklar."
+        },
+        "informationWeCollect": {
+          "title": "Topladığımız Bilgiler",
+          "content": "Hizmetlerimizi sağlamak ve geliştirmek için çeşitli türde bilgiler topluyoruz:",
+          "personalInfo": "Ad, e-posta adresi, telefon numarası ve şirket detayları gibi kişisel bilgiler",
+          "businessInfo": "Şirket kayıtları, ticaret lisansları ve finansal veriler dahil iş bilgileri",
+          "usageData": "Web sitesi etkileşimleri, işlem geçmişi ve platform aktivitesi dahil kullanım verileri",
+          "cookies": "Deneyiminizi geliştirmek için çerezler ve benzeri teknolojiler"
+        },
+        "howWeUseInfo": {
+          "title": "Bilgilerinizi Nasıl Kullanıyoruz",
+          "content": "Bilgilerinizi aşağıdaki amaçlar için kullanıyoruz:",
+          "serviceProvision": "B2B ticaret platformu hizmetlerimizi sağlamak ve sürdürmek",
+          "communication": "İşlemler, güncellemeler ve destek hakkında sizinle iletişim kurmak",
+          "improvement": "Hizmetlerimizi geliştirmek ve yeni özellikler geliştirmek",
+          "legal": "Yasal yükümlülüklerimizi yerine getirmek ve haklarımızı korumak"
+        },
+        "dataSharing": {
+          "title": "Veri Paylaşımı",
+          "content": "Bilgilerinizi aşağıdaki durumlarda paylaşabiliriz:",
+          "serviceProviders": "Platform operasyonlarında yardımcı olan güvenilir hizmet sağlayıcıları ile",
+          "businessPartners": "İşlem kolaylaştırma için iş ortakları ile",
+          "legalRequirements": "Yasa gereği veya haklarımızı korumak için gerekli olduğunda",
+          "consent": "Belirli amaçlar için açık rızanız ile"
+        },
+        "dataSecurity": {
+          "title": "Veri Güvenliği",
+          "content": "Verilerinizi korumak için uygun güvenlik önlemleri uyguluyoruz:",
+          "encryption": "Veri şifreleme (aktarım ve depolama sırasında)",
+          "access": "Kişisel verilere ihtiyaç temelinde sınırlı erişim",
+          "monitoring": "Düzenli güvenlik izleme ve olay müdahalesi",
+          "training": "Veri koruma en iyi uygulamaları konusunda personel eğitimi"
+        },
+        "yourRights": {
+          "title": "Haklarınız",
+          "content": "Kişisel verilerinizle ilgili aşağıdaki haklara sahipsiniz:",
+          "access": "Kişisel verilerinize erişim hakkı",
+          "rectification": "Yanlış verileri düzeltme hakkı",
+          "erasure": "Verilerinizin silinmesini talep etme hakkı",
+          "portability": "Veri taşınabilirliği hakkı",
+          "objection": "İşleme itiraz etme hakkı"
+        },
+        "cookies": {
+          "title": "Çerezler ve İzleme",
+          "content": "Deneyiminizi geliştirmek için çerezler ve benzeri teknolojiler kullanıyoruz:",
+          "essential": "Platform işlevselliği için temel çerezler",
+          "analytics": "Kullanım kalıplarını anlamak için analitik çerezler",
+          "marketing": "Kişiselleştirilmiş içerik için pazarlama çerezleri",
+          "preferences": "Ayarlarınızı hatırlamak için tercih çerezleri"
+        },
+        "dataRetention": {
+          "title": "Veri Saklama",
+          "content": "Kişisel verilerinizi yalnızca bu politikada belirtilen amaçlar için gerekli olduğu süre boyunca veya yasa gereği saklıyoruz. Hesap verileri genellikle hesap kapatıldıktan sonra 7 yıl saklanır, işlem verileri ise yasal ve düzenleyici uyumluluk için daha uzun süre saklanabilir."
+        },
+        "internationalTransfers": {
+          "title": "Uluslararası Veri Transferleri",
+          "content": "Verileriniz ikamet ettiğiniz ülke dışındaki ülkelere transfer edilebilir ve işlenebilir. Bu tür transferler için standart sözleşme maddeleri ve yeterlilik kararları dahil olmak üzere uygun güvencelerin yerinde olduğundan emin oluyoruz."
+        },
+        "children": {
+          "title": "Çocukların Gizliliği",
+          "content": "Hizmetlerimiz 16 yaşın altındaki bireyler için tasarlanmamıştır. 16 yaşın altındaki çocuklardan bilerek kişisel bilgi toplamıyoruz."
+        },
+        "changes": {
+          "title": "Bu Politikadaki Değişiklikler",
+          "content": "Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz. Değişiklikleri bu sayfada yeni politikayı yayınlayarak ve 'Son güncelleme' tarihini güncelleyerek size bildireceğiz."
+        },
+        "contact": {
+          "title": "Bizimle İletişime Geçin",
+          "content": "Bu Gizlilik Politikası hakkında herhangi bir sorunuz varsa, lütfen bizimle iletişime geçin:",
+          "email": "E-posta",
+          "address": "Adres"
+        }
+      }
+    },
+    "termsOfService": {
+      "title": "Kullanım Şartları",
+      "lastUpdated": "Son güncelleme: Ocak 2025",
+      "sections": {
+        "acceptance": {
+          "title": "Şartların Kabulü",
+          "content": "Karavan platformuna erişerek ve kullanarak, bu sözleşmenin şartlarını ve hükümlerini kabul etmiş ve bunlara bağlı olmayı kabul etmiş olursunuz."
+        },
+        "definitions": {
+          "title": "Tanımlar",
+          "service": "Hizmet",
+          "serviceDesc": "Karavan B2B ticaret platformu ve ilgili hizmetler",
+          "user": "Kullanıcı",
+          "userDesc": "Platformumuzu kullanan herhangi bir birey veya kuruluş",
+          "content": "İçerik",
+          "contentDesc": "Tüm bilgiler, veriler, metin, yazılım, müzik, ses, fotoğraflar, grafikler, video, mesajlar veya diğer materyaller",
+          "account": "Hesap",
+          "accountDesc": "Platformumuzdaki kayıtlı kullanıcı hesabınız"
+        },
+        "eligibility": {
+          "title": "Uygunluk",
+          "content": "Hizmetimizi kullanmak için şunları yapmalısınız:",
+          "age": "En az 18 yaşında olmak veya yargı yetkinizde reşit olmak",
+          "capacity": "Bağlayıcı sözleşmeler yapma hukuki ehliyetine sahip olmak",
+          "compliance": "Tüm geçerli yasa ve düzenlemelere uymak",
+          "prohibition": "Geçerli yasa kapsamında hizmetlerimizi kullanmaktan men edilmemek"
+        },
+        "account": {
+          "title": "Kullanıcı Hesapları",
+          "content": "Hesap oluştururken şunları kabul edersiniz:",
+          "registration": "Doğru ve eksiksiz bilgi sağlamak",
+          "accuracy": "Bilgilerinizi güncel tutmak",
+          "security": "Hesap kimlik bilgilerinizin güvenliğini sağlamak",
+          "responsibility": "Hesabınız altındaki tüm faaliyetlerden sorumlu olmak"
+        },
+        "useOfService": {
+          "title": "Hizmetin Kullanımı",
+          "content": "Hizmetimizi yalnızca yasal iş amaçları için kullanabilirsiniz. Şunları yapmayı kabul etmezsiniz:",
+          "permitted": "Platformu meşru B2B ticaret faaliyetleri için kullanmak",
+          "prohibited": "Herhangi bir yasa veya düzenlemeyi ihlal etmek",
+          "compliance": "Tüm geçerli şart ve koşullara uymak",
+          "monitoring": "Güvenlik ve uyumluluk için platform kullanımını izleyebileceğimizi kabul etmek"
+        },
+        "payments": {
+          "title": "Ödemeler ve Ücretler",
+          "content": "Ödeme şart ve koşulları:",
+          "fees": "Ücretler işlemlerden önce açıkça belirtilir",
+          "billing": "Ödeme kararlaştırılan şartlara göre yapılır",
+          "refunds": "İade politikaları işlem sözleşmelerinde belirtilir",
+          "disputes": "Ödeme anlaşmazlıkları anlaşmazlık çözüm sürecimiz aracılığıyla çözülür"
+        },
+        "intellectualProperty": {
+          "title": "Fikri Mülkiyet",
+          "content": "Fikri mülkiyet hakları:",
+          "ownership": "Platformumuz ve teknolojimizin sahipliğini koruyoruz",
+          "license": "Hizmetlerimizi kullanmak için sınırlı lisans alırsınız",
+          "userContent": "Oluşturduğunuz ve yüklediğiniz içeriklerin haklarını korursunuz",
+          "infringement": "Fikri mülkiyet haklarına saygı gösteriyoruz ve kullanıcılardan da aynısını bekliyoruz"
+        },
+        "privacy": {
+          "title": "Gizlilik",
+          "content": "Gizliliğiniz bizim için önemlidir. Bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu anlamak için Gizlilik Politikamızı inceleyin."
+        },
+        "termination": {
+          "title": "Fesih",
+          "content": "Her iki taraf da bu sözleşmeyi feshedebilir:",
+          "userTermination": "Hesabınızı istediğiniz zaman kapatabilirsiniz",
+          "companyTermination": "İhlaller için hesapları askıya alabilir veya feshedebiliriz",
+          "effect": "Fesih platform hizmetlerine erişimi etkiler",
+          "survival": "Belirli hükümler fesih sonrasında geçerliliğini korur"
+        },
+        "disclaimers": {
+          "title": "Feragatler",
+          "content": "Hizmetimiz 'olduğu gibi' garanti olmaksızın sağlanır:",
+          "noWarranty": "Ticari satılabilirlik veya belirli bir amaç için uygunluk garantisi yok",
+          "availability": "Kesintisiz hizmet kullanılabilirliği garantisi yok",
+          "accuracy": "Bilgi doğruluğu garantisi yok",
+          "thirdParty": "Üçüncü taraf içerik veya hizmetlerden sorumluluk yok"
+        },
+        "limitation": {
+          "title": "Sorumluluk Sınırlaması",
+          "content": "Sorumluluğumuz yasa tarafından izin verilen maksimum ölçüde sınırlıdır. Hizmetimizi kullanmanızdan kaynaklanan dolaylı, tesadüfi veya sonuçsal zararlardan sorumlu değiliz."
+        },
+        "indemnification": {
+          "title": "Tazminat",
+          "content": "Hizmetimizi kullanmanızdan veya bu şartları ihlal etmenizden kaynaklanan herhangi bir talep, zarar veya masraftan bizi zararsız tutmayı kabul edersiniz."
+        },
+        "governingLaw": {
+          "title": "Geçerli Hukuk",
+          "content": "Bu şartlar, çakışma hukuku ilkelerine bakılmaksızın Türkiye yasalarına tabidir."
+        },
+        "disputes": {
+          "title": "Anlaşmazlık Çözümü",
+          "content": "Anlaşmazlıklar, Uluslararası Ticaret Odası kurallarına uygun olarak İstanbul, Türkiye'de bağlayıcı tahkim yoluyla çözülecektir."
+        },
+        "changes": {
+          "title": "Şartlardaki Değişiklikler",
+          "content": "Bu şartları istediğimiz zaman değiştirebiliriz. Hizmetimizi kullanmaya devam etmeniz değiştirilmiş şartları kabul ettiğiniz anlamına gelir."
+        },
+        "contact": {
+          "title": "İletişim Bilgileri",
+          "content": "Bu şartlar hakkında sorularınız için bizimle iletişime geçin:",
+          "email": "E-posta",
+          "address": "Adres"
+        }
+      }
+    },
+    "cookiePolicy": {
+      "title": "Çerez Politikası",
+      "lastUpdated": "Son güncelleme: Ocak 2025",
+      "sections": {
+        "whatAreCookies": {
+          "title": "Çerezler Nedir?",
+          "content": "Çerezler, web sitemizi ziyaret ettiğinizde cihazınıza yerleştirilen küçük metin dosyalarıdır. Tercihlerinizi hatırlayarak ve sitemizi nasıl kullandığınızı analiz ederek size daha iyi bir deneyim sunmanıza yardımcı olurlar."
+        },
+        "howWeUseCookies": {
+          "title": "Çerezleri Nasıl Kullanıyoruz",
+          "content": "Çerezleri şu amaçlarla kullanıyoruz:",
+          "essential": "Web sitemizin düzgün çalışmasını sağlamak",
+          "analytics": "Ziyaretçilerin sitemizi nasıl kullandığını anlamak",
+          "functionality": "Tercihlerinizi ve ayarlarınızı hatırlamak",
+          "marketing": "İlgili içerik ve reklamlar sağlamak"
+        },
+        "typesOfCookies": {
+          "title": "Kullandığımız Çerez Türleri",
+          "essential": {
+            "title": "Temel Çerezler",
+            "content": "Bu çerezler web sitesinin çalışması için gerekli olup kapatılamaz:",
+            "session": "Oturum yönetimi ve güvenlik",
+            "security": "Dolandırıcılık önleme ve güvenlik özellikleri",
+            "preferences": "Temel kullanıcı tercihleri ve ayarları"
+          },
+          "analytics": {
+            "title": "Analitik Çerezler",
+            "content": "Bu çerezler web sitemizin nasıl kullanıldığını anlamamıza yardımcı olur:",
+            "usage": "Sayfa görüntülemeleri ve kullanıcı etkileşimleri",
+            "performance": "Web sitesi performansı ve hızı",
+            "improvement": "Kullanıcı deneyimini geliştirmek için veriler"
+          },
+          "functionality": {
+            "title": "İşlevsellik Çerezleri",
+            "content": "Bu çerezler gelişmiş özellikleri etkinleştirir:",
+            "remember": "Giriş durumunuzu hatırlamak",
+            "personalize": "Deneyiminizi kişiselleştirmek",
+            "features": "Gelişmiş platform özelliklerini etkinleştirmek"
+          },
+          "marketing": {
+            "title": "Pazarlama Çerezleri",
+            "content": "Bu çerezler reklam amaçlı kullanılır:",
+            "advertising": "İlgili reklamları göstermek",
+            "targeting": "İlgi alanlarınıza göre reklamları hedeflemek",
+            "social": "Sosyal medya entegrasyonu"
+          }
+        },
+        "thirdPartyCookies": {
+          "title": "Üçüncü Taraf Çerezleri",
+          "content": "Ayrıca güvenilir üçüncü taraflardan çerezler kullanıyoruz:",
+          "googleAnalytics": "Web sitesi analitiği ve performans izleme",
+          "socialMedia": "Sosyal medya paylaşımı ve giriş özellikleri",
+          "advertising": "Reklam ve pazarlama hizmetleri",
+          "payment": "Güvenli ödeme işleme"
+        },
+        "cookieDuration": {
+          "title": "Çerez Süresi",
+          "content": "Çerezlerin farklı yaşam süreleri vardır:",
+          "session": "Oturum Çerezleri",
+          "sessionDesc": "Tarayıcınızı kapattığınızda silinir",
+          "persistent": "Kalıcı Çerezler",
+          "persistentDesc": "Cihazınızda belirli bir süre kalır",
+          "permanent": "Kalıcı Çerezler",
+          "permanentDesc": "Manuel olarak silinene kadar kalır"
+        },
+        "managingCookies": {
+          "title": "Çerezleri Yönetme",
+          "content": "Çerezleri tarayıcı ayarlarınız aracılığıyla kontrol edebilirsiniz:",
+          "browserSettings": {
+            "title": "Tarayıcı Ayarları",
+            "content": "Çoğu tarayıcı şunları yapmanıza izin verir:",
+            "chrome": "Chrome: Ayarlar > Gizlilik ve Güvenlik > Çerezler",
+            "firefox": "Firefox: Seçenekler > Gizlilik ve Güvenlik > Çerezler",
+            "safari": "Safari: Tercihler > Gizlilik > Çerezler",
+            "edge": "Edge: Ayarlar > Çerezler ve Site İzinleri"
+          },
+          "optOut": {
+            "title": "Vazgeçme Seçenekleri",
+            "content": "Belirli çerezlerden vazgeçebilirsiniz:",
+            "google": "Google Analytics vazgeçme tarayıcı eklentisi",
+            "facebook": "Facebook reklam tercihleri",
+            "industry": "Sektör vazgeçme araçları ve hizmetleri"
+          }
+        },
+        "impactOfDisabling": {
+          "title": "Çerezleri Devre Dışı Bırakmanın Etkisi",
+          "content": "Çerezleri devre dışı bırakmak deneyiminizi etkileyebilir:",
+          "functionality": "Bazı özellikler düzgün çalışmayabilir",
+          "personalization": "Kişiselleştirilmiş içerik mevcut olmayabilir",
+          "analytics": "Kullanım verilerine dayalı olarak siteyi geliştiremeyiz",
+          "security": "Güvenlik özellikleri tehlikeye girebilir"
+        },
+        "updates": {
+          "title": "Bu Politikadaki Güncellemeler",
+          "content": "Bu Çerez Politikasını zaman zaman güncelleyebiliriz. Değişiklikleri web sitemizde güncellenmiş politikayı yayınlayarak size bildireceğiz."
+        },
+        "contact": {
+          "title": "Bizimle İletişime Geçin",
+          "content": "Çerez kullanımımız hakkında sorularınız varsa bizimle iletişime geçin:",
+          "email": "E-posta",
+          "address": "Adres"
+        }
+      }
+    },
+    "gdpr": {
+      "title": "GDPR Uyumluluğu",
+      "lastUpdated": "Son güncelleme: Ocak 2025",
+      "sections": {
+        "introduction": {
+          "title": "Giriş",
+          "content": "Bu GDPR uyumluluk beyanı, Karavan Digital Inc.'in AB sakinlerinin kişisel verilerini işlerken Genel Veri Koruma Yönetmeliği (GDPR) ile nasıl uyumlu olduğunu açıklar."
+        },
+        "dataController": {
+          "title": "Veri Sorumlusu",
+          "content": "Karavan Digital Inc., platformumuz aracılığıyla işlenen kişisel veriler için veri sorumlusudur:",
+          "name": "Şirket Adı",
+          "address": "Adres",
+          "email": "E-posta"
+        },
+        "legalBasis": {
+          "title": "İşleme Hukuki Temeli",
+          "content": "Kişisel verileri aşağıdaki hukuki temellere dayanarak işliyoruz:",
+          "consent": "Rıza",
+          "consentDesc": "Veri işlemeye açık rıza verdiğinizde",
+          "contract": "Sözleşme Performansı",
+          "contractDesc": "Size karşı sözleşme yükümlülüklerimizi yerine getirmek için",
+          "legitimate": "Meşru Menfaatler",
+          "legitimateDesc": "Hizmetlerimizi geliştirmek ve dolandırıcılığı önlemek için",
+          "legal": "Hukuki Yükümlülük",
+          "legalDesc": "Geçerli yasa ve düzenlemelere uymak için"
+        },
+        "dataCategories": {
+          "title": "Kişisel Veri Kategorileri",
+          "content": "Aşağıdaki kişisel veri kategorilerini işliyoruz:",
+          "identity": "Kimlik Verileri",
+          "identityDesc": "Ad, e-posta adresi, telefon numarası ve kimlik belgeleri",
+          "contact": "İletişim Verileri",
+          "contactDesc": "Adres, telefon numaraları ve iletişim tercihleri",
+          "financial": "Finansal Veriler",
+          "financialDesc": "Ödeme bilgileri, işlem geçmişi ve finansal kayıtlar",
+          "technical": "Teknik Veriler",
+          "technicalDesc": "IP adresi, tarayıcı türü, cihaz bilgileri ve kullanım verileri",
+          "usage": "Kullanım Verileri",
+          "usageDesc": "Platformumuz ve hizmetlerimizi nasıl kullandığınız hakkında bilgiler"
+        },
+        "purposes": {
+          "title": "İşleme Amaçları",
+          "content": "Kişisel verileri aşağıdaki amaçlarla işliyoruz:",
+          "serviceProvision": "B2B ticaret platformumuzu sağlamak ve sürdürmek",
+          "accountManagement": "Hesabınızı yönetmek ve müşteri desteği sağlamak",
+          "communication": "Hizmetlerimiz hakkında sizinle iletişim kurmak",
+          "marketing": "Size ilgili pazarlama iletişimleri göndermek (rıza ile)",
+          "analytics": "Platform performansımızı analiz etmek ve geliştirmek",
+          "legalCompliance": "Hukuki ve düzenleyici gerekliliklere uymak"
+        },
+        "dataRetention": {
+          "title": "Veri Saklama",
+          "content": "Kişisel verileri amaca bağlı olarak farklı sürelerde saklıyoruz:",
+          "account": "Hesap Verileri",
+          "accountDesc": "Hesap kapatıldıktan sonra 7 yıl saklanır",
+          "transactions": "İşlem Verileri",
+          "transactionsDesc": "Hukuki ve vergi uyumluluğu için 10 yıl saklanır",
+          "marketing": "Pazarlama Verileri",
+          "marketingDesc": "Rıza geri çekilene kadar saklanır",
+          "legal": "Hukuki Uyumluluk Verileri",
+          "legalDesc": "Geçerli yasalar gereği saklanır"
+        },
+        "dataSharing": {
+          "title": "Veri Paylaşımı",
+          "content": "Kişisel verileri şunlarla paylaşabiliriz:",
+          "serviceProviders": "Hizmet Sağlayıcıları",
+          "serviceProvidersDesc": "Platform operasyonlarında yardımcı olan güvenilir üçüncü taraflar",
+          "businessPartners": "İş Ortakları",
+          "businessPartnersDesc": "İşlem kolaylaştırmada yer alan ortaklar",
+          "legalRequirements": "Hukuki Makamlar",
+          "legalRequirementsDesc": "Yasa gereği veya haklarımızı korumak için gerekli olduğunda",
+          "consent": "Rızanızla",
+          "consentDesc": "Veri paylaşımına açık rıza verdiğinizde"
+        },
+        "yourRights": {
+          "title": "GDPR Kapsamında Haklarınız",
+          "content": "AB sakini olarak aşağıdaki haklara sahipsiniz:",
+          "access": {
+            "title": "Erişim Hakkı",
+            "content": "Sahip olduğumuz kişisel verilerinizin bir kopyasını talep edebilirsiniz"
+          },
+          "rectification": {
+            "title": "Düzeltme Hakkı",
+            "content": "Yanlış kişisel verilerin düzeltilmesini talep edebilirsiniz"
+          },
+          "erasure": {
+            "title": "Silme Hakkı",
+            "content": "Belirli durumlarda kişisel verilerinizin silinmesini talep edebilirsiniz"
+          },
+          "portability": {
+            "title": "Veri Taşınabilirliği Hakkı",
+            "content": "Verilerinizin başka bir hizmet sağlayıcısına transferini talep edebilirsiniz"
+          },
+          "restriction": {
+            "title": "Kısıtlama Hakkı",
+            "content": "Belirli durumlarda işlemeyi sınırlamayı talep edebilirsiniz"
+          },
+          "objection": {
+            "title": "İtiraz Hakkı",
+            "content": "Meşru menfaatlere dayalı işlemeye itiraz edebilirsiniz"
+          }
+        },
+        "exercisingRights": {
+          "title": "Haklarınızı Kullanma",
+          "content": "Haklarınızı kullanmak için:",
+          "contact": "privacy@karavan.net adresinden bizimle iletişime geçin",
+          "verification": "Kimliğinizi doğrulamamız gerekebilir",
+          "response": "30 gün içinde yanıt vereceğiz",
+          "free": "Haklarınızı kullanmak ücretsizdir"
+        },
+        "dataSecurity": {
+          "title": "Veri Güvenliği",
+          "content": "Uygun güvenlik önlemleri uyguluyoruz:",
+          "encryption": "Veri şifreleme (aktarım ve depolama sırasında)",
+          "access": "Kişisel verilere sınırlı erişim",
+          "monitoring": "Düzenli güvenlik izleme ve denetimleri",
+          "training": "Veri koruma konusunda personel eğitimi",
+          "incident": "Olay müdahalesi ve ihlal bildirimi prosedürleri"
+        },
+        "internationalTransfers": {
+          "title": "Uluslararası Veri Transferleri",
+          "content": "Verileri AB dışına transfer ederken şunları sağlıyoruz:",
+          "adequacy": "Avrupa Komisyonu'nun yeterlilik kararları",
+          "safeguards": "Standart sözleşme maddeleri gibi uygun güvenceler",
+          "consent": "Belirli transferler için açık rızanız",
+          "necessity": "Sözleşme performansı için gerekli transferler"
+        },
+        "children": {
+          "title": "Çocuk Verileri",
+          "content": "Hizmetlerimiz 16 yaşın altındaki çocuklar için tasarlanmamıştır. 16 yaşın altındaki çocuklardan bilerek kişisel veri toplamıyoruz."
+        },
+        "complaints": {
+          "title": "Şikayet Hakkı",
+          "content": "Denetleyici otoriteye şikayet hakkınız vardır:",
+          "authority": "Denetleyici Otorite",
+          "authorityName": "Türkiye Veri Koruma Kurumu",
+          "authorityAddress": "Bilkent Plaza, B2 Blok, 06530 Ankara, Türkiye",
+          "authorityWebsite": "www.kvkk.gov.tr"
+        },
+        "changes": {
+          "title": "Bu Beyandaki Değişiklikler",
+          "content": "Bu GDPR uyumluluk beyanını güncelleyebiliriz. Önemli değişiklikleri size bildireceğiz."
+        },
+        "contact": {
+          "title": "Bizimle İletişime Geçin",
+          "content": "GDPR ile ilgili sorularınız için bizimle iletişime geçin:",
+          "email": "E-posta",
+          "address": "Adres"
+        }
+      }
+    }
+  },
+  "partnership": {
+    "hero": {
+      "title": "Ortaklık Fırsatları",
+      "subtitle": "Güvenilir ortaklar ağımıza katılın",
+      "description": "Karavan ile ortak olarak işinizi Türk Devletleri ve Orta Asya'ya genişletin. Lojistik, finansal hizmetler ve sigorta sağlayıcıları için kapsamlı ortaklık programları sunuyoruz.",
+      "benefits": {
+        "global": "Küresel Erişim",
+        "trusted": "Güvenilir Ağ",
+        "growth": "Büyüme Fırsatları"
+      }
+    },
+    "partnerships": {
+      "title": "Ortaklık Türleri",
+      "subtitle": "İşinize uygun ortaklığı seçin",
+      "benefits": "Avantajlar",
+      "requirements": "Gereksinimler",
+      "learnMore": "Daha Fazla Bilgi",
+      "logistics": {
+        "title": "Lojistik Ortakları",
+        "description": "Türk Devletleri genelinde nakliye, depolama ve gümrük işlemleri hizmetleri sunmak için lojistik ağımıza katılın.",
+        "benefits": {
+          "1": "Doğrulanmış tedarikçi ve alıcılara erişim",
+          "2": "Sipariş yönetimi için entegre platform",
+          "3": "Gerçek zamanlı takip ve güncellemeler",
+          "4": "Rekabetçi fiyatlandırma ve hacim indirimleri"
+        },
+        "requirements": {
+          "1": "Hedef pazarlarda lisanslı lojistik sağlayıcı",
+          "2": "Uluslararası nakliye deneyimi",
+          "3": "Yerel düzenlemelere uyum"
+        }
+      },
+      "financial": {
+        "title": "Finansal Ortaklar",
+        "description": "B2B platform kullanıcılarımıza ticaret finansmanı, ödeme işleme ve döviz kuru hizmetleri sağlayın.",
+        "benefits": {
+          "1": "Yüksek hacimli B2B işlemlerine erişim",
+          "2": "Entegre ödeme çözümleri",
+          "3": "Risk değerlendirmesi ve kredi skorlama",
+          "4": "Çok para birimi desteği"
+        },
+        "requirements": {
+          "1": "Lisanslı finansal kurum",
+          "2": "Ticaret finansmanı deneyimi",
+          "3": "Uluslararası bankacılık standartlarına uyum"
+        }
+      },
+      "insurance": {
+        "title": "Sigorta Ortakları",
+        "description": "Kargo, sorumluluk ve ticaret kredi sigortası dahil olmak üzere B2B işlemleri için kapsamlı sigorta kapsamı sağlayın.",
+        "benefits": {
+          "1": "Büyük ölçekli B2B işlemlerine erişim",
+          "2": "Entegre risk değerlendirme araçları",
+          "3": "Özelleştirilmiş sigorta ürünleri",
+          "4": "Tazminat işleme desteği"
+        },
+        "requirements": {
+          "1": "Lisanslı sigorta sağlayıcı",
+          "2": "Ticaret sigortası deneyimi",
+          "3": "Uluslararası kapsam yetenekleri"
+        }
+      }
+    },
+    "successStories": {
+      "title": "Başarı Hikayeleri",
+      "subtitle": "Ortaklarımızın Karavan ile nasıl büyüdüğünü görün",
+      "story1": {
+        "company": "Global Lojistik Çözümleri",
+        "industry": "Lojistik ve Ulaştırma",
+        "result": "%300 Gelir Artışı",
+        "quote": "Karavan ile ortaklık işimizi dönüştürdü. 5 yeni pazara genişledik ve sadece 18 ayda gelirimizi %300 artırdık.",
+        "author": "Ahmet Yılmaz",
+        "position": "CEO, Global Lojistik Çözümleri"
+      },
+      "story2": {
+        "company": "Orta Asya Ticaret Finansmanı",
+        "industry": "Finansal Hizmetler",
+        "result": "500+ Yeni Müşteri",
+        "quote": "Karavan platformu ile entegrasyon bize tamamen yeni bir pazar erişimi sağladı. 500'den fazla yeni müşteri kazandık ve milyonlarca işlem gerçekleştirdik.",
+        "author": "Nurbolat Kenzhebayev",
+        "position": "Genel Müdür, Orta Asya Ticaret Finansmanı"
+      }
+    },
+    "cta": {
+      "title": "Bizimle Ortak Olmaya Hazır mısınız?",
+      "description": "Güvenilir ortaklar ağımıza katılın ve işinizi Türk Devletleri genelinde büyütün.",
+      "contactUs": "İletişime Geçin",
+      "downloadBrochure": "Ortaklık Broşürünü İndirin"
+    },
+    "form": {
+      "title": "Ortaklık Başvurusu",
+      "description": "Karavan ile ortaklık başvurusu yapmak için aşağıdaki formu doldurun.",
+      "fields": {
+        "companyName": "Şirket Adı",
+        "contactPerson": "İletişim Kişisi",
+        "email": "E-posta Adresi",
+        "phone": "Telefon Numarası",
+        "website": "Web Sitesi",
+        "partnershipType": "Ortaklık Türü",
+        "businessDescription": "İş Açıklaması",
+        "experience": "İlgili Deneyim",
+        "targetMarkets": "Hedef Pazarlar",
+        "additionalInfo": "Ek Bilgiler"
+      },
+      "placeholders": {
+        "companyName": "Şirket adınızı girin",
+        "contactPerson": "İletişim kişisi adını girin",
+        "email": "E-posta adresinizi girin",
+        "phone": "Telefon numaranızı girin",
+        "website": "Web sitenizin URL'sini girin",
+        "partnershipType": "Ortaklık türünü seçin",
+        "businessDescription": "İşinizi ve hizmetlerinizi açıklayın",
+        "experience": "İlgili deneyiminizi açıklayın",
+        "targetMarkets": "Hedef pazarlarınızı listeleyin",
+        "additionalInfo": "Paylaşmak istediğiniz ek bilgiler"
+      },
+      "options": {
+        "logistics": "Lojistik Ortağı",
+        "financial": "Finansal Ortak",
+        "insurance": "Sigorta Ortağı",
+        "other": "Diğer"
+      },
+      "validation": {
+        "companyName": "Şirket adı gereklidir",
+        "contactPerson": "İletişim kişisi gereklidir",
+        "email": "E-posta adresi gereklidir",
+        "emailFormat": "Lütfen geçerli bir e-posta adresi girin",
+        "phone": "Telefon numarası gereklidir",
+        "partnershipType": "Lütfen bir ortaklık türü seçin",
+        "businessDescription": "İş açıklaması gereklidir"
+      },
+      "buttons": {
+        "submit": "Başvuruyu Gönder",
+        "submitting": "Gönderiliyor..."
+      },
+      "success": {
+        "title": "Başvuru Gönderildi!",
+        "message": "Karavan ile ortaklık konusundaki ilginiz için teşekkür ederiz. Başvurunuzu inceleyeceğiz ve 2-3 iş günü içinde size dönüş yapacağız.",
+        "submitAnother": "Başka Bir Başvuru Gönder"
+      },
+      "error": {
+        "message": "Başvurunuz gönderilirken bir hata oluştu. Lütfen tekrar deneyin."
+      }
+    }
   }
 }
 

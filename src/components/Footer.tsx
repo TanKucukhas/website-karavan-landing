@@ -24,7 +24,7 @@ export default function Footer() {
     ],
     solutions: [
       { name: t('links.regions'), href: '#regions', isAnchor: true },
-      { name: t('links.partnerships'), href: '#partnerships', isAnchor: true }
+      { name: t('links.partnerships'), href: '/partnership', isAnchor: false }
     ],
     company: [
       { name: t('links.team'), href: '#team', isAnchor: true },
@@ -32,10 +32,10 @@ export default function Footer() {
       { name: t('links.contact'), href: '/contact', isAnchor: false }
     ],
     legal: [
-      { name: t('links.privacyPolicy'), href: '#privacy', isAnchor: true },
-      { name: t('links.termsOfService'), href: '#terms', isAnchor: true },
-      { name: t('links.cookiePolicy'), href: '#cookies', isAnchor: true },
-      { name: t('links.gdpr'), href: '#gdpr', isAnchor: true }
+      { name: t('links.privacyPolicy'), href: '/legal/privacy-policy', isAnchor: false },
+      { name: t('links.termsOfService'), href: '/legal/terms-of-service', isAnchor: false },
+      { name: t('links.cookiePolicy'), href: '/legal/cookie-policy', isAnchor: false },
+      { name: t('links.gdpr'), href: '/legal/gdpr', isAnchor: false }
     ]
   };
 

@@ -1093,6 +1093,151 @@
         }
       }
     }
+  },
+  "partnership": {
+    "hero": {
+      "title": "Partnership Opportunities",
+      "subtitle": "Join our network of trusted partners",
+      "description": "Partner with Karavan to expand your business across the Turkic States and Central Asia. We offer comprehensive partnership programs for logistics, financial services, and insurance providers.",
+      "benefits": {
+        "global": "Global Reach",
+        "trusted": "Trusted Network",
+        "growth": "Growth Opportunities"
+      }
+    },
+    "partnerships": {
+      "title": "Partnership Types",
+      "subtitle": "Choose the partnership that fits your business",
+      "benefits": "Benefits",
+      "requirements": "Requirements",
+      "learnMore": "Learn More",
+      "logistics": {
+        "title": "Logistics Partners",
+        "description": "Join our logistics network to provide shipping, warehousing, and customs clearance services across the Turkic States.",
+        "benefits": {
+          "1": "Access to verified suppliers and buyers",
+          "2": "Integrated platform for order management",
+          "3": "Real-time tracking and updates",
+          "4": "Competitive pricing and volume discounts"
+        },
+        "requirements": {
+          "1": "Licensed logistics provider in target markets",
+          "2": "Experience with international shipping",
+          "3": "Compliance with local regulations"
+        }
+      },
+      "financial": {
+        "title": "Financial Partners",
+        "description": "Provide trade finance, payment processing, and currency exchange services to our B2B platform users.",
+        "benefits": {
+          "1": "Access to high-volume B2B transactions",
+          "2": "Integrated payment solutions",
+          "3": "Risk assessment and credit scoring",
+          "4": "Multi-currency support"
+        },
+        "requirements": {
+          "1": "Licensed financial institution",
+          "2": "Experience with trade finance",
+          "3": "Compliance with international banking standards"
+        }
+      },
+      "insurance": {
+        "title": "Insurance Partners",
+        "description": "Provide comprehensive insurance coverage for B2B transactions, including cargo, liability, and trade credit insurance.",
+        "benefits": {
+          "1": "Access to large-scale B2B transactions",
+          "2": "Integrated risk assessment tools",
+          "3": "Customized insurance products",
+          "4": "Claims processing support"
+        },
+        "requirements": {
+          "1": "Licensed insurance provider",
+          "2": "Experience with trade insurance",
+          "3": "International coverage capabilities"
+        }
+      }
+    },
+    "successStories": {
+      "title": "Success Stories",
+      "subtitle": "See how our partners have grown with Karavan",
+      "story1": {
+        "company": "Global Logistics Solutions",
+        "industry": "Logistics & Transportation",
+        "result": "300% Revenue Growth",
+        "quote": "Partnering with Karavan has transformed our business. We've expanded to 5 new markets and increased our revenue by 300% in just 18 months.",
+        "author": "Ahmet Yılmaz",
+        "position": "CEO, Global Logistics Solutions"
+      },
+      "story2": {
+        "company": "Central Asia Trade Finance",
+        "industry": "Financial Services",
+        "result": "500+ New Clients",
+        "quote": "The integration with Karavan's platform has given us access to a whole new market. We've onboarded over 500 new clients and processed millions in transactions.",
+        "author": "Nurbolat Kenzhebayev",
+        "position": "Managing Director, Central Asia Trade Finance"
+      }
+    },
+    "cta": {
+      "title": "Ready to Partner with Us?",
+      "description": "Join our network of trusted partners and grow your business across the Turkic States.",
+      "contactUs": "Contact Us",
+      "downloadBrochure": "Download Partnership Brochure"
+    },
+    "form": {
+      "title": "Partnership Application",
+      "description": "Fill out the form below to apply for partnership with Karavan.",
+      "fields": {
+        "companyName": "Company Name",
+        "contactPerson": "Contact Person",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "website": "Website",
+        "partnershipType": "Partnership Type",
+        "businessDescription": "Business Description",
+        "experience": "Relevant Experience",
+        "targetMarkets": "Target Markets",
+        "additionalInfo": "Additional Information"
+      },
+      "placeholders": {
+        "companyName": "Enter your company name",
+        "contactPerson": "Enter contact person name",
+        "email": "Enter your email address",
+        "phone": "Enter your phone number",
+        "website": "Enter your website URL",
+        "partnershipType": "Select partnership type",
+        "businessDescription": "Describe your business and services",
+        "experience": "Describe your relevant experience",
+        "targetMarkets": "List your target markets",
+        "additionalInfo": "Any additional information you'd like to share"
+      },
+      "options": {
+        "logistics": "Logistics Partner",
+        "financial": "Financial Partner",
+        "insurance": "Insurance Partner",
+        "other": "Other"
+      },
+      "validation": {
+        "companyName": "Company name is required",
+        "contactPerson": "Contact person is required",
+        "email": "Email address is required",
+        "emailFormat": "Please enter a valid email address",
+        "phone": "Phone number is required",
+        "partnershipType": "Please select a partnership type",
+        "businessDescription": "Business description is required"
+      },
+      "buttons": {
+        "submit": "Submit Application",
+        "submitting": "Submitting..."
+      },
+      "success": {
+        "title": "Application Submitted!",
+        "message": "Thank you for your interest in partnering with Karavan. We'll review your application and get back to you within 2-3 business days.",
+        "submitAnother": "Submit Another Application"
+      },
+      "error": {
+        "message": "There was an error submitting your application. Please try again."
+      }
+    }
   }
 }
 
