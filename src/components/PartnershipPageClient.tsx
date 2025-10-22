@@ -1,14 +1,11 @@
 'use client'
 
-import { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { Link } from '@/i18n/routing'
 import { CheckIcon, StarIcon, UserGroupIcon, GlobeAltIcon, CurrencyDollarIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 import PartnershipForm from './PartnershipForm'
 
 export default function PartnershipPageClient() {
   const t = useTranslations('partnership')
-  const [selectedPartnership, setSelectedPartnership] = useState<string | null>(null)
 
   const partnershipTypes = [
     {
@@ -174,12 +171,6 @@ export default function PartnershipPageClient() {
                       </ul>
                     </div>
 
-                    <button
-                      onClick={() => setSelectedPartnership(partnership.id)}
-                      className="w-full bg-brand-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-brand-700 transition-colors"
-                    >
-                      {t('partnerships.learnMore')}
-                    </button>
                   </div>
                 )
               })}
@@ -221,7 +212,7 @@ export default function PartnershipPageClient() {
                   </div>
 
                   <blockquote className="text-gray-700 italic mb-4">
-                    "{story.quote}"
+                    &ldquo;{story.quote}&rdquo;
                   </blockquote>
 
                   <div className="text-sm text-gray-600">

@@ -109,7 +109,6 @@ export default function HeaderWithCTA() {
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
                       onClick={() => {
                         setMobileMenuOpen(false)
-                        track('nav_click', { item: item.name })
                       }}
                     >
                       {item.name}
@@ -121,7 +120,6 @@ export default function HeaderWithCTA() {
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
                       onClick={() => {
                         setMobileMenuOpen(false)
-                        track('nav_click', { item: item.name })
                       }}
                     >
                       {item.name}

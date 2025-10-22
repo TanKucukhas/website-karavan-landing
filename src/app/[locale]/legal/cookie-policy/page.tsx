@@ -1,12 +1,9 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
 
 export default function CookiePolicyPage() {
   const t = useTranslations('legal.cookiePolicy')
-  const params = useParams()
-  const locale = params.locale as string
 
   return (
     <div className="min-h-screen bg-gray-50">
