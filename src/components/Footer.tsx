@@ -28,7 +28,7 @@ export default function Footer() {
     ],
     company: [
       { name: t('links.team'), href: '#team', isAnchor: true },
-      { name: t('links.careers'), href: '#careers', isAnchor: true },
+      { name: t('links.careers'), href: '/careers', isAnchor: false },
       { name: t('links.contact'), href: '/contact', isAnchor: false }
     ],
     legal: [

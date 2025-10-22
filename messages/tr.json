@@ -44,6 +44,127 @@
     },
     "copyright": "Karavan Digital Inc. Tüm hakları saklıdır."
   },
+  "careers": {
+    "hero": {
+      "title": "Ekibimize Katılın",
+      "subtitle": "Türk Devletlerinde B2B ticaretin geleceğini birlikte inşa edelim",
+      "benefits": {
+        "remote": "Uzaktan Çalışma",
+        "growth": "Kariyer Gelişimi",
+        "impact": "Küresel Etki"
+      }
+    },
+    "culture": {
+      "title": "Kültürümüz",
+      "subtitle": "Herkesin gelişebileceği bir ortam yaratmaya inanıyoruz",
+      "values": {
+        "teamwork": {
+          "title": "İşbirliği Odaklı Takım Çalışması",
+          "description": "Ortak hedeflere ulaşmak ve birbirimizin gelişimini desteklemek için birlikte çalışıyoruz."
+        },
+        "innovation": {
+          "title": "İnovasyon Öncelikli",
+          "description": "Karmaşık problemleri çözmek için yaratıcı düşünceyi teşvik ediyor ve yeni teknolojileri benimsiyoruz."
+        },
+        "growth": {
+          "title": "Sürekli Gelişim",
+          "description": "Öğrenme fırsatları ve kariyer ilerlemesi ile ekibimizin gelişimine yatırım yapıyoruz."
+        }
+      }
+    },
+    "positions": {
+      "title": "Açık Pozisyonlar",
+      "subtitle": "Bizimle bir sonraki kariyer fırsatınızı bulun"
+    },
+    "jobs": {
+      "seniorDeveloper": {
+        "title": "Senior .NET Full-Stack Developer",
+        "department": "Mühendislik",
+        "location": "Uzaktan",
+        "type": "Tam Zamanlı",
+        "description": "Mühendislik ekibimize katılacak ve B2B ticaret platformumuzu geliştirmemize yardımcı olacak deneyimli bir .NET full-stack developer arıyoruz.",
+        "requirements": {
+          "1": ".NET geliştirmede 5+ yıl deneyim",
+          "2": "C#, ASP.NET Core ve Entity Framework'te güçlü yeterlilik",
+          "3": "Bulut platformları deneyimi (Azure tercih edilir, AWS veya GCP)",
+          "4": "SQL Server ve veritabanı tasarımı bilgisi",
+          "5": "RESTful API geliştirme ve mikroservis deneyimi"
+        },
+        "benefits": {
+          "1": "Rekabetçi maaş ve hisse paketi",
+          "2": "Esnek çalışma saatleri ve uzaktan çalışma",
+          "3": "Profesyonel gelişim bütçesi",
+          "4": "Sağlık sigortası ve wellness programları"
+        }
+      },
+      "generalApplication": {
+        "title": "Genel Başvuru",
+        "department": "Çeşitli",
+        "location": "Uzaktan",
+        "type": "Tam Zamanlı/Yarı Zamanlı",
+        "description": "Yeteneklerinize uygun belirli bir rol görmüyor musunuz? Ekibimize katılabilecek yetenekli bireyler arıyoruz. Başvurunuzu gönderin ve Karavan'a nasıl katkıda bulunabileceğinizi bize bildirin.",
+        "requirements": {
+          "1": "Alanınızda ilgili deneyim",
+          "2": "Güçlü iletişim becerileri",
+          "3": "B2B ticaret ve teknolojiye tutku",
+          "4": "Uzaktan çalışma ortamında çalışabilme yeteneği"
+        },
+        "benefits": {
+          "1": "Esnek çalışma düzenlemeleri",
+          "2": "Rolünüzü şekillendirme fırsatı",
+          "3": "Rekabetçi tazminat",
+          "4": "Profesyonel gelişim fırsatları"
+        }
+      }
+    },
+    "generalApplication": {
+      "title": "Mükemmel Rolünüzü Görmüyor musunuz?",
+      "subtitle": "Misyonumuza katkıda bulunabilecek yetenekli bireyler arıyoruz. Başvurunuzu gönderin ve fırsatları birlikte keşfedelim.",
+      "card": {
+        "title": "Açık Başvuru",
+        "description": "Harika yeteneklerin birçok farklı formda geldiğine inanıyoruz. B2B ticaret, teknoloji veya iş geliştirme konularında tutkuluysanız, sizden haber almak isteriz.",
+        "benefits": {
+          "1": "Yeteneklerinize göre esnek rol tanımı",
+          "2": "Çeşitli projelerde çalışma fırsatı",
+          "3": "Tam zamanlı pozisyonlara doğrudan yol"
+        },
+        "cta": {
+          "title": "Şimdi Başvur",
+          "description": "Kendiniz hakkında bize bilgi verin ve Karavan'ın başarısına nasıl katkıda bulunabileceğinizi anlatın.",
+          "button": "Genel Başvuru Gönder"
+        }
+      }
+    },
+    "application": {
+      "title": "Pozisyon için Başvur",
+      "successMessage": "Başvurunuz başarıyla gönderildi! Yakında size dönüş yapacağız.",
+      "errorMessage": "Başvurunuzu gönderirken bir hata oluştu. Lütfen tekrar deneyin.",
+      "sections": {
+        "personalInfo": "Kişisel Bilgiler"
+      },
+      "fields": {
+        "firstName": "Ad",
+        "lastName": "Soyad",
+        "email": "E-posta Adresi",
+        "phone": "Telefon Numarası",
+        "linkedin": "LinkedIn Profili",
+        "cv": "CV/Özgeçmiş",
+        "uploadCv": "CV Yükle (Opsiyonel)",
+        "orDragDrop": "veya sürükleyip bırakın",
+        "experience": "İlgili Deneyim",
+        "experiencePlaceholder": "İlgili deneyiminiz ve yetenekleriniz hakkında bize bilgi verin...",
+        "coverLetter": "Ön Yazı",
+        "coverLetterPlaceholder": "Bu pozisyona neden ilgi duyuyorsunuz? Ekibimize ne katabilirsiniz?",
+        "availability": "Müsaitlik",
+        "availabilityPlaceholder": "Ne zaman başlayabilirsiniz? Herhangi bir program tercihiniz var mı?"
+      },
+      "buttons": {
+        "cancel": "İptal",
+        "submit": "Başvuruyu Gönder",
+        "submitting": "Gönderiliyor..."
+      }
+    }
+  },
   "hero": {
     "title": "Türk Devletlerinde",
     "titleHighlight": "doğrulanmış tedarikçilere",
@@ -273,6 +394,10 @@
       "stillHaveQuestionsDesc": "Ekibimiz yardım etmek için burada. İş saatleri içinde e-posta veya telefon ile bize ulaşın.",
       "emailUs": "E-posta Gönder",
       "sendMessage": "Mesaj Gönder"
+    },
+    "cta": {
+      "heading": "Erken Erişim Al",
+      "description": "İşlerini Orta Asya'ya genişletmek için Karavan'ı kullanan binlerce ihracatçıya katılın."
     }
   },
   "region": {

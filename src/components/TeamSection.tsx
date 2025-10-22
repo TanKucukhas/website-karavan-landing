@@ -22,7 +22,7 @@ export default function TeamSection() {
   ];
 
   return (
-    <section className="lt-section">
+    <section id="team" className="lt-section">
       <div className="lt-container">
         <div className="text-center mb-14">
           <h2 className="lt-heading mb-4">{t('heading')}</h2>

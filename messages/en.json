@@ -44,6 +44,127 @@
     },
     "copyright": "Karavan Digital Inc. All rights reserved."
   },
+  "careers": {
+    "hero": {
+      "title": "Join Our Team",
+      "subtitle": "Help us build the future of B2B trade in the Turkic States",
+      "benefits": {
+        "remote": "Remote Work",
+        "growth": "Career Growth",
+        "impact": "Global Impact"
+      }
+    },
+    "culture": {
+      "title": "Our Culture",
+      "subtitle": "We believe in creating an environment where everyone can thrive",
+      "values": {
+        "teamwork": {
+          "title": "Collaborative Teamwork",
+          "description": "We work together to achieve common goals and support each other's growth."
+        },
+        "innovation": {
+          "title": "Innovation First",
+          "description": "We encourage creative thinking and embrace new technologies to solve complex problems."
+        },
+        "growth": {
+          "title": "Continuous Growth",
+          "description": "We invest in our team's development through learning opportunities and career advancement."
+        }
+      }
+    },
+    "positions": {
+      "title": "Open Positions",
+      "subtitle": "Find your next career opportunity with us"
+    },
+    "jobs": {
+      "seniorDeveloper": {
+        "title": "Senior .NET Full-Stack Developer",
+        "department": "Engineering",
+        "location": "Remote",
+        "type": "Full-time",
+        "description": "We're looking for an experienced .NET full-stack developer to join our engineering team and help build our B2B trade platform.",
+        "requirements": {
+          "1": "5+ years of experience in .NET development",
+          "2": "Strong proficiency in C#, ASP.NET Core, and Entity Framework",
+          "3": "Experience with cloud platforms (Azure preferred, AWS, or GCP)",
+          "4": "Knowledge of SQL Server and database design",
+          "5": "Experience with RESTful API development and microservices"
+        },
+        "benefits": {
+          "1": "Competitive salary and equity package",
+          "2": "Flexible working hours and remote work",
+          "3": "Professional development budget",
+          "4": "Health insurance and wellness programs"
+        }
+      },
+      "generalApplication": {
+        "title": "General Application",
+        "department": "Various",
+        "location": "Remote",
+        "type": "Full-time/Part-time",
+        "description": "Don't see a specific role that matches your skills? We're always looking for talented individuals to join our team. Send us your application and let us know how you can contribute to Karavan.",
+        "requirements": {
+          "1": "Relevant experience in your field",
+          "2": "Strong communication skills",
+          "3": "Passion for B2B trade and technology",
+          "4": "Ability to work in a remote environment"
+        },
+        "benefits": {
+          "1": "Flexible working arrangements",
+          "2": "Opportunity to shape your role",
+          "3": "Competitive compensation",
+          "4": "Professional growth opportunities"
+        }
+      }
+    },
+    "generalApplication": {
+      "title": "Don't See Your Perfect Role?",
+      "subtitle": "We're always looking for talented individuals who can contribute to our mission. Send us your application and let's explore opportunities together.",
+      "card": {
+        "title": "Open Application",
+        "description": "We believe great talent comes in many forms. If you're passionate about B2B trade, technology, or business development, we'd love to hear from you.",
+        "benefits": {
+          "1": "Flexible role definition based on your skills",
+          "2": "Opportunity to work on diverse projects",
+          "3": "Direct path to full-time positions"
+        },
+        "cta": {
+          "title": "Apply Now",
+          "description": "Tell us about yourself and how you can contribute to Karavan's success.",
+          "button": "Submit General Application"
+        }
+      }
+    },
+    "application": {
+      "title": "Apply for Position",
+      "successMessage": "Your application has been submitted successfully! We'll get back to you soon.",
+      "errorMessage": "There was an error submitting your application. Please try again.",
+      "sections": {
+        "personalInfo": "Personal Information"
+      },
+      "fields": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "linkedin": "LinkedIn Profile",
+        "cv": "CV/Resume",
+        "uploadCv": "Upload CV (Optional)",
+        "orDragDrop": "or drag and drop",
+        "experience": "Relevant Experience",
+        "experiencePlaceholder": "Tell us about your relevant experience and skills...",
+        "coverLetter": "Cover Letter",
+        "coverLetterPlaceholder": "Why are you interested in this position? What can you bring to our team?",
+        "availability": "Availability",
+        "availabilityPlaceholder": "When can you start? Any scheduling preferences?"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "submit": "Submit Application",
+        "submitting": "Submitting..."
+      }
+    }
+  },
   "hero": {
     "title": "Early access to",
     "titleHighlight": "verified suppliers",
@@ -273,6 +394,10 @@
       "stillHaveQuestionsDesc": "Our team is here to help. Reach out via email or phone during business hours.",
       "emailUs": "Email Us",
       "sendMessage": "Send Message"
+    },
+    "cta": {
+      "heading": "Get Early Access",
+      "description": "Join thousands of exporters already using Karavan to expand their business across Central Asia."
     }
   },
   "region": {
@@ -520,6 +645,452 @@
         "rfp": { "bestFor": "Large projects", "speed": "1–2 weeks", "priceControl": "Negotiated", "complexity": "High" },
         "buyerAuction": { "bestFor": "Price‑sensitive buyers", "speed": "1–7 days", "priceControl": "Buyer sets max", "complexity": "Medium" },
         "sellerAuction": { "bestFor": "Premium products", "speed": "1–7 days", "priceControl": "Market driven", "complexity": "Medium" }
+      }
+    }
+  },
+  "legal": {
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: January 2025",
+      "sections": {
+        "introduction": {
+          "title": "Introduction",
+          "content": "At Karavan Digital Inc., we are committed to protecting your privacy and personal data. This Privacy Policy explains how we collect, use, and safeguard your information when you use our B2B trade platform."
+        },
+        "informationWeCollect": {
+          "title": "Information We Collect",
+          "content": "We collect various types of information to provide and improve our services:",
+          "personalInfo": "Personal information such as name, email address, phone number, and company details",
+          "businessInfo": "Business information including company registration, trade licenses, and financial data",
+          "usageData": "Usage data including website interactions, transaction history, and platform activity",
+          "cookies": "Cookies and similar technologies to enhance your experience"
+        },
+        "howWeUseInfo": {
+          "title": "How We Use Your Information",
+          "content": "We use your information for the following purposes:",
+          "serviceProvision": "To provide and maintain our B2B trade platform services",
+          "communication": "To communicate with you about transactions, updates, and support",
+          "improvement": "To improve our services and develop new features",
+          "legal": "To comply with legal obligations and protect our rights"
+        },
+        "dataSharing": {
+          "title": "Data Sharing",
+          "content": "We may share your information in the following circumstances:",
+          "serviceProviders": "With trusted service providers who assist in platform operations",
+          "businessPartners": "With business partners for transaction facilitation",
+          "legalRequirements": "When required by law or to protect our rights",
+          "consent": "With your explicit consent for specific purposes"
+        },
+        "dataSecurity": {
+          "title": "Data Security",
+          "content": "We implement appropriate security measures to protect your data:",
+          "encryption": "Data encryption in transit and at rest",
+          "access": "Restricted access to personal data on a need-to-know basis",
+          "monitoring": "Regular security monitoring and incident response",
+          "training": "Staff training on data protection best practices"
+        },
+        "yourRights": {
+          "title": "Your Rights",
+          "content": "You have the following rights regarding your personal data:",
+          "access": "Right to access your personal data",
+          "rectification": "Right to correct inaccurate data",
+          "erasure": "Right to request deletion of your data",
+          "portability": "Right to data portability",
+          "objection": "Right to object to processing"
+        },
+        "cookies": {
+          "title": "Cookies and Tracking",
+          "content": "We use cookies and similar technologies to enhance your experience:",
+          "essential": "Essential cookies for platform functionality",
+          "analytics": "Analytics cookies to understand usage patterns",
+          "marketing": "Marketing cookies for personalized content",
+          "preferences": "Preference cookies to remember your settings"
+        },
+        "dataRetention": {
+          "title": "Data Retention",
+          "content": "We retain your personal data only as long as necessary for the purposes outlined in this policy or as required by law. Account data is typically retained for 7 years after account closure, while transaction data may be retained longer for legal and regulatory compliance."
+        },
+        "internationalTransfers": {
+          "title": "International Data Transfers",
+          "content": "Your data may be transferred to and processed in countries outside your residence. We ensure appropriate safeguards are in place for such transfers, including standard contractual clauses and adequacy decisions."
+        },
+        "children": {
+          "title": "Children's Privacy",
+          "content": "Our services are not intended for individuals under 16 years of age. We do not knowingly collect personal information from children under 16."
+        },
+        "changes": {
+          "title": "Changes to This Policy",
+          "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the 'Last updated' date."
+        },
+        "contact": {
+          "title": "Contact Us",
+          "content": "If you have any questions about this Privacy Policy, please contact us:",
+          "email": "Email",
+          "address": "Address"
+        }
+      }
+    },
+    "termsOfService": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated: January 2025",
+      "sections": {
+        "acceptance": {
+          "title": "Acceptance of Terms",
+          "content": "By accessing and using the Karavan platform, you accept and agree to be bound by the terms and provision of this agreement."
+        },
+        "definitions": {
+          "title": "Definitions",
+          "service": "Service",
+          "serviceDesc": "The Karavan B2B trade platform and related services",
+          "user": "User",
+          "userDesc": "Any individual or entity using our platform",
+          "content": "Content",
+          "contentDesc": "All information, data, text, software, music, sound, photographs, graphics, video, messages, or other materials",
+          "account": "Account",
+          "accountDesc": "Your registered user account on our platform"
+        },
+        "eligibility": {
+          "title": "Eligibility",
+          "content": "To use our service, you must:",
+          "age": "Be at least 18 years old or the age of majority in your jurisdiction",
+          "capacity": "Have the legal capacity to enter into binding agreements",
+          "compliance": "Comply with all applicable laws and regulations",
+          "prohibition": "Not be prohibited from using our services under applicable law"
+        },
+        "account": {
+          "title": "User Accounts",
+          "content": "When creating an account, you agree to:",
+          "registration": "Provide accurate and complete information",
+          "accuracy": "Keep your information up to date",
+          "security": "Maintain the security of your account credentials",
+          "responsibility": "Be responsible for all activities under your account"
+        },
+        "useOfService": {
+          "title": "Use of Service",
+          "content": "You may use our service for lawful business purposes only. You agree not to:",
+          "permitted": "Use the platform for legitimate B2B trade activities",
+          "prohibited": "Violate any laws or regulations",
+          "compliance": "Comply with all applicable terms and conditions",
+          "monitoring": "Accept that we may monitor platform usage for security and compliance"
+        },
+        "payments": {
+          "title": "Payments and Fees",
+          "content": "Payment terms and conditions:",
+          "fees": "Fees are clearly disclosed before transactions",
+          "billing": "Payment is due according to agreed terms",
+          "refunds": "Refund policies are outlined in transaction agreements",
+          "disputes": "Payment disputes are resolved through our dispute resolution process"
+        },
+        "intellectualProperty": {
+          "title": "Intellectual Property",
+          "content": "Intellectual property rights:",
+          "ownership": "We retain ownership of our platform and technology",
+          "license": "You receive a limited license to use our services",
+          "userContent": "You retain rights to content you create and upload",
+          "infringement": "We respect intellectual property rights and expect the same from users"
+        },
+        "privacy": {
+          "title": "Privacy",
+          "content": "Your privacy is important to us. Please review our Privacy Policy to understand how we collect, use, and protect your information."
+        },
+        "termination": {
+          "title": "Termination",
+          "content": "Either party may terminate this agreement:",
+          "userTermination": "You may close your account at any time",
+          "companyTermination": "We may suspend or terminate accounts for violations",
+          "effect": "Termination affects access to platform services",
+          "survival": "Certain provisions survive termination"
+        },
+        "disclaimers": {
+          "title": "Disclaimers",
+          "content": "Our service is provided 'as is' without warranties:",
+          "noWarranty": "No warranty of merchantability or fitness for purpose",
+          "availability": "No guarantee of uninterrupted service availability",
+          "accuracy": "No warranty of information accuracy",
+          "thirdParty": "No responsibility for third-party content or services"
+        },
+        "limitation": {
+          "title": "Limitation of Liability",
+          "content": "Our liability is limited to the maximum extent permitted by law. We are not liable for indirect, incidental, or consequential damages arising from your use of our service."
+        },
+        "indemnification": {
+          "title": "Indemnification",
+          "content": "You agree to indemnify and hold us harmless from any claims, damages, or expenses arising from your use of our service or violation of these terms."
+        },
+        "governingLaw": {
+          "title": "Governing Law",
+          "content": "These terms are governed by the laws of Turkey, without regard to conflict of law principles."
+        },
+        "disputes": {
+          "title": "Dispute Resolution",
+          "content": "Disputes will be resolved through binding arbitration in Istanbul, Turkey, in accordance with the rules of the International Chamber of Commerce."
+        },
+        "changes": {
+          "title": "Changes to Terms",
+          "content": "We may modify these terms at any time. Continued use of our service constitutes acceptance of modified terms."
+        },
+        "contact": {
+          "title": "Contact Information",
+          "content": "For questions about these terms, contact us:",
+          "email": "Email",
+          "address": "Address"
+        }
+      }
+    },
+    "cookiePolicy": {
+      "title": "Cookie Policy",
+      "lastUpdated": "Last updated: January 2025",
+      "sections": {
+        "whatAreCookies": {
+          "title": "What Are Cookies?",
+          "content": "Cookies are small text files that are placed on your device when you visit our website. They help us provide you with a better experience by remembering your preferences and analyzing how you use our site."
+        },
+        "howWeUseCookies": {
+          "title": "How We Use Cookies",
+          "content": "We use cookies to:",
+          "essential": "Ensure our website functions properly",
+          "analytics": "Understand how visitors use our site",
+          "functionality": "Remember your preferences and settings",
+          "marketing": "Provide relevant content and advertisements"
+        },
+        "typesOfCookies": {
+          "title": "Types of Cookies We Use",
+          "essential": {
+            "title": "Essential Cookies",
+            "content": "These cookies are necessary for the website to function and cannot be switched off:",
+            "session": "Session management and security",
+            "security": "Fraud prevention and security features",
+            "preferences": "Basic user preferences and settings"
+          },
+          "analytics": {
+            "title": "Analytics Cookies",
+            "content": "These cookies help us understand how our website is used:",
+            "usage": "Page views and user interactions",
+            "performance": "Website performance and speed",
+            "improvement": "Data to improve user experience"
+          },
+          "functionality": {
+            "title": "Functionality Cookies",
+            "content": "These cookies enable enhanced features:",
+            "remember": "Remember your login status",
+            "personalize": "Personalize your experience",
+            "features": "Enable advanced platform features"
+          },
+          "marketing": {
+            "title": "Marketing Cookies",
+            "content": "These cookies are used for advertising purposes:",
+            "advertising": "Display relevant advertisements",
+            "targeting": "Target ads based on your interests",
+            "social": "Social media integration"
+          }
+        },
+        "thirdPartyCookies": {
+          "title": "Third-Party Cookies",
+          "content": "We also use cookies from trusted third parties:",
+          "googleAnalytics": "Website analytics and performance monitoring",
+          "socialMedia": "Social media sharing and login features",
+          "advertising": "Advertising and marketing services",
+          "payment": "Secure payment processing"
+        },
+        "cookieDuration": {
+          "title": "Cookie Duration",
+          "content": "Cookies have different lifespans:",
+          "session": "Session Cookies",
+          "sessionDesc": "Deleted when you close your browser",
+          "persistent": "Persistent Cookies",
+          "persistentDesc": "Remain on your device for a set period",
+          "permanent": "Permanent Cookies",
+          "permanentDesc": "Remain until manually deleted"
+        },
+        "managingCookies": {
+          "title": "Managing Cookies",
+          "content": "You can control cookies through your browser settings:",
+          "browserSettings": {
+            "title": "Browser Settings",
+            "content": "Most browsers allow you to:",
+            "chrome": "Chrome: Settings > Privacy and Security > Cookies",
+            "firefox": "Firefox: Options > Privacy & Security > Cookies",
+            "safari": "Safari: Preferences > Privacy > Cookies",
+            "edge": "Edge: Settings > Cookies and Site Permissions"
+          },
+          "optOut": {
+            "title": "Opt-Out Options",
+            "content": "You can opt out of specific cookies:",
+            "google": "Google Analytics opt-out browser add-on",
+            "facebook": "Facebook advertising preferences",
+            "industry": "Industry opt-out tools and services"
+          }
+        },
+        "impactOfDisabling": {
+          "title": "Impact of Disabling Cookies",
+          "content": "Disabling cookies may affect your experience:",
+          "functionality": "Some features may not work properly",
+          "personalization": "Personalized content may not be available",
+          "analytics": "We cannot improve the site based on usage data",
+          "security": "Security features may be compromised"
+        },
+        "updates": {
+          "title": "Updates to This Policy",
+          "content": "We may update this Cookie Policy from time to time. We will notify you of any changes by posting the updated policy on our website."
+        },
+        "contact": {
+          "title": "Contact Us",
+          "content": "If you have questions about our use of cookies, contact us:",
+          "email": "Email",
+          "address": "Address"
+        }
+      }
+    },
+    "gdpr": {
+      "title": "GDPR Compliance",
+      "lastUpdated": "Last updated: January 2025",
+      "sections": {
+        "introduction": {
+          "title": "Introduction",
+          "content": "This GDPR compliance statement explains how Karavan Digital Inc. complies with the General Data Protection Regulation (GDPR) when processing personal data of EU residents."
+        },
+        "dataController": {
+          "title": "Data Controller",
+          "content": "Karavan Digital Inc. is the data controller for personal data processed through our platform:",
+          "name": "Company Name",
+          "address": "Address",
+          "email": "Email"
+        },
+        "legalBasis": {
+          "title": "Legal Basis for Processing",
+          "content": "We process personal data based on the following legal grounds:",
+          "consent": "Consent",
+          "consentDesc": "When you explicitly consent to data processing",
+          "contract": "Contract Performance",
+          "contractDesc": "To fulfill our contractual obligations to you",
+          "legitimate": "Legitimate Interests",
+          "legitimateDesc": "To improve our services and prevent fraud",
+          "legal": "Legal Obligation",
+          "legalDesc": "To comply with applicable laws and regulations"
+        },
+        "dataCategories": {
+          "title": "Categories of Personal Data",
+          "content": "We process the following categories of personal data:",
+          "identity": "Identity Data",
+          "identityDesc": "Name, email address, phone number, and identification documents",
+          "contact": "Contact Data",
+          "contactDesc": "Address, phone numbers, and communication preferences",
+          "financial": "Financial Data",
+          "financialDesc": "Payment information, transaction history, and financial records",
+          "technical": "Technical Data",
+          "technicalDesc": "IP address, browser type, device information, and usage data",
+          "usage": "Usage Data",
+          "usageDesc": "Information about how you use our platform and services"
+        },
+        "purposes": {
+          "title": "Purposes of Processing",
+          "content": "We process personal data for the following purposes:",
+          "serviceProvision": "To provide and maintain our B2B trade platform",
+          "accountManagement": "To manage your account and provide customer support",
+          "communication": "To communicate with you about our services",
+          "marketing": "To send you relevant marketing communications (with consent)",
+          "analytics": "To analyze and improve our platform performance",
+          "legalCompliance": "To comply with legal and regulatory requirements"
+        },
+        "dataRetention": {
+          "title": "Data Retention",
+          "content": "We retain personal data for different periods depending on the purpose:",
+          "account": "Account Data",
+          "accountDesc": "Retained for 7 years after account closure",
+          "transactions": "Transaction Data",
+          "transactionsDesc": "Retained for 10 years for legal and tax compliance",
+          "marketing": "Marketing Data",
+          "marketingDesc": "Retained until consent is withdrawn",
+          "legal": "Legal Compliance Data",
+          "legalDesc": "Retained as required by applicable laws"
+        },
+        "dataSharing": {
+          "title": "Data Sharing",
+          "content": "We may share personal data with:",
+          "serviceProviders": "Service Providers",
+          "serviceProvidersDesc": "Trusted third parties who assist in platform operations",
+          "businessPartners": "Business Partners",
+          "businessPartnersDesc": "Partners involved in transaction facilitation",
+          "legalRequirements": "Legal Authorities",
+          "legalRequirementsDesc": "When required by law or to protect our rights",
+          "consent": "With Your Consent",
+          "consentDesc": "When you explicitly agree to data sharing"
+        },
+        "yourRights": {
+          "title": "Your Rights Under GDPR",
+          "content": "As an EU resident, you have the following rights:",
+          "access": {
+            "title": "Right of Access",
+            "content": "You can request a copy of your personal data we hold"
+          },
+          "rectification": {
+            "title": "Right of Rectification",
+            "content": "You can request correction of inaccurate personal data"
+          },
+          "erasure": {
+            "title": "Right of Erasure",
+            "content": "You can request deletion of your personal data in certain circumstances"
+          },
+          "portability": {
+            "title": "Right of Data Portability",
+            "content": "You can request transfer of your data to another service provider"
+          },
+          "restriction": {
+            "title": "Right of Restriction",
+            "content": "You can request limitation of processing in certain circumstances"
+          },
+          "objection": {
+            "title": "Right of Objection",
+            "content": "You can object to processing based on legitimate interests"
+          }
+        },
+        "exercisingRights": {
+          "title": "Exercising Your Rights",
+          "content": "To exercise your rights:",
+          "contact": "Contact us at privacy@karavan.net",
+          "verification": "We may need to verify your identity",
+          "response": "We will respond within 30 days",
+          "free": "Exercising your rights is free of charge"
+        },
+        "dataSecurity": {
+          "title": "Data Security",
+          "content": "We implement appropriate security measures:",
+          "encryption": "Data encryption in transit and at rest",
+          "access": "Restricted access to personal data",
+          "monitoring": "Regular security monitoring and audits",
+          "training": "Staff training on data protection",
+          "incident": "Incident response and breach notification procedures"
+        },
+        "internationalTransfers": {
+          "title": "International Data Transfers",
+          "content": "When transferring data outside the EU, we ensure:",
+          "adequacy": "Adequacy decisions by the European Commission",
+          "safeguards": "Appropriate safeguards such as standard contractual clauses",
+          "consent": "Your explicit consent for specific transfers",
+          "necessity": "Transfers necessary for contract performance"
+        },
+        "children": {
+          "title": "Children's Data",
+          "content": "Our services are not intended for children under 16. We do not knowingly collect personal data from children under 16."
+        },
+        "complaints": {
+          "title": "Right to Complain",
+          "content": "You have the right to lodge a complaint with a supervisory authority:",
+          "authority": "Supervisory Authority",
+          "authorityName": "Turkish Data Protection Authority",
+          "authorityAddress": "Bilkent Plaza, B2 Blok, 06530 Ankara, Turkey",
+          "authorityWebsite": "www.kvkk.gov.tr"
+        },
+        "changes": {
+          "title": "Changes to This Statement",
+          "content": "We may update this GDPR compliance statement. We will notify you of significant changes."
+        },
+        "contact": {
+          "title": "Contact Us",
+          "content": "For GDPR-related inquiries, contact us:",
+          "email": "Email",
+          "address": "Address"
+        }
       }
     }
   }

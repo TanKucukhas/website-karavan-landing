@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { EnvelopeIcon, MapPinIcon, PhoneIcon, ClockIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline'
 import SocialMediaLinks from '@/components/SocialMediaLinks'
+import EmailCaptureInline from '@/components/EmailCaptureInline'
 import { useTranslations } from 'next-intl'
 import { formTracking, leadQuality } from '@/lib/analytics'
 import { contactConfig } from '@/config/contact'
@@ -229,7 +230,7 @@ export default function ContactForm() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
+            <div id="contact-form-section" className="bg-white rounded-2xl shadow-lg p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">{t('form.title')}</h3>
               
               {!isFormVisible && submitStatus === 'success' && (
@@ -252,7 +253,7 @@ export default function ContactForm() {
               )}
               
               {isFormVisible && (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form id="contact-form" onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -430,20 +431,15 @@ export default function ContactForm() {
               </div>
             </div>
 
-            {/* Additional Help */}
-            <div className="mt-12 bg-brand-50 rounded-2xl p-8 text-center">
-              <h4 className="text-xl font-bold text-gray-900 mb-2">{t('faq.stillHaveQuestions')}</h4>
-              <p className="text-gray-600 mb-4">{t('faq.stillHaveQuestionsDesc')}</p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <a href={`mailto:${contactConfig.email.primary}`} className="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700 transition-colors">
-                  <EnvelopeIcon className="w-5 h-5" />
-                  {t('faq.emailUs')}
-                </a>
-                <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors border border-brand-600">
-                  {t('faq.sendMessage')}
-                </a>
+            {/* Get Early Access CTA */}
+            <div id="cta" className="mt-12 bg-gradient-to-br from-brand-50 to-brand-100 rounded-2xl p-8 text-center border border-brand-200">
+              <h4 className="text-2xl font-bold mb-2 text-gray-900">{t('cta.heading')}</h4>
+              <p className="text-gray-700 mb-6">{t('cta.description')}</p>
+              <div className="max-w-md mx-auto">
+                <EmailCaptureInline defaultRole="seller" source="contact" />
               </div>
             </div>
+
           </div>
         </div>
       </div>
