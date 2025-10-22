@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useTransition } from 'react';
 import { useLocale } from 'next-intl';
 import { useRouter as useNextRouter, usePathname as useNextPathname } from 'next/navigation';
 import Flag from '@/components/Flag';
+import { analytics } from '@/lib/analytics';
 
 interface Language {
   code: string;
@@ -42,6 +43,9 @@ export default function LanguageSelector({
   const currentLanguage = LANGUAGES.find(lang => lang.code === locale) || LANGUAGES[0];
 
   const changeLocale = (newLocale: string) => {
+    // Track language change
+    analytics.languageChange(newLocale);
+    
     startTransition(() => {
       // Replace current locale in pathname with new locale
       // pathname is like "/en/contact" or "/tr/regions/turkiye"

@@ -1,3 +1,5 @@
+import { analytics } from '@/lib/analytics';
+
 interface SocialMediaLinksProps {
   variant?: 'dark' | 'light';
   className?: string;
@@ -62,6 +64,7 @@ export default function SocialMediaLinks({ variant = 'dark', className = '' }: S
             target="_blank"
             rel="noopener noreferrer"
             aria-label={social.name}
+            onClick={() => analytics.socialClick(social.name)}
           >
             <IconComponent className={iconClasses} />
           </a>

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { analytics, track } from '@/lib/analytics'
+import { analytics } from '@/lib/analytics'
 import { useTranslations } from 'next-intl'
 import { Link, usePathname } from '@/i18n/routing'
 import LanguageSelector from '@/components/LanguageSelector'
@@ -39,11 +39,11 @@ export default function HeaderWithCTA() {
           <div className="hidden lg:flex lg:items-center lg:gap-x-6">
             {displayNavigation.map((item) => (
               item.isAnchor ? (
-                <a key={item.name} href={item.href} className="text-sm font-semibold text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600" onClick={() => track('nav_click', { item: item.name })}>
+                <a key={item.name} href={item.href} className="text-sm font-semibold text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600" onClick={() => analytics.navClick(item.name)}>
                   {item.name}
                 </a>
               ) : (
-                <Link key={item.name} href={item.href} className="text-sm font-semibold text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600" onClick={() => track('nav_click', { item: item.name })}>
+                <Link key={item.name} href={item.href} className="text-sm font-semibold text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 decoration-brand-600" onClick={() => analytics.navClick(item.name)}>
                   {item.name}
                 </Link>
               )

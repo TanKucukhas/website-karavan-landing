@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
-import { formTracking } from '@/lib/analytics'
+import { formTracking, analytics } from '@/lib/analytics'
 import { useTranslations } from 'next-intl'
 
 
@@ -185,6 +185,7 @@ export default function CTABanner() {
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
+                    onClick={() => analytics.ctaClick('cta-banner-submit', role)}
                     className="w-full btn-gradient-outline text-white text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (

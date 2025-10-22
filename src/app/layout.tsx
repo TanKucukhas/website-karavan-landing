@@ -62,7 +62,7 @@ export default function RootLayout({
                 // Load GA4 script
                 const script = document.createElement('script');
                 script.async = true;
-                script.src = 'https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-1L6Y7NBMDT'}';
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-V6W1545BEF'}';
                 document.head.appendChild(script);
                 
                 // Initialize dataLayer
@@ -70,7 +70,7 @@ export default function RootLayout({
                 function gtag(){dataLayer.push(arguments);}
                 window.gtag = gtag;
                 gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-1L6Y7NBMDT'}', {
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-V6W1545BEF'}', {
                   send_page_view: false,
                   debug_mode: ${process.env.NODE_ENV !== 'production'}
                 });

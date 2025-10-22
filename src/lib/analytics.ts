@@ -8,7 +8,7 @@ declare global {
 }
 
 // Form types for tracking
-export type FormType = 'contact' | 'early_access_hero' | 'early_access_cta' | 'early_access_challenges';
+export type FormType = 'contact' | 'early_access_hero' | 'early_access_cta';
 export type UserRole = 'buyer' | 'seller' | 'unknown';
 export type LeadQuality = 'hot' | 'warm' | 'cold';
 
@@ -210,13 +210,11 @@ export const leadQuality = {
   },
 };
 
-// Specific event tracking functions (legacy + new)
+// Event tracking functions
 export const analytics = {
-  // Form events (legacy - keeping for backward compatibility)
-  heroFormStart: (role: string) => formTracking.start('early_access_hero', role as UserRole),
-  heroFormSubmit: (role: string) => formTracking.submitSuccess('early_access_hero', role as UserRole),
-  midFormSubmit: () => formTracking.submitSuccess('early_access_challenges'),
-  
+  // Core track function
+  track: (eventName: string, parameters?: Record<string, unknown>) => track(eventName, parameters),
+
   // Map events
   mapNodeClick: (region: string) => track('map_node_click', { 
     region,
@@ -255,6 +253,27 @@ export const analytics = {
     event_label: `cta_${location}`,
   }),
 
+  // Navigation clicks
+  navClick: (link: string) => track('nav_click', {
+    link,
+    event_category: 'navigation',
+    event_label: `nav_${link}`,
+  }),
+
+  // Social media clicks
+  socialClick: (platform: string) => track('social_click', {
+    platform,
+    event_category: 'engagement',
+    event_label: `social_${platform}`,
+  }),
+
+  // External link clicks
+  externalLinkClick: (url: string) => track('external_link_click', {
+    url,
+    event_category: 'engagement',
+    event_label: 'external_link',
+  }),
+
   // Scroll depth tracking
   scrollDepth: (depth: number) => track('scroll_depth', {
     depth_percentage: depth,
@@ -267,5 +286,19 @@ export const analytics = {
     time_seconds: seconds,
     event_category: 'engagement',
     value: seconds,
+  }),
+
+  // Section visibility tracking
+  sectionView: (section: string) => track('section_view', {
+    section,
+    event_category: 'engagement',
+    event_label: `section_${section}`,
+  }),
+
+  sectionEngagement: (section: string, timeInView: number) => track('section_engagement', {
+    section,
+    time_in_view: timeInView,
+    event_category: 'engagement',
+    value: timeInView,
   }),
 };
