@@ -1161,20 +1161,20 @@
       "title": "Success Stories",
       "subtitle": "See how our partners have grown with Karavan",
       "story1": {
-        "company": "Global Logistics Solutions",
+        "company": "Leading Logistics Company",
         "industry": "Logistics & Transportation",
         "result": "300% Revenue Growth",
         "quote": "Partnering with Karavan has transformed our business. We've expanded to 5 new markets and increased our revenue by 300% in just 18 months.",
-        "author": "Ahmet Yılmaz",
-        "position": "CEO, Global Logistics Solutions"
+        "author": "CEO",
+        "position": "Leading Logistics Company"
       },
       "story2": {
-        "company": "Central Asia Trade Finance",
+        "company": "Regional Trade Finance Institution",
         "industry": "Financial Services",
         "result": "500+ New Clients",
         "quote": "The integration with Karavan's platform has given us access to a whole new market. We've onboarded over 500 new clients and processed millions in transactions.",
-        "author": "Nurbolat Kenzhebayev",
-        "position": "Managing Director, Central Asia Trade Finance"
+        "author": "Managing Director",
+        "position": "Regional Trade Finance Institution"
       }
     },
     "cta": {
