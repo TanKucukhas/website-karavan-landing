@@ -3,7 +3,6 @@
   { "name": "PayPorter", "logo": "/images/solution-partners/payporter-logo.jpg", "description": "Cross-border Payments" },
   { "name": "Avalara", "logo": "/images/solution-partners/avalara-logo.png", "description": "Tax Compliance" },
   { "name": "Asset Global Logistics", "logo": "/images/solution-partners/partner-asset-global-logistics.png", "description": "Global Logistics" },
-  { "name": "Sipay", "logo": "/images/solution-partners/partner-sipay.png", "description": "Payment Solutions" },
   { "name": "Param", "logo": "/images/solution-partners/partner-param.png", "description": "Payment Solutions" },
   { "name": "General Survey", "logo": "/images/solution-partners/partner-general-survey.png", "description": "Survey & Inspection" }
 ]
