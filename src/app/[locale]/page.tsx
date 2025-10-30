@@ -11,4 +11,3 @@ export function generateStaticParams() {
 export default function Home() {
   return <HomePageClient />
 }
-
