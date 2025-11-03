@@ -1,0 +1,123 @@
+[
+  {
+    "slug": "islom-shakbandarov",
+    "firstName": "İslom",
+    "lastName": "Shakbandarov",
+    "displayName": "İslom Shakbandarov",
+    "title": "Founder",
+    "department": "",
+    "mobileE164": "+19738251007",
+    "mobileDisplay": "+1 973 825 10 07",
+    "email": "islom@karavan.net",
+    "company": "Karavan.net",
+    "website": "https://www.karavan.net",
+    "summary": "Building trade and technology bridges across markets.",
+    "location": "",
+    "avatarUrl": "/images/team/islam-shahbender.webp",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/islom-shakhbandarov-02623650/",
+      "x": "",
+      "whatsapp": "",
+      "wechat": "",
+      "telegram": ""
+    },
+    "qrPayloadUrl": "https://karavan.net/qr/islom-shakbandarov"
+  },
+  {
+    "slug": "durukan-duru",
+    "firstName": "Durukan",
+    "lastName": "Duru",
+    "displayName": "Durukan Duru",
+    "title": "Director, Product Solutions",
+    "department": "",
+    "mobileE164": "+905068919578",
+    "mobileDisplay": "+90 506 891 95 78",
+    "email": "durukan@karavan.net",
+    "company": "Karavan.net",
+    "website": "https://www.karavan.net",
+    "summary": "Product strategy and delivery from concept to scale.",
+    "location": "",
+    "avatarUrl": "/images/team/durukan-duru.webp",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/durukanduru/",
+      "x": "",
+      "whatsapp": "",
+      "wechat": "",
+      "telegram": ""
+    },
+    "qrPayloadUrl": "https://karavan.net/qr/durukan-duru"
+  },
+  {
+    "slug": "ali-aygun",
+    "firstName": "Ali",
+    "lastName": "Aygün",
+    "displayName": "Ali Aygün",
+    "title": "CEO",
+    "department": "",
+    "mobileE164": "+905066851744",
+    "mobileDisplay": "+90 506 685 17 44",
+    "email": "ali.aygun@karavan.net",
+    "company": "Karavan.net",
+    "website": "https://www.karavan.net",
+    "summary": "20+ years growing successful digital and ecommerce businesses.",
+    "location": "",
+    "avatarUrl": "/images/team/ali-aygun.webp",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/ali-aygun/",
+      "x": "",
+      "whatsapp": "",
+      "wechat": "",
+      "telegram": ""
+    },
+    "qrPayloadUrl": "https://karavan.net/qr/ali-aygun"
+  },
+  {
+    "slug": "hilal-cerman",
+    "firstName": "Hilal",
+    "lastName": "Çerman",
+    "displayName": "Hilal Çerman",
+    "title": "Business Partnerships Manager",
+    "department": "",
+    "mobileE164": "+905308565353",
+    "mobileDisplay": "+90 530 856 53 53",
+    "email": "hilal.cerman@karavan.net",
+    "company": "Karavan.net",
+    "website": "https://www.karavan.net",
+    "summary": "Partner ecosystems that actually move revenue.",
+    "location": "",
+    "avatarUrl": "/images/team/hilal-cerman.webp",
+    "social": {
+      "linkedin": "",
+      "x": "",
+      "whatsapp": "",
+      "wechat": "",
+      "telegram": ""
+    },
+    "qrPayloadUrl": "https://karavan.net/qr/hilal-cerman"
+  },
+  {
+    "slug": "memis-yetim",
+    "firstName": "Memiş",
+    "lastName": "Yetim",
+    "displayName": "Memiş Yetim",
+    "title": "Founder",
+    "department": "",
+    "mobileE164": "+17187915002",
+    "mobileDisplay": "+1 718 791 50 02",
+    "email": "memis@karavan.net",
+    "company": "Karavan.net",
+    "website": "https://www.karavan.net",
+    "summary": "Cross-border growth with operational discipline.",
+    "location": "",
+    "avatarUrl": "/images/team/memis-yetim.webp",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/memis-yetim-b94ba122/",
+      "x": "",
+      "whatsapp": "",
+      "wechat": "",
+      "telegram": ""
+    },
+    "qrPayloadUrl": "https://karavan.net/qr/memis-yetim"
+  }
+]
+
