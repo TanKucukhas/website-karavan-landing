@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { QRContact } from '@/lib/vcard'
 import { trackCTAClick, trackEmailVCardSubmit, trackEmailSent } from '@/lib/qr-analytics'
-import CopyToast from './CopyToast'
 
 interface EmailVCardFormProps {
   contact: QRContact
@@ -209,7 +208,6 @@ export default function EmailVCardForm({ contact }: EmailVCardFormProps) {
           )}
         </div>
       </div>
-      {showToast && <CopyToast message="Email sent!" />}
     </>
   )
 }

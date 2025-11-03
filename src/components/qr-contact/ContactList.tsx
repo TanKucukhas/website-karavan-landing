@@ -110,7 +110,8 @@ export default function ContactList({ contact }: ContactListProps) {
       type: 'phone',
       hideOnDesktop: !contact.whatsappDisplay,
       action: () => {
-        const whatsappUrl = `http://wa.me/${contact.whatsappE164.replace(/[^0-9]/g, '')}`
+        const whatsappNumber = contact.whatsappE164 || contact.mobileE164
+        const whatsappUrl = `http://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`
         window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
       },
     })
@@ -132,7 +133,10 @@ export default function ContactList({ contact }: ContactListProps) {
         if (isMobile) {
           window.location.href = `tel:${contact.secondaryPhoneE164}`
         } else {
-          handleCopy(contact.secondaryPhoneDisplay || contact.secondaryPhoneE164, 'phone')
+          const phoneValue = contact.secondaryPhoneDisplay || contact.secondaryPhoneE164
+          if (phoneValue) {
+            handleCopy(phoneValue, 'phone')
+          }
         }
       },
     })

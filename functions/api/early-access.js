@@ -66,7 +66,7 @@ export const onRequestPost = async ({ request, env }) => {
             } else {
               console.error('Google Script: Failed to log to sheets', { error: responseData.error })
             }
-          } catch (parseError) {
+          } catch {
             console.error('Google Script: Invalid JSON response', { response: responseText })
           }
         } else {

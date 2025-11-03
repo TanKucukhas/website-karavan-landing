@@ -1,6 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const nodemailer = require('nodemailer')
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
     return {

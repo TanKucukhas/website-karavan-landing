@@ -2,10 +2,18 @@ import { ImageResponse } from 'next/og'
 import qrContactsData from '@/data/qr-contacts.json'
 import { QRContact } from '@/lib/vcard'
 
+export const dynamic = 'force-static'
+
 const contacts = qrContactsData as QRContact[]
 
 function getContactBySlug(slug: string): QRContact | undefined {
   return contacts.find((contact) => contact.slug === slug)
+}
+
+export function generateStaticParams() {
+  return contacts.map((contact) => ({
+    slug: contact.slug,
+  }))
 }
 
 export const alt = 'Contact Card'
@@ -16,8 +24,8 @@ export const size = {
 
 export const contentType = 'image/png'
 
-export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
+export default async function Image({ params }: { params: { slug: string } | Promise<{ slug: string }> }) {
+  const { slug } = params instanceof Promise ? await params : params
   const contact = getContactBySlug(slug)
   
   if (!contact) {

@@ -8,7 +8,7 @@ interface SaveContactMenuProps {
   contact: QRContact
   isOpen: boolean
   onClose: () => void
-  buttonRef: React.RefObject<HTMLButtonElement>
+  buttonRef: React.RefObject<HTMLButtonElement | null>
 }
 
 /**

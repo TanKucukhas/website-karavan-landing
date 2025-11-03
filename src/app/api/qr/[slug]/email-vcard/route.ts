@@ -6,6 +6,10 @@ import { QRContact } from '@/lib/vcard'
 // In production, Cloudflare Pages Functions handle this
 // File: functions/api/qr/[slug]/email-vcard.js
 
+// Note: In production builds with static export, this route will be excluded
+// Development: This route works normally
+// Production: Use Cloudflare Pages Functions instead
+
 const contacts = qrContactsData as QRContact[]
 
 function getContactBySlug(slug: string): QRContact | undefined {
@@ -216,6 +220,7 @@ export async function POST(
       htmlContent: string
       textContent: string
       attachment?: Array<{ name: string; content: string; contentType: string }>
+      headers?: Record<string, string>
     } = {
       sender: { name: senderName, email: senderEmail },
       to: [{ email: email.trim(), name: email.trim().split('@')[0] }],

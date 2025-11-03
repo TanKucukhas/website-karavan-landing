@@ -34,8 +34,8 @@ export default function HeroPanel({ contact }: HeroPanelProps) {
           </div>
           
           {/* Avatar - Centered on hero bottom edge, overlapping by ~28px, stronger shadow */}
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[28px] z-20">
-            <Avatar contact={contact} size={contact.title.toLowerCase().includes('founder') ? 128 : 120} className="ring-4 ring-white shadow-lg" style={{ filter: 'drop-shadow(0 6px 20px rgba(0, 0, 0, 0.12))' }} />
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[28px] z-20" style={{ filter: 'drop-shadow(0 6px 20px rgba(0, 0, 0, 0.12))' }}>
+            <Avatar contact={contact} size={contact.title.toLowerCase().includes('founder') ? 128 : 120} className="ring-4 ring-white shadow-lg" />
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 export const onRequestPost = async ({ request, env }) => {
   try {
-    const { name, email, subject, message, honeypot, captcha } = await request.json();
+    const { name, email, subject, message, honeypot } = await request.json();
 
     // Bot detection
     if (honeypot) {
@@ -50,7 +50,7 @@ export const onRequestPost = async ({ request, env }) => {
     }
 
     return new Response(JSON.stringify({ success: true, message: 'Email sent successfully' }), { status: 200, headers: { 'Content-Type': 'application/json' } });
-  } catch (error) {
+  } catch {
     return new Response(JSON.stringify({ error: 'Failed to process request' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
   }
 };

@@ -51,22 +51,18 @@ export const onRequestPost = async ({ request, env, params }) => {
     // Rate limiting (basic implementation)
     // Note: For production, use Cloudflare KV or Durable Objects for distributed rate limiting
     // For now, we'll rely on Brevo's rate limiting and return appropriate errors
-    const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown'
-    
-    // Hash IP for privacy (simple hash, not cryptographically secure)
-    const hashIP = (ip) => {
-      let hash = 0
-      for (let i = 0; i < ip.length; i++) {
-        const char = ip.charCodeAt(i)
-        hash = ((hash << 5) - hash) + char
-        hash = hash & hash // Convert to 32bit integer
-      }
-      return Math.abs(hash).toString(36)
-    }
-    
-    const ipHash = hashIP(clientIP)
-    // Rate limiting would be implemented with KV here
-    // For now, we trust Brevo's rate limiting
+    // Reserved for future rate limiting:
+    // const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown'
+    // const hashIP = (ip) => {
+    //   let hash = 0
+    //   for (let i = 0; i < ip.length; i++) {
+    //     const char = ip.charCodeAt(i)
+    //     hash = ((hash << 5) - hash) + char
+    //     hash = hash & hash // Convert to 32bit integer
+    //   }
+    //   return Math.abs(hash).toString(36)
+    // }
+    // const ipHash = hashIP(clientIP)
 
     // Generate vCard
     const vcardContent = generateVCard(contact)
