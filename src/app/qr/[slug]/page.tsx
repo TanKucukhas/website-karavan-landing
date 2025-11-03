@@ -4,10 +4,8 @@ import qrContactsData from '@/data/qr-contacts.json'
 import { QRContact } from '@/lib/vcard'
 import HeroPanel from '@/components/qr-contact/HeroPanel'
 import IdentityBlock from '@/components/qr-contact/IdentityBlock'
-import QuickActions from '@/components/qr-contact/QuickActions'
 import ContactList from '@/components/qr-contact/ContactList'
-import VCardButton from '@/components/qr-contact/VCardButton'
-import EmailVCardForm from '@/components/qr-contact/EmailVCardForm'
+import ActionBar from '@/components/qr-contact/ActionBar'
 import QRContactFooter from '@/components/qr-contact/QRContactFooter'
 import QRPageClient from './QRPageClient'
 
@@ -104,49 +102,47 @@ export default async function QRContactPage({ params }: { params: Promise<{ slug
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 flex flex-col">
         <HeroPanel contact={contact} />
         
         {/* Main Content - Max width 760px, 24px horizontal padding */}
-        <div className="max-w-[760px] mx-auto px-6">
+        <div className="max-w-[760px] mx-auto px-6 flex-1">
           {/* White card with padding to account for avatar overlap */}
-          <div className="bg-white rounded-2xl p-6" style={{ 
-            marginTop: '48px', // 36px overlap + 12px breathing room
+          <div className="bg-white rounded-2xl" style={{ 
+            marginTop: '40px', // 28px overlap + 12px breathing room
             borderRadius: '16px',
-            boxShadow: '0 6px 20px rgba(0, 0, 0, 0.06)'
+            boxShadow: '0 6px 20px rgba(0, 0, 0, 0.06)',
+            paddingTop: '24px',
+            paddingBottom: '24px',
+            paddingLeft: '24px',
+            paddingRight: '24px'
           }}>
             {/* Identity Block - 12px below avatar */}
             <div className="mb-4">
               <IdentityBlock contact={contact} />
             </div>
             
-            {/* Quick Actions - 16px below identity block */}
-            <div className="mb-6">
-              <QuickActions contact={contact} />
+            {/* Action Buttons - under identity block */}
+            <div className="mt-6">
+              <ActionBar contact={contact} />
             </div>
           </div>
           
-          {/* Contact Details Card - 24px below quick actions */}
-          <div className="bg-white rounded-2xl p-6 mt-6" style={{ 
+          {/* Contact Details Card - 24px below identity card */}
+          <div className="bg-white rounded-2xl mt-8" style={{ 
             borderRadius: '16px',
-            boxShadow: '0 6px 20px rgba(0, 0, 0, 0.06)'
+            boxShadow: '0 6px 20px rgba(0, 0, 0, 0.06)',
+            paddingTop: '24px',
+            paddingBottom: '24px',
+            paddingLeft: '24px',
+            paddingRight: '24px'
           }}>
             <ContactList contact={contact} />
           </div>
-          
-          {/* Save Contact Button - 24px below contact details, centered */}
-          <div className="mt-6">
-            <VCardButton contact={contact} />
-          </div>
-          
-          {/* Email Form - 16px below Save Contact */}
-          <div className="mt-4">
-            <EmailVCardForm contact={contact} />
-          </div>
         </div>
         
-        {/* Footer - 32px below email form */}
-        <div className="mt-8">
+        {/* Footer - 32px below contact card, pushed to bottom */}
+        <div className="mt-auto pt-8">
           <QRContactFooter />
         </div>
       </div>

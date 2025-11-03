@@ -185,7 +185,7 @@ export default function ContactList({ contact }: ContactListProps) {
                         {item.icon}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-xs text-[#6B7280] uppercase tracking-wide mb-2 font-medium">{item.label}</div>
+                        <div className="text-xs uppercase tracking-wide mb-2 font-medium" style={{ color: '#475569' }}>{item.label}</div>
                         <div className="flex flex-wrap gap-2">
                           {contact.languages.map((lang, idx) => (
                             <span
@@ -216,9 +216,9 @@ export default function ContactList({ contact }: ContactListProps) {
                       }
                     }}
                     className={`flex items-center gap-4 transition-all duration-200 ${
-                      item.action ? 'cursor-pointer hover:bg-gray-50 active:bg-gray-100' : ''
+                      item.action ? 'cursor-pointer hover:bg-[#EFF6FF] active:bg-[#EFF6FF]' : ''
                     }`}
-                    style={{ height: '56px' }}
+                    style={{ minHeight: '64px', paddingTop: '12px', paddingBottom: '12px' }}
                     role={item.action ? 'button' : undefined}
                     tabIndex={item.action ? 0 : undefined}
                     onKeyDown={(e) => {
@@ -232,7 +232,7 @@ export default function ContactList({ contact }: ContactListProps) {
                       {item.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-xs text-[#6B7280] uppercase tracking-wide mb-0.5 font-medium">{item.label}</div>
+                      <div className="text-xs uppercase tracking-wide mb-0.5 font-medium" style={{ color: '#475569' }}>{item.label}</div>
                       <div className="text-sm text-[#111827] font-normal truncate">{item.value}</div>
                       {item.caption && item.label !== 'Mobile' && (
                         <div className="text-xs text-[#6B7280] mt-0.5 font-normal">{item.caption}</div>

@@ -42,7 +42,8 @@ export default function QuickActions({ contact }: QuickActionsProps) {
       {/* Call */}
       <button
         onClick={handleCall}
-        className="flex-1 w-full md:w-auto min-w-[140px] bg-transparent border-2 border-[#6B7280]/30 hover:border-[#355FA0] text-[#111827] px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 h-10 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#355FA0] focus:ring-offset-2"
+        className="flex-1 w-full md:w-auto min-w-[140px] bg-transparent border-2 border-[#6B7280]/30 hover:border-[#355FA0] text-[#111827] px-4 rounded-lg text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#355FA0] focus:ring-offset-2"
+        style={{ height: '38px', paddingTop: '6px', paddingBottom: '6px' }}
         aria-label={`Call ${contact.displayName} at ${contact.mobileDisplay}`}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,7 +56,8 @@ export default function QuickActions({ contact }: QuickActionsProps) {
       {contact.social.linkedin && (
         <button
           onClick={handleLinkedIn}
-          className="flex-1 w-full md:w-auto min-w-[140px] bg-transparent border-2 border-[#6B7280]/30 hover:border-[#355FA0] text-[#111827] px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 h-10 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#355FA0] focus:ring-offset-2"
+          className="flex-1 w-full md:w-auto min-w-[140px] bg-transparent border-2 border-[#6B7280]/30 hover:border-[#355FA0] text-[#111827] px-4 rounded-lg text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#355FA0] focus:ring-offset-2"
+          style={{ height: '38px', paddingTop: '6px', paddingBottom: '6px' }}
           aria-label={`LinkedIn ${contact.displayName}`}
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -68,7 +70,8 @@ export default function QuickActions({ contact }: QuickActionsProps) {
       {/* Email */}
       <button
         onClick={handleEmail}
-        className="flex-1 w-full md:w-auto min-w-[140px] bg-transparent border-2 border-[#6B7280]/30 hover:border-[#355FA0] text-[#111827] px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 h-10 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#355FA0] focus:ring-offset-2"
+        className="flex-1 w-full md:w-auto min-w-[140px] bg-transparent border-2 border-[#6B7280]/30 hover:border-[#355FA0] text-[#111827] px-4 rounded-lg text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#355FA0] focus:ring-offset-2"
+        style={{ height: '38px', paddingTop: '6px', paddingBottom: '6px' }}
         aria-label={`Email ${contact.displayName} at ${contact.email}`}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

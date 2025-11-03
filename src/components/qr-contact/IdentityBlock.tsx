@@ -23,9 +23,9 @@ export default function IdentityBlock({ contact }: IdentityBlockProps) {
         {contact.title}
       </p>
       
-      {/* Tagline - 14px, regular, center, max 2 lines, 12px below title */}
+      {/* Tagline - 14px, regular, center, max 2 lines, tighter line-height */}
       {contact.summary && (
-        <p className="text-sm text-[#111827] font-normal leading-relaxed max-w-2xl mx-auto" style={{ fontSize: '14px', lineHeight: '1.5', maxHeight: '2.8em', overflow: 'hidden' }}>
+        <p className="text-sm text-[#111827] font-normal max-w-2xl mx-auto" style={{ fontSize: '14px', lineHeight: '1.4', maxHeight: '2.8em', overflow: 'hidden' }}>
           {contact.summary}
         </p>
       )}

@@ -209,7 +209,14 @@ export async function POST(
 
     // Send email with vCard attachment
     // Try with text/plain contentType since Brevo may not support vCard format directly
-    const emailData: any = {
+    const emailData: {
+      sender: { name: string; email: string }
+      to: Array<{ email: string; name: string }>
+      subject: string
+      htmlContent: string
+      textContent: string
+      attachment?: Array<{ name: string; content: string; contentType: string }>
+    } = {
       sender: { name: senderName, email: senderEmail },
       to: [{ email: email.trim(), name: email.trim().split('@')[0] }],
       subject: emailSubject,
@@ -219,6 +226,7 @@ export async function POST(
         {
           name: filename,
           content: vcardBase64,
+          contentType: 'text/vcard',
         },
       ],
       headers: {

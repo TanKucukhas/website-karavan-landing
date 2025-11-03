@@ -20,7 +20,6 @@ export default function EmailVCardForm({ contact }: EmailVCardFormProps) {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
   const [resendCooldown, setResendCooldown] = useState(0)
-  const [showToast, setShowToast] = useState(false)
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -165,7 +164,7 @@ export default function EmailVCardForm({ contact }: EmailVCardFormProps) {
                 </button>
 
                 <p className="text-xs text-[#6B7280] text-center font-normal">
-                  We'll email you this one contact card. No newsletter unless you opt in.
+                  We&apos;ll email you this one contact card. No newsletter unless you opt in.
                 </p>
               </form>
           ) : (

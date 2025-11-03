@@ -29,9 +29,9 @@ export function trackQRScan(slug: string) {
 }
 
 /**
- * Track CTA click (call, email, vcard download, linkedin, email_vcard)
+ * Track CTA click (call, email, vcard download, linkedin, email_vcard, whatsapp)
  */
-export function trackCTAClick(action: 'call' | 'email' | 'vcard' | 'linkedin' | 'email_vcard', slug: string) {
+export function trackCTAClick(action: 'call' | 'email' | 'vcard' | 'linkedin' | 'email_vcard' | 'whatsapp', slug: string) {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'cta_click', {
       event_category: 'qr_contact',
