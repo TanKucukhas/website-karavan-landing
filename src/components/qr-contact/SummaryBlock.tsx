@@ -15,12 +15,10 @@ export default function SummaryBlock({ contact }: SummaryBlockProps) {
   }
   
   return (
-    <div className="bg-white px-6 py-10">
-      <div className="max-w-2xl mx-auto">
-        <p className="text-gray-700 text-base md:text-lg leading-relaxed font-light">
-          {contact.summary}
-        </p>
-      </div>
+    <div className="px-0 py-0">
+      <p className="text-[#111827] text-sm leading-relaxed font-normal text-center max-w-2xl mx-auto" style={{ fontSize: '14px', lineHeight: '1.5', maxHeight: '2.8em', overflow: 'hidden' }}>
+        {contact.summary}
+      </p>
     </div>
   )
 }

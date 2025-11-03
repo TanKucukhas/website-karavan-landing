@@ -12,8 +12,9 @@ interface AvatarProps {
 /**
  * Circular avatar component with initials fallback
  * Uses gradient circle with initials if image is missing
+ * Default size: 128px (96px on mobile)
  */
-export default function Avatar({ contact, size = 256, className = '' }: AvatarProps) {
+export default function Avatar({ contact, size = 128, className = '' }: AvatarProps) {
   const initials = `${contact.firstName.charAt(0)}${contact.lastName.charAt(0)}`.toUpperCase()
   
   // Generate gradient colors based on name (consistent for same person)
@@ -30,8 +31,10 @@ export default function Avatar({ contact, size = 256, className = '' }: AvatarPr
   
   return (
     <div 
-      className={`relative rounded-full overflow-hidden ${className}`}
-      style={{ width: size, height: size }}
+      className={`relative rounded-full overflow-hidden ${className} ${
+        size === 128 ? 'w-24 h-24 md:w-32 md:h-32' : size === 96 ? 'w-24 h-24' : ''
+      }`}
+      style={size !== 128 ? { width: size, height: size } : undefined}
     >
       {hasAvatar ? (
         <Image

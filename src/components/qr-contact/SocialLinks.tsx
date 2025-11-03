@@ -86,9 +86,8 @@ export default function SocialLinks({ contact }: SocialLinksProps) {
   }
   
   return (
-    <div className="bg-white px-6 py-6">
-      <div className="max-w-2xl mx-auto">
-        <div className="flex items-center justify-center gap-6">
+      <div className="px-0 py-0">
+        <div className="flex items-center justify-center gap-3">
           {socialLinks.map((link) => (
             <a
               key={link.name}
@@ -96,7 +95,7 @@ export default function SocialLinks({ contact }: SocialLinksProps) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackCTAClick('linkedin', contact.slug)}
-              className="text-gray-400 hover:text-brand-600 hover:bg-brand-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 rounded-full p-2"
+              className="text-[#6B7280] hover:text-[#2F5E9E] hover:bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#2F5E9E] focus:ring-offset-2 rounded-full p-2"
               aria-label={`Visit ${contact.displayName}'s ${link.name} profile`}
             >
               {link.icon}
@@ -104,7 +103,6 @@ export default function SocialLinks({ contact }: SocialLinksProps) {
           ))}
         </div>
       </div>
-    </div>
   )
 }
 

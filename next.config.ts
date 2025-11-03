@@ -15,7 +15,9 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const nextConfig: NextConfig = {
   // Enable static export for Cloudflare Pages
-  output: 'export',
+  // Note: API routes in src/app/api will work in development but not in production build
+  // Production uses Cloudflare Pages Functions in functions/api
+  output: isProd ? 'export' : undefined,
   trailingSlash: true,
   images: {
     unoptimized: true,

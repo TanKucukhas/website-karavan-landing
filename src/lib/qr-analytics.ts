@@ -29,9 +29,9 @@ export function trackQRScan(slug: string) {
 }
 
 /**
- * Track CTA click (call, email, vcard download, linkedin)
+ * Track CTA click (call, email, vcard download, linkedin, email_vcard)
  */
-export function trackCTAClick(action: 'call' | 'email' | 'vcard' | 'linkedin', slug: string) {
+export function trackCTAClick(action: 'call' | 'email' | 'vcard' | 'linkedin' | 'email_vcard', slug: string) {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'cta_click', {
       event_category: 'qr_contact',
@@ -96,5 +96,42 @@ export function initTimeTracking(): () => number {
   return () => {
     return typeof window !== 'undefined' ? Date.now() - startTime : 0;
   };
+}
+
+/**
+ * Track email vCard form submission
+ */
+export function trackEmailVCardSubmit(slug: string) {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'vcard_email_submit', {
+      event_category: 'qr_contact',
+      event_label: slug,
+      slug,
+      value: 1,
+    });
+  }
+  
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('📊 Email vCard Submit:', slug);
+  }
+}
+
+/**
+ * Track email sent successfully
+ */
+export function trackEmailSent(slug: string, messageId?: string) {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'vcard_email_sent', {
+      event_category: 'qr_contact',
+      event_label: slug,
+      slug,
+      message_id: messageId,
+      value: 1,
+    });
+  }
+  
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('📊 Email Sent:', slug, messageId);
+  }
 }
 
