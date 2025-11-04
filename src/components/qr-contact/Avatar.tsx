@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from 'react'
 import Image from 'next/image'
 import { QRContact } from '@/lib/vcard'
 
@@ -15,6 +16,8 @@ interface AvatarProps {
  * Default size: 128px (96px on mobile)
  */
 export default function Avatar({ contact, size = 128, className = '' }: AvatarProps) {
+  const [imageError, setImageError] = useState(false)
+  
   const initials = `${contact.firstName.charAt(0)}${contact.lastName.charAt(0)}`.toUpperCase()
   
   // Generate gradient colors based on name (consistent for same person)
@@ -26,8 +29,9 @@ export default function Avatar({ contact, size = 128, className = '' }: AvatarPr
   const gradientStart = `hsl(${hue}, 70%, 60%)`
   const gradientEnd = `hsl(${hue + 30}, 70%, 50%)`
   
-  // Check if avatar exists
-  const hasAvatar = contact.avatarUrl && contact.avatarUrl !== ''
+  // Check if avatar URL exists
+  const hasAvatarUrl = contact.avatarUrl && contact.avatarUrl !== ''
+  const showImage = hasAvatarUrl && !imageError
   
   return (
     <div 
@@ -36,7 +40,7 @@ export default function Avatar({ contact, size = 128, className = '' }: AvatarPr
       }`}
       style={size !== 128 ? { width: size, height: size } : undefined}
     >
-      {hasAvatar ? (
+      {showImage ? (
         <Image
           src={contact.avatarUrl}
           alt={contact.displayName}
@@ -45,6 +49,8 @@ export default function Avatar({ contact, size = 128, className = '' }: AvatarPr
           className="object-cover object-top w-full h-full"
           priority
           unoptimized={contact.avatarUrl.startsWith('/images/team/')}
+          onError={() => setImageError(true)}
+          onLoad={() => setImageError(false)}
         />
       ) : (
         <div

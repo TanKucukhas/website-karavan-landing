@@ -29,9 +29,9 @@ OUTPUT_DIR="public/images/team/optimized"
 mkdir -p "$OUTPUT_DIR"
 
 # Image sizes for responsive loading
-# Leadership: 128px desktop, 96px mobile
-# Advisors: 96px desktop, 80px mobile
-SIZES=(128 96 80)
+# Leadership: 256px desktop, 192px mobile (2x for retina displays)
+# Advisors: 192px desktop, 160px mobile (2x for retina displays)
+SIZES=(256 192 160)
 
 echo -e "${YELLOW}Processing images...${NC}"
 
@@ -48,11 +48,11 @@ for img in "$INPUT_DIR"/*.webp; do
             # Use ImageMagick if available
             if command -v convert &> /dev/null; then
                 # Resize without cropping, maintain aspect ratio
-                convert "$img" -resize "${size}x${size}" -quality 85 "$output_file"
+                convert "$img" -resize "${size}x${size}" -quality 92 "$output_file"
             # Otherwise use sharp-cli
             elif command -v sharp &> /dev/null; then
                 # Use 'inside' fit to avoid cropping
-                sharp resize $size $size --fit inside --quality 85 --input "$img" --output "$output_file"
+                sharp resize $size $size --fit inside --quality 92 --input "$img" --output "$output_file"
             fi
             
             if [ -f "$output_file" ]; then

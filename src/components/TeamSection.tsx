@@ -56,10 +56,10 @@ export default function TeamSection() {
               <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4 bg-gray-100 ring-1 ring-gray-200 relative z-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
-                  src={`/images/team/optimized/${member.image.replace('.webp', '-128w.webp')}`} 
+                  src={`/images/team/optimized/${member.image.replace('.webp', '-256w.webp')}`} 
                   alt={member.name} 
-                  width="128" 
-                  height="128" 
+                  width="256" 
+                  height="256" 
                   className="object-cover object-top w-full h-full" 
                   loading={idx < 4 ? 'eager' : 'lazy'}
                   decoding="async"
@@ -86,10 +86,10 @@ export default function TeamSection() {
                   <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-3 bg-gray-100 ring-1 ring-gray-200">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img 
-                      src={`/images/team/optimized/${member.image.replace('.webp', '-96w.webp')}`} 
+                      src={`/images/team/optimized/${member.image.replace('.webp', '-192w.webp')}`} 
                       alt={member.name} 
-                      width="96" 
-                      height="96" 
+                      width="192" 
+                      height="192" 
                       className="object-cover object-top w-full h-full" 
                       loading="lazy"
                       decoding="async"
