@@ -79,12 +79,7 @@ export const onRequestPost = async ({ request, env, params }) => {
 
     // Convert vCard to base64 for attachment
     // In Cloudflare Workers, we use btoa instead of Buffer
-    const vcardBase64 = btoa(
-      vcardContent
-        .split('')
-        .map((char) => String.fromCharCode(char.charCodeAt(0)))
-        .join('')
-    )
+    const vcardBase64 = stringToBase64(vcardContent)
 
     // Send email with vCard attachment
     // Note: Brevo may not support .vcf format directly
@@ -276,5 +271,20 @@ For support, contact: info@karavan.net
   `.trim()
 
   return { htmlContent, textContent }
+}
+
+function stringToBase64(value) {
+  const encoder = new TextEncoder()
+  const bytes = encoder.encode(value)
+
+  let binary = ''
+  const chunkSize = 0x8000
+
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    const chunk = bytes.subarray(i, i + chunkSize)
+    binary += String.fromCharCode(...chunk)
+  }
+
+  return btoa(binary)
 }
 
