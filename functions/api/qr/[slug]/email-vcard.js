@@ -124,7 +124,11 @@ export const onRequestPost = async ({ request, env, params }) => {
       }
 
       return new Response(
-        JSON.stringify({ error: 'Failed to send email' }),
+        JSON.stringify({
+          error: 'Failed to send email',
+          details: errText || null,
+          status: brevoRes.status,
+        }),
         { status: 502, headers: { 'Content-Type': 'application/json' } }
       )
     }
