@@ -1,10 +1,4 @@
-import contactsData from '../../../../src/data/qr-contacts.json' assert { type: 'json' }
-
-const CONTACTS = Array.isArray(contactsData)
-  ? contactsData
-  : Array.isArray(contactsData?.default)
-    ? contactsData.default
-    : []
+import CONTACTS from '../../../data/qr-contacts.js'
 
 export const onRequestPost = async ({ request, env, params }) => {
   try {
