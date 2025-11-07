@@ -1,3 +1,11 @@
+import contactsData from '../../../../src/data/qr-contacts.json' assert { type: 'json' }
+
+const CONTACTS = Array.isArray(contactsData)
+  ? contactsData
+  : Array.isArray(contactsData?.default)
+    ? contactsData.default
+    : []
+
 export const onRequestPost = async ({ request, env, params }) => {
   try {
     const { slug } = await params
@@ -27,18 +35,16 @@ export const onRequestPost = async ({ request, env, params }) => {
       )
     }
 
-    // Get contact data from JSON file
-    // Note: In Cloudflare Pages Functions, we need to read from the built output
-    // For now, we'll fetch the contact data from the static JSON
-    // In production, you might want to use KV or D1 for this
-    const contactsResponse = await fetch(`${new URL(request.url).origin}/data/qr-contacts.json`)
-    if (!contactsResponse.ok) {
+    // Load contact data from bundled JSON
+    if (!CONTACTS.length) {
+      console.error('Contacts data bundle missing')
       return new Response(
         JSON.stringify({ error: 'Contact data not available' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       )
     }
-    const contacts = await contactsResponse.json()
+
+    const contacts = CONTACTS
     const contact = contacts.find((c) => c.slug === slug)
 
     if (!contact) {
