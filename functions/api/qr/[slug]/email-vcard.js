@@ -75,11 +75,19 @@ export const onRequestPost = async ({ request, env, params }) => {
 
     // Email templates
     const emailSubject = `Your Karavan contact card for ${contact.displayName}`
-    const { htmlContent, textContent } = generateEmailTemplates(contact, marketingConsent)
+    const { htmlContent, textContent, downloadUrl } = generateEmailTemplates(contact, marketingConsent)
 
     // Convert vCard to base64 for attachment
     // In Cloudflare Workers, we use btoa instead of Buffer
     const vcardBase64 = stringToBase64(vcardContent)
+
+    if (!apiKey) {
+      console.error('BREVO_API_KEY missing from environment')
+      return new Response(
+        JSON.stringify({ error: 'Email service not configured' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      )
+    }
 
     // Send email with vCard attachment
     // Note: Brevo may not support .vcf format directly
@@ -114,7 +122,77 @@ export const onRequestPost = async ({ request, env, params }) => {
     if (!brevoRes.ok) {
       const errText = await brevoRes.text()
       console.error('Brevo email error:', errText)
-      
+
+      let parsedError
+      try {
+        parsedError = JSON.parse(errText || '{}')
+      } catch {
+        parsedError = null
+      }
+
+      const unsupportedFormat =
+        parsedError &&
+        typeof parsedError.message === 'string' &&
+        (parsedError.message.includes('vcf') ||
+          parsedError.message.includes('Unsupported file format'))
+
+      if (unsupportedFormat) {
+        console.log('Retrying email without attachment, adding download link...')
+
+        const { htmlContent: fallbackHtml } = generateEmailTemplates(contact, marketingConsent, {
+          includeDownloadAttribute: true,
+          filename,
+        })
+
+        const emailDataWithoutAttachment = {
+          sender: { name: senderName, email: senderEmail },
+          to: [{ email: email.trim(), name: email.trim().split('@')[0] }],
+          subject: emailSubject,
+          htmlContent: fallbackHtml,
+          textContent: `${textContent}\n\nDownload vCard: ${downloadUrl}`,
+          headers: {
+            'X-Category': 'vcard',
+            'X-Contact-Slug': slug,
+          },
+        }
+
+        const retryRes = await fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'api-key': apiKey,
+          },
+          body: JSON.stringify(emailDataWithoutAttachment),
+        })
+
+        if (!retryRes.ok) {
+          const retryErrText = await retryRes.text()
+          console.error('Brevo retry error:', retryErrText)
+          return new Response(
+            JSON.stringify({
+              error: 'Failed to send email',
+              details: retryErrText || null,
+              status: retryRes.status,
+            }),
+            { status: 502, headers: { 'Content-Type': 'application/json' } }
+          )
+        }
+
+        const retryResult = await retryRes.json()
+
+        return new Response(
+          JSON.stringify({
+            success: true,
+            message: 'Email sent successfully (download link included)',
+            messageId: retryResult.messageId,
+          }),
+          {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+          }
+        )
+      }
+
       // Check for rate limit errors
       if (brevoRes.status === 429) {
         return new Response(
@@ -210,9 +288,19 @@ function escapeVCard(value) {
 /**
  * Generate email templates
  */
-function generateEmailTemplates(contact, marketingConsent) {
+function generateEmailTemplates(contact, marketingConsent, options = {}) {
+  const { includeDownloadAttribute = false, filename } = options
   const baseUrl = 'https://karavan.net'
   const downloadUrl = `${baseUrl}/qr/${contact.slug}`
+
+  const downloadLinkLabel = includeDownloadAttribute ? 'Download vCard (.vcf)' : 'Download vCard'
+  const downloadLinkAttributes = includeDownloadAttribute && filename
+    ? `href="${downloadUrl}" download="${filename}" style="color: #3069B4; text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;"`
+    : `href="${downloadUrl}" style="color: #3069B4; text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;"`
+
+  const downloadLinkHtml = `<a ${downloadLinkAttributes}>
+      ${downloadLinkLabel}
+    </a>`
 
   const htmlContent = `
 <!DOCTYPE html>
@@ -237,9 +325,7 @@ function generateEmailTemplates(contact, marketingConsent) {
       Save Contact
     </a>
     <br>
-    <a href="${downloadUrl}" style="color: #3069B4; text-decoration: none; font-size: 14px; margin-top: 10px; display: inline-block;">
-      Download vCard
-    </a>
+    ${downloadLinkHtml}
   </div>
   
   <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
@@ -274,7 +360,7 @@ Karavan.net
 For support, contact: info@karavan.net
   `.trim()
 
-  return { htmlContent, textContent }
+  return { htmlContent, textContent, downloadUrl }
 }
 
 function stringToBase64(value) {
