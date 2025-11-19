@@ -7,6 +7,7 @@ import EmailCaptureInline from '@/components/EmailCaptureInline'
 import { useTranslations } from 'next-intl'
 import { formTracking, leadQuality } from '@/lib/analytics'
 import { contactConfig } from '@/config/contact'
+import ProtectedEmail from '@/components/ProtectedEmail'
 
 export default function ContactForm() {
   const t = useTranslations('contact')
@@ -185,9 +186,10 @@ export default function ContactForm() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">{t('information.email')}</h4>
-                    <a href={`mailto:${contactConfig.email.primary}`} className="text-brand-600 hover:text-brand-700 transition-colors">
-                      {contactConfig.email.primary}
-                    </a>
+                    <ProtectedEmail
+                      email={contactConfig.email.primary}
+                      className="text-brand-600 hover:text-brand-700 transition-colors"
+                    />
                     <p className="text-sm text-gray-500 mt-1">{t('information.emailLabel')}</p>
                   </div>
                 </div>

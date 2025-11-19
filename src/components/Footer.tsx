@@ -13,6 +13,7 @@ import LanguageSelector from '@/components/LanguageSelector'
 import SocialMediaLinks from '@/components/SocialMediaLinks'
 import { contactConfig } from '@/config/contact'
 import { analytics } from '@/lib/analytics'
+import ProtectedEmail from '@/components/ProtectedEmail'
 
 export default function Footer() {
   const t = useTranslations('footer')
@@ -77,13 +78,10 @@ export default function Footer() {
                 <div className="flex items-center gap-3">
                   <EnvelopeIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
                   <div>
-                    <a 
-                      href={`mailto:${contactConfig.email.primary}`} 
+                    <ProtectedEmail
+                      email={contactConfig.email.primary}
                       className="text-gray-400 hover:text-white transition-colors text-sm block"
-                      onClick={() => analytics.externalLinkClick(`mailto:${contactConfig.email.primary}`)}
-                    >
-                      {contactConfig.email.primary}
-                    </a>
+                    />
                     <div className="text-xs text-gray-400 mt-1">{t('information.emailLabel')}</div>
                   </div>
                 </div>

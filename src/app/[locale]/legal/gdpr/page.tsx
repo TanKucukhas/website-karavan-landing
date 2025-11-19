@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import ProtectedEmail from '@/components/ProtectedEmail'
 
 export default function GDPRPage() {
   const t = useTranslations('legal.gdpr')
@@ -30,7 +31,7 @@ export default function GDPRPage() {
                   N:47 Kar Plaza E Blok Kat:8<br />
                   Ataşehir, İstanbul 34572<br />
                   Türkiye<br />
-                  <strong>{t('sections.dataController.email')}:</strong> privacy@karavan.net
+                  <strong>{t('sections.dataController.email')}:</strong> <ProtectedEmail email="privacy@karavan.net" />
                 </p>
               </div>
             </section>
@@ -192,7 +193,7 @@ export default function GDPRPage() {
               <p className="text-gray-700 mb-4">{t('sections.contact.content')}</p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>{t('sections.contact.email')}:</strong> privacy@karavan.net<br />
+                  <strong>{t('sections.contact.email')}:</strong> <ProtectedEmail email="privacy@karavan.net" /><br />
                   <strong>{t('sections.contact.address')}:</strong><br />
                   Karavan Digital Inc.<br />
                   İçerenköy Mh. Karaman Çiftlik Yolu Cd.<br />

@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import ProtectedEmail from '@/components/ProtectedEmail'
 
 export default function PrivacyPolicyPage() {
   const t = useTranslations('legal.privacyPolicy')
@@ -111,7 +112,7 @@ export default function PrivacyPolicyPage() {
               <p className="text-gray-700 mb-4">{t('sections.contact.content')}</p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>{t('sections.contact.email')}:</strong> privacy@karavan.net<br />
+                  <strong>{t('sections.contact.email')}:</strong> <ProtectedEmail email="privacy@karavan.net" /><br />
                   <strong>{t('sections.contact.address')}:</strong><br />
                   Karavan Digital Inc.<br />
                   İçerenköy Mh. Karaman Çiftlik Yolu Cd.<br />
