@@ -124,33 +124,6 @@ ISO (International Organization for Standardization) certifications provide inde
     author: "Karavan Team",
     tags: ["ISO", "certification", "security", "compliance", "cybersecurity"],
   },
-  {
-    id: "6",
-    slug: "q4-product-updates",
-    title: "Q4 Product Updates: Mobile SDK, API v3, and Enhanced Security",
-    category: "update",
-    date: "2025-10-28",
-    summary: "A roundup of our latest product improvements and new features shipping this quarter.",
-    content: `As we close out the year, we're shipping some of our most requested features.
-
-## What's New
-
-### Mobile SDK v2.0
-Complete rewrite with improved performance and smaller bundle size.
-
-### API v3
-New RESTful endpoints with better error handling and documentation.
-
-### Enhanced Security
-SOC 2 Type II certification and advanced encryption options.
-
-## Coming Soon
-
-Watch for our advanced workflow automation features launching in Q1 2026.`,
-    featured: false,
-    author: "Engineering Team",
-    tags: ["updates", "SDK", "API", "security"],
-  },
 ];
 
 export const dummyStories: StoryItem[] = [
