@@ -8,7 +8,15 @@ import { dummyNews } from "@/lib/newsroom/dummyData";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function NewsroomOverview() {
+type Props = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
+
+export default async function NewsroomOverview({ params }: Props) {
+  const { locale } = await params;
+
   // Get featured items
   const featuredNews = dummyNews.find((n) => n.featured);
   const latestNews = dummyNews.slice(0, 4);
@@ -33,7 +41,7 @@ export default function NewsroomOverview() {
                     {featuredNews.summary}
                   </p>
                   <Link
-                    href={`/newsroom/news/${featuredNews.slug}`}
+                    href={`/${locale}/newsroom/news/${featuredNews.slug}`}
                     className="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-lg group"
                   >
                     Read more
@@ -110,7 +118,7 @@ export default function NewsroomOverview() {
                   The latest product and company news from Karavan.
                 </p>
                 <Link
-                  href="/newsroom/news"
+                  href={`/${locale}/newsroom/news`}
                   className="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-sm"
                 >
                   Learn more →
@@ -141,7 +149,7 @@ export default function NewsroomOverview() {
                   Analysis and perspectives on trade, logistics, and market trends.
                 </p>
                 <Link
-                  href="/newsroom/news"
+                  href={`/${locale}/newsroom/news`}
                   className="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-sm"
                 >
                   Learn more →
@@ -172,7 +180,7 @@ export default function NewsroomOverview() {
                   Press releases and media resources for journalists and partners.
                 </p>
                 <Link
-                  href="/newsroom/about"
+                  href={`/${locale}/newsroom/about`}
                   className="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-sm"
                 >
                   Learn more →
@@ -189,7 +197,7 @@ export default function NewsroomOverview() {
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-3xl font-bold text-ink">News</h2>
             <Link
-              href="/newsroom/news"
+              href={`/${locale}/newsroom/news`}
               className="text-brand-600 hover:text-brand-700 font-semibold text-sm"
             >
               All news →
@@ -202,7 +210,7 @@ export default function NewsroomOverview() {
               {latestNews.slice(0, 4).map((item) => (
                 <Link
                   key={item.id}
-                  href={`/newsroom/news/${item.slug}`}
+                  href={`/${locale}/newsroom/news/${item.slug}`}
                   className="flex-shrink-0 w-[400px] snap-start group"
                 >
                   <div className="flex flex-col h-full">
