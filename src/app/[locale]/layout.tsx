@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import HeaderWithCTA from '@/components/twplus/HeaderWithCTA';
 import GlobalBackground from '@/components/GlobalBackground';
-import Footer from '@/components/Footer';
+import ConditionalFooter from '@/components/ConditionalFooter';
 import Analytics from '@/components/Analytics';
 import LocaleSync from '@/components/LocaleSync';
 import { Suspense } from 'react';
@@ -44,7 +44,7 @@ export default async function LocaleLayout({
         <Analytics />
       </Suspense>
       <div className="pt-16">{children}</div>
-      <Footer />
+      <ConditionalFooter />
     </NextIntlClientProvider>
   );
 }
