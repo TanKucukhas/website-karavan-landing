@@ -18,12 +18,13 @@ export default function HeaderWithCTA() {
     { name: t('nav.features'), href: '#features', isAnchor: true },
     { name: t('nav.categories'), href: '#categories', isAnchor: true },
     { name: t('nav.regions'), href: '#regions', isAnchor: true },
+    // { name: t('nav.newsroom'), href: '/newsroom', isAnchor: false }, // Hidden for now
     { name: t('nav.contact'), href: '/contact', isAnchor: false },
   ]
 
   // Only show navigation links on homepage
   const isHomePage = pathname === '/'
-  const displayNavigation = isHomePage ? navigation : navigation.filter(item => item.href.includes('contact'))
+  const displayNavigation = isHomePage ? navigation : navigation.filter(item => !item.isAnchor)
 
   return (
     <header className="bg-white/90 backdrop-blur-md fixed top-0 inset-x-0 z-50 border-b border-gray-200/50">
