@@ -69,7 +69,7 @@ Forumda alınan kararlar ve imzalanan anlaşmalar ile, Türk devletleri arasınd
 ---
 
 **"Ulaşım artık sadece transit değil – doğu ile batı arasındaki ticaretin büyüme motorudur."** — Binali Yıldırım`,
-    thumbnailUrl: "/images/newsroom/tdt-forum-main-hq.jpg",
+    thumbnailUrl: "/images/newsroom/tdt-forum-turkish.jpg",
     featured: false,
     author: "Karavan Ekibi",
     tags: ["işbirliği", "TDT", "lojistik", "Orta Asya", "Türkiye"],
