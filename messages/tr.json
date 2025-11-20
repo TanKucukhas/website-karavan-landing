@@ -1099,6 +1099,19 @@
     "readMore": "Devamını oku",
     "allNews": "Tüm haberler",
     "news": "Haberler",
+    "tabs": {
+      "overview": "Genel Bakış",
+      "news": "Haberler",
+      "stories": "Hikayeler",
+      "about": "Karavan Hakkında"
+    },
+    "categories": {
+      "launch": "Lansман",
+      "update": "Güncelleme",
+      "insight": "İçgörü",
+      "partnership": "İş Birliği",
+      "company": "Şirket"
+    },
     "quickLinks": {
       "productUpdates": {
         "title": "Ürün güncellemeleri",

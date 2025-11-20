@@ -4,22 +4,24 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import Footer from "@/components/Footer";
-
-const tabs = [
-  { href: "/newsroom", label: "Overview" },
-  { href: "/newsroom/news", label: "News" },
-  // { href: "/newsroom/stories", label: "Stories" }, // Hidden for now
-  { href: "/newsroom/about", label: "About Karavan" },
-];
+import { useTranslations } from "next-intl";
 
 export default function NewsroomLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const t = useTranslations("newsroom.tabs");
   const pathname = usePathname();
   const params = useParams();
   const locale = params?.locale as string;
+
+  const tabs = [
+    { href: "/newsroom", label: t("overview") },
+    { href: "/newsroom/news", label: t("news") },
+    // { href: "/newsroom/stories", label: t("stories") }, // Hidden for now
+    { href: "/newsroom/about", label: t("about") },
+  ];
 
   // Helper to check if tab is active
   const isActive = (href: string) => {
