@@ -4,6 +4,7 @@
       "features": "Features",
       "categories": "Categories",
       "regions": "Regions",
+      "newsroom": "Newsroom",
       "contact": "Contact"
     },
     "cta": "Get Early Access"
@@ -1091,6 +1092,28 @@
           "email": "Email",
           "address": "Address"
         }
+      }
+    }
+  },
+  "newsroom": {
+    "readMore": "Read more",
+    "allNews": "All news",
+    "news": "News",
+    "quickLinks": {
+      "productUpdates": {
+        "title": "Product updates",
+        "description": "The latest product and company news from Karavan.",
+        "cta": "Learn more"
+      },
+      "industryInsights": {
+        "title": "Industry insights",
+        "description": "Analysis and perspectives on trade, logistics, and market trends.",
+        "cta": "Learn more"
+      },
+      "fromNewsroom": {
+        "title": "From the newsroom",
+        "description": "Press releases and media resources for journalists and partners.",
+        "cta": "Learn more"
       }
     }
   },

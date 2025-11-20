@@ -7,6 +7,7 @@
 import { dummyNews } from "@/lib/newsroom/dummyData";
 import Link from "next/link";
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 
 type Props = {
   params: Promise<{
@@ -16,6 +17,7 @@ type Props = {
 
 export default async function NewsroomOverview({ params }: Props) {
   const { locale } = await params;
+  const t = await getTranslations("newsroom");
 
   // Get featured items
   const featuredNews = dummyNews.find((n) => n.featured);
@@ -44,7 +46,7 @@ export default async function NewsroomOverview({ params }: Props) {
                     href={`/${locale}/newsroom/news/${featuredNews.slug}`}
                     className="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-lg group"
                   >
-                    Read more
+                    {t('readMore')}
                     <svg
                       className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"
                       fill="none"
@@ -113,15 +115,15 @@ export default async function NewsroomOverview({ params }: Props) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-bold text-ink mb-2">Product updates</h3>
+                <h3 className="text-lg font-bold text-ink mb-2">{t('quickLinks.productUpdates.title')}</h3>
                 <p className="text-gray-600 mb-4">
-                  The latest product and company news from Karavan.
+                  {t('quickLinks.productUpdates.description')}
                 </p>
                 <Link
                   href={`/${locale}/newsroom/news`}
                   className="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-sm"
                 >
-                  Learn more →
+                  {t('quickLinks.productUpdates.cta')} →
                 </Link>
               </div>
             </div>
@@ -144,15 +146,15 @@ export default async function NewsroomOverview({ params }: Props) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-bold text-ink mb-2">Industry insights</h3>
+                <h3 className="text-lg font-bold text-ink mb-2">{t('quickLinks.industryInsights.title')}</h3>
                 <p className="text-gray-600 mb-4">
-                  Analysis and perspectives on trade, logistics, and market trends.
+                  {t('quickLinks.industryInsights.description')}
                 </p>
                 <Link
                   href={`/${locale}/newsroom/news`}
                   className="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-sm"
                 >
-                  Learn more →
+                  {t('quickLinks.industryInsights.cta')} →
                 </Link>
               </div>
             </div>
@@ -175,15 +177,15 @@ export default async function NewsroomOverview({ params }: Props) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-bold text-ink mb-2">From the newsroom</h3>
+                <h3 className="text-lg font-bold text-ink mb-2">{t('quickLinks.fromNewsroom.title')}</h3>
                 <p className="text-gray-600 mb-4">
-                  Press releases and media resources for journalists and partners.
+                  {t('quickLinks.fromNewsroom.description')}
                 </p>
                 <Link
                   href={`/${locale}/newsroom/about`}
                   className="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-sm"
                 >
-                  Learn more →
+                  {t('quickLinks.fromNewsroom.cta')} →
                 </Link>
               </div>
             </div>
@@ -195,12 +197,12 @@ export default async function NewsroomOverview({ params }: Props) {
       <section className="border-b border-gray-200">
         <div className="container mx-auto px-6 lg:px-12 py-16">
           <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl font-bold text-ink">News</h2>
+            <h2 className="text-3xl font-bold text-ink">{t('news')}</h2>
             <Link
               href={`/${locale}/newsroom/news`}
               className="text-brand-600 hover:text-brand-700 font-semibold text-sm"
             >
-              All news →
+              {t('allNews')} →
             </Link>
           </div>
 
@@ -237,7 +239,7 @@ export default async function NewsroomOverview({ params }: Props) {
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
                         <time className="text-xs text-gray-500" dateTime={item.date}>
-                          {new Date(item.date).toLocaleDateString("en-US", {
+                          {new Date(item.date).toLocaleDateString(locale, {
                             month: "long",
                             day: "numeric",
                             year: "numeric",

@@ -4,6 +4,7 @@
       "features": "Özellikler",
       "categories": "Kategoriler",
       "regions": "Bölgeler",
+      "newsroom": "Haber Odası",
       "contact": "İletişim"
     },
     "cta": "Erken Erişim Al"
@@ -1091,6 +1092,28 @@
           "email": "E-posta",
           "address": "Adres"
         }
+      }
+    }
+  },
+  "newsroom": {
+    "readMore": "Devamını oku",
+    "allNews": "Tüm haberler",
+    "news": "Haberler",
+    "quickLinks": {
+      "productUpdates": {
+        "title": "Ürün güncellemeleri",
+        "description": "Karavan'dan en son ürün ve şirket haberleri.",
+        "cta": "Daha fazla bilgi"
+      },
+      "industryInsights": {
+        "title": "Sektör içgörüleri",
+        "description": "Ticaret, lojistik ve pazar trendleri üzerine analizler ve perspektifler.",
+        "cta": "Daha fazla bilgi"
+      },
+      "fromNewsroom": {
+        "title": "Haber odasından",
+        "description": "Gazeteciler ve ortaklar için basın bültenleri ve medya kaynakları.",
+        "cta": "Daha fazla bilgi"
       }
     }
   },
