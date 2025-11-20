@@ -32,6 +32,49 @@ Looking ahead, the forum participants identified an ambitious shift: raising ann
     tags: ["partnership", "TDT", "logistics", "Central Asia"],
   },
   {
+    id: "1b",
+    slug: "ozbekistan-tdt-uluslararasi-cok-modlu-tasimacilik-forumu",
+    title: "Özbekistan'da TDT Uluslararası Çok Modlu Taşımacılık Forumu Düzenlendi",
+    category: "launch",
+    date: "2025-11-12",
+    summary: "Özbekistan'ın başkenti Taşkent'te, Türk Devletleri Teşkilatı (TDT) bünyesinde gerçekleştirilen Uluslararası Çok Modlu Taşımacılık Forumu, ulaşım alanında önemli girişimlerin tartışıldığı bir platform oldu.",
+    content: `**Taşkent, Özbekistan – 12 Kasım 2025** – Özbekistan'ın başkenti Taşkent'te Türk Devletleri Teşkilatı (TDT) Uluslararası Çok Modlu Taşımacılık Forumu yapıldı. TDT, Taşkent'te taşımacılığı geliştirmek için önemli adımlar atıyor ve işbirlikleri sağlıyor.
+
+## Özbekistan Ulaştırma Bakanı'nın Açıklamaları
+
+Foruma ev sahipliği yapan Özbekistan Ulaştırma Bakanı İlham Mahkamov, TDT'nin artan siyasi ve ekonomik etkisine dikkat çekerek, örgüt üyesi ülkelerin büyük bir potansiyele sahip olduğunu vurguladı. Mahkamov, TDT üyesi ülkelerin "doğu-batı ve kuzey-güney arasında önemli bir transit düğümü" olarak büyüyen jeopolitik önemini vurguladı ve bölgenin çok modlu taşımacılık potansiyelinin altını çizdi.
+
+## Ticaret Yolları Yeniden Şekilleniyor
+
+TDT Aksakallar Konseyi Başkanı Binali Yıldırım, açılış konuşmasında, ticaret yollarının yeniden şekil aldığına ve Doğu-Batı tedarik zincirinin yeniden oluştuğuna değindi. Orta Koridor ve Zengezur Koridoru'nun taşıma potansiyelinin yüksek olduğunu ifade etti.
+
+Yıldırım, tarife engellerini, rota verimsizliklerini ve tarife dışı maliyetleri Orta Koridor (Orta Koridor) ve Zengezur Koridor ulaşım yollarının ölçeklendirilmesinde büyük engeller olarak işaret etti.
+
+## Türkiye'nin Ulaşım Yatırımları
+
+Ulaştırma ve Altyapı Bakan Yardımcısı Durmuş Ünüvar, Türkiye'nin ulaştırma ve altyapı yatırımlarının bölgesel lojistik üzerindeki etkilerini aktarırken, küresel ticaretin yeniden şekillendiğini ve Türk dünyasının ulaşımı için stratejik adımlar atıldığını belirtti.
+
+## Stratejik İşbirliği Anlaşmaları İmzalandı
+
+Foruma katılan Karavan B2B şirketi, TDT Lojistik Merkezleri ve Kargo Taşıyıcıları İttifakı ile Türk Ticaret ve Sanayi Odaları Birliği (TCCI) ile stratejik işbirliği anlaşmaları imzaladı.
+
+Karavan Kurucu Başkanı İslam Şakbandarov tarafından yapılan açıklamada, forumun Türk dünyası için önemli bir gelişim fırsatı sunduğu vurgulandı: "Bu forum, Karavan'ın bölgesel varlığını ve Orta Koridor'un ölçeklenebilir lojistik ekosistemler için kullanılmayan potansiyelini kullanma taahhüdümüzü vurgulamaktadır."
+
+## Gelecek Vizyonu
+
+Forum katılımcıları ileriye dönük olarak iddialı bir değişim belirlediler: koridor bölgesi için yıllık yük hacmini bugünkü 5 milyon tonun altından önümüzdeki beş yıl içinde 20 milyon tona kadar çıkarmak.
+
+Forumda alınan kararlar ve imzalanan anlaşmalar ile, Türk devletleri arasındaki lojistik entegrasyonunun artması ve Orta Koridor'un bir üretim ve lojistik ekosistemine dönüşmesi hedefleniyor.
+
+---
+
+**"Ulaşım artık sadece transit değil – doğu ile batı arasındaki ticaretin büyüme motorudur."** — Binali Yıldırım`,
+    thumbnailUrl: "/images/newsroom/tdt-forum-main-hq.jpg",
+    featured: false,
+    author: "Karavan Ekibi",
+    tags: ["işbirliği", "TDT", "lojistik", "Orta Asya", "Türkiye"],
+  },
+  {
     id: "2",
     slug: "tdt-forum-orta-koridor-growth",
     title: "TDT Forum Spotlights Orta Koridor's Growth as Trade Dynamics Shift",
