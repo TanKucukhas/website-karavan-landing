@@ -36,12 +36,12 @@ export default function NewsroomLayout({
   };
 
   return (
-    <div className="relative">
+    <div className="relative -mt-16">
       {/* White background overlay to hide global background */}
       <div className="fixed inset-0 bg-white z-0"></div>
 
       {/* Content wrapper */}
-      <div className="relative z-10 min-h-screen flex flex-col">
+      <div className="relative z-10 min-h-screen flex flex-col pt-16">
         {/* Newsroom Sub-Header - Stripe Style */}
         <div className="bg-white sticky top-16 z-40 mt-8">
           <div className="container mx-auto px-6 lg:px-12">
