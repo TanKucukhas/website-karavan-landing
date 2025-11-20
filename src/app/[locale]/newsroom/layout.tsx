@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import Footer from "@/components/Footer";
 
 const tabs = [
   { href: "/newsroom", label: "Overview" },
@@ -78,9 +77,6 @@ export default function NewsroomLayout({
 
         {/* Main Content */}
         <main className="flex-1">{children}</main>
-
-        {/* Footer */}
-        <Footer />
       </div>
     </div>
   );
