@@ -21,7 +21,7 @@ const DEFAULT_LOCALE: Locale = "en";
  */
 export function getNewsItemHeaderImage(
   item: NewsItem,
-  locale?: Locale
+  _locale?: Locale
 ): string | undefined {
   // New images structure (preferred)
   if (item.images) {

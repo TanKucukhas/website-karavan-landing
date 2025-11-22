@@ -45,7 +45,7 @@ export default async function NewsroomOverview({ params }: Props) {
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-full bg-brand-100 text-brand-700 mb-4">
-                    {tCategories(featuredNewsItem.category as any)}
+                    {tCategories(featuredNewsItem.category)}
                   </span>
                   <h1 className="text-4xl lg:text-5xl font-bold text-ink mb-6 leading-tight">
                     {featuredTranslation.title}
@@ -244,7 +244,7 @@ export default async function NewsroomOverview({ params }: Props) {
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
                             <span className="text-xs font-semibold text-brand-600 uppercase tracking-wide">
-                              {tCategories(item.category as any)}
+                              {tCategories(item.category)}
                             </span>
                           </div>
                         )}
@@ -262,7 +262,7 @@ export default async function NewsroomOverview({ params }: Props) {
                           </time>
                           <span className="text-gray-300">•</span>
                           <span className="text-xs font-semibold text-brand-600 uppercase tracking-wide">
-                            {tCategories(item.category as any)}
+                            {tCategories(item.category)}
                           </span>
                         </div>
                         <h3 className="text-lg font-semibold text-ink group-hover:text-brand-600 transition-colors mb-2 leading-snug">

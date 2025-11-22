@@ -12,7 +12,6 @@ import { Link } from '@/i18n/routing'
 import LanguageSelector from '@/components/LanguageSelector'
 import SocialMediaLinks from '@/components/SocialMediaLinks'
 import { contactConfig } from '@/config/contact'
-import { analytics } from '@/lib/analytics'
 import ProtectedEmail from '@/components/ProtectedEmail'
 
 export default function Footer() {
