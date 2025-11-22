@@ -17,11 +17,9 @@ const DEFAULT_LOCALE: Locale = "en";
 /**
  * Get header image URL for a news item
  * Supports both old thumbnailUrl and new images structure
- * Note: locale parameter kept for API compatibility but not used (all locales share same image)
  */
 export function getNewsItemHeaderImage(
-  item: NewsItem,
-  _locale?: Locale
+  item: NewsItem
 ): string | undefined {
   // New images structure (preferred)
   if (item.images) {

@@ -109,10 +109,10 @@ export default function NewsIndex() {
                         </div>
 
                         {/* Thumbnail (if exists) */}
-                        {getNewsItemHeaderImage(item, locale) && (
+                        {getNewsItemHeaderImage(item) && (
                           <div className="flex-shrink-0 w-32 h-32 bg-gray-100 rounded overflow-hidden">
                             <Image
-                              src={getNewsItemHeaderImage(item, locale)!}
+                              src={getNewsItemHeaderImage(item)!}
                               alt=""
                               width={128}
                               height={128}

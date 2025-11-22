@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "mkdir -p .build-temp && (test -f src/app/api/qr/\\[slug\\]/email-vcard/route.ts && mv src/app/api/qr/\\[slug\\]/email-vcard/route.ts .build-temp/email-vcard-route.ts.bak || true) && (test -f src/app/qr/\\[slug\\]/opengraph-image.tsx && mv src/app/qr/\\[slug\\]/opengraph-image.tsx .build-temp/opengraph-image.tsx.bak || true)",
+    "prebuild": "mkdir -p .build-temp && (test -f src/app/api/qr/\\[slug\\]/email-vcard/route.ts && mv src/app/api/qr/\\[slug\\]/email-vcard/route.ts .build-temp/email-vcard-route.ts.bak || true) && (test -f src/app/qr/\\[slug\\]/opengraph-image.tsx && mv src/app/qr/\\[slug\\]/opengraph-image.tsx .build-temp/opengraph-image.tsx.bak || true) && (test -d src/app/\\[locale\\]/newsroom/stories && mv src/app/\\[locale\\]/newsroom/stories .build-temp/stories.bak || true)",
     "build": "next build",
-    "postbuild": "if [ -f .build-temp/email-vcard-route.ts.bak ]; then mv .build-temp/email-vcard-route.ts.bak src/app/api/qr/\\[slug\\]/email-vcard/route.ts && mv .build-temp/opengraph-image.tsx.bak src/app/qr/\\[slug\\]/opengraph-image.tsx 2>/dev/null || true && rmdir .build-temp 2>/dev/null || true; fi",
+    "postbuild": "if [ -f .build-temp/email-vcard-route.ts.bak ]; then mv .build-temp/email-vcard-route.ts.bak src/app/api/qr/\\[slug\\]/email-vcard/route.ts && mv .build-temp/opengraph-image.tsx.bak src/app/qr/\\[slug\\]/opengraph-image.tsx 2>/dev/null || true; fi && (test -d .build-temp/stories.bak && mv .build-temp/stories.bak src/app/\\[locale\\]/newsroom/stories || true) && rmdir .build-temp 2>/dev/null || true",
     "start": "next start",
     "lint": "eslint",
     "export": "next build && next export",

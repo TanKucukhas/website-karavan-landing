@@ -76,9 +76,9 @@ export default async function NewsroomOverview({ params }: Props) {
 
                 {/* Hero Image */}
                 <div className="aspect-[4/3] bg-gradient-to-br from-brand-50 to-brand-100 rounded-lg overflow-hidden">
-                  {getNewsItemHeaderImage(featuredNewsItem, locale as Locale) ? (
+                  {getNewsItemHeaderImage(featuredNewsItem) ? (
                     <Image
-                      src={getNewsItemHeaderImage(featuredNewsItem, locale as Locale)!}
+                      src={getNewsItemHeaderImage(featuredNewsItem)!}
                       alt={featuredTranslation.title}
                       width={800}
                       height={600}
@@ -233,9 +233,9 @@ export default async function NewsroomOverview({ params }: Props) {
                     <div className="flex flex-col h-full">
                       {/* Thumbnail */}
                       <div className="aspect-[16/9] bg-gradient-to-br from-brand-100 to-brand-200 rounded-lg overflow-hidden mb-4">
-                        {getNewsItemHeaderImage(item, locale as Locale) ? (
+                        {getNewsItemHeaderImage(item) ? (
                           <Image
-                            src={getNewsItemHeaderImage(item, locale as Locale)!}
+                            src={getNewsItemHeaderImage(item)!}
                             alt=""
                             width={400}
                             height={225}

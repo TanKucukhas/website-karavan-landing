@@ -71,10 +71,10 @@ export default async function NewsDetailPage({ params }: Props) {
         </h1>
 
         {/* Hero Image Placeholder */}
-        {getNewsItemHeaderImage(newsItem, locale as Locale) ? (
+        {getNewsItemHeaderImage(newsItem) ? (
           <div className="aspect-video bg-gradient-to-br from-brand-100 to-brand-200 rounded-lg overflow-hidden mb-12 relative">
             <Image
-              src={getNewsItemHeaderImage(newsItem, locale as Locale)!}
+              src={getNewsItemHeaderImage(newsItem)!}
               alt={translation.title}
               fill
               className="object-cover"
