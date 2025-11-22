@@ -7,26 +7,35 @@
  */
 
 import { dummyNews } from "@/lib/newsroom/dummyData";
-import { NewsCategory } from "@/lib/newsroom/types";
+import { getAllNewsInLocale, getNewsItemTranslation, getNewsItemHeaderImage } from "@/lib/newsroom/utils";
+import { NewsCategory, Locale } from "@/lib/newsroom/types";
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 
 const categories: { value: NewsCategory | "all"; label: string }[] = [
   { value: "all", label: "All news" },
   { value: "company", label: "Company" },
   { value: "product", label: "Product" },
   { value: "launch", label: "Launch" },
+  { value: "partnership", label: "Partnership" },
   { value: "insight", label: "Insights" },
 ];
 
 export default function NewsIndex() {
+  const params = useParams();
+  const locale = params.locale as Locale;
   const [activeCategory, setActiveCategory] = useState<NewsCategory | "all">("all");
 
+  // Get news items available in current locale (with fallback to English)
+  const localeNews = getAllNewsInLocale(dummyNews, locale);
+
+  // Filter by category
   const filteredNews =
     activeCategory === "all"
-      ? dummyNews
-      : dummyNews.filter((item) => item.category === activeCategory);
+      ? localeNews
+      : localeNews.filter((item) => item.category === activeCategory);
 
   return (
     <div className="bg-white min-h-screen">
@@ -36,13 +45,13 @@ export default function NewsIndex() {
           <h1 className="text-4xl lg:text-5xl font-bold text-ink mb-6">News</h1>
 
           {/* Category Filter */}
-          <div className="flex gap-4 border-b border-gray-200">
+          <div className="flex gap-4 border-b border-gray-200 overflow-x-auto">
             {categories.map((category) => (
               <button
                 key={category.value}
                 onClick={() => setActiveCategory(category.value)}
                 className={`
-                  px-1 py-4 text-sm font-semibold transition-colors relative
+                  px-1 py-4 text-sm font-semibold transition-colors relative whitespace-nowrap
                   ${
                     activeCategory === category.value
                       ? "text-brand-600"
@@ -62,56 +71,61 @@ export default function NewsIndex() {
         {/* News List */}
         <div className="max-w-4xl">
           <div className="space-y-12">
-            {filteredNews.map((item) => (
-              <Link
-                key={item.id}
-                href={`/newsroom/news/${item.slug}`}
-                className="block group"
-              >
-                <div className="flex gap-8">
-                  {/* Date Column */}
-                  <div className="flex-shrink-0 w-32">
-                    <time className="text-sm text-gray-500" dateTime={item.date}>
-                      {new Date(item.date).toLocaleDateString("en-US", {
-                        month: "long",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                    </time>
-                  </div>
+            {filteredNews.map((item) => {
+              const translation = getNewsItemTranslation(item, locale);
+              if (!translation) return null;
 
-                  {/* Content Column */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex gap-6">
-                      <div className="flex-1">
-                        <span className="inline-block text-xs font-semibold text-brand-600 uppercase tracking-wide mb-2">
-                          {item.category}
-                        </span>
-                        <h2 className="text-xl font-semibold text-ink group-hover:text-brand-600 transition-colors mb-3 leading-snug">
-                          {item.title}
-                        </h2>
-                        <p className="text-gray-600 leading-relaxed">
-                          {item.summary}
-                        </p>
-                      </div>
+              return (
+                <Link
+                  key={item.id}
+                  href={`/${locale}/newsroom/news/${translation.slug}`}
+                  className="block group"
+                >
+                  <div className="flex gap-8">
+                    {/* Date Column */}
+                    <div className="flex-shrink-0 w-32">
+                      <time className="text-sm text-gray-500" dateTime={item.date}>
+                        {new Date(item.date).toLocaleDateString(locale, {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        })}
+                      </time>
+                    </div>
 
-                      {/* Thumbnail (if exists) */}
-                      {item.thumbnailUrl && (
-                        <div className="flex-shrink-0 w-32 h-32 bg-gray-100 rounded overflow-hidden">
-                          <Image
-                            src={item.thumbnailUrl}
-                            alt=""
-                            width={128}
-                            height={128}
-                            className="w-full h-full object-cover"
-                          />
+                    {/* Content Column */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex gap-6">
+                        <div className="flex-1">
+                          <span className="inline-block text-xs font-semibold text-brand-600 uppercase tracking-wide mb-2">
+                            {item.category}
+                          </span>
+                          <h2 className="text-xl font-semibold text-ink group-hover:text-brand-600 transition-colors mb-3 leading-snug">
+                            {translation.title}
+                          </h2>
+                          <p className="text-gray-600 leading-relaxed">
+                            {translation.summary}
+                          </p>
                         </div>
-                      )}
+
+                        {/* Thumbnail (if exists) */}
+                        {getNewsItemHeaderImage(item, locale) && (
+                          <div className="flex-shrink-0 w-32 h-32 bg-gray-100 rounded overflow-hidden">
+                            <Image
+                              src={getNewsItemHeaderImage(item, locale)!}
+                              alt=""
+                              width={128}
+                              height={128}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         </div>
 

@@ -1,9 +1,16 @@
 /**
  * News Detail Page
- * Displays individual news article
+ * Displays individual news article with locale-aware content
  */
 
 import { dummyNews } from "@/lib/newsroom/dummyData";
+import {
+  findNewsBySlug,
+  getNewsItemTranslation,
+  getAllNewsInLocale,
+  getNewsItemHeaderImage,
+} from "@/lib/newsroom/utils";
+import { Locale } from "@/lib/newsroom/types";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -16,12 +23,26 @@ type Props = {
 };
 
 export default async function NewsDetailPage({ params }: Props) {
-  const { slug } = await params;
-  const newsItem = dummyNews.find((item) => item.slug === slug);
+  const { slug, locale } = await params;
+
+  // Find news item by slug across all translations
+  const newsItem = findNewsBySlug(dummyNews, slug);
 
   if (!newsItem) {
     notFound();
   }
+
+  // Get translation for current locale (with fallback to English)
+  const translation = getNewsItemTranslation(newsItem, locale as Locale);
+
+  if (!translation) {
+    notFound();
+  }
+
+  // Get other news items in current locale for related articles
+  const otherNews = getAllNewsInLocale(dummyNews, locale as Locale)
+    .filter((item) => item.id !== newsItem.id)
+    .slice(0, 3);
 
   return (
     <div className="bg-white min-h-screen">
@@ -30,31 +51,31 @@ export default async function NewsDetailPage({ params }: Props) {
         {/* Meta Information */}
         <div className="flex items-center gap-4 text-sm text-gray-600 mb-8">
           <time dateTime={newsItem.date}>
-            {new Date(newsItem.date).toLocaleDateString("en-US", {
+            {new Date(newsItem.date).toLocaleDateString(locale, {
               month: "long",
               day: "numeric",
               year: "numeric",
             })}
           </time>
-          {newsItem.author && (
+          {translation.author && (
             <>
               <span>•</span>
-              <span>{newsItem.author}</span>
+              <span>{translation.author}</span>
             </>
           )}
         </div>
 
         {/* Title */}
         <h1 className="text-4xl lg:text-6xl font-bold text-ink mb-12 leading-tight">
-          {newsItem.title}
+          {translation.title}
         </h1>
 
         {/* Hero Image Placeholder */}
-        {newsItem.thumbnailUrl ? (
+        {getNewsItemHeaderImage(newsItem, locale as Locale) ? (
           <div className="aspect-video bg-gradient-to-br from-brand-100 to-brand-200 rounded-lg overflow-hidden mb-12 relative">
             <Image
-              src={newsItem.thumbnailUrl}
-              alt={newsItem.title}
+              src={getNewsItemHeaderImage(newsItem, locale as Locale)!}
+              alt={translation.title}
               fill
               className="object-cover"
               priority
@@ -74,17 +95,17 @@ export default async function NewsDetailPage({ params }: Props) {
         <div className="max-w-3xl">
           {/* Lead/Summary */}
           <p className="text-xl text-gray-700 leading-relaxed mb-8 font-medium">
-            {newsItem.summary}
+            {translation.summary}
           </p>
 
           {/* Main Content */}
-          {newsItem.content && (
+          {translation.content && (
             <div className="prose prose-lg prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-p:text-gray-700 prose-p:leading-relaxed prose-strong:text-gray-900 prose-strong:font-semibold prose-ul:list-disc prose-ul:pl-6 prose-li:text-gray-700 max-w-none">
               <div
                 className="markdown-content"
                 dangerouslySetInnerHTML={{
                   __html: (() => {
-                    let html = newsItem.content || '';
+                    let html = translation.content || '';
 
                     // Convert headings
                     html = html.replace(/^## (.+)$/gm, '<h2 class="text-2xl font-bold mt-8 mb-4 text-ink">$1</h2>');
@@ -125,7 +146,7 @@ export default async function NewsDetailPage({ params }: Props) {
         {/* Back to News Link */}
         <div className="mt-16 pt-8 border-t border-gray-200">
           <Link
-            href="/newsroom/news"
+            href={`/${locale}/newsroom/news`}
             className="inline-flex items-center text-brand-600 hover:text-brand-700 font-semibold text-sm transition-colors"
           >
             ← Back to News
@@ -134,52 +155,70 @@ export default async function NewsDetailPage({ params }: Props) {
       </article>
 
       {/* Related News Section - Full Width Background */}
-      <div className="bg-gray-50 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 py-16">
-          <h2 className="text-3xl font-bold text-ink mb-8">Related articles</h2>
-          <div className="space-y-6">
-            {dummyNews
-              .filter((item) => item.slug !== slug)
-              .slice(0, 3)
-              .map((item) => (
-                <Link
-                  key={item.id}
-                  href={`/newsroom/news/${item.slug}`}
-                  className="block group"
-                >
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-center gap-3 text-sm text-gray-600">
-                      <time dateTime={item.date}>
-                        {new Date(item.date).toLocaleDateString("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </time>
-                      <span>•</span>
-                      <span className="text-brand-600 font-semibold uppercase tracking-wide text-xs">
-                        {item.category}
-                      </span>
+      {otherNews.length > 0 && (
+        <div className="bg-gray-50 border-t border-gray-200">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 py-16">
+            <h2 className="text-3xl font-bold text-ink mb-8">Related articles</h2>
+            <div className="space-y-6">
+              {otherNews.map((item) => {
+                const itemTranslation = getNewsItemTranslation(item, locale as Locale);
+                if (!itemTranslation) return null;
+
+                return (
+                  <Link
+                    key={item.id}
+                    href={`/${locale}/newsroom/news/${itemTranslation.slug}`}
+                    className="block group"
+                  >
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-3 text-sm text-gray-600">
+                        <time dateTime={item.date}>
+                          {new Date(item.date).toLocaleDateString(locale, {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </time>
+                        <span>•</span>
+                        <span className="text-brand-600 font-semibold uppercase tracking-wide text-xs">
+                          {item.category}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-semibold text-ink group-hover:text-brand-600 transition-colors">
+                        {itemTranslation.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {itemTranslation.summary}
+                      </p>
                     </div>
-                    <h3 className="text-xl font-semibold text-ink group-hover:text-brand-600 transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {item.summary}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
-// Generate static params for all news items
+// Generate static params for all news items in all locales
 export async function generateStaticParams() {
-  return dummyNews.map((item) => ({
-    slug: item.slug,
-  }));
+  const locales: Locale[] = ["en", "tr", "ru"];
+  const params: { slug: string; locale: string }[] = [];
+
+  // Generate all locale + slug combinations
+  dummyNews.forEach((item) => {
+    locales.forEach((locale) => {
+      const translation = item.translations[locale];
+      if (translation) {
+        params.push({
+          slug: translation.slug,
+          locale: locale,
+        });
+      }
+    });
+  });
+
+  return params;
 }
